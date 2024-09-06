@@ -1,6 +1,8 @@
 spring:
   application:
     name: ddogdog
+  profiles:
+    active: secret
 
 server:
   servlet:
