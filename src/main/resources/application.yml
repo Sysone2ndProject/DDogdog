@@ -3,6 +3,10 @@ spring:
     name: ddogdog
   profiles:
     active: secret
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
 
 server:
   servlet:
