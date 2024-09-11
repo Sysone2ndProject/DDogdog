@@ -14,12 +14,4 @@ public class OwnerException extends RuntimeException {
         this.message = message;
         this.httpStatus = httpStatus;
     }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public HttpStatus getHttpstatus() {
-        return httpStatus;
-    }
 }

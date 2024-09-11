@@ -49,7 +49,7 @@
         </div>
         <div class="form-group">
             <label for="accountNumber">계좌번호</label>
-            <input type="number" class="form-control" id="accountNumber" name="accountNumber">
+            <input type="text" class="form-control" id="accountNumber" name="accountNumber" placeholder="숫자만 입력해 주세요">
         </div>
         <button type="button" class="btn btn-success" onclick="signUp()">가입하기</button>
     </form>

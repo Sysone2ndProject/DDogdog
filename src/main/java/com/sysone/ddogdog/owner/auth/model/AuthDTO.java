@@ -10,7 +10,7 @@ public class AuthDTO {
 
     private String id;
     private String password;
-    private Integer accountNumber;
+    private String accountNumber;
     private String bank;
     private String ownerName;
     private Role role;
