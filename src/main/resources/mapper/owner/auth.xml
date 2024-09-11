@@ -16,10 +16,10 @@
     values (#{id}, #{password}, #{accountNumber}, #{bank}, #{ownerName}, #{role})
   </insert>
 
-  <select id="findById" parameterType="String" resultType="String">
-    select id
-    from OWNERS
-    where id = #{id}
+  <select id="findById" parameterType="String" resultType="boolean">
+    SELECT 1
+    FROM OWNERS
+    WHERE id = #{id}
   </select>
 
 </mapper>

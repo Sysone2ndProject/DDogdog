@@ -2,7 +2,7 @@ package com.sysone.ddogdog.owner.auth.controller;
 
 import com.sysone.ddogdog.owner.auth.model.AuthDTO;
 import com.sysone.ddogdog.owner.auth.service.AuthService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/v1/owners")
 public class AuthController {
 
-    @Autowired
-    AuthService authService;
+    private final AuthService authService;
 
     @GetMapping("/signup")
     public String signUpForm() {

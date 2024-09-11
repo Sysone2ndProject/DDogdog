@@ -16,7 +16,7 @@
 <!-- 테스트용 입니다. -->
 <div class="container">
     <h1>회원가입</h1>
-    <form id="signUpForm" action="${pageContext.request.contextPath}/v1/owners" method="post">
+    <form id="signUpForm" action="${pageContext.request.contextPath}/v1/owners/signup" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="form-group">
             <label for="id">아이디:</label>
