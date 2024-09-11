@@ -12,3 +12,6 @@ server:
   servlet:
     encoding:
       force: true
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
