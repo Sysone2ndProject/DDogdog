@@ -19,6 +19,15 @@ function checkId() {
   });
 }
 
+function numberCheck() {
+  const accountNumberInput = document.getElementById('accountNumber');
+  const numericPattern = /^[0-9]*$/;
+  if (!numericPattern.test(accountNumberInput.value)) {
+    alert("숫자만 입력해주세요");
+    accountNumberInput.value = accountNumberInput.value.replace(/[^0-9]/g, '');
+  }
+}
+
 function signUp() {
   const form = document.getElementById('signUpForm');
   const formData = new FormData(form);
