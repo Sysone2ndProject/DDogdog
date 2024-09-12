@@ -5,7 +5,7 @@ spring:
     active: secret
   mvc:
     view:
-      prefix: /WEB-INF/view/
+      prefix: /WEB-INF/views/
       suffix: .jsp
 
 server:
