@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Header</title>
     <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/customers/css/header.css"/>
+          href="${pageContext.request.contextPath}/css/customers/header.css"/>
 </head>
 <body>
 <div class="header">

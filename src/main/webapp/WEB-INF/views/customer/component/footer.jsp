@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Footer</title>
     <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/customers/css/footer.css"/>
+          href="${pageContext.request.contextPath}/css/customers/footer.css"/>
 </head>
 <body>
 <div class="footer">

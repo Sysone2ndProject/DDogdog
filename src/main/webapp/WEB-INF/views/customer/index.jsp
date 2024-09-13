@@ -10,15 +10,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hotel</title>
     <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/customers/css/index.css">
+          href="${pageContext.request.contextPath}/css/customers/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
-<form class="search" action="/v1/customers/hotels" method="get">
+<form class="search" id="searchForm" action="${pageContext.request.contextPath}/v1/customers/hotels" method="get">
     <div class="search-bar radius">
         <img class="icon" src="${pageContext.request.contextPath}/img/search.svg"
              alt="search-icon"/>
-        <input class="text-input" name="keyword" placeholder="지역을 입력해 주세요">
+        <input class="text-input" id="keyword" name="keyword" placeholder="지역을 입력해 주세요">
     </div>
     <div class="period radius">
         <div class="date-pick">
@@ -65,4 +66,5 @@
     <jsp:include page="component/footer.jsp"></jsp:include>
 </div>
 </body>
+<script src="/js/customers/hotel.js"></script>
 </html>
