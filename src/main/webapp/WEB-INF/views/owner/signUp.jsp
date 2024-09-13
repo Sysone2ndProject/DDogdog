@@ -10,7 +10,6 @@
     <title>Hotel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="${pageContext.request.contextPath}/owners/js/signup.js"></script>
 </head>
 <body>
 <!-- 테스트용 입니다. -->
@@ -56,4 +55,5 @@
     </form>
 </div>
 </body>
+<script src="${pageContext.request.contextPath}/js/owners/signup.js"></script>
 </html>

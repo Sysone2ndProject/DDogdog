@@ -17,16 +17,14 @@
         <h1>OWNER 메인페이지</h1>
     </div>
     <div>
-        <button type="button" id="sign-up" onclick="getSignUpForm()">회원가입</button>
+        <button type="button" id="sign-up" onclick="location.href = '/v1/owners/signup'">회원가입</button>
     </div>
     <div>
-        <button type="button" id="login" onclick="getLoginForm()">로그인</button>
+        <button type="button" id="login" onclick="location.href = '/v1/owners/login'">로그인</button>
     </div>
     <div>
-        <button type="button" id="user-page" onclick="getUserPage()">유저페이지</button>
+        <button type="button" id="user-page" onclick="location.href = '/v1/owners/user'">유저페이지</button>
     </div>
-
 </div>
 </body>
-<script src="${pageContext.request.contextPath}/owners/js/main.js"></script>
 </html>
