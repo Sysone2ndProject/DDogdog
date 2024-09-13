@@ -1,69 +1,58 @@
 package com.sysone.ddogdog.customer.auth.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sysone.ddogdog.customer.auth.model.AddressCustomerDTO;
-import com.sysone.ddogdog.customer.auth.model.CustomerDTO;
-import com.sysone.ddogdog.customer.auth.model.KakaoProfile;
+import com.sysone.ddogdog.common.config.oauth.PrincipalDetails;
+import com.sysone.ddogdog.customer.auth.model.AddressDTO;
 import com.sysone.ddogdog.customer.auth.service.KakaoService;
-import java.util.HashMap;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class KakaoController {
 
     private final KakaoService kakaoService;
 
     // 로그인 페이지
-    @GetMapping("/v1/oauth/loginpage")
+    @GetMapping("/v1/customers/loginpage")
     public String loginPage() {
         return "customer/auth/login";
     }
 
-    // 로그인 진행
-    @RequestMapping("/v1/oauth/login")
-    public String kakaoLogin(@RequestParam String code, Model model)
-        throws JsonProcessingException {
-        // 1. 인가 코드 받기 (@RequestParam String code)
-        // 2. 토큰 받기
-        String accessToken = kakaoService.getAccessToken(code);
-        // 3. 사용자 정보 받기
-        KakaoProfile kakaoProfile = kakaoService.getUserInfo(accessToken);
-        // 4. 체크 후 로그인
-        Optional<CustomerDTO> customerOpt  = kakaoService.checkIfUserExists(kakaoProfile.getId());
-        if (customerOpt.isPresent()) { //유저정보 존재할경우
-            model.addAttribute("customerDTO", customerOpt.get());
-            System.out.println("유저정보 존재");
-            //TODO : security 이용하여 로그인 후 세션관리
-            return "customerDetails"; //유저객체들고 로그인관련으로 이동
-        } else { //유저정보없을경우
-            System.out.println("회원가입 진행");
-            model.addAttribute("kakaoProfile", kakaoProfile);
-            return "forward:/v1/customers/signup/location"; // 카카오객체정보들고 주소정보받으러 이동
-        }
-    }
-
     // 주소 입력 페이지
     @GetMapping("/v1/customers/signup/location")
-    public String locationPage(){
+    public String locationPage(@AuthenticationPrincipal PrincipalDetails principalDetails,
+        Model model) {
+        System.out.println(principalDetails.getOAuth2UserInfo().getProviderId());
+        model.addAttribute("id",
+            Long.parseLong(principalDetails.getOAuth2UserInfo().getProviderId()));
         return "customer/auth/location";
     }
 
-    // 회원 가입 요청
+    //회원 가입 요청
     @PostMapping("/v1/customers/signup")
-    public ResponseEntity<Void> signUp(@RequestBody AddressCustomerDTO addressCustomerDTO){
-        System.out.println("test");
-        System.out.println(addressCustomerDTO.toString());
-        kakaoService.saveCustomers(addressCustomerDTO);
+    public ResponseEntity<Void> signUp(@RequestBody AddressDTO addressDTO) {
+        log.info("signup test");
+        log.info(addressDTO.toString());
+        kakaoService.saveAddress(addressDTO);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/v1/customers/mainpage")
+    public String mainPage(@AuthenticationPrincipal PrincipalDetails details, Model model){
+        //권한체크
+        for (GrantedAuthority authority : details.getAuthorities()) {
+            System.out.println(authority.getAuthority());
+        }
+        model.addAttribute("auth",details);
+        return "customer/auth/home";
     }
 }

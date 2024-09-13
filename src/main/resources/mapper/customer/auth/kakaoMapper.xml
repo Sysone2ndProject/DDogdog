@@ -2,20 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sysone.ddogdog.customer.auth.mapper.KakaoMapper">
-    <select id="existsById" parameterType="Long" resultType="com.sysone.ddogdog.customer.auth.model.CustomerDTO">
-        SELECT * FROM customers WHERE id = #{id}
-    </select>
-    <select id="saveCustomers" statementType="CALLABLE" parameterType="com.sysone.ddogdog.customer.auth.model.AddressCustomerDTO" >
-            {call insert_address_and_insert_customer(
-            #{fullAddress, mode=IN, jdbcType=VARCHAR},
-            #{sido, mode=IN, jdbcType=VARCHAR},
-            #{sigungu, mode=IN, jdbcType=VARCHAR},
-            #{detailAddress, mode=IN, jdbcType=VARCHAR},
-            #{kakaoId, mode=IN, jdbcType=NUMERIC},
-            #{name, mode=IN, jdbcType=VARCHAR},
-            #{email, mode=IN, jdbcType=VARCHAR},
-            #{ageRange, mode=IN, jdbcType=VARCHAR},
-            #{gender, mode=IN, jdbcType=VARCHAR}
-            )}
-    </select>
+  <select id="existsById" parameterType="Long" resultType="com.sysone.ddogdog.customer.auth.model.CustomerDTO">
+    SELECT * FROM customers WHERE id = #{id}
+  </select>
+  <select id="saveAddress" statementType="CALLABLE" parameterType="com.sysone.ddogdog.customer.auth.model.AddressDTO" >
+    {call insert_address_and_update_customer(
+      #{fullAddress, mode=IN, jdbcType=VARCHAR},
+      #{sido, mode=IN, jdbcType=VARCHAR},
+      #{sigungu, mode=IN, jdbcType=VARCHAR},
+      #{bname, mode=IN, jdbcType=VARCHAR},
+      #{kakaoId, mode=IN, jdbcType=NUMERIC}
+          )}
+  </select>
+  <select id="existsAddressIdById" parameterType="Long" resultType="Long">
+    SELECT address_id FROM customers WHERE id = #{id}
+  </select>
+  <insert id="saveUserCustomers" parameterType="com.sysone.ddogdog.customer.auth.model.User">
+    insert into customers (id, name, email, age_range, gender, role) values (#{id},#{nickname},#{email},#{ageRange},#{gender},#{role})
+  </insert>
 </mapper>
