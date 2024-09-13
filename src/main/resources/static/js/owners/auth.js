@@ -40,7 +40,7 @@ function signUp() {
   })
   .then(response => {
     alert("회원가입을 축하드립니다.");
-    window.location.href = '/v1/owners'; //owners 메인페이지 연결
+    window.location.href = '../../owners'; //owners 메인페이지 연결
   })
   .catch(error => {
     alert('아이디값을 확인해 주세요');

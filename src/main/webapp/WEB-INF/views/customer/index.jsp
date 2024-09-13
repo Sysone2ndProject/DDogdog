@@ -13,18 +13,14 @@
           href="${pageContext.request.contextPath}/customers/css/index.css">
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-<div class="search">
-    <form action="/v1/customers/hotels" method="get">
-
-    </form>
+<jsp:include page="component/header.jsp"></jsp:include>
+<form class="search" action="/v1/customers/hotels" method="get">
     <div class="search-bar radius">
         <img class="icon" src="${pageContext.request.contextPath}/img/search.svg"
              alt="search-icon"/>
-        <input class="text-input" name="keyword" placeholder="여행지/호텔명 입력">
+        <input class="text-input" name="keyword" placeholder="지역을 입력해 주세요">
     </div>
     <div class="period radius">
-
         <div class="date-pick">
             <img class="icon" src="${pageContext.request.contextPath}/img/check_in.svg"
                  alt="check-in-icon"/>
@@ -43,9 +39,10 @@
         </div>
     </div>
     <div class="button-block">
-        <input class="button radius" type="button" value="검색하기">
+        <input class="button radius" type="submit" value="검색하기">
     </div>
-</div>
+</form>
+
 <div class="best">
     <p class="title">베스트 호텔</p>
     <div class="hotel-list">
@@ -65,7 +62,7 @@
     </div>
 </div>
 <div class="footer-box">
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="component/footer.jsp"></jsp:include>
 </div>
 </body>
 </html>
