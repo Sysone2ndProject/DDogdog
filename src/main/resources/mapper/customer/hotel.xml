@@ -38,4 +38,11 @@
     where rownum &lt;= 3
   </select>
 
+  <select id="getHotelsByKeyword" parameterType="String" resultMap="response">
+    select *
+    from hotels
+    where address_id in (select id
+                         from addresses
+                         where full_address like '%'|| #{keyword} ||'%')
+  </select>
 </mapper>

@@ -24,4 +24,11 @@ public class HotelService {
     public List<Hotel> getBestHotelsById(Integer customerId) {
         return hotelMapper.getBestLocalHotels(customerId);
     }
+
+    public List<HotelVO> getHotelsByKeyword(String keyword) {
+        List<HotelVO> listHotels = hotelMapper.getHotelsByKeyword(keyword).stream()
+            .map(hotel -> HotelVO.fromHotelDTO(hotel))
+            .collect(Collectors.toList());
+        return listHotels;
+    }
 }

@@ -10,4 +10,6 @@ public interface HotelMapper {
     List<Hotel> getBestHotels();
 
     List<Hotel> getBestLocalHotels(Integer addressId);
+
+    List<Hotel> getHotelsByKeyword(String keyword);
 }
