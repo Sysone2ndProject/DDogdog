@@ -8,7 +8,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OWNER</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <!-- 테스트용 입니다. -->
@@ -17,13 +17,14 @@
         <h1>OWNER 메인페이지</h1>
     </div>
     <div>
-        <button type="button" id="signUp" onclick="getSignUpForm()">회원가입</button>
+        <button type="button" id="sign-up" onclick="location.href = '/v1/owners/signup'">회원가입</button>
     </div>
     <div>
-        <button type="button" id="login">로그인</button>
+        <button type="button" id="login" onclick="location.href = '/v1/owners/login'">로그인</button>
     </div>
-
+    <div>
+        <button type="button" id="user-page" onclick="location.href = '/v1/owners/user'">유저페이지</button>
+    </div>
 </div>
 </body>
-<script src="${pageContext.request.contextPath}/owners/js/main.js"></script>
 </html>

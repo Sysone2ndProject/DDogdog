@@ -8,9 +8,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hotel</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="${pageContext.request.contextPath}/owners/js/auth.js"></script>
 </head>
 <body>
 <!-- 테스트용 입니다. -->
@@ -25,7 +24,7 @@
         </div>
         <div class="form-group">
             <label for="password">password:</label>
-            <input type="text" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password">
         </div>
         <div class="form-group">
             <label for="ownerName">이름:</label>
@@ -56,4 +55,5 @@
     </form>
 </div>
 </body>
+<script src="${pageContext.request.contextPath}/js/owners/signup.js"></script>
 </html>
