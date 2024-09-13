@@ -10,7 +10,6 @@
     <title>Hotel</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="${pageContext.request.contextPath}/owners/js/auth.js"></script>
 </head>
 <body>
 <!-- 테스트용 입니다. -->
@@ -56,4 +55,5 @@
     </form>
 </div>
 </body>
+<script src="${pageContext.request.contextPath}/js/owners/auth.js"></script>
 </html>

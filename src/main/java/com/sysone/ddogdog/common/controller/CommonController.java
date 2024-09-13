@@ -30,6 +30,6 @@ public class CommonController {
 
     @GetMapping("/owners")
     public String ownerMain() {
-        return "owner/main";
+        return "owner/index";
     }
 }

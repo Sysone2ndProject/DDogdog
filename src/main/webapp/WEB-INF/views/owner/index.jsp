@@ -17,7 +17,7 @@
         <h1>OWNER 메인페이지</h1>
     </div>
     <div>
-        <button type="button" id="signUp" onclick="getSignUpForm()">회원가입</button>
+        <button type="button" id="signUp" onclick="location.href = '/v1/owners/signup'">회원가입</button>
     </div>
     <div>
         <button type="button" id="login">로그인</button>
@@ -25,5 +25,4 @@
 
 </div>
 </body>
-<script src="${pageContext.request.contextPath}/owners/js/main.js"></script>
 </html>
