@@ -8,13 +8,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Header</title>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/css/customers/header.css"/>
+    <title>검색</title>
+
 </head>
 <body>
-<div class="header">
-    <img class="logo" src="${pageContext.request.contextPath}/img/logo_nobg.png" alt="logo"/>
-</div>
+<h1>하..</h1>
 </body>
 </html>
