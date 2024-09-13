@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.customer.hotel.mapper.HotelMapper">
+  <resultMap id="response" type="com.sysone.ddogdog.customer.hotel.model.Hotel">
+    <id property="id" column="id" />
+    <result property="addressId" column="address_id" />
+    <result property="ownerId" column="owner_id" />
+    <result property="businessName" column="business_name" />
+    <result property="businessNumber" column="business_number" />
+    <result property="phoneNumber" column="phone_number" />
+    <result property="intro" column="intro" />
+    <result property="mainImage" column="main_image" />
+    <result property="totalScore" column="total_score" />
+    <result property="reviewCount" column="review_count" />
+  </resultMap>
+
+  <select id="getBestHotels" resultMap="response">
+    select *
+    from (select *
+          from hotels
+          order by total_score desc, review_count)
+    where rownum&lt;=3
+  </select>
+
+  <select id="getBestLocalHotels" parameterType="Integer" resultMap="response">
+    select *
+    from (select *
+          from hotels
+          where id in (select id
+                       from addresses
+                       where (sido, sigungu) = (select sido, sigungu
+                                                from addresses
+                                                where id = (select address_id
+                                                            from customers
+                                                            where id = #{id})))
+          order by total_score desc, review_count)
+    where rownum &lt;= 3
+  </select>
+
+  <select id="getHotelsByKeyword" parameterType="String" resultMap="response">
+    select *
+    from hotels
+    where address_id in (select id
+                         from addresses
+                         where full_address like '%'|| #{keyword} ||'%')
+  </select>
+</mapper>

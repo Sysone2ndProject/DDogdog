@@ -1,0 +1,31 @@
+@import "../common/font.css";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-family: 'miso';
+}
+
+input:focus {
+  outline: none;
+}
+
+.radius {
+  border-radius: 10px;
+}
+
+.icon {
+  width: 36px;
+}
+
+label, p {
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
