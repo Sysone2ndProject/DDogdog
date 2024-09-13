@@ -1,5 +1,6 @@
-package com.sysone.ddogdog.owner.auth.model;
+package com.sysone.ddogdog.common.config.form;
 
+import com.sysone.ddogdog.owner.auth.model.AuthDTO;
 import java.util.Collection;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @RequiredArgsConstructor
-public class OwnerDetails implements UserDetails {
+public class CustomDetails implements UserDetails {
 
     private final AuthDTO authDTO;
 

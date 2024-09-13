@@ -1,6 +1,5 @@
-package com.sysone.ddogdog.owner.auth.util;
+package com.sysone.ddogdog.common.config.form;
 
-import com.sysone.ddogdog.owner.auth.model.OwnerDetails;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,7 +13,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
         throws IOException, ServletException {
 
-        OwnerDetails onwer = (OwnerDetails) authentication.getPrincipal();
+        CustomDetails onwer = (CustomDetails) authentication.getPrincipal();
         //현재 테스트용으로 권한이 필요한 유저 페이지 이동
         // TODO: 9/13/24 메인페이지로 이동 및 로그인에 따른 헤더 정보 변경
         response.sendRedirect("/v1/owners/user");

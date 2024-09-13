@@ -1,6 +1,6 @@
 package com.sysone.ddogdog.owner.user.controller;
 
-import com.sysone.ddogdog.owner.auth.model.OwnerDetails;
+import com.sysone.ddogdog.common.config.form.CustomDetails;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     @GetMapping()
-    public String userForm(@AuthenticationPrincipal OwnerDetails user, HttpServletRequest httpServletRequest) {
+    public String userForm(@AuthenticationPrincipal CustomDetails user, HttpServletRequest httpServletRequest) {
         return "owner/mypage";
     }
 }

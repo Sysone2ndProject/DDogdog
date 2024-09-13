@@ -1,4 +1,4 @@
-package com.sysone.ddogdog.common.auth;
+package com.sysone.ddogdog.common.config;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

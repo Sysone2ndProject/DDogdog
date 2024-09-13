@@ -1,11 +1,9 @@
 package com.sysone.ddogdog.common.config;
 
 
-import com.sysone.ddogdog.common.auth.CustomAccessDeniedHandler;
-import com.sysone.ddogdog.common.auth.CustomAuthenticationEntryPoint;
-import com.sysone.ddogdog.owner.auth.service.CustomDetailService;
-import com.sysone.ddogdog.owner.auth.util.CustomLoginFailureHandler;
-import com.sysone.ddogdog.owner.auth.util.CustomLoginSuccessHandler;
+import com.sysone.ddogdog.common.config.form.CustomDetailService;
+import com.sysone.ddogdog.common.config.form.CustomLoginFailureHandler;
+import com.sysone.ddogdog.common.config.form.CustomLoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

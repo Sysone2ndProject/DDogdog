@@ -1,4 +1,4 @@
-package com.sysone.ddogdog.owner.auth.util;
+package com.sysone.ddogdog.common.config.form;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
