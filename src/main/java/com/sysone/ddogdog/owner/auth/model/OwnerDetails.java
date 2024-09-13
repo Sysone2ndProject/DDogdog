@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @RequiredArgsConstructor
 public class OwnerDetails implements UserDetails {
 
-    public final AuthDTO authDTO;
+    private final AuthDTO authDTO;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

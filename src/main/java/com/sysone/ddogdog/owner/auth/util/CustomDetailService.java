@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CustomDetailService implements UserDetailsService {
 
-    public final AuthMapper authMapper;
+    private final AuthMapper authMapper;
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {

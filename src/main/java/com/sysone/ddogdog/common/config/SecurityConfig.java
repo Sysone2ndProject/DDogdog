@@ -24,9 +24,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    public final CustomDetailService customDetailService;
-    public final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
-    public final CustomAccessDeniedHandler customAccessDeniedHandler;
+    private final CustomDetailService customDetailService;
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
