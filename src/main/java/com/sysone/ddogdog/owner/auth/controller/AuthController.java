@@ -33,4 +33,9 @@ public class AuthController {
         authService.signUpOwner(authDTO);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/login")
+    public String loginForm() {
+        return "owner/login";
+    }
 }
