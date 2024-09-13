@@ -22,4 +22,7 @@
     WHERE id = #{id}
   </select>
 
+  <select id="login" parameterType="String" resultMap="AuthDTO">
+    SELECT * FROM OWNERS WHERE id=#{id}
+  </select>
 </mapper>
