@@ -34,31 +34,26 @@ function find_address() {
       address = data.address;
       sido = data.sido;
       sigungu = data.sigungu;
-      document.getElementById("detailAddress").focus();
+      bname = data.bname;
     }
   }).open();
 }
 
 document.getElementById('addressForm').addEventListener('submit', function(event) {
   event.preventDefault(); // 폼 제출을 막습니다.
-  const detailAddress = document.getElementById('detailAddress').value;
   const customData = {
     fullAddress: address,
     sido: sido,
     sigungu: sigungu,
-    detailAddress: detailAddress,
-    kakaoId: kakaoProfile.kakaoId,
-    email: kakaoProfile.email,
-    name: kakaoProfile.name,
-    ageRange: kakaoProfile.ageRange,
-    gender: kakaoProfile.gender
+    bname: bname,
+    kakaoId: id
   };
   console.log(customData);
   axios.post('/v1/customers/signup', customData)
   .then(response => {
     console.log('Data submitted successfully:', response.data);
-    // 성공 시 처리 로직 (예: 페이지 이동, 메시지 표시 등)
-  })
+    window.location.href = '/v1/customers/mainpage';
+   })
   .catch(error => {
     console.error('Error submitting data:', error);
     // 오류 시 처리 로직
