@@ -67,7 +67,7 @@ public class S3ImageService {
     }
 
     /**
-     * [ 파일 확장자 검증 api ]
+     * [ 파일 확장자 검증 메서드 ]
      *
      * @param filename - image.getOriginalFilename()
      * @throws S3Exception 일치하는 확장자가 없습니다
@@ -88,7 +88,7 @@ public class S3ImageService {
     }
 
     /**
-     * [ S3에 이미지 업로드하는 api ]
+     * [ S3에 이미지 업로드하는 메서드 ]
      *
      * @param image - 업로드하는 이미지
      * @return url - 업로드완료된 버켓과 이미지 url 반환
@@ -128,7 +128,7 @@ public class S3ImageService {
     }
 
     /**
-     * [ 이미지 제거 api ]
+     * [ 이미지 제거 메서드 ]
      *
      * @param imageAddress - 이미지 url 받아 getKeyFromImageAddress()를 호출하여 삭제에 필요한 key 얻음
      * @throws S3Exception 이미지 삭제하던 중 오류발생
@@ -143,7 +143,7 @@ public class S3ImageService {
     }
 
     /**
-     * [ 이미지 제거 api ]
+     * [ url에서 key값 받아오는 메서드 ]
      *
      * @param imageAddress - 이미지 url 받아 key 분리
      * @return decodingKey
