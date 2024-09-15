@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>검색</title>
     <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/css/customers/hotel.css"
+          href="${pageContext.request.contextPath}/css/customers/hotel.css">
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
