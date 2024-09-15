@@ -1,0 +1,19 @@
+@import "../common/font.css";
+
+.footer {
+  padding: 30px 30px;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #07004D;
+  color: #f4cfc6;
+}
+
+.icon-maker {
+  display: none;
+}
+
+.icon {
+  width: 36px;
+}

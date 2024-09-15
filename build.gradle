@@ -50,6 +50,8 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.8.9'
 	// s3를 위한 cloud
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	//시큐리티 태그 사용 설정
+	implementation 'org.springframework.security:spring-security-taglibs'
 }
 
 tasks.named('test') {

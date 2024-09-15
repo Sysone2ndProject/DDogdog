@@ -1,0 +1,164 @@
+@import "../common/font.css";
+
+:root {
+  --main--blue: #07004D;
+  --main--footer: #1d3660;
+  --main--pink: #f4cfc6;
+  --main--pinkHover: #ab7b6d;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'miso';
+  padding: 10px;
+  background-color: var(--main--blue);
+}
+
+.logo-div {
+  display: flex;
+  align-items: center;
+
+}
+
+.logo-div .logo {
+  border-radius: 50%; /* 이미지의 모서리를 둥글게 만들어 원형으로 만듦 */
+  width: 100px; /* 필요한 경우 크기 조정 */
+  height: 100px; /* 필요한 경우 크기 조정 */
+  object-fit: cover; /* 이미지가 원형으로 잘리도록 설정 */
+}
+
+.logo-div p {
+  margin-left: 10px;
+  font-size: 1.4rem;
+  color: white;
+  font-family: 'miso';
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  font-family: 'miso';
+}
+
+.navbar-menu-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-menu li {
+  margin-right: 20px;
+  font-size: 1.4rem;
+}
+
+.navbar-menu li a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+  color: var(--main--pinkHover);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: none;
+  background-color: var(--main--pink);
+  color: var(--main--blue);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user button:hover {
+  background-color: var(--main--pinkHover);
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media (max-width: 650px) {
+  .navbar-menu-container {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    /*background-color:  var(--main--pink);*/
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .navbar-toggle {
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--main--pink);
+    background-color: transparent;
+    border: none;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  }
+
+  .navbar-toggle:hover {
+    color: var(--main--pinkHover);
+  }
+
+  .navbar-toggle i {
+    font-size: 2.5rem;
+  }
+
+  .navbar-toggle:hover .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu li {
+    margin: 5px 0;
+  }
+
+  .dropdown-menu a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+    display: block;
+  }
+
+  /* 아이콘에 마우스를 올리면 드롭다운 메뉴 보이게 */
+  .menu-container:hover .dropdown-menu {
+    display: block;
+  }
+
+  /* 드롭다운이 화면 밖으로 나가지 않도록 */
+  .menu-container .dropdown-menu {
+    right: auto;
+    left: auto;
+    transform: translateX(0); /* 기본 위치 */
+  }
+}

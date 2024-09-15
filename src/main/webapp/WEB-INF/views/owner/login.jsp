@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
+<jsp:include page="component/header.jsp"></jsp:include>
 <!-- 테스트용 입니다. -->
 <div class="container mt-5">
     <h2>로그인</h2>
