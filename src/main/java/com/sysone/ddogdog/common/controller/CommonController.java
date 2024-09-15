@@ -17,6 +17,9 @@ public class CommonController {
 
     private final HotelService hotelService;
 
+    @GetMapping
+    public String landingMain() {return "common/index";}
+
     @GetMapping("/customers")
     public String listHotels(Model model) {
         List<HotelVO> hotels = hotelService.getBestHotels();
