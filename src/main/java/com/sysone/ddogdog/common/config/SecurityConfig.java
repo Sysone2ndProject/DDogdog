@@ -9,7 +9,6 @@ import com.sysone.ddogdog.common.config.oauth.PrincipalOauth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -79,8 +78,8 @@ public class SecurityConfig {
                     .successHandler(oAuth2LoginSuccessHandler)
             )
             .logout(logout -> logout
-                .logoutUrl("/logout") // 로그아웃 요청 URL
-                .logoutSuccessUrl("/login") // 로그아웃 성공 후 이동할 URL
+                .logoutUrl("/v1/owners/logout") // 로그아웃 요청 URL
+                .logoutSuccessUrl("/v1/owners") // 로그아웃 성공 후 이동할 URL
                 .invalidateHttpSession(true) // 세션 무효화
                 .deleteCookies("JSESSIONID") // 쿠키 삭제
             );
