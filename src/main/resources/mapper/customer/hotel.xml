@@ -43,6 +43,7 @@
     from hotels
     where address_id in (select id
                          from addresses
-                         where full_address like '%'|| #{keyword} ||'%')
+                         where full_address like '%'|| #{keyword} ||'%'
+                         or dong=#{keyword})
   </select>
 </mapper>
