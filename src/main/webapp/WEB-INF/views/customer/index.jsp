@@ -15,7 +15,7 @@
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
-<form class="search" id="searchForm" action="${pageContext.request.contextPath}/v1/customers/hotels" method="get">
+<form class="search" id="searchForm">
     <div class="search-bar radius">
         <img class="icon" src="${pageContext.request.contextPath}/img/search.svg"
              alt="search-icon"/>
@@ -25,18 +25,14 @@
         <div class="date-pick">
             <img class="icon" src="${pageContext.request.contextPath}/img/check_in.svg"
                  alt="check-in-icon"/>
-            <label class="date-label" for="start">체크인</label>
-            <input class="date-input" type="date" id="start"
-                   name="startDate" min="2024-09-11"
-                   max="2025-09-11"/>
+            <label class="date-label" for="startDate">체크인</label>
+            <input class="date-input" type="date" id="startDate" onchange="setEndDate()"/>
         </div>
         <div class="date-pick left">
             <img class="icon" src="${pageContext.request.contextPath}/img/check_out.svg"
                  alt="check-out-icon"/>
-            <label class="date-label" for="end">체크아웃</label>
-            <input class="date-input" type="date" id="end" name="endDate"
-                   min="2024-09-11"
-                   max="2025-09-11"/>
+            <label class="date-label" for="endDate">체크아웃</label>
+            <input class="date-input" type="date" id="endDate"/>
         </div>
     </div>
     <div class="button-block">
@@ -66,5 +62,6 @@
     <jsp:include page="component/footer.jsp"></jsp:include>
 </div>
 </body>
-<script src="/js/customers/hotel.js"></script>
+<script src="/js/customers/index.js"></script>
+<script src="/js/customers/dateHandler.js"></script>
 </html>

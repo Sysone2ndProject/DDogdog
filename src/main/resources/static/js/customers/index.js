@@ -1,4 +1,4 @@
-document.getElementById('searchForm').addEventListener('submit',
+document.getElementById('searchForm').onsubmit =
     function (event) {
       event.preventDefault();
 
@@ -21,4 +21,4 @@ document.getElementById('searchForm').addEventListener('submit',
       .catch(function (error) {
         console.error('Error:', error);
       });
-    });
+    };
