@@ -12,6 +12,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
+<div class="header-box">
+    <jsp:include page="component/header.jsp"></jsp:include>
+</div>
 <!-- 테스트용 입니다. -->
 <div class="container">
     <h1>회원가입</h1>
