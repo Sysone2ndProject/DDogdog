@@ -11,8 +11,8 @@ public class HotelVO {
     private Integer addressId;
     private String ownerId;
     private String businessName;
-    private Integer businessNumber;
-    private Integer phoneNumber;
+    private String businessNumber;
+    private String phoneNumber;
     private String intro;
     private String mainImage;
     private float avgScore;

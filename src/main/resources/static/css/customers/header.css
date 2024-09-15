@@ -1,11 +1,11 @@
 .header {
-  padding-left: 2%;
   background-color: #f4cfc6;
   display: flex;
   justify-content: start;
 }
 
 .logo {
+  margin-left: 2%;
   height: 100px;
   justify-content: center;
 }
