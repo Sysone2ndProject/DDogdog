@@ -1,4 +1,7 @@
+@import "../common/font.css";
+
 .header {
+  font-family: miso;
   background-color: #f4cfc6;
   display: flex;
   justify-content: start;
@@ -9,3 +12,12 @@
   height: 100px;
   justify-content: center;
 }
+
+.login{
+  display: flex;
+  align-items: center;
+  margin-left: auto;; /* 오른쪽으로 이동 */
+  margin-right: 10%; /* 오른쪽에 여백 추가 */
+}
+
+
