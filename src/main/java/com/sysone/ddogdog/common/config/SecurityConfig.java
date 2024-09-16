@@ -50,8 +50,9 @@ public class SecurityConfig {
                 auth.requestMatchers("/v1/owners/signup", "/v1/owners", "/resource/**",
                         "/v1/owners/login","/", "/login**", "/css/**", "/js/**","/v1/customers/signup").permitAll()
                     .requestMatchers("/v1/owners/user").hasRole("OWNER")
+//                        .anyRequest().permitAll())
                     // TODO : hasRole 로 권한 체크 및 실패 핸들러 작성 필요
-                    .anyRequest().permitAll())
+                        .requestMatchers("/v1/customers/myPage").hasRole("CUSTOMER").anyRequest().permitAll())
             .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(
                     customAuthenticationEntryPoint));
 //                .accessDeniedHandler(customAccessDeniedHandler))
