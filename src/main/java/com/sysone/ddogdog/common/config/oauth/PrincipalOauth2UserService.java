@@ -1,10 +1,9 @@
 package com.sysone.ddogdog.common.config.oauth;
 
 import com.sysone.ddogdog.common.config.Role;
+import com.sysone.ddogdog.customer.common.util.OAuthDataConverter;
 import com.sysone.ddogdog.customer.auth.mapper.KakaoMapper;
 import com.sysone.ddogdog.customer.auth.model.CustomerDTO;
-import com.sysone.ddogdog.customer.auth.model.User;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -12,6 +11,9 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,9 +23,11 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     private final KakaoMapper kakaoMapper;
 
     @Override
+    @Transactional
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+
         log.info("getClientRegistration = "
-            + userRequest.getClientRegistration()); // registrationId로 어떤 OAuth로 로그인 했는지 확인 가능
+                + userRequest.getClientRegistration()); // registrationId로 어떤 OAuth로 로그인 했는지 확인 가능
         log.info("getAccessToken = " + userRequest.getAccessToken().getTokenValue());
 
         OAuth2User oAuth2User = super.loadUser(userRequest);
@@ -47,23 +51,23 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         log.info(kakaoUserInfo.getGender());
         Long id = Long.parseLong(providerId);
         String email = oAuth2UserInfo.getEmail();
-        Role role = Role.CUSTOMER;
 
-        Optional<CustomerDTO> customerDTO = kakaoMapper.existsById(id);
-        User user = User.of(id,
-            email,
-            kakaoUserInfo.getName(),
-            kakaoUserInfo.getAgeRange(),
-            kakaoUserInfo.getGender(),
-            Role.CUSTOMER);
-
-        if (customerDTO.isEmpty()) {
-            kakaoMapper.saveUserCustomers(user);
+        Optional<CustomerDTO> customer = kakaoMapper.findUserById(id);
+        CustomerDTO customerDTO;
+        if (customer.isEmpty()) {
+            customerDTO = CustomerDTO.of(id,
+                    email,
+                    kakaoUserInfo.getName(),
+                    OAuthDataConverter.convertAgeRange(kakaoUserInfo.getAgeRange()),
+                    OAuthDataConverter.convertGender(kakaoUserInfo.getGender()),
+                    Role.CUSTOMER);
+            kakaoMapper.saveUserCustomers(customerDTO);
 
         } else {
+            customerDTO = customer.get();
             log.info("카카오 로그인을 이미 한적이 있습니다. 당신은 자동회원가입이 되어 있습니다.");
         }
 
-        return new PrincipalDetails(user, oAuth2UserInfo);
+        return new PrincipalDetails(customerDTO, oAuth2UserInfo);
     }
 }
