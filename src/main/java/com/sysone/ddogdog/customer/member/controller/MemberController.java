@@ -1,6 +1,6 @@
-package com.sysone.ddogdog.customer.myPage.controller;
+package com.sysone.ddogdog.customer.member.controller;
 
-import com.sysone.ddogdog.customer.myPage.service.MyPageService;
+import com.sysone.ddogdog.customer.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/customers/myPage")
-public class MyPageController {
+public class MemberController {
 
-    private final MyPageService myPageService;
+    private final MemberService memberService;
 
     @GetMapping("/location")
     public ResponseEntity<?> getCustomerAddress(@RequestParam Long addressId) {
-        String fullAddress = myPageService.findFullAddressById(addressId);
+        String fullAddress = memberService.findFullAddressById(addressId);
         log.info(fullAddress);
         return ResponseEntity.ok(fullAddress);
     }

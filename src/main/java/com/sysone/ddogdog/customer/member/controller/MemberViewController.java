@@ -1,4 +1,4 @@
-package com.sysone.ddogdog.customer.myPage.controller;
+package com.sysone.ddogdog.customer.member.controller;
 
 import com.sysone.ddogdog.common.config.oauth.PrincipalDetails;
 import com.sysone.ddogdog.customer.auth.model.CustomerDTO;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/v1/customers/myPage")
-public class MyPageViewController {
+public class MemberViewController {
     private final KakaoService kakaoService;
 
     @Value("${kakao.map.api-key}")
@@ -29,6 +29,16 @@ public class MyPageViewController {
         log.info("test"+customerDTO.toString());
         model.addAttribute("CustomerInfo",customerDTO);
         model.addAttribute("apiKey",kakaoJsId);
-        return "customer/myPage/myPage";
+        return "customer/myPage";
+    }
+
+    @GetMapping("/pets")
+    public String petInfo(){
+        return "customer/pets";
+    }
+
+    @GetMapping("/pets/add")
+    public String petAdd(){
+        return "customer/petAdd";
     }
 }
