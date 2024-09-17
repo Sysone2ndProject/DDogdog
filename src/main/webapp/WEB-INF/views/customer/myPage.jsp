@@ -12,19 +12,21 @@
     <script>
         let addressId = ${CustomerInfo.addressId};
     </script>
-    <script src="/js/customers/myPage/myPage.js"></script>
+    <script src="/js/customers/myPage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
     <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/css/customers/myPage/myPage.css">
+          href="${pageContext.request.contextPath}/css/customers/myPage.css">
 </head>
 <body>
-<jsp:include page="../component/header.jsp"></jsp:include>
+<jsp:include page="component/header.jsp"></jsp:include>
 <div class="container">
 
     <div class="left-column">
         <div class="card"> <!-- 첫 번째 카드 -->
             <div class="userInfo">
-                <div class="userImage"></div> <h3> ${CustomerInfo.name}</h3> 고객님 환영합니다!
+                <div class="userImage"></div>
+                <h3> ${CustomerInfo.name}</h3> 고객님 환영합니다!
             </div>
             <div class="userDetail">
                 <br>
@@ -47,15 +49,12 @@
 
     <div class="right-column">
         <div class="card"> <!-- 세 번째 카드 -->
-            <button> 내 펫 정보 </button>
-            <button> 똑독 이용 내역 </button>
-            <button> 강아지랑 놀기 </button>
+            <a href="/v1/customers/myPage/pets"> 내 강아지 정보
+                <button> 똑독 이용 내역</button>
+                <button> 강아지랑 놀기</button>
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
 
 
 </body>

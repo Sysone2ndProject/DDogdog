@@ -1,11 +1,10 @@
-@import "../../common/font.css";
+@import "../common/font.css";
+@import "common.css";
 .container {
-    font-family: 'miso';
     background-color: #f0f0f0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     display: flex;
     gap: 20px; /* 카드들 사이의 간격 */
 }
@@ -58,7 +57,7 @@ ul {
 .userImage{
     width: 30px;
     height: 30px;
-    background-image: url('../../../img/kakaologo.png');
+    background-image: url('../../img/kakaologo.png');
     background-size: contain;
     background-repeat: no-repeat; /* 이미지 반복 방지 */
     background-position: center; /* 이미지 중앙에 위치 */
