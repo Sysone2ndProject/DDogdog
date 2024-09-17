@@ -6,7 +6,6 @@ import com.sysone.ddogdog.customer.auth.service.KakaoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,10 +31,10 @@ public class KakaoController {
     // 주소 입력 페이지
     @GetMapping("/signup/location")
     public String locationPage(@AuthenticationPrincipal PrincipalDetails principalDetails,
-        Model model) {
+                               Model model) {
         System.out.println(principalDetails.getOAuth2UserInfo().getProviderId());
         model.addAttribute("id",
-            Long.parseLong(principalDetails.getOAuth2UserInfo().getProviderId()));
+                Long.parseLong(principalDetails.getOAuth2UserInfo().getProviderId()));
         return "customer/auth/location";
     }
 
@@ -49,13 +48,4 @@ public class KakaoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/mainpage")
-    public String mainPage(@AuthenticationPrincipal PrincipalDetails details, Model model){
-        //권한체크
-//        for (GrantedAuthority authority : details.getAuthorities()) {
-//            System.out.println(authority.getAuthority());
-//        }
-        model.addAttribute("auth",details);
-        return "customer/auth/home";
-    }
 }
