@@ -32,7 +32,7 @@ public class Oauth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
             return;
         } else {
             log.info("로그인 정보 세션에 담아 반환");
-            getRedirectStrategy().sendRedirect(request, response, "/v1/customers/mainpage");
+            getRedirectStrategy().sendRedirect(request, response, "/v1/customers");
             return;
         }
     }

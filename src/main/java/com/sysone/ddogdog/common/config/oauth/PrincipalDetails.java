@@ -1,6 +1,6 @@
 package com.sysone.ddogdog.common.config.oauth;
 
-import com.sysone.ddogdog.customer.auth.model.User;
+import com.sysone.ddogdog.customer.auth.model.CustomerDTO;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,12 +14,13 @@ import java.util.Map;
 @Getter
 @ToString
 public class PrincipalDetails implements UserDetails, OAuth2User {
-
-    private User user;
+    // 일반 User -> Customer(추가정보)
+    private CustomerDTO customerDTO;
+    // 카카오 정보
     private OAuth2UserInfo oAuth2UserInfo;
 
-    public PrincipalDetails(User user, OAuth2UserInfo oAuth2UserInfo) {
-        this.user = user;
+    public PrincipalDetails(CustomerDTO customerDTO, OAuth2UserInfo oAuth2UserInfo) {
+        this.customerDTO = customerDTO;
         this.oAuth2UserInfo = oAuth2UserInfo;
     }
 
@@ -34,7 +35,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         collect.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return user.getRole().toString();
+                return "ROLE_" + customerDTO.getRole().toString();
             }
         });
         return collect;
@@ -55,14 +56,14 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
      */
     @Override
     public String getUsername() {
-        return String.valueOf(user.getId());
+        return String.valueOf(customerDTO.getId());
     }
 
     /**
      * UserDetails 구현
      * 계정 만료 여부
-     *  true : 만료안됨
-     *  false : 만료됨
+     * true : 만료안됨
+     * false : 만료됨
      */
     @Override
     public boolean isAccountNonExpired() {
@@ -72,8 +73,8 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     /**
      * UserDetails 구현
      * 계정 잠김 여부
-     *  true : 잠기지 않음
-     *  false : 잠김
+     * true : 잠기지 않음
+     * false : 잠김
      */
     @Override
     public boolean isAccountNonLocked() {
@@ -83,8 +84,8 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     /**
      * UserDetails 구현
      * 계정 비밀번호 만료 여부
-     *  true : 만료 안됨
-     *  false : 만료됨
+     * true : 만료 안됨
+     * false : 만료됨
      */
     @Override
     public boolean isCredentialsNonExpired() {
@@ -94,8 +95,8 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     /**
      * UserDetails 구현
      * 계정 활성화 여부
-     *  true : 활성화됨
-     *  false : 활성화 안됨
+     * true : 활성화됨
+     * false : 활성화 안됨
      */
     @Override
     public boolean isEnabled() {
@@ -105,6 +106,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
     /**
      * OAuth2User 구현
+     *
      * @return oauth객체의 정보
      */
     @Override
@@ -114,10 +116,11 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
     /**
      * OAuth2User 구현
+     *
      * @return OAuth2User pk값
      */
     @Override
     public String getName() {
-        return oAuth2UserInfo.getProviderId();
+        return oAuth2UserInfo.getName();
     }
 }
