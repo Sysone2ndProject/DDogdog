@@ -8,18 +8,20 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class KakaoService {
 
     private final KakaoMapper kakaoMapper;
 
-    public Optional<CustomerDTO> checkIfUserExists(Long id) {
-        return kakaoMapper.existsById(id);
+    public Optional<CustomerDTO> findUserById(Long id) {
+        return kakaoMapper.findUserById(id);
     }
-
+    @Transactional
     public void saveAddress(AddressDTO AddressDTO) {
         System.out.println("진입테스트");
         kakaoMapper.saveAddress(AddressDTO);
