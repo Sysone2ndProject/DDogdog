@@ -17,28 +17,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/v1/customers/myPage")
 public class MemberViewController {
+
     private final KakaoService kakaoService;
 
     @Value("${kakao.map.api-key}")
     private String kakaoJsId;
 
     @GetMapping
-    public String myPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model){
+    public String myPage(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
         Long id = Long.parseLong(principalDetails.getUsername());
         CustomerDTO customerDTO = kakaoService.findUserById(id).get();
-        log.info("test"+customerDTO.toString());
-        model.addAttribute("CustomerInfo",customerDTO);
-        model.addAttribute("apiKey",kakaoJsId);
+        log.info("test" + customerDTO.toString());
+        model.addAttribute("CustomerInfo", customerDTO);
+        model.addAttribute("apiKey", kakaoJsId);
         return "customer/myPage";
     }
 
-    @GetMapping("/pets")
-    public String petInfo(){
-        return "customer/pets";
-    }
-
-    @GetMapping("/pets/add")
-    public String petAdd(){
-        return "customer/petAdd";
-    }
 }
