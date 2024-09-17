@@ -49,7 +49,7 @@
 
     <div class="right-column">
         <div class="card"> <!-- 세 번째 카드 -->
-            <a href="/v1/customers/pet"> 내 강아지 정보
+            <a href="/v1/customers/pets"> 내 강아지 정보
                 <button> 똑독 이용 내역</button>
                 <button> 강아지랑 놀기</button>
         </div>

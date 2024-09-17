@@ -16,7 +16,7 @@
 <%--펫 정보 조회--%>
 
 <%-- 펫 추가--%>
-    <a href="/v1/customers/pet/add">
+    <a href="/v1/customers/pets/add">
         <button> + </button>
     </a>
 </div>
