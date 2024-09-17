@@ -33,7 +33,9 @@
     <sec:authorize access="isAuthenticated()">
         <div class="login">
             환영합니다 <sec:authentication property="principal.name" /> 고객님
-            <button onclick="location.href='/v1/customers/myPage';">마이페이지</button>
+    <%-- 프론트에서 주소ID꺼내는 방식 --%>
+    <%--    <sec:authentication property="principal.customerDTO.addressId" />--%>
+            <button onclick="location.href='/v1/customers/member';">마이페이지</button>
             <button>로그아웃</button>
         </div>
     </sec:authorize>

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/v1/customers/myPage")
+@RequestMapping("/v1/customers/member")
 public class MemberViewController {
 
     private final KakaoService kakaoService;

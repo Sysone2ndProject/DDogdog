@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/v1/customers/myPage")
+@RequestMapping("/v1/customers/pet")
 public class PetViewController {
 
-    @GetMapping("/pets")
+    @GetMapping
     public String petInfo(){
-        return "customer/pets";
+        return "customer/pet";
     }
 
-    @GetMapping("/pets/add")
+    @GetMapping("/add")
     public String petAdd(){
         return "customer/petAdd";
     }

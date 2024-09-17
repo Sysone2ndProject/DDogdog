@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // axios를 이용한 비동기 요청
-    axios.get('/v1/customers/myPage/location', {
+    axios.get('/v1/customers/member/location', {
         params: {
             addressId: addressId // JSP에서 주소 정보를 가져오는 부분을 대체합니다.
         }
