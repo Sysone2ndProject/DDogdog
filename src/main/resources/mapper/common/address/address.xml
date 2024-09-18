@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.common.address.repository.AddressMapper">
+
+  <insert id="saveAddress" statementType="CALLABLE" parameterType="com.sysone.ddogdog.common.address.model.AddressDTO">
+    {call INSERT_ADDRESS_AND_GET_ID(
+      #{fullAddress, jdbcType=VARCHAR, mode=IN},
+      #{sido, jdbcType=VARCHAR, mode=IN},
+      #{sigungu, jdbcType=VARCHAR, mode=IN},
+      #{dong, jdbcType=VARCHAR, mode=IN},
+      #{id, jdbcType=NUMERIC, mode=OUT}
+      )}
+  </insert>
+</mapper>
