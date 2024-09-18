@@ -2,6 +2,7 @@ package com.sysone.ddogdog.customer.hotel.controller;
 
 import com.sysone.ddogdog.customer.hotel.model.HotelVO;
 import com.sysone.ddogdog.customer.hotel.service.HotelService;
+import java.util.Date;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,8 +19,9 @@ public class HotelController {
     private final HotelService hotelService;
 
     @GetMapping
-    public String listHotels(Model model, @RequestParam String keyword) {
-        List<HotelVO> hotels = hotelService.getHotelsByKeyword(keyword);
+    public String listHotels(Model model, @RequestParam String keyword,
+        @RequestParam Date startDate, @RequestParam Date endDate) {
+        List<HotelVO> hotels = hotelService.getHotelsByKeywordAndDates(keyword, startDate, endDate);
         model.addAttribute("hotels", hotels);
 
         return "customer/hotel";
