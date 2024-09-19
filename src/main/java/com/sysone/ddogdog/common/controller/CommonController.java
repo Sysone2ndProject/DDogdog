@@ -29,10 +29,12 @@ public class CommonController {
         List<HotelVO> hotels = hotelService.getBestHotels();
         model.addAttribute("hotels", hotels);
 
-        Long id = Long.parseLong(principalDetails.getUsername());
+        if (principalDetails != null) {
+            Long id = Long.parseLong(principalDetails.getUsername());
 
-        List<HotelVO> localHotels = hotelService.getBestHotelsById(id);
-        model.addAttribute("localHotels", localHotels);
+            List<HotelVO> localHotels = hotelService.getBestHotelsById(id);
+            model.addAttribute("localHotels", localHotels);
+        }
 
         return "customer/index";
     }
