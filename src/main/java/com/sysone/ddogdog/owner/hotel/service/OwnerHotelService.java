@@ -25,7 +25,7 @@ public class OwnerHotelService {
         addressMapper.saveAddress(addressDTO);
         Integer addressId = addressDTO.getId();
         String mainImgUrl = s3ImageService.upload(requestHotelDTO.getMainImage());
-        HotelDTO hotelDTO = HotelDTO.saveFromHotelDTO(requestHotelDTO, addressId, mainImgUrl);
+        HotelDTO hotelDTO = HotelDTO.fromHotelDTO(requestHotelDTO, addressId, mainImgUrl);
         ownerHotelMapper.saveHotel(hotelDTO);
     }
 

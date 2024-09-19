@@ -1,0 +1,14 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.header-box {
+  height: 15%;
+}
+
+#room-img-review{
+  max-width: 400px;
+  display: none;
+}
