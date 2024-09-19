@@ -3,7 +3,7 @@ package com.sysone.ddogdog.common.config.form;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;;
+import java.io.IOException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -14,8 +14,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
         throws IOException, ServletException {
 
         CustomDetails onwer = (CustomDetails) authentication.getPrincipal();
-        //현재 테스트용으로 권한이 필요한 유저 페이지 이동
-        // TODO: 9/13/24 메인페이지로 이동 및 로그인에 따른 헤더 정보 변경
-        response.sendRedirect("/v1/owners/user");
+        //메인이동으로 변경
+        response.sendRedirect("/v1/owners");
     }
 }

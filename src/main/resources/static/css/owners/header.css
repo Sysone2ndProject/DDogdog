@@ -94,6 +94,30 @@
   display: none;
 }
 
+/* 메뉴 클릭 후 드롭으로 보이는 메뉴*/
+.dropdown-sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.dropdown-sub-menu li a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-sub-menu li a:hover {
+  background-color: #f4f4f4;
+}
+
 @media (max-width: 650px) {
   .navbar-menu-container {
     display: none;

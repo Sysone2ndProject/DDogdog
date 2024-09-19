@@ -9,7 +9,6 @@ import com.sysone.ddogdog.common.config.oauth.PrincipalOauth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -48,13 +47,13 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth ->
                 auth.requestMatchers("/v1/owners/signup", "/v1/owners", "/resource/**",
-                        "/v1/owners/login","/", "/login**", "/css/**", "/js/**","/v1/customers/signup").permitAll()
-                    .requestMatchers("/v1/owners/user").hasRole("OWNER")
+                        "/v1/owners/login", "/", "/login**", "/css/**", "/js/**", "/v1/customers/signup").permitAll()
+                    .requestMatchers("/v1/owners/user", "/v1/owners/hotel").hasRole("OWNER")
 //                        .anyRequest().permitAll())
                     // TODO : hasRole 로 권한 체크 및 실패 핸들러 작성 필요
-                        .requestMatchers("/v1/customers/myPage").hasRole("CUSTOMER").anyRequest().permitAll())
+                    .requestMatchers("/v1/customers/myPage").hasRole("CUSTOMER").anyRequest().permitAll())
             .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(
-                    customAuthenticationEntryPoint));
+                customAuthenticationEntryPoint));
 //                .accessDeniedHandler(customAccessDeniedHandler))
 //            .csrf(Customizer.withDefaults());
 
@@ -80,8 +79,8 @@ public class SecurityConfig {
                     .successHandler(oAuth2LoginSuccessHandler)
             )
             .logout(logout -> logout
-                .logoutUrl("/logout") // 로그아웃 요청 URL
-                .logoutSuccessUrl("/login") // 로그아웃 성공 후 이동할 URL
+                .logoutUrl("/v1/owners/logout") // 로그아웃 요청 URL
+                .logoutSuccessUrl("/v1/owners") // 로그아웃 성공 후 이동할 URL
                 .invalidateHttpSession(true) // 세션 무효화
                 .deleteCookies("JSESSIONID") // 쿠키 삭제
             );
