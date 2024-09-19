@@ -8,10 +8,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>검색</title>
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/css/customers/petAdd.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/customers/petAdd.css">
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Axios 및 JavaScript 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
@@ -55,7 +60,7 @@
         <label for="info">추가 정보:</label><br>
         <textarea id="info" name="info" required></textarea><br><br>
 
-        <button type="submit">Submit</button>
+        <button type="submit">등록</button>
     </form>
 </div>
 
@@ -110,13 +115,6 @@
         </div>
     </div>
 </div>
-
-<!-- Axios 및 JavaScript 추가 -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="/js/customers/petAdd.js"></script>
-
 </body>
 </html>
