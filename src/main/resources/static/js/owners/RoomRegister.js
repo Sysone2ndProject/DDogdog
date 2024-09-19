@@ -33,10 +33,6 @@ document.getElementById('roomRegisterForm').onsubmit =
     }
 
 const previewRoomImg = (event) => {
-  const path = window.location.pathname;
-  const pathParts = path.split('/');
-  const hotelId = pathParts[-1];
-  console.log(hotelId);
   const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
