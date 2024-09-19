@@ -24,7 +24,7 @@
     where rownum &lt;= 3
   </select>
 
-  <select id="getBestLocalHotels" parameterType="Integer" resultMap="response">
+  <select id="getBestLocalHotels" parameterType="Long" resultMap="response">
     select *
     from (select *
           from hotels

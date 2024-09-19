@@ -33,7 +33,7 @@
                     </li>
                 </ul>
                 <div class="user">
-                    <button type="button" onclick="location.href = '/v1/owners/logout'">로그아웃</button>
+                    <button type="button" onclick="location.href = '/v1/logout'">로그아웃</button>
                 </div>
             </div>
             <div class="menu-icon">
@@ -48,7 +48,7 @@
                             <li><a href="#">매출 통계</a></li>
                         </ul>
                     </li>
-                    <li><a href="${pageContext.request.contextPath}/v1/owners/logout">로그아웃</a></li>
+                    <li><a href="${pageContext.request.contextPath}/v1/logout">로그아웃</a></li>
                 </ul>
             </div>
         </nav>
