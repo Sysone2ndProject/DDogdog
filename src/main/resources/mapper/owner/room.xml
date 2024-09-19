@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.owner.room.mapper.RoomMapper">
+  <insert id="saveRoom" parameterType="com.sysone.ddogdog.owner.room.model.RoomDTO">
+    INSERT INTO ROOMS(hotel_id,grade,price,max_dogs,room_image,intro)
+    VALUES (#{hotelId}, #{grade}, #{price}, #{maxDogs}, #{roomImage}, #{intro})
+  </insert>
+</mapper>
