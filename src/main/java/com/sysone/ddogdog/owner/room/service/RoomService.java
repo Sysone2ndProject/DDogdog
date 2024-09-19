@@ -22,7 +22,7 @@ public class RoomService {
         //test용 고정 호텔 아이디입니다.
         requestRoomDTO.setHotelId(3);
         String roomImgUrl = s3ImageService.upload(requestRoomDTO.getRoomImage());
-        RoomDTO roomDTO = RoomDTO.saveFromRequestRoomDTO(requestRoomDTO,roomImgUrl);
+        RoomDTO roomDTO = RoomDTO.fromRequestRoomDTO(requestRoomDTO,roomImgUrl);
         log.info(roomDTO.toString());
         for (Integer i = 0; i < requestRoomDTO.getRoomCount(); i++) {
             roomMapper.saveRoom(roomDTO);

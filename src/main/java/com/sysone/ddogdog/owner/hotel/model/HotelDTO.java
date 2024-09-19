@@ -18,7 +18,7 @@ public class HotelDTO {
     private Integer totalScore;
     private Integer reviewCount;
 
-    public static HotelDTO saveFromHotelDTO(RequestHotelDTO requestHotelDTO, Integer addressId, String mainImgUrl) {
+    public static HotelDTO fromHotelDTO(RequestHotelDTO requestHotelDTO, Integer addressId, String mainImgUrl) {
         return HotelDTO.builder()
             .addressId(addressId)
             .ownerId(requestHotelDTO.getOwnerId())

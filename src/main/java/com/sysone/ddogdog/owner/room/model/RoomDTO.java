@@ -15,7 +15,7 @@ public class RoomDTO {
     private String roomImage;
     private String intro;
 
-    public static RoomDTO saveFromRequestRoomDTO(RequestRoomDTO requestRoomDTO,String roomImgUrl){
+    public static RoomDTO fromRequestRoomDTO(RequestRoomDTO requestRoomDTO,String roomImgUrl){
         return RoomDTO.builder()
             .hotelId(requestRoomDTO.getHotelId())
             .grade(requestRoomDTO.getGrade())
