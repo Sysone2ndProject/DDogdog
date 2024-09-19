@@ -12,6 +12,11 @@
           href="${pageContext.request.contextPath}/css/customers/petAdd.css">
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Axios 및 JavaScript 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
@@ -22,7 +27,7 @@
         <div id="imageInsert">
             <div id="imagePreview">
                 <!-- 미리보기 이미지가 여기에 표시됩니다. -->
-                <img src="${pet.petImage}" style="width:180px; height:180px;">
+                <img src="${pet.petImage}" class="image-preview">
             </div>
         </div>
     </div>
@@ -42,7 +47,6 @@
 
         <div id="species">${pet.speciesId}</div>
 
-
         <label for="info">추가 정보:</label><br>
         <textarea id="info" name="info" required>${pet.info}</textarea><br><br>
 
@@ -50,11 +54,6 @@
     </form>
 </div>
 
-<!-- Axios 및 JavaScript 추가 -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="/js/customers/petAdd.js"></script>
 
 </body>
