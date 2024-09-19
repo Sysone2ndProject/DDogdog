@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sysone.ddogdog.customer.hotel.mapper.HotelMapper">
-  <resultMap id="response" type="com.sysone.ddogdog.customer.hotel.model.Hotel">
+  <resultMap id="response" type="com.sysone.ddogdog.customer.hotel.model.HotelDTO">
     <id property="id" column="id"/>
     <result property="addressId" column="address_id"/>
     <result property="ownerId" column="owner_id"/>
@@ -39,7 +39,7 @@
     where rownum &lt;= 3
   </select>
 
-  <select id="getHotelIdByKeywordAndDate" resultType="Integer">
+  <select id="getHotelIdByKeywordAndDate" parameterType="String" resultType="Integer">
     select hotel_id
     from rooms
     where id not in (select room_id
@@ -47,23 +47,21 @@
                      where reservation_id in (select id
                                               from reservations
                                               where to_date(#{date}, 'YYYY/MM/DD') between start_date and end_date
-                                                and is_canceled = 0
-                                                and hotel_id in (select id
-                                                                 from hotels
-                                                                 where address_id in (select id
-                                                                                      from addresses
-                                                                                      where full_address like '%' || #{keyword} || '%'
-                                                                                         or dong = #{keyword}))))
+                                                and is_canceled = 0))
     group by hotel_id
     HAVING COUNT(id) &gt; 0
   </select>
 
-  <select id="getHotelsByIds" parameterType="list" resultMap="response">
+  <select id="getHotelsByIds" resultMap="response">
     select *
     from hotels
     where id in
-    <foreach item="hotelId" collection="list" open="(" separator="," close=")">
+    <foreach item="hotelId" collection="hotelIds" open="(" separator="," close=")">
       #{hotelId}
     </foreach>
+    and address_id in (select id
+    from addresses
+    where full_address like '%' || #{keyword} || '%'
+    or dong = #{keyword})
   </select>
 </mapper>
