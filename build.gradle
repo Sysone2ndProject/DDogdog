@@ -44,6 +44,14 @@ dependencies {
 	//jstl 설정
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' //스프링부트 3.0 이상
+	//oauth 2.0 설정
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	//gson 설정
+	implementation 'com.google.code.gson:gson:2.8.9'
+	// s3를 위한 cloud
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	//시큐리티 태그 사용 설정
+	implementation 'org.springframework.security:spring-security-taglibs'
 }
 
 tasks.named('test') {

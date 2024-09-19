@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.owner.auth.repository.AuthMapper">
+  <resultMap type="com.sysone.ddogdog.owner.auth.model.AuthDTO" id="AuthDTO">
+    <id property="id" column="id"/>
+    <result property="password" column="password"/>
+    <result property="accountNumber" column="account_number"/>
+    <result property="bank" column="bank"/>
+    <result property="ownerName" column="owner_name"/>
+    <result property="role" column="role"/>
+  </resultMap>
+
+  <insert id="signUp" parameterType="com.sysone.ddogdog.owner.auth.model.AuthDTO">
+    insert into OWNERS(id, password, account_number, bank, owner_name, role)
+    values (#{id}, #{password}, #{accountNumber}, #{bank}, #{ownerName}, #{role})
+  </insert>
+
+  <select id="findById" parameterType="String" resultType="boolean">
+    SELECT 1
+    FROM OWNERS
+    WHERE id = #{id}
+  </select>
+
+  <select id="login" parameterType="String" resultMap="AuthDTO">
+    SELECT *
+    FROM OWNERS
+    WHERE id = #{id}
+  </select>
+</mapper>

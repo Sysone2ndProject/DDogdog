@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.customer.auth.mapper.KakaoMapper">
+  <resultMap id="customerResultMap" type="com.sysone.ddogdog.customer.auth.model.CustomerDTO">
+    <id property="id" column="id"></id>
+    <result property="addressId" column="address_id"/>
+    <result property="email" column="email"/>
+    <result property="name" column="name"/>
+    <result property="ageRange" column="age_range"/>
+    <result property="gender" column="gender"/>
+    <result property="role" column="role"/>
+  </resultMap>
+
+  <select id="findUserById" parameterType="Long" resultMap="customerResultMap">
+    SELECT * FROM customers WHERE id = #{id}
+  </select>
+  <select id="saveAddress" statementType="CALLABLE" parameterType="com.sysone.ddogdog.customer.auth.model.AddressDTO" >
+    {call insert_address_and_update_customer(
+      #{fullAddress, mode=IN, jdbcType=VARCHAR},
+      #{sido, mode=IN, jdbcType=VARCHAR},
+      #{sigungu, mode=IN, jdbcType=VARCHAR},
+      #{bname, mode=IN, jdbcType=VARCHAR},
+      #{kakaoId, mode=IN, jdbcType=NUMERIC}
+          )}
+  </select>
+  <select id="existsAddressIdById" parameterType="Long" resultType="Long">
+    SELECT address_id FROM customers WHERE id = #{id}
+  </select>
+  <insert id="saveUserCustomers" parameterType="com.sysone.ddogdog.customer.auth.model.CustomerDTO">
+    insert into customers (id, name, email, age_range, gender, role) values (#{id},#{name},#{email},#{ageRange},#{gender},#{role})
+  </insert>
+</mapper>
