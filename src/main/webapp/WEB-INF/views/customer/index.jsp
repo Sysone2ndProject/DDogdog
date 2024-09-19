@@ -58,6 +58,29 @@
         </c:forEach>
     </div>
 </div>
+
+<c:if test="${not empty localHotels}">
+    <hr>
+    <div class="best">
+        <p class="title">우리 동네 베스트 호텔</p>
+        <div class="hotel-list">
+            <c:forEach var="hotel" items="${hotels}">
+                <div class="hotel radius shadow">
+                    <img class="thumnail" src="${pageContext.request.contextPath}/img/logo.png">
+                    <div class="content">
+                        <h3>${hotel.businessName}</h3>
+                        <p>${hotel.intro}</p>
+                        <div class="score">
+                            <span>${hotel.avgScore}</span>
+                            <span>(${hotel.reviewCount})</span>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</c:if>
+
 <div class="footer-box">
     <jsp:include page="component/footer.jsp"></jsp:include>
 </div>

@@ -18,8 +18,9 @@ public class HotelController {
     private final HotelService hotelService;
 
     @GetMapping
-    public String listHotels(Model model, @RequestParam String keyword) {
-        List<HotelVO> hotels = hotelService.getHotelsByKeyword(keyword);
+    public String listHotels(Model model, @RequestParam String keyword,
+        @RequestParam String startDate, @RequestParam String endDate) {
+        List<HotelVO> hotels = hotelService.getHotelsByKeywordAndDates(keyword, startDate, endDate);
         model.addAttribute("hotels", hotels);
 
         return "customer/hotel";

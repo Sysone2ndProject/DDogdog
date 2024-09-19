@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Hotel {
+public class HotelDTO {
 
     private Integer id;
     private Integer addressId;

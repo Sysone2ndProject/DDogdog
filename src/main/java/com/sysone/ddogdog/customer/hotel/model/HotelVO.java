@@ -18,7 +18,7 @@ public class HotelVO {
     private float avgScore;
     private Integer reviewCount;
 
-    public static HotelVO fromHotelDTO(Hotel hotel) {
+    public static HotelVO fromHotelDTO(HotelDTO hotel) {
         return HotelVO.builder()
             .id(hotel.getId())
             .addressId(hotel.getAddressId())
