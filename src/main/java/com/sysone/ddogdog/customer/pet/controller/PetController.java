@@ -7,6 +7,7 @@ import com.sysone.ddogdog.customer.pet.service.PetService;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,14 +35,14 @@ public class PetController {
     @PostMapping("/species/add")
     public ResponseEntity<Long> speciesAdd(@RequestBody Map<String, String> data) {
         Long id = petService.saveSpecies(data.get("query"));
-        return ResponseEntity.ok(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
 
     @PostMapping("/add")
     public ResponseEntity<Void> createPet(@AuthenticationPrincipal PrincipalDetails user,
         @ModelAttribute RequestPetDTO requestPetDTO) {
         petService.savePet(user.getUsername(), requestPetDTO);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
