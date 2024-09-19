@@ -2,11 +2,10 @@ package com.sysone.ddogdog.customer.hotel.service;
 
 import com.sysone.ddogdog.customer.hotel.mapper.HotelMapper;
 import com.sysone.ddogdog.customer.hotel.model.HotelVO;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -30,17 +29,21 @@ public class HotelService {
             .collect(Collectors.toList());
     }
 
-    public List<HotelVO> getHotelsByKeywordAndDates(String keyword, Date startDate, Date endDate) {
+    public List<HotelVO> getHotelsByKeywordAndDates(String keyword, String startDate,
+        String endDate) {
 
         List<Integer> hotelIds = null;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        for (Date currentDate = startDate; !currentDate.after(endDate);
+        LocalDate start = LocalDate.parse(startDate, formatter);
+        LocalDate end = LocalDate.parse(endDate, formatter);
+
+        for (LocalDate currentDate = start; !currentDate.isAfter(end);
             currentDate = addDays(currentDate)) {
-            String date = sdf.format(currentDate);
+            String date = currentDate.format(formatter);
 
-            List<Integer> hotelIdsForDate = hotelMapper.getHotelIdByKeywordAndDate(keyword, date);
+            List<Integer> hotelIdsForDate = hotelMapper.getHotelIdByKeywordAndDate(date);
 
             if (hotelIds == null) {
                 // 처음 조회한 호텔 ID 리스트
@@ -57,23 +60,20 @@ public class HotelService {
         }
 
         if (hotelIds != null && !hotelIds.isEmpty()) {
-            return getHotelByIds(hotelIds);
+            return getHotelByIds(keyword, hotelIds);
         }
 
         return Collections.emptyList();
     }
 
-    private List<HotelVO> getHotelByIds(List<Integer> hotelIds) {
-        return hotelMapper.getHotelsByIds(hotelIds).stream()
+    private List<HotelVO> getHotelByIds(String keyword, List<Integer> hotelIds) {
+        return hotelMapper.getHotelsByIds(keyword, hotelIds).stream()
             .map(HotelVO::fromHotelDTO)
             .collect(Collectors.toList());
     }
 
-    private Date addDays(Date date) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(Calendar.DATE, 1);
-        return cal.getTime();
+    private LocalDate addDays(LocalDate date) {
+        return date.plusDays(1);
     }
 
 }
