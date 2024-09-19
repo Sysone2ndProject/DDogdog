@@ -1,6 +1,6 @@
 package com.sysone.ddogdog.customer.hotel.mapper;
 
-import com.sysone.ddogdog.customer.hotel.model.Hotel;
+import com.sysone.ddogdog.customer.hotel.model.HotelDTO;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,12 +8,12 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface HotelMapper {
 
-    List<Hotel> getBestHotels();
+    List<HotelDTO> getBestHotels();
 
-    List<Hotel> getBestLocalHotels(Long customerId);
+    List<HotelDTO> getBestLocalHotels(Long customerId);
 
-    List<Integer> getHotelIdByKeywordAndDate(@Param("keyword") String keyword,
-        @Param("date") String date);
+    List<Integer> getHotelIdByKeywordAndDate(String date);
 
-    List<Hotel> getHotelsByIds(List<Integer> hotelIds);
+    List<HotelDTO> getHotelsByIds(@Param("keyword") String keyword,
+        @Param("hotelIds") List<Integer> hotelIds);
 }
