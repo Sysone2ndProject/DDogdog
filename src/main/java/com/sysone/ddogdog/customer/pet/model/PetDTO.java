@@ -11,7 +11,6 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Builder
-@ToString
 public class PetDTO {
     private Long id;
     private Long customerId;
