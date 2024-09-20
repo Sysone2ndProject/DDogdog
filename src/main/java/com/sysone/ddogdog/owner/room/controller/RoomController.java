@@ -4,8 +4,6 @@ import com.sysone.ddogdog.owner.room.model.RequestRoomDTO;
 import com.sysone.ddogdog.owner.room.model.RoomVO;
 import com.sysone.ddogdog.owner.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Slf4j
 @Controller("ownerRoomController")
 @RequiredArgsConstructor
 @RequestMapping("/v1/owners/rooms")
@@ -39,7 +36,6 @@ public class RoomController {
     @GetMapping
     public String getRoomList(@RequestParam("hotelId") Integer hotelId, Model model) {
         RoomVO rooms = roomService.getRoomList(hotelId);
-        log.info(rooms.getBusiness_name());
         model.addAttribute("hotelId",rooms.getHotelId());
         model.addAttribute("hotelName",rooms.getBusiness_name());
         model.addAttribute("rooms", rooms.getResponseRoomDTOList());

@@ -1,6 +1,5 @@
 function checkId() {
   const id = document.getElementById("id").value;
-  console.log(id);
   if (!id) {
     alert("아이디를 입력해 주세요.");
     return;

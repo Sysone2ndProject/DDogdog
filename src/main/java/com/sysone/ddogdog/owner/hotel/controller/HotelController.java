@@ -28,7 +28,7 @@ public class HotelController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveHotel(@AuthenticationPrincipal CustomDetails user, @ModelAttribute RequestHotelDTO requestHotelDTO) {
+    public ResponseEntity<Void> saveHotel(@AuthenticationPrincipal CustomDetails user, @ModelAttribute RequestHotelDTO requestHotelDTO) {
         hotelService.saveHotel(user.getUsername(), requestHotelDTO);
         return ResponseEntity.ok().build();
     }
