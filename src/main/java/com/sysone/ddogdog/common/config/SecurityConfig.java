@@ -31,6 +31,7 @@ public class SecurityConfig {
 
     private final PrincipalOauth2UserService principalOauth2UserService;
     private final Oauth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+    private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -48,7 +49,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth ->
                 auth.requestMatchers("/v1/owners/signup", "/v1/owners", "/resource/**",
                         "/v1/owners/login", "/", "/login**", "/css/**", "/js/**", "/v1/customers/signup").permitAll()
-                    .requestMatchers("/v1/owners/user", "/v1/owners/hotel").hasRole("OWNER")
+                    .requestMatchers("/v1/owners/hotels","/v1/owners/rooms").hasRole("OWNER")
 //                        .anyRequest().permitAll())
                     // TODO : hasRole 로 권한 체크 및 실패 핸들러 작성 필요
                     .requestMatchers("/v1/customers/myPage").hasRole("CUSTOMER").anyRequest().permitAll())
@@ -79,8 +80,8 @@ public class SecurityConfig {
                     .successHandler(oAuth2LoginSuccessHandler)
             )
             .logout(logout -> logout
-                .logoutUrl("/v1/owners/logout") // 로그아웃 요청 URL
-                .logoutSuccessUrl("/v1/owners") // 로그아웃 성공 후 이동할 URL
+                .logoutUrl("/v1/logout") // 로그아웃 요청 URL
+                .logoutSuccessHandler(customLogoutSuccessHandler)
                 .invalidateHttpSession(true) // 세션 무효화
                 .deleteCookies("JSESSIONID") // 쿠키 삭제
             );

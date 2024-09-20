@@ -5,12 +5,15 @@ import com.sysone.ddogdog.common.address.repository.AddressMapper;
 import com.sysone.ddogdog.common.config.s3.service.S3ImageService;
 import com.sysone.ddogdog.owner.hotel.model.HotelDTO;
 import com.sysone.ddogdog.owner.hotel.model.RequestHotelDTO;
-import com.sysone.ddogdog.owner.hotel.repository.OwnerHotelMapper;
+import com.sysone.ddogdog.owner.hotel.mapper.OwnerHotelMapper;
+import com.sysone.ddogdog.owner.hotel.model.ResponseHotelDTO;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class OwnerHotelService {
 
@@ -25,8 +28,11 @@ public class OwnerHotelService {
         addressMapper.saveAddress(addressDTO);
         Integer addressId = addressDTO.getId();
         String mainImgUrl = s3ImageService.upload(requestHotelDTO.getMainImage());
-        HotelDTO hotelDTO = HotelDTO.saveFromHotelDTO(requestHotelDTO, addressId, mainImgUrl);
+        HotelDTO hotelDTO = HotelDTO.fromHotelDTO(requestHotelDTO, addressId, mainImgUrl);
         ownerHotelMapper.saveHotel(hotelDTO);
     }
 
+    public List<ResponseHotelDTO> getHotelsByUserId(String ownerId) {
+        return ownerHotelMapper.getHotelsByUserId(ownerId);
+    }
 }

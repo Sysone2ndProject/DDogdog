@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.owner.room.mapper.RoomMapper">
+  <resultMap id="responseRoomDTO" type="com.sysone.ddogdog.owner.room.model.ResponseRoomDTO">
+    <result property="grade" column="grade"/>
+    <result property="roomCount" column="room_count"/>
+    <result property="price" column="price"/>
+    <result property="maxDogs" column="maxDogs"/>
+    <result property="roomImage" column="room_image"/>
+    <result property="intro" column="intro"/>
+
+  </resultMap>
+  <insert id="saveRoom" parameterType="com.sysone.ddogdog.owner.room.model.RoomDTO">
+    INSERT INTO ROOMS(hotel_id,grade,price,max_dogs,room_image,intro)
+    VALUES (#{hotelId}, #{grade}, #{price}, #{maxDogs}, #{roomImage}, #{intro})
+  </insert>
+
+  <select id="getRoomsByHotelId" parameterType="Integer" resultMap="responseRoomDTO">
+    SELECT grade,
+           count(*) as "room_count",
+           price,
+           max_dogs,
+           room_image,
+           intro
+    FROM ROOMS
+    WHERE hotel_id = #{hotel_id}
+    GROUP BY hotel_id, grade,price,max_dogs,room_image,intro
+    ORDER BY price
+  </select>
+</mapper>

@@ -8,6 +8,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OWNER:회원가입</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/signUp.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
@@ -57,6 +58,9 @@
         <button type="button" class="btn btn-success" onclick="signUp()">가입하기</button>
     </form>
 </div>
+<div class="footer-box">
+    <jsp:include page="component/footer.jsp"></jsp:include>
+</div>
 </body>
-<script src="${pageContext.request.contextPath}/js/owners/signup.js"></script>
+<script src="${pageContext.request.contextPath}/js/owners/signUp.js"></script>
 </html>

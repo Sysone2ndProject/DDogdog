@@ -26,14 +26,14 @@
                 <ul class="navbar-menu">
                     <li><a href="#" onclick="dropSubMenuLogin()">호텔 관리하기</a>
                         <ul class="dropdown-sub-menu" id="hotel-sub-menu-login">
-                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotel">호텔 등록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
                             <li><a href="#">예약 관리</a></li>
                             <li><a href="#">매출 통계</a></li>
                         </ul>
                     </li>
                 </ul>
                 <div class="user">
-                    <button type="button" onclick="location.href = '/v1/owners/logout'">로그아웃</button>
+                    <button type="button" onclick="location.href = '/v1/logout'">로그아웃</button>
                 </div>
             </div>
             <div class="menu-icon">
@@ -43,12 +43,12 @@
                 <ul class="dropdown-menu" id="drop-menu-login">
                     <li><a onclick="toggleDropSubMenuLogin()">호텔관리</a>
                         <ul class="dropdown-sub-menu" id="hotel-toggle-sub-menu-login">
-                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotel">호텔 등록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
                             <li><a href="#">예약 관리</a></li>
                             <li><a href="#">매출 통계</a></li>
                         </ul>
                     </li>
-                    <li><a href="${pageContext.request.contextPath}/v1/owners/logout">로그아웃</a></li>
+                    <li><a href="${pageContext.request.contextPath}/v1/logout">로그아웃</a></li>
                 </ul>
             </div>
         </nav>
@@ -64,7 +64,7 @@
                 <ul class="navbar-menu">
                     <li><a href="#" onclick="dropSubMenu()">호텔 관리하기</a>
                         <ul class="dropdown-sub-menu" id="hotel-sub-menu">
-                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotel">호텔 등록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
                             <li><a href="#">예약 관리</a></li>
                             <li><a href="#">매출 통계</a></li>
                         </ul>
@@ -82,7 +82,7 @@
                 <ul class="dropdown-menu" id="drop-menu">
                     <li><a onclick=toggleDropSubMenu()>호텔관리</a>
                         <ul class="dropdown-sub-menu" id="hotel-toggle-sub-menu">
-                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotel">호텔 등록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
                             <li><a href="#">예약 관리</a></li>
                             <li><a href="#">매출 통계</a></li>
                         </ul>
