@@ -8,13 +8,17 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OWNER:회원가입</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/login.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<jsp:include page="component/header.jsp"></jsp:include>
+<div class="header-box">
+    <jsp:include page="component/header.jsp"></jsp:include>
+</div>
+
 <!-- 테스트용 입니다. -->
-<div class="container mt-5">
+<div class="container">
     <h2>로그인</h2>
 
     <c:if test="${param.error eq 'true'}">
@@ -47,11 +51,9 @@
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
     </form>
-
-    <div class="mt-3">
-        <button type="button" class="btn btn-primary" onclick="location.href = '/v1/owners/signup'">회원가입</button>
-    </div>
 </div>
-
+<div class="footer-box">
+    <jsp:include page="component/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>
