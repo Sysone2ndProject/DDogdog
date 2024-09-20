@@ -16,4 +16,6 @@ public interface HotelMapper {
 
     List<HotelDTO> getHotelsByIds(@Param("keyword") String keyword,
         @Param("hotelIds") List<Integer> hotelIds);
+
+    HotelDTO getHotelById(Integer id);
 }

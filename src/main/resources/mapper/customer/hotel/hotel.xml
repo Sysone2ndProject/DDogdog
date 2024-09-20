@@ -64,4 +64,10 @@
     where full_address like '%' || #{keyword} || '%'
     or dong = #{keyword})
   </select>
+
+  <select id="getHotelById" parameterType="Integer" resultMap="response">
+    select *
+    from hotels
+    where id = #{id}
+  </select>
 </mapper>
