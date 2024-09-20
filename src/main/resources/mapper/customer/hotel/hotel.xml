@@ -28,7 +28,7 @@
     select *
     from (select *
           from hotels
-          where address_id in (select id
+          where id in (select id
                        from addresses
                        where (sido, sigungu) = (select sido, sigungu
                                                 from addresses
@@ -46,8 +46,8 @@
                      from choose_rooms
                      where reservation_id in (select id
                                               from reservations
-                                              where to_date(#{date}, 'YYYY-MM-DD') between start_date and end_date
-                                                and canceled = 0))
+                                              where to_date(#{date}, 'YYYY/MM/DD') between start_date and end_date
+                                                and is_canceled = 0))
     group by hotel_id
     HAVING COUNT(id) &gt; 0
   </select>
