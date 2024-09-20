@@ -6,15 +6,12 @@
   --main--pinkHover: #ab7b6d;
 }
 
-body{
-  font-family: 'miso';
-}
-
 .header-box {
   height: 15%;
 }
 
-.container{
+.container {
+  font-family: 'miso';
   min-height: 605px;
 }
 
@@ -26,9 +23,11 @@ body{
   margin: 10px 0px;
   padding: 0px 15px;
 }
- #hotel-id{
-   display: none;
- }
+
+#hotel-id {
+  display: none;
+}
+
 .room-list-title span {
   font-size: 1.4rem;
 }

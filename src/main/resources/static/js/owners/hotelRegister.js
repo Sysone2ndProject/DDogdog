@@ -29,6 +29,7 @@ document.getElementById('hotelRegisterForm').onsubmit =
       })
       .then(function (response) {
         alert('저장되었습니다.');
+        window.location.href = `/v1/owners/hotels`;
       })
       .catch(function (error) {
         alert('오류가 발생했습니다.');
