@@ -52,7 +52,7 @@ document.getElementById('addressForm').addEventListener('submit', function(event
   axios.post('/v1/customers/signup', customData)
   .then(response => {
     console.log('Data submitted successfully:', response.data);
-    window.location.href = '/v1/customers/mainpage';
+    window.location.href = '/v1/customers';
    })
   .catch(error => {
     console.error('Error submitting data:', error);
