@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.customer.pet.mapper.PetMapper">
+
+    <resultMap id="PetResultMap" type="com.sysone.ddogdog.customer.pet.model.PetDTO">
+        <result property="id" column="id"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="speciesId" column="species_id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="gender" column="gender"/>
+        <result property="info" column="info"/>
+        <result property="petImage" column="pet_image"/>
+        <result property="weight" column="weight"/>
+    </resultMap>
+
+    <select id="findAll" resultType="com.sysone.ddogdog.customer.pet.model.PetSpeciesDTO">
+        SELECT * FROM pet_species
+    </select>
+
+    <select id="findSpeciesById" parameterType="String" resultType="com.sysone.ddogdog.customer.pet.model.PetSpeciesDTO">
+        SELECT * FROM pet_species WHERE species LIKE '%' || #{query} || '%'
+    </select>
+
+    <insert id="saveSpecies" statementType="CALLABLE" parameterType="com.sysone.ddogdog.customer.pet.model.PetSpeciesDTO">
+        {call insert_pet_species(
+                #{species, mode=IN, jdbcType=VARCHAR},
+                #{id, mode=OUT, jdbcType=NUMERIC}
+            )}
+    </insert>
+
+    <insert id="savePet" parameterType="com.sysone.ddogdog.customer.pet.model.PetDTO">
+        INSERT INTO PETS(customer_id,species_id, name, age, gender, info, pet_image, weight)
+        VALUES (#{customerId},#{speciesId}, #{name}, #{age}, #{gender}, #{info}, #{petImage}, #{weight}
+        )
+    </insert>
+
+    <select id="findAllPetsById" resultMap="PetResultMap">
+        SELECT id,customer_id,species_id,name,age,gender,info,pet_image,weight FROM pets WHERE customer_id = #{customerId}
+    </select>
+
+    <select id="findPetById" parameterType="com.sysone.ddogdog.customer.pet.model.PetDTO" resultMap="PetResultMap">
+        SELECT id,customer_id,species_id,name,age,gender,info,pet_image,weight FROM pets WHERE id = #{id}
+    </select>
+</mapper>
