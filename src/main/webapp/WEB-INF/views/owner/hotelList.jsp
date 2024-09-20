@@ -22,7 +22,7 @@
         <p class="title"><security:authentication property="principal.username"/>님의 Hotel</p>
         <button type="button" onclick="location.href = '/v1/owners/hotels/form'"> 호텔 등록하기</button>
     </div>
-
+    <h2>${hotel.mainImage}</h2>
     <c:forEach var="hotel" items="${hotels}">
         <div class="hotel-card">
             <p class="hidden" id="hidden">${hotel.hotelId}</p>
@@ -40,7 +40,7 @@
             <div class="hotel-manage">
                     <%--                TODO: 호텔 수정/삭제 API 생성--%>
                 <button type="button"> 호텔 수정/삭제</button>
-                <button type="button"> 객실관리</button>
+                <button type="button" onclick="location.href = '/v1/owners/rooms?hotelId=${hotel.hotelId}'"> 객실관리</button>
             </div>
         </div>
 
