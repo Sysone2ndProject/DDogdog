@@ -1,0 +1,89 @@
+@import "../common/font.css";
+
+:root {
+  --main--blue: #07004D;
+  --main--pink: #f4cfc6;
+  --main--pinkHover: #ab7b6d;
+}
+
+.header-box {
+  height: 15%;
+}
+
+.container {
+  height: 65%;
+}
+
+.hidden {
+  display: none;
+}
+
+.hotel-list-title {
+  display: flex;
+  width: 90%;
+  align-content: center;
+  justify-content: space-between;
+  margin: 10px 0px;
+  padding: 0px 15px;
+}
+
+.hotel-list-title p {
+  font-family: 'miso';
+  font-size: 1.4em;
+}
+
+.hotel-list-title button {
+  font-family: 'miso';
+  width: 120px;
+  height: 40px;
+}
+
+.hotel-card-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+#hotel-name {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.hotel-card {
+  display: flex;
+  width: 90%;
+  border: 1px solid var(--main--pink);
+  border-radius: 10px;
+  padding: 10px 10px;
+  box-shadow: 2px 2px 12px var(--main--pinkHover);
+  margin: 20px 0px;
+  align-items: center;
+  font-family: 'miso';
+}
+
+.hotel-img {
+  width: 40%;
+  border: 1px solid var(--main--pink);
+  overflow: hidden; /*이미지크기가 div크기 이내이도록 제한*/
+}
+
+.hotel-img img {
+  width: 100%;
+  object-fit: contain; /* 이미지 비율 유지하며 박스 사이즈 맞춤*/
+}
+
+.hotel-info {
+  width: 60%;
+  padding-left: 20px;
+}
+
+#hotel-name {
+  font-size: 1.4em;
+}
+
+.hotel-manage {
+  width: 25%;
+}
+
+.hotel-manage button {
+  width: 120px;
+}
