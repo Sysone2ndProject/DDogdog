@@ -44,7 +44,7 @@
     <p class="title">베스트 호텔</p>
     <div class="hotel-list">
         <c:forEach var="hotel" items="${hotels}">
-            <div class="hotel radius shadow">
+            <div class="hotel radius shadow" onclick="gotoDetail(${hotel.id})">
                 <img class="thumnail" src="${pageContext.request.contextPath}/img/logo.png">
                 <div class="content">
                     <h3>${hotel.businessName}</h3>
@@ -64,8 +64,8 @@
     <div class="best">
         <p class="title">우리 동네 베스트 호텔</p>
         <div class="hotel-list">
-            <c:forEach var="hotel" items="${hotels}">
-                <div class="hotel radius shadow">
+            <c:forEach var="hotel" items="${localHotels}">
+                <div class="hotel radius shadow" onclick="gotoDetail(${hotel.id})">
                     <img class="thumnail" src="${pageContext.request.contextPath}/img/logo.png">
                     <div class="content">
                         <h3>${hotel.businessName}</h3>

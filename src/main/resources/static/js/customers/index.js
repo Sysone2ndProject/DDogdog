@@ -24,3 +24,11 @@ document.getElementById('searchForm').onsubmit =
       });
     };
 
+const gotoDetail = (id) => {
+  axios.get(`/v1/customers/hotels/${id}`)
+  .then(response => {
+    window.location.href = `/v1/customers/hotels/${id}`;
+  }).catch(error => {
+    console.error();
+  })
+}
