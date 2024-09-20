@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.sysone.ddogdog.owner.hotel.repository.OwnerHotelMapper">
+<mapper namespace="com.sysone.ddogdog.owner.hotel.mapper.OwnerHotelMapper">
+  <resultMap type="com.sysone.ddogdog.owner.hotel.model.ResponseHotelDTO" id="responseHotelDto">
+    <result property="hotelId" column="id"/>
+    <result property="businessName" column="business_name"/>
+    <result property="businessNumber" column="business_number"/>
+    <result property="phoneNumber" column="phone_number"/>
+    <result property="intro" column="intro"/>
+    <result property="mainImage" column="main_image"/>
+    <result property="avgScore" column="avg_score"/>
+    <result property="reviewCount" column="review_count"/>
+    <result property="fullAddress" column="full_address"/>
+  </resultMap>
   <insert id="saveHotel" parameterType="com.sysone.ddogdog.owner.hotel.model.HotelDTO">
     INSERT INTO HOTELS(address_id, owner_id, business_name, business_number, phone_number, intro, main_image, total_score, review_count)
     VALUES (#{addressId}, #{ownerId}, #{businessName}, #{businessNumber}, #{phoneNumber}, #{intro}, #{mainImage}, #{totalScore},
             #{reviewCount})
   </insert>
+
+  <select id="getHotelsByUserId" parameterType="String" resultMap="responseHotelDto">
+    SELECT h.id,
+           h.business_name,
+           h.business_number,
+           h.phone_number,
+           h.intro,
+           h.main_image,
+           CASE
+             WHEN h.review_count = 0 THEN 0
+             ELSE ROUND(h.total_score / h.review_count, 2)
+             END AS avg_score,
+           h.review_count,
+           a.full_address
+    FROM HOTELS h
+           JOIN ADDRESSES a
+                ON h.address_id = a.id
+    WHERE h.owner_id = #{ownerId}
+    ORDER BY h.id
+  </select>
 </mapper>
