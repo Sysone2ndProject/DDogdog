@@ -22,7 +22,7 @@ document.getElementById('hotelRegisterForm').onsubmit =
       formData.append('dong',
           document.getElementById("dong").value);
 
-      axios.post('/v1/owners/hotel', formData, {
+      axios.post('/v1/owners/hotels', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

@@ -26,7 +26,7 @@
                 <ul class="navbar-menu">
                     <li><a href="#" onclick="dropSubMenuLogin()">호텔 관리하기</a>
                         <ul class="dropdown-sub-menu" id="hotel-sub-menu-login">
-                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotel">호텔 등록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
                             <li><a href="#">예약 관리</a></li>
                             <li><a href="#">매출 통계</a></li>
                         </ul>
@@ -43,7 +43,7 @@
                 <ul class="dropdown-menu" id="drop-menu-login">
                     <li><a onclick="toggleDropSubMenuLogin()">호텔관리</a>
                         <ul class="dropdown-sub-menu" id="hotel-toggle-sub-menu-login">
-                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotel">호텔 등록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
                             <li><a href="#">예약 관리</a></li>
                             <li><a href="#">매출 통계</a></li>
                         </ul>
@@ -64,7 +64,7 @@
                 <ul class="navbar-menu">
                     <li><a href="#" onclick="dropSubMenu()">호텔 관리하기</a>
                         <ul class="dropdown-sub-menu" id="hotel-sub-menu">
-                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotel">호텔 등록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
                             <li><a href="#">예약 관리</a></li>
                             <li><a href="#">매출 통계</a></li>
                         </ul>
@@ -82,7 +82,7 @@
                 <ul class="dropdown-menu" id="drop-menu">
                     <li><a onclick=toggleDropSubMenu()>호텔관리</a>
                         <ul class="dropdown-sub-menu" id="hotel-toggle-sub-menu">
-                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotel">호텔 등록</a></li>
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
                             <li><a href="#">예약 관리</a></li>
                             <li><a href="#">매출 통계</a></li>
                         </ul>
