@@ -5,6 +5,9 @@
   --main--pink: #f4cfc6;
   --main--pinkHover: #ab7b6d;
 }
+body{
+  font-family: 'miso';
+}
 
 .header-box {
   height: 15%;
@@ -27,12 +30,10 @@
 }
 
 .hotel-list-title p {
-  font-family: 'miso';
   font-size: 1.4em;
 }
 
 .hotel-list-title button {
-  font-family: 'miso';
   width: 120px;
   height: 40px;
 }
@@ -43,7 +44,7 @@
 }
 
 #hotel-name {
-  font-size: 1.4em;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
@@ -57,7 +58,6 @@
   box-shadow: 2px 2px 12px var(--main--pinkHover);
   margin: 20px 0px;
   align-items: center;
-  font-family: 'miso';
 }
 
 .hotel-img {
@@ -78,7 +78,7 @@
 }
 
 #hotel-name {
-  font-size: 1.4em;
+  font-size: 1.4rem;
 }
 
 .hotel-manage {
