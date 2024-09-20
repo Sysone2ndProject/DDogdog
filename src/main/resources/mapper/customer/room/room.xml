@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.customer.room.mapper.RoomMapper">
+  <resultMap id="response" type="com.sysone.ddogdog.customer.room.model.ResponseRoomDTO">
+    <result property="grade" column="grade"/>
+    <result property="price" column="price"/>
+    <result property="maxDogs" column="max_dogs"/>
+    <result property="roomImage" column="room_image"/>
+    <result property="intro" column="intro"/>
+    <result property="count" column="count"/>
+  </resultMap>
+
+  <select id="getRoomsByHotelId" resultMap="response">
+    select r1.grade, r1.price, r1.max_dogs, r1.room_image, r1.intro, r2.count
+    from (select grade, price, max_dogs, room_image, intro
+          from rooms
+          where hotel_id = #{id}
+          group by (grade, price, max_dogs, room_image, intro)) r1
+           left join
+         (select grade, price, count(*) as count
+          from rooms
+          where id not in (select room_id
+            from choose_rooms
+            where reservation_id in (select id
+            from reservations
+            where to_date(#{date}
+              , 'YYYY-MM-DD') between start_date
+            and end_date
+            and canceled = 0))
+            and hotel_id = #{id}
+          group by (grade, price, max_dogs, room_image, intro)) r2
+         on r1.grade = r2.grade
+           and r1.price = r2.price
+  </select>
+
+</mapper>
