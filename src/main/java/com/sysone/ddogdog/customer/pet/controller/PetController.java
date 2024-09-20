@@ -32,7 +32,7 @@ public class PetController {
         return ResponseEntity.ok(species);
     }
 
-    @PostMapping("/species/add")
+    @PostMapping("/species")
     public ResponseEntity<Long> speciesAdd(@RequestBody Map<String, String> data) {
         Long id = petService.saveSpecies(data.get("query"));
         return ResponseEntity.status(HttpStatus.CREATED).body(id);

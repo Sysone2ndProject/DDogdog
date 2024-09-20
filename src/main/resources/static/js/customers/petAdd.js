@@ -77,7 +77,7 @@ const registerBreed = () => {
     return;
   }
 
-  axios.post('/v1/customers/pets/species/add', {
+  axios.post('/v1/customers/pets/species', {
     query: breedName
   })
       .then((response) => {
