@@ -8,6 +8,10 @@ html, body {
   height: 15%;
 }
 
+.container{
+  min-height: 605px;
+}
+
 #room-img-review{
   max-width: 400px;
   display: none;

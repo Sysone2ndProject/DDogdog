@@ -2,12 +2,9 @@ document.getElementById('roomRegisterForm').onsubmit =
     function (event) {
       event.preventDefault();
 
-      const path = window.location.pathname;
-      const pathParts = path.split('/');
-      const hotelId = pathParts[0];
-
+      const hotelId = document.getElementById('hotel-id-hidden').value;
       const formData = new FormData();
-      formData.append('hotelId', hotelId);
+      formData.append('hotelId',document.getElementById('hotel-id-hidden').value);
       formData.append('grade', document.getElementById('room-grade').value);
       formData.append('roomCount', document.getElementById('room-count').value);
       formData.append('price', document.getElementById('room-price').value);
@@ -23,9 +20,7 @@ document.getElementById('roomRegisterForm').onsubmit =
       })
       .then(function (response) {
         alert('객실 등록 되었습니다.');
-        //현재 호텔리스트 페이지 미완성으로 메인으로 이동
-        //TODO:유저 호텔 리스트 페이지 api 생성 후 해당 페이지로 이동
-        window.location.href = '/v1/owners';
+        window.location.href = `/v1/owners/rooms?hotelId=${hotelId}`;
       })
       .catch(function (error) {
         alert('오류가 발생했습니다.');

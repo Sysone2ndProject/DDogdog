@@ -17,6 +17,7 @@
 </div>
 <!-- 테스트용 입니다. -->
 <div class="container">
+    <input type="hidden" id="hotel-id-hidden" value="${hotelId}">
     <h1>객실등록 </h1>
     <form id="roomRegisterForm" enctype="multipart/form-data">
         <div class="form-group">

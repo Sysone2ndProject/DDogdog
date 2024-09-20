@@ -22,13 +22,14 @@ document.getElementById('hotelRegisterForm').onsubmit =
       formData.append('dong',
           document.getElementById("dong").value);
 
-      axios.post('/v1/owners/hotel', formData, {
+      axios.post('/v1/owners/hotels', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       })
       .then(function (response) {
         alert('저장되었습니다.');
+        window.location.href = `/v1/owners/hotels`;
       })
       .catch(function (error) {
         alert('오류가 발생했습니다.');
