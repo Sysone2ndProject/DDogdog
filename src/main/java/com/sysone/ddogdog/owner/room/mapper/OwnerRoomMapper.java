@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface RoomMapper {
+public interface OwnerRoomMapper {
     void saveRoom(RoomDTO roomDTO);
 
     List<ResponseRoomDTO> getRoomsByHotelId(Integer hotelId);

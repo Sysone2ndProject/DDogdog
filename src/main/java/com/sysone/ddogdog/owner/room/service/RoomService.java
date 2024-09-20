@@ -2,7 +2,7 @@ package com.sysone.ddogdog.owner.room.service;
 
 import com.sysone.ddogdog.common.config.s3.service.S3ImageService;
 import com.sysone.ddogdog.owner.hotel.mapper.OwnerHotelMapper;
-import com.sysone.ddogdog.owner.room.mapper.RoomMapper;
+import com.sysone.ddogdog.owner.room.mapper.OwnerRoomMapper;
 import com.sysone.ddogdog.owner.room.model.RequestRoomDTO;
 import com.sysone.ddogdog.owner.room.model.ResponseRoomDTO;
 import com.sysone.ddogdog.owner.room.model.RoomDTO;
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class RoomService {
 
     private final S3ImageService s3ImageService;
-    private final RoomMapper roomMapper;
+    private final OwnerRoomMapper ownerRoomMapper;
     private final OwnerHotelMapper hotelMapper;
 
     @Transactional
@@ -29,13 +29,13 @@ public class RoomService {
         RoomDTO roomDTO = RoomDTO.fromRequestRoomDTO(requestRoomDTO, roomImgUrl);
         log.info(roomDTO.toString());
         for (Integer i = 0; i < requestRoomDTO.getRoomCount(); i++) {
-            roomMapper.saveRoom(roomDTO);
+            ownerRoomMapper.saveRoom(roomDTO);
         }
     }
 
     public RoomVO getRoomList(Integer hotelId) {
         String businessName = hotelMapper.getHotelNameByID(hotelId);
-        List<ResponseRoomDTO> responseRoomDTOList = roomMapper.getRoomsByHotelId(hotelId);
+        List<ResponseRoomDTO> responseRoomDTOList = ownerRoomMapper.getRoomsByHotelId(hotelId);
         return new RoomVO(hotelId,businessName,responseRoomDTOList);
     }
 }
