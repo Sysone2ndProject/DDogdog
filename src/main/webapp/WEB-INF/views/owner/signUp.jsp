@@ -58,5 +58,5 @@
     </form>
 </div>
 </body>
-<script src="${pageContext.request.contextPath}/js/owners/signup.js"></script>
+<script src="${pageContext.request.contextPath}/js/owners/signUp.js"></script>
 </html>
