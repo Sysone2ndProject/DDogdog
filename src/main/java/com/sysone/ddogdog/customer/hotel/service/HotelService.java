@@ -1,5 +1,7 @@
 package com.sysone.ddogdog.customer.hotel.service;
 
+import com.sysone.ddogdog.common.address.model.AddressDTO;
+import com.sysone.ddogdog.common.address.repository.AddressMapper;
 import com.sysone.ddogdog.customer.hotel.mapper.HotelMapper;
 import com.sysone.ddogdog.customer.hotel.model.HotelDTO;
 import com.sysone.ddogdog.customer.hotel.model.ResponseHotelDTO;
@@ -21,6 +23,7 @@ public class HotelService {
 
     private final HotelMapper hotelMapper;
     private final RoomMapper roomMapper;
+    private final AddressMapper addressMapper;
 
     public List<ResponseHotelDTO> getBestHotels() {
         return hotelMapper.getBestHotels().stream()
@@ -83,6 +86,7 @@ public class HotelService {
 
     public ResponseHotelDetailsDTO getHotelDetails(Integer id, String startDate, String endDate) {
         HotelDTO hotelDTO = hotelMapper.getHotelById(id);
+        AddressDTO address = addressMapper.getAddressById(hotelDTO.getAddressId());
         ResponseHotelDTO hotel = ResponseHotelDTO.fromHotelDTO(hotelDTO);
 
         List<ResponseRoomDTO> rooms = null;
@@ -112,6 +116,6 @@ public class HotelService {
             }
         }
 
-        return new ResponseHotelDetailsDTO(hotel, rooms);
+        return new ResponseHotelDetailsDTO(address, hotel, rooms);
     }
 }
