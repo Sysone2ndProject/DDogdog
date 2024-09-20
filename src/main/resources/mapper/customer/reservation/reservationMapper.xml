@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.customer.reservation.mapper.ReservationMapper">
+
+  <insert id="saveReserve" parameterType="com.sysone.ddogdog.customer.reservation.model.ReservationDTO">
+    INSERT INTO RESERVATIONS (customer_id, hotel_id, start_date, end_date, count, price, canceled, create_date)
+    VALUES (
+             #{customerId},
+             #{hotelId},
+             #{startDate, typeHandler=com.sysone.ddogdog.customer.common.util.LocalDateTypeHandler},
+             #{endDate, typeHandler=com.sysone.ddogdog.customer.common.util.LocalDateTypeHandler},
+             #{count},
+             #{price},
+             #{canceled, typeHandler=com.sysone.ddogdog.customer.common.util.BooleanTypeHandler},
+             #{createDate, typeHandler=com.sysone.ddogdog.customer.common.util.LocalDateTypeHandler}
+           )
+  </insert>
+
+</mapper>
