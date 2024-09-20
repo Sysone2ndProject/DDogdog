@@ -19,6 +19,12 @@
             #{reviewCount})
   </insert>
 
+  <select id="getHotelNameByID" parameterType="Integer" resultType="String">
+    select business_name
+    FROM HOTELS
+    WHERE id = ${id}
+  </select>
+
   <select id="getHotelsByUserId" parameterType="String" resultMap="responseHotelDto">
     SELECT h.id,
            h.business_name,

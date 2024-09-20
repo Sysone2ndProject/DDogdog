@@ -10,6 +10,8 @@ public interface OwnerHotelMapper {
 
     void saveHotel(HotelDTO hotelDTO);
 
+    String getHotelNameByID(Integer id);
+
     List<ResponseHotelDTO> getHotelsByUserId(String ownerId);
 
 }
