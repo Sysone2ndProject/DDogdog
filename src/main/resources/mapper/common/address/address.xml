@@ -12,4 +12,10 @@
       #{id, jdbcType=NUMERIC, mode=OUT}
       )}
   </insert>
+
+  <select id="getFullAddressById" parameterType="Integer" resultType="String">
+    SELECT full_address
+    FROM ADDRESSES
+    WHERE id = #{id}
+  </select>
 </mapper>
