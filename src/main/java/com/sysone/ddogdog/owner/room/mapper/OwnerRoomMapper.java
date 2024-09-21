@@ -14,4 +14,8 @@ public interface OwnerRoomMapper {
     List<ResponseRoomDTO> getRoomsByHotelId(Integer hotelId);
 
     ResponseRoomDTO getHotelByIDAndGrade(Integer hotelId, RoomGrade grade);
+
+    void updateRoom(RoomDTO roomDTO);
+
+    void updateRoomWithoutImg(RoomDTO roomDTO);
 }
