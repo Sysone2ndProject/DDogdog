@@ -28,11 +28,35 @@ public class OwnerHotelService {
         addressMapper.saveAddress(addressDTO);
         Integer addressId = addressDTO.getId();
         String mainImgUrl = s3ImageService.upload(requestHotelDTO.getMainImage());
-        HotelDTO hotelDTO = HotelDTO.fromHotelDTO(requestHotelDTO, addressId, mainImgUrl);
+        HotelDTO hotelDTO = HotelDTO.fromRequestHotelDTO(requestHotelDTO, addressId, mainImgUrl);
         ownerHotelMapper.saveHotel(hotelDTO);
     }
 
     public List<ResponseHotelDTO> getHotelsByUserId(String ownerId) {
         return ownerHotelMapper.getHotelsByUserId(ownerId);
+    }
+
+    public ResponseHotelDTO getHotel(Integer id) {
+        HotelDTO hotelDTO = ownerHotelMapper.getHotelByID(id);
+        String fullAddress = addressMapper.getFullAddressById(hotelDTO.getAddressId());
+        return ResponseHotelDTO.fromHotelDTO(hotelDTO, fullAddress);
+    }
+
+    @Transactional
+    public void updateHotel(RequestHotelDTO requestHotelDTO) {
+
+        AddressDTO addressDTO = AddressDTO.fromOwnerHotelDTO(requestHotelDTO);
+        addressMapper.saveAddress(addressDTO);
+        Integer addressId = addressDTO.getId();
+
+        if (requestHotelDTO.getMainImage() != null) {
+            //이미지 파일 존재할 경우에만 S3 업로드
+            String mainImgUrl = s3ImageService.upload(requestHotelDTO.getMainImage());
+            HotelDTO hotelDTO = HotelDTO.fromRequestHotelDTO(requestHotelDTO, addressId, mainImgUrl);
+            ownerHotelMapper.updateHotel(hotelDTO);
+        } else {
+            HotelDTO hotelDTO = HotelDTO.updateWithOutImg(requestHotelDTO, addressId);
+            ownerHotelMapper.updateHotelWithOutImg(hotelDTO);
+        }
     }
 }
