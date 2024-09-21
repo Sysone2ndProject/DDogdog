@@ -28,14 +28,15 @@ public class RoomChoiceService {
         //TODO : 전체 RoomType 프론트에서 입력받을 경우 rooms.getCount = 0인지 판별 로직 세우기
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        for (int i = 0; i < rooms.size(); i++) {
+        for (int i = 1; i < rooms.size(); i++) {
             List<Integer> roomIds = null;
+            RequestRoomChoiceDTO room = rooms.get(i);
+
             for (LocalDate currentDate = start; !currentDate.isAfter(end); currentDate = addDays(currentDate)) {
                 String date = currentDate.format(formatter);
-                RequestRoomChoiceDTO room = rooms.get(i);
+
                 List<Integer> roomIdsForTypeAndDate = roomChoiceMapper.getRoomIdsByTypeAndDate(room.getRoomGrade(), date, hotelId);
                 if (roomIds == null) {
-                    // 처음 조회한 호텔 ID 리스트
                     roomIds = new ArrayList<>(roomIdsForTypeAndDate);
                 } else {
                     // 교집합을 구함
@@ -48,17 +49,11 @@ public class RoomChoiceService {
                 }
 
                 Collections.sort(roomIds);
-
-                // 객실 조회 테이블에 insert
-                for (int count = 0; count < room.getCount(); count++) {
-                    RoomChoice roomChoice = RoomChoice.from(reservationId, roomIds.get(count), room.getPrice());
-                    roomChoiceMapper.saveChooseRooms(roomChoice);
-                }
-
-                // 교집합이 비어지면 더 이상 조회할 필요 없음
-                if (roomIds.isEmpty()) {
-                    break;
-                }
+            }
+            // 객실 조회 테이블에 insert
+            for (int count = 0; count < room.getCount(); count++) {
+                RoomChoice roomChoice = RoomChoice.from(reservationId, roomIds.get(count), room.getPrice());
+                roomChoiceMapper.saveChooseRooms(roomChoice);
             }
         }
     }
