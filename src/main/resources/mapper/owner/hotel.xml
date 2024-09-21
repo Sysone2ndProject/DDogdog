@@ -13,6 +13,20 @@
     <result property="reviewCount" column="review_count"/>
     <result property="fullAddress" column="full_address"/>
   </resultMap>
+
+  <resultMap type="com.sysone.ddogdog.owner.hotel.model.HotelDTO" id="hotelDTO">
+    <result property="id" column="id"/>
+    <result property="addressId" column="address_id"/>
+    <result property="ownerId" column="owner_id"/>
+    <result property="businessName" column="business_name"/>
+    <result property="businessNumber" column="business_number"/>
+    <result property="phoneNumber" column="phone_number"/>
+    <result property="intro" column="intro"/>
+    <result property="mainImage" column="main_image"/>
+    <result property="totalScore" column="total_score"/>
+    <result property="reviewCount" column="review_count"/>
+  </resultMap>
+
   <insert id="saveHotel" parameterType="com.sysone.ddogdog.owner.hotel.model.HotelDTO">
     INSERT INTO HOTELS(address_id, owner_id, business_name, business_number, phone_number, intro, main_image, total_score, review_count)
     VALUES (#{addressId}, #{ownerId}, #{businessName}, #{businessNumber}, #{phoneNumber}, #{intro}, #{mainImage}, #{totalScore},
@@ -44,4 +58,38 @@
     WHERE h.owner_id = #{ownerId}
     ORDER BY h.id
   </select>
+
+  <select id="getHotelByID" parameterType="Integer" resultMap="hotelDTO">
+    SELECT id,
+           address_id,
+           owner_id,
+           business_name,
+           business_number,
+           phone_number,
+           intro,
+           main_image,
+           total_score,
+           review_count
+    FROM HOTELS
+    WHERE id = #{id}
+  </select>
+
+  <update id="updateHotelWithOutImg" parameterType="com.sysone.ddogdog.owner.hotel.model.HotelDTO">
+    UPDATE HOTELS
+    SET address_id    = #{addressId},
+        business_name = #{businessName},
+        phone_number  = #{phoneNumber},
+        intro         = #{intro}
+    WHERE id = #{id}
+  </update>
+
+  <update id="updateHotel" parameterType="com.sysone.ddogdog.owner.hotel.model.HotelDTO">
+    UPDATE HOTELS
+    SET address_id    = #{addressId},
+        business_name = #{businessName},
+        phone_number  = #{phoneNumber},
+        intro         = #{intro},
+        main_image    = #{mainImage}
+    WHERE id = #{id}
+  </update>
 </mapper>
