@@ -6,6 +6,7 @@ import com.sysone.ddogdog.owner.room.mapper.OwnerRoomMapper;
 import com.sysone.ddogdog.owner.room.model.RequestRoomDTO;
 import com.sysone.ddogdog.owner.room.model.ResponseRoomDTO;
 import com.sysone.ddogdog.owner.room.model.RoomDTO;
+import com.sysone.ddogdog.owner.room.model.RoomGrade;
 import com.sysone.ddogdog.owner.room.model.RoomVO;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,10 @@ public class RoomService {
     public RoomVO getRoomList(Integer hotelId) {
         String businessName = hotelMapper.getHotelNameByID(hotelId);
         List<ResponseRoomDTO> responseRoomDTOList = ownerRoomMapper.getRoomsByHotelId(hotelId);
-        return new RoomVO(hotelId,businessName,responseRoomDTOList);
+        return new RoomVO(hotelId, businessName, responseRoomDTOList);
+    }
+
+    public ResponseRoomDTO getRoom(RoomGrade grade, Integer hotelId) {
+        return ownerRoomMapper.getHotelByIDAndGrade(hotelId, grade);
     }
 }
