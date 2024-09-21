@@ -43,4 +43,17 @@ public class RoomService {
     public ResponseRoomDTO getRoom(RoomGrade grade, Integer hotelId) {
         return ownerRoomMapper.getHotelByIDAndGrade(hotelId, grade);
     }
+
+    @Transactional
+    public void updateRoom(RequestRoomDTO requestRoomDTO) {
+        if (requestRoomDTO.getRoomImage() != null) {
+            String ImgUrl = s3ImageService.upload(requestRoomDTO.getRoomImage());
+            RoomDTO roomDTO = RoomDTO.upDateRoom(requestRoomDTO, ImgUrl);
+            ownerRoomMapper.updateRoom(roomDTO);
+
+        } else {
+            RoomDTO roomDTO = RoomDTO.updateRoomWithoutImg(requestRoomDTO);
+            ownerRoomMapper.updateRoomWithoutImg(roomDTO);
+        }
+    }
 }
