@@ -7,9 +7,8 @@ import lombok.Data;
 @Builder
 public class RoomDTO {
 
-    private Integer id;
-    private Integer hotelId;
     private RoomGrade grade;
+    private Integer hotelId;
     private Integer roomCount;
     private Integer price;
     private Integer maxDogs;

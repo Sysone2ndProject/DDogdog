@@ -4,10 +4,9 @@ import com.sysone.ddogdog.common.config.s3.service.S3ImageService;
 import com.sysone.ddogdog.owner.hotel.mapper.OwnerHotelMapper;
 import com.sysone.ddogdog.owner.room.mapper.OwnerRoomMapper;
 import com.sysone.ddogdog.owner.room.model.RequestRoomDTO;
-import com.sysone.ddogdog.owner.room.model.ResponseRoomDTO;
 import com.sysone.ddogdog.owner.room.model.RoomDTO;
 import com.sysone.ddogdog.owner.room.model.RoomGrade;
-import com.sysone.ddogdog.owner.room.model.RoomVO;
+import com.sysone.ddogdog.owner.room.model.ResponseRoomDTO;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,13 +33,13 @@ public class RoomService {
         }
     }
 
-    public RoomVO getRoomList(Integer hotelId) {
+    public ResponseRoomDTO getRoomList(Integer hotelId) {
         String businessName = hotelMapper.getHotelNameByID(hotelId);
-        List<ResponseRoomDTO> responseRoomDTOList = ownerRoomMapper.getRoomsByHotelId(hotelId);
-        return new RoomVO(hotelId, businessName, responseRoomDTOList);
+        List<RoomDTO> responseRoomDTOList = ownerRoomMapper.getRoomsByHotelId(hotelId);
+        return new ResponseRoomDTO(hotelId, businessName, responseRoomDTOList);
     }
 
-    public ResponseRoomDTO getRoom(RoomGrade grade, Integer hotelId) {
+    public RoomDTO getRoom(RoomGrade grade, Integer hotelId) {
         return ownerRoomMapper.getHotelByIDAndGrade(hotelId, grade);
     }
 

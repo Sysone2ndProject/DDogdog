@@ -1,15 +1,16 @@
 package com.sysone.ddogdog.owner.room.model;
 
-import lombok.Builder;
-import lombok.Data;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Data
-@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ResponseRoomDTO {
-    private RoomGrade grade;
-    private Integer roomCount;
-    private Integer price;
-    private Integer maxDogs;
-    private String roomImage;
-    private String intro;
+
+    private Integer hotelId;
+    private String business_name;
+    private List<RoomDTO> responseRoomDTOList;
 }

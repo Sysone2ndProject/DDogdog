@@ -1,6 +1,5 @@
 package com.sysone.ddogdog.owner.room.mapper;
 
-import com.sysone.ddogdog.owner.room.model.ResponseRoomDTO;
 import com.sysone.ddogdog.owner.room.model.RoomDTO;
 import com.sysone.ddogdog.owner.room.model.RoomGrade;
 import java.util.List;
@@ -11,9 +10,9 @@ public interface OwnerRoomMapper {
 
     void saveRoom(RoomDTO roomDTO);
 
-    List<ResponseRoomDTO> getRoomsByHotelId(Integer hotelId);
+    List<RoomDTO> getRoomsByHotelId(Integer hotelId);
 
-    ResponseRoomDTO getHotelByIDAndGrade(Integer hotelId, RoomGrade grade);
+    RoomDTO getHotelByIDAndGrade(Integer hotelId, RoomGrade grade);
 
     void updateRoom(RoomDTO roomDTO);
 
