@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.customer.roomChoice.mapper.RoomChoiceMapper">
+
+    <select id="getRoomIdsByTypeAndDate" resultType="Integer">
+        select id
+        from rooms
+        where id not in (select room_id
+                         from choose_rooms
+                         where reservation_id in (select id
+                                                  from reservations
+                                                  where to_date(#{date}, 'YYYY-MM-DD') between start_date and end_date
+                                                    and canceled = 0))
+          and hotel_id = #{hotelId}
+          and grade = #{roomGrade}
+    </select>
+
+    <insert id="saveChooseRooms" parameterType="com.sysone.ddogdog.customer.roomChoice.model.RoomChoice">
+        INSERT INTO CHOOSE_ROOMS (reservation_id, room_id, now_price)
+        VALUES (
+                   #{reservationId},
+                   #{roomId},
+                   #{nowPrice}
+               )
+    </insert>
+</mapper>
