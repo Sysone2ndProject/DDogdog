@@ -30,10 +30,9 @@
         <div class="form-group">
             <label for="room-grade">객실 등급</label>
             <select id="room-grade" class="form-control">
-                <option value="DELUXE">디럭스 | 3평 미만</option>
-                <option value="SUPERIOR">슈페리어 | 3평이상 5평미만</option>
-                <option value="SUITE">스위트 | 5평이상 7평미만</option>
-                <option value="ROYAL_SUITE">로얄스위트 | 7평이상</option>
+                <c:forEach var="grade" items="${grades}">
+                    <option value="${grade.name()}">${grade.detail}</option>
+                </c:forEach>
             </select>
         </div>
 

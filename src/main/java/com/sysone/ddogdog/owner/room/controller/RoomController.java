@@ -5,6 +5,7 @@ import com.sysone.ddogdog.owner.room.model.RoomDTO;
 import com.sysone.ddogdog.owner.room.model.RoomGrade;
 import com.sysone.ddogdog.owner.room.model.ResponseRoomDTO;
 import com.sysone.ddogdog.owner.room.service.RoomService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,9 @@ public class RoomController {
 
     @GetMapping("/form/{hotelId}")
     public String getRoomRegisterForm(@PathVariable Integer hotelId, Model model) {
+        List<RoomGrade> grades = roomService.getHotelExistGrade(hotelId);
         model.addAttribute("hotelId", hotelId);
+        model.addAttribute("grades",grades);
         return "owner/roomRegister";
     }
 
