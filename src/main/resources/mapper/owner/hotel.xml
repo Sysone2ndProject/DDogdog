@@ -3,7 +3,7 @@
 
 <mapper namespace="com.sysone.ddogdog.owner.hotel.mapper.OwnerHotelMapper">
   <resultMap type="com.sysone.ddogdog.owner.hotel.model.ResponseHotelDTO" id="responseHotelDto">
-    <result property="hotelId" column="id"/>
+    <id property="hotelId" column="id"/>
     <result property="businessName" column="business_name"/>
     <result property="businessNumber" column="business_number"/>
     <result property="phoneNumber" column="phone_number"/>
@@ -15,7 +15,7 @@
   </resultMap>
 
   <resultMap type="com.sysone.ddogdog.owner.hotel.model.HotelDTO" id="hotelDTO">
-    <result property="id" column="id"/>
+    <id property="id" column="id"/>
     <result property="addressId" column="address_id"/>
     <result property="ownerId" column="owner_id"/>
     <result property="businessName" column="business_name"/>

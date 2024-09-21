@@ -1,4 +1,4 @@
-document.getElementById('hotelRegisterForm').onsubmit =
+document.getElementById('hotel-update-form').onsubmit =
     function (event) {
       event.preventDefault(); //제출 중 새로고침 방지
 

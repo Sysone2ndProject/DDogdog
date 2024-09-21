@@ -21,7 +21,7 @@
 <!-- 테스트용 입니다. -->
 <div class="container">
     <p id="title">호텔 정보 수정</p>
-    <form id="hotelRegisterForm" enctype="multipart/form-data">
+    <form id="hotel-update-form" enctype="multipart/form-data">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="hotel-info-div">
             <div class="main-img-div">
