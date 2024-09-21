@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller("ownerHotelController") //customer의 hotellcontroller와  명칭 중복으로 빈등록 이름 지정
@@ -41,4 +43,16 @@ public class HotelController {
         return "owner/hotelList";
     }
 
+    @GetMapping("/{id}")
+    public String getHotel(@PathVariable Integer id, Model model) {
+        ResponseHotelDTO hotel = hotelService.getHotel(id);
+        model.addAttribute("hotel", hotel);
+        return "owner/updateHotel";
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> updateHotel(@ModelAttribute RequestHotelDTO requestHotelDTO) {
+        hotelService.updateHotel(requestHotelDTO);
+        return ResponseEntity.ok().build();
+    }
 }

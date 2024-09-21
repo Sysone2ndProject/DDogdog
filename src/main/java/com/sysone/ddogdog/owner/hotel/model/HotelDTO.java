@@ -18,8 +18,9 @@ public class HotelDTO {
     private Integer totalScore;
     private Integer reviewCount;
 
-    public static HotelDTO fromHotelDTO(RequestHotelDTO requestHotelDTO, Integer addressId, String mainImgUrl) {
+    public static HotelDTO fromRequestHotelDTO(RequestHotelDTO requestHotelDTO, Integer addressId, String mainImgUrl) {
         return HotelDTO.builder()
+            .id(requestHotelDTO.getId())
             .addressId(addressId)
             .ownerId(requestHotelDTO.getOwnerId())
             .businessName(requestHotelDTO.getBusinessName())
@@ -29,6 +30,18 @@ public class HotelDTO {
             .mainImage(mainImgUrl)
             .totalScore(0)
             .reviewCount(0)
+            .build();
+    }
+
+    public static HotelDTO updateWithOutImg(RequestHotelDTO requestHotelDTO, Integer addressId) {
+        return HotelDTO.builder()
+            .id(requestHotelDTO.getId())
+            .addressId(addressId)
+            .ownerId(requestHotelDTO.getOwnerId())
+            .businessName(requestHotelDTO.getBusinessName())
+            .businessNumber(requestHotelDTO.getBusinessNumber())
+            .phoneNumber(requestHotelDTO.getPhoneNumber())
+            .intro(requestHotelDTO.getIntro())
             .build();
     }
 }

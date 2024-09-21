@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.sysone.ddogdog.owner.room.mapper.RoomMapper">
-  <resultMap id="responseRoomDTO" type="com.sysone.ddogdog.owner.room.model.ResponseRoomDTO">
+<mapper namespace="com.sysone.ddogdog.owner.room.mapper.OwnerRoomMapper">
+  <resultMap id="roomDTO" type="com.sysone.ddogdog.owner.room.model.RoomDTO">
     <result property="grade" column="grade"/>
+    <result property="hotelId" column="hotel_id"/>
     <result property="roomCount" column="room_count"/>
     <result property="price" column="price"/>
     <result property="maxDogs" column="maxDogs"/>
@@ -12,20 +13,59 @@
 
   </resultMap>
   <insert id="saveRoom" parameterType="com.sysone.ddogdog.owner.room.model.RoomDTO">
-    INSERT INTO ROOMS(hotel_id,grade,price,max_dogs,room_image,intro)
+    INSERT INTO ROOMS(hotel_id, grade, price, max_dogs, room_image, intro)
     VALUES (#{hotelId}, #{grade}, #{price}, #{maxDogs}, #{roomImage}, #{intro})
   </insert>
 
-  <select id="getRoomsByHotelId" parameterType="Integer" resultMap="responseRoomDTO">
+  <select id="getRoomsByHotelId" parameterType="Integer" resultMap="roomDTO">
     SELECT grade,
+           hotel_id,
            count(*) as "room_count",
            price,
            max_dogs,
            room_image,
            intro
     FROM ROOMS
-    WHERE hotel_id = #{hotel_id}
-    GROUP BY hotel_id, grade,price,max_dogs,room_image,intro
+    WHERE hotel_id = #{hotelId}
+    GROUP BY hotel_id, grade, price, max_dogs, room_image, intro
     ORDER BY price
   </select>
+
+  <select id="getHotelByIDAndGrade" parameterType="com.sysone.ddogdog.owner.room.model.RoomDTO" resultMap="roomDTO">
+    SELECT grade,
+           hotel_id,
+           count(*) as "room_count",
+           price,
+           max_dogs,
+           room_image,
+           intro
+    FROM ROOMS
+    WHERE hotel_id = #{hotelId}
+      and grade = #{grade}
+    GROUP BY hotel_id, grade, price, max_dogs, room_image, intro
+  </select>
+
+  <update id="updateRoom" statementType="CALLABLE" parameterType="com.sysone.ddogdog.owner.room.model.RoomDTO">
+    {call update_room(
+      #{hotelId, jdbcType=NUMERIC, mode=IN},
+      #{grade, jdbcType=VARCHAR, mode=IN},
+      #{roomCount, jdbcType=NUMERIC, mode=IN},
+      #{price, jdbcType=NUMERIC, mode=IN},
+      #{maxDogs, jdbcType=NUMERIC, mode=IN},
+      #{roomImage, jdbcType=VARCHAR, mode=IN},
+      #{intro, jdbcType=VARCHAR, mode=IN}
+      )}
+  </update>
+
+  <update id="updateRoomWithoutImg" statementType="CALLABLE" parameterType="com.sysone.ddogdog.owner.room.model.RoomDTO">
+    {call update_room_without_img(
+      #{hotelId, jdbcType=NUMERIC, mode=IN},
+      #{grade, jdbcType=VARCHAR, mode=IN},
+      #{roomCount, jdbcType=NUMERIC, mode=IN},
+      #{price, jdbcType=NUMERIC, mode=IN},
+      #{maxDogs, jdbcType=NUMERIC, mode=IN},
+      #{intro, jdbcType=VARCHAR, mode=IN}
+      )}
+  </update>
+
 </mapper>
