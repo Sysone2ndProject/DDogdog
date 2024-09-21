@@ -24,8 +24,20 @@
            room_image,
            intro
     FROM ROOMS
-    WHERE hotel_id = #{hotel_id}
-    GROUP BY hotel_id, grade,price,max_dogs,room_image,intro
+    WHERE hotel_id = #{hotelId}
+    GROUP BY hotel_id, grade, price, max_dogs, room_image, intro
     ORDER BY price
+  </select>
+
+  <select id="getHotelByIDAndGrade" parameterType="com.sysone.ddogdog.owner.room.model.RoomDTO" resultMap="responseRoomDTO">
+    SELECT grade,
+           count(*) as "room_count",
+           price,
+           max_dogs,
+           room_image,
+           intro
+    FROM ROOMS
+    WHERE hotel_id = #{hotelId} and grade=#{grade}
+    GROUP BY hotel_id, grade,price,max_dogs,room_image,intro
   </select>
 </mapper>
