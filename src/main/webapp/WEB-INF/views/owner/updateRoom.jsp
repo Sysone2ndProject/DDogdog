@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>OWNER:HOTEL 수정</title>
+    <title>OWNER:객실 정보 수정</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/updateRoom.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a08faffd77.js" crossorigin="anonymous"></script>
@@ -20,8 +20,8 @@
 </div>
 <!-- 테스트용 입니다. -->
 <div class="container">
-    <p id="title">${room.grade} 객실 정보 수정</p>
-    <form id="hotelRegisterForm" enctype="multipart/form-data">
+    <p id="title">${room.grade}</p>
+    <form id="update-room-form" enctype="multipart/form-data">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="room-info-div">
             <div class="room-img-div">
@@ -32,15 +32,15 @@
             <div class="info-div">
                 <div class="form-group">
                     <label for="room-count">객실 수:</label>
-                    <input type="text" id="room-count" value="${room.roomCount}">
+                    <input type="number" id="room-count" value="${room.roomCount}">
                 </div>
                 <div class="form-group">
                     <label for="max-dogs">최대 견수:</label>
-                    <input type="text" id="max-dogs" value="${room.maxDogs}">
+                    <input type="number" id="max-dogs" value="${room.maxDogs}">
                 </div>
                 <div class="form-group">
                     <label for="price">가격:</label>
-                    <input type="text" id="price" value="${room.price}" readonly>
+                    <input type="number" id="price" value="${room.price}">
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-success">수정하기</button>
-        <div class="address-hidden">
+        <div class="hidden">
             <input type="hidden" id="hotel-id" value="${hotelId}">
         </div>
     </form>
