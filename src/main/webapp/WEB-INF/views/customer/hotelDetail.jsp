@@ -23,19 +23,36 @@
     <p>가격: ${room.price}</p>
     <hr>
 </c:forEach>
-<form>
-    <label>체크인</label>
-    <input type="date">
-    <label>체크인</label>
-    <input type="date">
-    <c:forEach var="room" items="${hotelDetail.rooms}">
-        <p>${room.grade}</p>
-        <input type="number">
+<form id="reservationForm">
+    <label for="startDate">체크인</label>
+    <input id="startDate" type="date" onchange="setEndDate()">
+    <label for="endDate">체크아웃</label>
+    <input id="endDate" type="date">
+    <c:forEach var="room" varStatus="status" items="${hotelDetail.rooms}">
+        <label for="count${status.index}" class="grade${status.index}">${room.grade}</label>
+        <input id="count${status.index}" type="number" min="0" value="0"
+               onchange="calcCountAndPrice(${status.index})">
     </c:forEach>
-    <p>총계: ${price}</p>
-    <p>총 개수: ${count}</p>
+    <p>총계: </p>
+    <p id="totalPrice">0</p>
+    <p>총 개수: </p>
+    <p id="totalCount">0</p>
     <button type="submit">예약하기</button>
 </form>
 </body>
-<script src="/js/customers/hotelDetail.js" ></script>
+<script>
+  const hotelId = parseInt('${hotelDetail.hotel.id}');
+  let rooms = [
+    <c:forEach var="room" items="${hotelDetail.rooms}" varStatus="status">
+    {
+      grade: "${room.grade}",
+      count: 0,
+      price: parseInt("${room.price}"),
+
+    }<c:if test="${!status.last}">, </c:if>
+    </c:forEach>
+  ]
+</script>
+<script src="/js/customers/hotelDetail.js"></script>
+<script src="/js/customers/dateHandler.js"></script>
 </html>
