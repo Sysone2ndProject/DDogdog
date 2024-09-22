@@ -105,7 +105,6 @@ public class HotelService {
             List<ResponseRoomDTO> roomsForDate = roomMapper.getRoomsByHotelId(id, date);
 
             if (rooms == null) {
-                // 처음 조회한 호텔 ID 리스트
                 rooms = roomsForDate;
             } else {
                 for (int i = 0; i < roomsForDate.size(); i++) {
