@@ -28,7 +28,7 @@ public class RoomChoiceService {
         //TODO : 전체 RoomType 프론트에서 입력받을 경우 rooms.getCount = 0인지 판별 로직 세우기
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        for (int i = 1; i < rooms.size(); i++) {
+        for (int i = 0; i < rooms.size(); i++) {
             List<Integer> roomIds = null;
             RequestRoomChoiceDTO room = rooms.get(i);
 
