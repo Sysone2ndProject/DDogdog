@@ -28,7 +28,7 @@ public class Reservation {
                 .customerId(dto.getCustomerid())
                 .hotelId(dto.hotelId)
                 .startDate(LocalDate.parse(dto.getStartDate(), formatter))
-                .endDate(LocalDate.parse(dto.getStartDate(), formatter))
+                .endDate(LocalDate.parse(dto.getEndDate(), formatter))
                 .count(dto.getCount())
                 .price(dto.getPrice())
                 .canceled(false)
