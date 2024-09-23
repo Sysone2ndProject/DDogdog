@@ -1,8 +1,7 @@
 package com.sysone.ddogdog.customer.reservation.controller;
 
 import com.sysone.ddogdog.common.config.oauth.PrincipalDetails;
-import com.sysone.ddogdog.customer.reservation.model.RequsetReservationDTO;
-import com.sysone.ddogdog.customer.reservation.model.Reservation;
+import com.sysone.ddogdog.customer.reservation.model.RequestReservationDTO;
 import com.sysone.ddogdog.customer.reservation.service.ReservationService;
 import com.sysone.ddogdog.customer.roomChoice.exception.NoAvailableRoomsException;
 import lombok.RequiredArgsConstructor;
@@ -22,11 +21,11 @@ public class ReservationController {
 
     @PostMapping
     public ResponseEntity<String> saveReserve(@AuthenticationPrincipal PrincipalDetails user,@RequestBody
-    RequsetReservationDTO dto){
+    RequestReservationDTO dto){
         try {
-            //        reservationService.saveReserve(user.getUsername(),dto);
-            //TODO : 페이지가없어 string으로 넘겨주어 테스트 추후 페이지 확인후 삭제예정
-            reservationService.saveReserve("3700680476",dto);
+                    reservationService.saveReserve(user.getUsername(),dto);
+//            TODO : 페이지가없어 string으로 넘겨주어 테스트 추후 페이지 확인후 삭제예정
+//            reservationService.saveReserve("3700680476",dto);
             return new ResponseEntity<>("예약에 성공했습니다", HttpStatus.CREATED);
         }catch (NoAvailableRoomsException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
