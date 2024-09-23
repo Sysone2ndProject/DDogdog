@@ -14,7 +14,7 @@
                                                   where to_date(#{date}, 'YYYY-MM-DD') between start_date and end_date
                                                     and canceled = 0))
           and hotel_id = #{hotelId}
-          and grade = #{roomGrade}
+          and grade = #{grade}
     </select>
 
     <insert id="saveChooseRooms" parameterType="com.sysone.ddogdog.customer.roomChoice.model.RoomChoice">

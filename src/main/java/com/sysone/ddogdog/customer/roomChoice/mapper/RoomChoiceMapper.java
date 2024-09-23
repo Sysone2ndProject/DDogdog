@@ -11,7 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface RoomChoiceMapper {
-    List<Integer> getRoomIdsByTypeAndDate(@Param("roomGrade") RoomGrade roomGrade, @Param("date") String date, @Param("hotelId") Integer hotelId);
+    List<Integer> getRoomIdsByTypeAndDate(@Param("grade") RoomGrade grade, @Param("date") String date, @Param("hotelId") Integer hotelId);
 
     void saveChooseRooms(RoomChoice roomChoice);
 

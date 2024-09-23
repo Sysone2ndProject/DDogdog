@@ -45,7 +45,7 @@ public class RoomChoiceService {
                 currentDate = addDays(currentDate)) {
                 String date = currentDate.format(formatter);
                 List<Integer> roomIdsForTypeAndDate = roomChoiceMapper.getRoomIdsByTypeAndDate(
-                    room.getRoomGrade(), date, hotelId);
+                    room.getGrade(), date, hotelId);
                 if (roomIds == null) {
                     roomIds = new ArrayList<>(roomIdsForTypeAndDate);
                 } else {
