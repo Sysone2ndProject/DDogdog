@@ -9,7 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/v1/customers/reservation")
@@ -20,14 +25,12 @@ public class ReservationController {
     private final ReservationService reservationService;
 
     @PostMapping
-    public ResponseEntity<String> saveReserve(@AuthenticationPrincipal PrincipalDetails user,@RequestBody
-    RequestReservationDTO dto){
+    public ResponseEntity<String> saveReserve(@AuthenticationPrincipal PrincipalDetails user,
+        @RequestBody RequestReservationDTO dto) {
         try {
-                    reservationService.saveReserve(user.getUsername(),dto);
-//            TODO : 페이지가없어 string으로 넘겨주어 테스트 추후 페이지 확인후 삭제예정
-//            reservationService.saveReserve("3700680476",dto);
+            reservationService.saveReserve(user.getUsername(), dto);
             return new ResponseEntity<>("예약에 성공했습니다", HttpStatus.CREATED);
-        }catch (NoAvailableRoomsException e){
+        } catch (NoAvailableRoomsException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
