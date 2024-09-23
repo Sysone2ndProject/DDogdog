@@ -7,12 +7,12 @@
         {CALL save_reservation(
                 #{customerId, jdbcType=NUMERIC},
                 #{hotelId, jdbcType=NUMERIC},
-                #{startDate, jdbcType=TIMESTAMP, typeHandler=com.sysone.ddogdog.customer.common.util.LocalDateTypeHandler},
-                #{endDate, jdbcType=TIMESTAMP, typeHandler=com.sysone.ddogdog.customer.common.util.LocalDateTypeHandler},
+                #{startDate, jdbcType=TIMESTAMP},
+                #{endDate, jdbcType=TIMESTAMP},
                 #{count, jdbcType=NUMERIC},
                 #{price, jdbcType=NUMERIC},
-                #{canceled, jdbcType=NUMERIC, typeHandler=com.sysone.ddogdog.customer.common.util.BooleanTypeHandler},
-                #{createDate, jdbcType=TIMESTAMP, typeHandler=com.sysone.ddogdog.customer.common.util.LocalDateTypeHandler},
+                #{canceled, jdbcType=NUMERIC},
+                #{createDate, jdbcType=TIMESTAMP},
                 #{id, mode=OUT, jdbcType=NUMERIC}
             )}
     </insert>

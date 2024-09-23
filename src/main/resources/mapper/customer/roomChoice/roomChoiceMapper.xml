@@ -25,4 +25,12 @@
                    #{nowPrice}
                )
     </insert>
+
+  <select id="findAllRooms" parameterType="Integer" resultType="com.sysone.ddogdog.customer.roomChoice.model.ResponseRoomChoiceDTO">
+    SELECT r.start_date,rm.grade,r.end_date,rm.room_image,rm.intro,cr.now_price
+    FROM(SELECT * FROM RESERVATIONS  WHERE id = #{id}) r
+          inner JOIN CHOOSE_ROOMS cr ON r.id = cr.reservation_id
+          inner JOIN ROOMS rm ON cr.room_id = rm.id
+  </select>
+
 </mapper>

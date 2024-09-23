@@ -43,7 +43,7 @@
                 <p class="total-count">총 ${reservation.count}개</p>
                 <div class="price">${reservation.price} 원</div>
                 <div class="buttons">
-                    <button class="view-details">자세히 보기</button>
+                    <button class="view-details" onclick="viewDetails(${reservation.id})">자세히 보기</button>
                     <c:if test="${reservation.canceled}">
                         <button class="completed">취소 완료</button>
                     </c:if>

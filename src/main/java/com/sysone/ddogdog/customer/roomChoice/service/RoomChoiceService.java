@@ -3,17 +3,17 @@ package com.sysone.ddogdog.customer.roomChoice.service;
 import com.sysone.ddogdog.customer.roomChoice.exception.NoAvailableRoomsException;
 import com.sysone.ddogdog.customer.roomChoice.mapper.RoomChoiceMapper;
 import com.sysone.ddogdog.customer.roomChoice.model.RequestRoomChoiceDTO;
+import com.sysone.ddogdog.customer.roomChoice.model.ResponseRoomChoiceDTO;
 import com.sysone.ddogdog.customer.roomChoice.model.RoomChoice;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,8 +22,17 @@ public class RoomChoiceService {
 
     private final RoomChoiceMapper roomChoiceMapper;
 
+    /**
+     * 생성된 예약번호를 받아 해당 기간, 타입에 해당하는 빈 방을 탐색하여 객실 생성
+     * @param reservationId 예약 Id
+     * @param start 시작일
+     * @param end 종료일
+     * @param hotelId 호텔 Id
+     * @param rooms 생성하는 room 정보들
+     */
     @Transactional
-    public void saveRoomChoice(Integer reservationId, LocalDate start, LocalDate end, Integer hotelId, List<RequestRoomChoiceDTO> rooms) {
+    public void saveRoomChoice(Integer reservationId, LocalDate start, LocalDate end,
+        Integer hotelId, List<RequestRoomChoiceDTO> rooms) {
 
         //TODO : 전체 RoomType 프론트에서 입력받을 경우 rooms.getCount = 0인지 판별 로직 세우기
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -32,10 +41,11 @@ public class RoomChoiceService {
             List<Integer> roomIds = null;
             RequestRoomChoiceDTO room = rooms.get(i);
 
-            for (LocalDate currentDate = start; !currentDate.isAfter(end); currentDate = addDays(currentDate)) {
+            for (LocalDate currentDate = start; !currentDate.isAfter(end);
+                currentDate = addDays(currentDate)) {
                 String date = currentDate.format(formatter);
-
-                List<Integer> roomIdsForTypeAndDate = roomChoiceMapper.getRoomIdsByTypeAndDate(room.getRoomGrade(), date, hotelId);
+                List<Integer> roomIdsForTypeAndDate = roomChoiceMapper.getRoomIdsByTypeAndDate(
+                    room.getRoomGrade(), date, hotelId);
                 if (roomIds == null) {
                     roomIds = new ArrayList<>(roomIdsForTypeAndDate);
                 } else {
@@ -52,7 +62,8 @@ public class RoomChoiceService {
             }
             // 객실 조회 테이블에 insert
             for (int count = 0; count < room.getCount(); count++) {
-                RoomChoice roomChoice = RoomChoice.from(reservationId, roomIds.get(count), room.getPrice());
+                RoomChoice roomChoice = RoomChoice.from(reservationId, roomIds.get(count),
+                    room.getPrice());
                 roomChoiceMapper.saveChooseRooms(roomChoice);
             }
         }
@@ -60,5 +71,14 @@ public class RoomChoiceService {
 
     private LocalDate addDays(LocalDate date) {
         return date.plusDays(1);
+    }
+
+    /**
+     * 해당 예약 내역에 속한 객실 리스트를 반환하는 메서드
+     * @param customerId
+     * @return List<ResponseRoomChoiceDTO> 객실정보들
+     */
+    public List<ResponseRoomChoiceDTO> findAllRooms(Integer customerId) {
+        return roomChoiceMapper.findAllRooms(customerId);
     }
 }
