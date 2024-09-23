@@ -6,9 +6,16 @@ let totalPrice = parseInt(document.getElementById("totalPrice").innerText);
 const getDayDiffDay = (startDate, endDate) =>
     (endDate - startDate) / (1000 * 3600 * 24);
 
-const calcCountAndPrice = (i) => {
+const getStartDate = () => {
   startDate = document.getElementById("startDate").value;
+}
+
+const getEndDate = () => {
   endDate = document.getElementById("endDate").value;
+}
+
+const calcCountAndPrice = (i) => {
+
   if (startDate === "" || endDate === "") {
     alert("날짜를 선택해주세요");
     document.getElementById(`count${i}`).value = 0;
@@ -32,6 +39,9 @@ const submitForm = (event) => {
 
   if (startDate === "" || endDate === "") {
     alert("날짜를 선택해주세요");
+    return;
+  } else if (totalCnt === 0) {
+    alert("방을 선택해주세요");
     return;
   }
 

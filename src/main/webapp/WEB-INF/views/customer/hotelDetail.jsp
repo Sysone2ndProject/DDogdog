@@ -25,9 +25,9 @@
 </c:forEach>
 <form id="reservationForm">
     <label for="startDate">체크인</label>
-    <input id="startDate" type="date" onchange="setEndDate()">
+    <input id="startDate" type="date" onchange="setEndDate(); getStartDate();"/>
     <label for="endDate">체크아웃</label>
-    <input id="endDate" type="date">
+    <input id="endDate" type="date" onchange="getEndDate()">
     <c:forEach var="room" varStatus="status" items="${hotelDetail.rooms}">
         <label for="count${status.index}" class="grade${status.index}">${room.grade}</label>
         <input id="count${status.index}" type="number" min="0" value="0"
