@@ -45,7 +45,7 @@
   let rooms = [
     <c:forEach var="room" items="${hotelDetail.rooms}" varStatus="status">
     {
-      grade: "${room.grade}",
+      roomGrade: "${room.grade}",
       count: 0,
       price: parseInt("${room.price}"),
 
