@@ -21,9 +21,6 @@ public class ReservationViewController {
     @GetMapping
     public String findReservation(@AuthenticationPrincipal PrincipalDetails user, Model model){
         List<ResponseReservationDTO> reservationInfos = reservationService.findReservationsByCustomerId(user.getUsername());
-        for(ResponseReservationDTO responseReservationDTO : reservationInfos){
-            System.out.println(responseReservationDTO.toString());
-        }
         model.addAttribute("ReservationInfos",reservationInfos);
         return "customer/reservationInfo";
     }
