@@ -40,8 +40,8 @@
                 <p>소개글: ${room.intro}</p>
             </div>
             <div class="room-manage">
-                    <%--                TODO: 룸 수정/삭제 API 생성--%>
-                <button type="button"> 객실 수정</button>
+                <button type="button" onclick="location.href = '/v1/owners/rooms/updateform/${room.grade}?hotelId=${hotelId}'"> 객실 수정
+                </button>
                 <button type="button"> 객실 삭제</button>
             </div>
         </div>

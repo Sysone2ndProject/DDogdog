@@ -38,12 +38,10 @@
                 <p>소개글: ${hotel.intro}</p>
             </div>
             <div class="hotel-manage">
-                    <%--                TODO: 호텔 수정/삭제 API 생성--%>
-                <button type="button"> 호텔 수정/삭제</button>
+                <button type="button" onclick="location.href = '/v1/owners/hotels/${hotel.hotelId}'"> 호텔 정보 수정</button>
                 <button type="button" onclick="location.href = '/v1/owners/rooms?hotelId=${hotel.hotelId}'"> 객실관리</button>
             </div>
         </div>
-
     </c:forEach>
 </div>
 

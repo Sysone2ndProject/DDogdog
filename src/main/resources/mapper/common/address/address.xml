@@ -20,9 +20,18 @@
       )}
   </insert>
 
+
   <select id="getAddressById" parameterType="Integer" resultMap="response">
     select *
     from addresses
     where id = #{id}
   </select>
 </mapper>
+
+  <select id="getFullAddressById" parameterType="Integer" resultType="String">
+    SELECT full_address
+    FROM ADDRESSES
+    WHERE id = #{id}
+  </select>
+</mapper>
+

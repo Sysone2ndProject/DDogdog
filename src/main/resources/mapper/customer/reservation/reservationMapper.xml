@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.customer.reservation.mapper.ReservationMapper">
+    <insert id="saveReserve"  statementType="CALLABLE" parameterType="com.sysone.ddogdog.customer.reservation.model.Reservation">
+        {CALL save_reservation(
+                #{customerId, jdbcType=NUMERIC},
+                #{hotelId, jdbcType=NUMERIC},
+                #{startDate, jdbcType=TIMESTAMP, typeHandler=com.sysone.ddogdog.customer.common.util.LocalDateTypeHandler},
+                #{endDate, jdbcType=TIMESTAMP, typeHandler=com.sysone.ddogdog.customer.common.util.LocalDateTypeHandler},
+                #{count, jdbcType=NUMERIC},
+                #{price, jdbcType=NUMERIC},
+                #{canceled, jdbcType=NUMERIC, typeHandler=com.sysone.ddogdog.customer.common.util.BooleanTypeHandler},
+                #{createDate, jdbcType=TIMESTAMP, typeHandler=com.sysone.ddogdog.customer.common.util.LocalDateTypeHandler},
+                #{id, mode=OUT, jdbcType=NUMERIC}
+            )}
+    </insert>
+</mapper>

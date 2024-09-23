@@ -14,4 +14,10 @@ public interface OwnerHotelMapper {
 
     List<ResponseHotelDTO> getHotelsByUserId(String ownerId);
 
+    void updateHotelWithOutImg(HotelDTO hotelDTO);
+
+    HotelDTO getHotelByID(Integer id);
+
+    void updateHotel(HotelDTO hotelDTO);
+
 }

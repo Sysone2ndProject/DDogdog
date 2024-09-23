@@ -16,4 +16,16 @@ public class ResponseHotelDTO {
     private Float avgScore;
     private Integer reviewCount;
     private String fullAddress;
+
+    public static ResponseHotelDTO fromHotelDTO(HotelDTO hotelDTO, String fullAddress) {
+        return ResponseHotelDTO.builder()
+            .hotelId(hotelDTO.getId())
+            .businessName(hotelDTO.getBusinessName())
+            .businessNumber(hotelDTO.getBusinessNumber())
+            .phoneNumber(hotelDTO.getPhoneNumber())
+            .intro(hotelDTO.getIntro())
+            .mainImage(hotelDTO.getMainImage())
+            .fullAddress(fullAddress)
+            .build();
+    }
 }
