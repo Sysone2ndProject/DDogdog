@@ -1,4 +1,4 @@
-package com.sysone.ddogdog.customer.roomChoice;
+package com.sysone.ddogdog.customer.roomChoice.controller;
 
 import com.sysone.ddogdog.customer.roomChoice.model.ResponseRoomChoiceDTO;
 import com.sysone.ddogdog.customer.roomChoice.service.RoomChoiceService;
@@ -22,9 +22,6 @@ public class RoomChoiceController {
         @PathVariable Integer id) {
         System.out.println("입력확인" + id);
         List<ResponseRoomChoiceDTO> roomsInfos = roomChoiceService.findAllRooms(id);
-        for (ResponseRoomChoiceDTO r : roomsInfos) {
-            System.out.println(r.toString());
-        }
         return ResponseEntity.ok(roomsInfos);
     }
 }

@@ -1,4 +1,4 @@
-function cancelReservation(reservationId) {
+const cancelReservation = (reservationId) => {
     Swal.fire({
         title: '정말 예약을 취소하시겠습니까?',
         text: "이 작업은 되돌릴 수 없습니다!",
@@ -11,31 +11,31 @@ function cancelReservation(reservationId) {
     }).then((result) => {
         if (result.isConfirmed) {
             axios.patch(`/v1/customers/reservation/` + reservationId)
-                .then(response => {
-                    // Handle success response (e.g., show success message, reload page)
-                    Swal.fire(
-                        '취소 완료!',
-                        '예약이 취소되었습니다.',
-                        'success'
-                    ).then(() => {
-                        // Optional: Reload the page or update the UI
-                        window.location.reload();
-                    });
-                })
-                .catch(error => {
-                    // Handle error response
-                    Swal.fire(
-                        '오류 발생!',
-                        '예약 취소 중 문제가 발생했습니다. 다시 시도해 주세요.',
-                        'error'
-                    );
+            .then(response => {
+                // Handle success response (e.g., show success message, reload page)
+                Swal.fire(
+                    '취소 완료!',
+                    '예약이 취소되었습니다.',
+                    'success'
+                ).then(() => {
+                    // Optional: Reload the page or update the UI
+                    window.location.reload();
                 });
+            })
+            .catch(error => {
+                // Handle error response
+                Swal.fire(
+                    '오류 발생!',
+                    '예약 취소 중 문제가 발생했습니다. 다시 시도해 주세요.',
+                    'error'
+                );
+            });
         }
     });
-}
+};
 
-function viewDetails(reservationId) {
-    axios.get(`/v1/customers/roomChoice/`+ reservationId)
+const viewDetails = (reservationId) => {
+    axios.get(`/v1/customers/roomChoice/` + reservationId)
     .then(response => {
         const reservationDetails = response.data;
         showReservationDetails(reservationDetails);
@@ -44,9 +44,9 @@ function viewDetails(reservationId) {
         console.error("Error fetching reservation details:", error);
         Swal.fire('Error!', '예약 정보를 가져오는 데 실패했습니다.', 'error');
     });
-}
+};
 
-function showReservationDetails(details) {
+const showReservationDetails = (details) => {
     const modalContent = details.map(room => `
         <div class="room-detail">
             <h3>방 정보</h3>
@@ -70,4 +70,4 @@ function showReservationDetails(details) {
         showCloseButton: true,
         focusConfirm: false,
     });
-}
+};
