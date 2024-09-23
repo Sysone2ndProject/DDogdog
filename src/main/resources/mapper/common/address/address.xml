@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sysone.ddogdog.common.address.repository.AddressMapper">
+  <resultMap id="response" type="com.sysone.ddogdog.common.address.model.AddressDTO">
+    <id property="id" column="id" />
+    <result property="fullAddress" column="full_address" />
+    <result property="sido" column="sido"/>
+    <result property="sigungu" column="sigungu"/>
+    <result property="dong" column="dong"/>
+  </resultMap>
 
   <insert id="saveAddress" statementType="CALLABLE" parameterType="com.sysone.ddogdog.common.address.model.AddressDTO">
     {call INSERT_ADDRESS_AND_GET_ID(
@@ -13,9 +20,18 @@
       )}
   </insert>
 
+
+  <select id="getAddressById" parameterType="Integer" resultMap="response">
+    select *
+    from addresses
+    where id = #{id}
+  </select>
+</mapper>
+
   <select id="getFullAddressById" parameterType="Integer" resultType="String">
     SELECT full_address
     FROM ADDRESSES
     WHERE id = #{id}
   </select>
 </mapper>
+

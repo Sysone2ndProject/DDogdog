@@ -8,5 +8,10 @@ public interface AddressMapper {
 
     void saveAddress(AddressDTO addressDTO);
 
+
+    AddressDTO getAddressById(Integer id);
+}
+
     String getFullAddressById(Integer id);
 }
+
