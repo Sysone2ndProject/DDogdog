@@ -1,61 +1,75 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // axios를 이용한 비동기 요청
+document.addEventListener('DOMContentLoaded', () => {
+    // 이용 내역 버튼 클릭 이벤트 리스너 추가
+    const reservationButton = document.getElementById('reservationButton');
+    if (reservationButton) {
+        reservationButton.addEventListener('click', () => {
+            window.location.href = '/v1/customers/reservation';
+        });
+    }
+
+    // 주소 정보 가져오기
     axios.get('/v1/customers/member/location', {
         params: {
             addressId: addressId // JSP에서 주소 정보를 가져오는 부분을 대체합니다.
         }
     })
-        .then(response => {
-            const address = response.data; // 받은 데이터 (주소 정보)
-            document.getElementById('address-display').textContent = address;
-            loadKakaoMap(address);
-        })
-        .catch(error => {
-            // 오류가 발생한 경우 처리
-            console.error('Error fetching the address:', error);
+    .then(response => {
+        const address = response.data; // 받은 데이터 (주소 정보)
+        document.getElementById('address-display').textContent = address;
+        loadKakaoMap(address); // 카카오 맵 로드 함수 호출
+    })
+    .catch(error => {
+        console.error('Error fetching the address:', error);
+    });
+
+    // 펫 정보 가져오기
+    axios.get('/v1/customers/pets', {
+        params: {
+            customerId // JSP에서 넘어온 customerId 사용
+        }
+    })
+    .then(response => {
+        console.log(response.data); // 받은 데이터 (펫 정보)
+        let pets = response.data;
+        let rightColumn = document.querySelector('.right-column'); // 카드가 들어갈 영역 선택
+
+        pets.forEach(pet => {
+            // 각 펫 정보를 담은 HTML 카드 요소를 생성
+            let petCard = `
+                        <div class="pet-card pet-item" data-id="${pet.id}">
+                            <div class="pet-content">
+                                <img src="${pet.petImage}" class="image-preview" alt="${pet.name}">
+                                <div class="pet-info">
+                                    <span class="material-icons-outlined">
+                                      badge
+                                    </span>
+                                      ${pet.name}
+                                    <span class="material-symbols-outlined">
+                                       sound_detection_dog_barking
+                                    </span>${pet.speciesId} 
+                                      <span class="material-symbols-outlined">
+                                       scale
+                                    </span> ${pet.weight}
+${pet.age}
+                                </div>
+                            </div>
+                        </div>
+                        `;
+            // 생성한 카드 요소를 페이지에 추가
+            rightColumn.innerHTML += petCard;
         });
+
+        // 카드 클릭 이벤트 추가
+        document.querySelectorAll('.pet-item').forEach(item => {
+            item.addEventListener('click', (event) => {
+                const petId = item.getAttribute('data-id');
+                // petId를 사용하여 요청을 보냄
+                window.location.href = `/v1/customers/pets/${petId}`; // 예: 상세 페이지로 이동
+            });
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching the pets:', error);
+    });
 });
 
-// 카카오 지도 API가 로드된 후에 호출되는 함수
-const loadKakaoMap = address => {
-    kakao.maps.load(() => {
-        const mapContainer = document.getElementById('map'), // 지도를 표시할 div
-            mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 초기 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };
-
-        // 지도를 생성합니다
-        const map = new kakao.maps.Map(mapContainer, mapOption);
-
-        // 주소-좌표 변환 객체를 생성합니다
-        const geocoder = new kakao.maps.services.Geocoder();
-
-        // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(address, (result, status) => {
-            if (status === kakao.maps.services.Status.OK) {
-                const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                // 결과값으로 받은 위치를 마커로 표시합니다
-                new kakao.maps.Marker({
-                    map: map,
-                    position: coords
-                });
-
-                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                map.setCenter(coords);
-            } else {
-                alert('주소를 찾을 수 없습니다.');
-            }
-        });
-    });
-}
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('dogInfoButton').addEventListener('click', (event) => {
-        window.location.href = '/v1/customers/pets';
-    });
-
-    document.getElementById('reservationButton').addEventListener('click', (event) => {
-        window.location.href = '/v1/customers/reservation';
-    });
-});
