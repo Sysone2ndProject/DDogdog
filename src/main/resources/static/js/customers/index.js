@@ -2,9 +2,14 @@ document.getElementById('searchForm').onsubmit =
     function (event) {
       event.preventDefault();
 
-      const keyword = document.getElementById('keyword').value;
-      const startDate = document.getElementById('startDate').value;
-      const endDate = document.getElementById('endDate').value;
+      const keyword = document.getElementById('keyword').value || '';
+      const startDate = document.getElementById('startDate').value|| '';
+      const endDate = document.getElementById('endDate').value|| '';
+
+      if (keyword === "" || startDate === "" || endDate === "") {
+        alert("모든 정보를 입력해주세요");
+        return;
+      }
 
       axios.get('/v1/customers/hotels', {
         params: {
@@ -30,5 +35,7 @@ const gotoDetail = (id) => {
     window.location.href = `/v1/customers/hotels/${id}`;
   }).catch(error => {
     console.error();
-  })
+  });
 }
+
+
