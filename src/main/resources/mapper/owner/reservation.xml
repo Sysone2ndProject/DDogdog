@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.owner.reservation.mapper.OwnerReservationMapper">
+  <resultMap type="com.sysone.ddogdog.owner.reservation.model.ResponseReservationMonthDTO" id="monthReservation">
+    <result property="reservationDate" column="reservation_date"/>
+    <result property="grade" column="grade"/>
+    <result property="roomCount" column="room_count"/>
+    <result property="price" column="price"/>
+  </resultMap>
+
+  <resultMap type="com.sysone.ddogdog.owner.reservation.model.ResponseReservationDayDTO" id="dayReservation">
+    <result property="grade" column="grade"/>
+    <result property="roomCount" column="room_count"/>
+    <result property="customerName" column="name"/>
+  </resultMap>
+
+  <select id="getMonthReservation" parameterType="com.sysone.ddogdog.owner.reservation.model.ReservationDTO" resultMap="monthReservation">
+    SELECT nr.reservation_date AS reservation_date, rs.grade AS grade, COUNT(*) AS room_count, SUM(cr.now_price) AS price
+    FROM (
+           WITH date_range AS (
+             SELECT TO_DATE(#{startDate}, 'YYYY-MM-DD') + LEVEL - 1 AS reservation_date
+             FROM DUAL
+           CONNECT BY LEVEL &lt;= (TO_DATE(#{endDate}, 'YYYY-MM-DD') - TO_DATE(#{startDate}, 'YYYY-MM-DD') + 1)
+         )
+    SELECT d.reservation_date, r.id, r.count
+    FROM date_range d
+           JOIN RESERVATIONS r ON r.hotel_id = #{hotelId}
+      AND r.canceled = 0
+      AND r.start_date &lt; TO_DATE(#{endDate}, 'YYYY-MM-DD')
+      AND r.end_date &gt; TO_DATE(#{startDate}, 'YYYY-MM-DD')
+    WHERE d.reservation_date >= r.start_date
+      AND d.reservation_date &lt; r.end_date
+      ) nr
+        LEFT JOIN choose_rooms cr ON nr.id = cr.reservation_id
+      LEFT JOIN (SELECT id, grade FROM ROOMS WHERE hotel_id = #{hotelId}) rs ON cr.room_id = rs.id
+    GROUP BY nr.reservation_date, rs.grade
+    ORDER BY reservation_date, grade
+  </select>
+
+  <select id="getDayReservation" parameterType="com.sysone.ddogdog.owner.reservation.model.ReservationDTO" resultMap="dayReservation">
+    SELECT rm.grade, count(*) as room_count, c.name
+    FROM (SELECT id, customer_id, count, price
+          FROM reservations
+          WHERE hotel_id = #{hotelId}
+            AND start_date &lt;= TO_DATE(#{reservationDate}, 'YYYY-MM-DD')
+            AND end_date &gt; TO_DATE(#{reservationDate}, 'YYYY-MM-DD')
+            AND canceled = 0) r
+           JOIN customers c
+                ON r.customer_id = c.id
+           JOIN choose_rooms cr ON r.id = cr.reservation_id
+           JOIN rooms rm ON rm.id = cr.room_id
+    group by rm.grade, r.count, c.name
+  </select>
+
+</mapper>
