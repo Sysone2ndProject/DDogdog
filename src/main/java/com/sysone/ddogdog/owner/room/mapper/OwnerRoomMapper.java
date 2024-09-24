@@ -17,4 +17,6 @@ public interface OwnerRoomMapper {
     void updateRoom(RoomDTO roomDTO);
 
     void updateRoomWithoutImg(RoomDTO roomDTO);
+
+    List<RoomGrade> getHotelExistGrade(Integer hotelId);
 }
