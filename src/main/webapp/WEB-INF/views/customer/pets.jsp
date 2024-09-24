@@ -19,7 +19,7 @@
     <ul>
         <c:forEach var="pet" items="${pets}">
             <li class="pet-item" data-id="${pet.id}">
-                <img src="${pet.petImage}" alt="${pet.name}">
+                <img class="petImage" src="${pet.petImage}" alt="${pet.name}">
                 <div class="pet-info">
                     <span>${pet.name}</span>
                     <span>${pet.age}살</span>

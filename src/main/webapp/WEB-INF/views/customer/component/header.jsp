@@ -13,6 +13,8 @@
     <title>Header</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/css/customers/header.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
 <div class="header">
@@ -35,6 +37,13 @@
             환영합니다 <sec:authentication property="principal.name"/> 고객님
                 <%-- 프론트에서 주소ID꺼내는 방식 --%>
                 <%--    <sec:authentication property="principal.customerDTO.addressId" />--%>
+            <span class="material-icons-outlined">
+                person
+            </span>
+
+            <span class="material-icons">
+                logout
+            </span>
             <button onclick="location.href='/v1/customers/member'">마이페이지</button>
             <button onclick="location.href='/v1/logout'">로그아웃</button>
         </div>

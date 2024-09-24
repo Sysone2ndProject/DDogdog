@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @Data
-public class RequsetReservationDTO {
+public class RequestReservationDTO {
     Long customerid;
     Integer hotelId;
     String startDate;
