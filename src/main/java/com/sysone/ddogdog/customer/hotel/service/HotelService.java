@@ -27,13 +27,15 @@ public class HotelService {
 
     public List<ResponseHotelDTO> getBestHotels() {
         return hotelMapper.getBestHotels().stream()
-            .map(ResponseHotelDTO::fromHotelDTO)
+            .map(h -> ResponseHotelDTO.fromHotelDTO(h,
+                addressMapper.getFullAddressById(h.getAddressId())))
             .collect(Collectors.toList());
     }
 
     public List<ResponseHotelDTO> getBestHotelsById(Long customerId) {
         return hotelMapper.getBestLocalHotels(customerId).stream()
-            .map((ResponseHotelDTO::fromHotelDTO))
+            .map(h -> ResponseHotelDTO.fromHotelDTO(h,
+                addressMapper.getFullAddressById(h.getAddressId())))
             .collect(Collectors.toList());
     }
 
@@ -76,7 +78,8 @@ public class HotelService {
 
     private List<ResponseHotelDTO> getHotelByIds(String keyword, List<Integer> hotelIds) {
         return hotelMapper.getHotelsByIds(keyword, hotelIds).stream()
-            .map(ResponseHotelDTO::fromHotelDTO)
+            .map(h -> ResponseHotelDTO.fromHotelDTO(h,
+                addressMapper.getFullAddressById(h.getAddressId())))
             .collect(Collectors.toList());
     }
 
@@ -87,7 +90,8 @@ public class HotelService {
     public ResponseHotelDetailsDTO getHotelDetails(Integer id, String startDate, String endDate) {
         HotelDTO hotelDTO = hotelMapper.getHotelById(id);
         AddressDTO address = addressMapper.getAddressById(hotelDTO.getAddressId());
-        ResponseHotelDTO hotel = ResponseHotelDTO.fromHotelDTO(hotelDTO);
+        ResponseHotelDTO hotel = ResponseHotelDTO.fromHotelDTO(hotelDTO,
+            addressMapper.getFullAddressById(hotelDTO.getAddressId()));
 
         List<ResponseRoomDTO> rooms = null;
 
