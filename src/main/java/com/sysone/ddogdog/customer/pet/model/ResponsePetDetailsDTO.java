@@ -1,18 +1,21 @@
 package com.sysone.ddogdog.customer.pet.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.Getter;
 
-@Data
+@Getter
+@AllArgsConstructor
 @Builder
-public class RequestPetDTO {
+public class ResponsePetDetailsDTO {
     private Long id;
+    private Long customerId;
     private Long speciesId;
     private String name;
     private Integer age;
     private String gender;
     private String info;
-    private MultipartFile petImage;
+    private String petImage;
     private Integer weight;
+    private String species;
 }

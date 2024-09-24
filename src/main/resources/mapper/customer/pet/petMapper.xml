@@ -36,11 +36,49 @@
         )
     </insert>
 
-    <select id="findAllPetsById" resultMap="PetResultMap">
-        SELECT id,customer_id,species_id,name,age,gender,info,pet_image,weight FROM pets WHERE customer_id = #{customerId}
+    <update id="updatePet" parameterType="com.sysone.ddogdog.customer.pet.model.PetDTO">
+        UPDATE PETS
+        SET species_id = #{speciesId},
+            name = #{name},
+            age = #{age},
+            gender = #{gender},
+            info = #{info},
+            pet_image = #{petImage},
+            weight = #{weight}
+        WHERE id = #{id}
+    </update>
+
+    <select id="findAllPetsById" resultType="com.sysone.ddogdog.customer.pet.model.ResponsePetDTO">
+        SELECT
+            p.id,
+            p.name,
+            p.age,
+            p.gender,
+            p.info,
+            p.pet_image,
+            p.weight,
+            (SELECT s.species
+             FROM pet_species s
+             WHERE s.id = p.species_id) AS species
+        FROM pets p
+        WHERE p.customer_id = #{customerId}
     </select>
 
-    <select id="findPetById" parameterType="com.sysone.ddogdog.customer.pet.model.PetDTO" resultMap="PetResultMap">
-        SELECT id,customer_id,species_id,name,age,gender,info,pet_image,weight FROM pets WHERE id = #{id}
+    <select id="findPetById" resultType="com.sysone.ddogdog.customer.pet.model.ResponsePetDetailsDTO">
+        SELECT
+            p.id,
+            p.customer_id,
+            p.species_id,
+            p.name,
+            p.age,
+            p.gender,
+            p.info,
+            p.pet_image,
+            p.weight,
+            (SELECT s.species
+             FROM pet_species s
+             WHERE s.id = p.species_id) AS species
+        FROM pets p
+        WHERE p.id = #{id}
     </select>
 </mapper>

@@ -1,13 +1,8 @@
 package com.sysone.ddogdog.customer.pet.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-@Data
+@Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Builder
@@ -33,5 +28,18 @@ public class PetDTO {
             .petImage(petImageUrl)
             .weight(requestPetDTO.getWeight())
             .build();
+    }
+
+    public static PetDTO fromRequestPetDTO(String petImageUrl,RequestPetDTO requestPetDTO){
+        return PetDTO.builder().
+                id(requestPetDTO.getId())
+                .speciesId(requestPetDTO.getSpeciesId())
+                .name(requestPetDTO.getName())
+                .age(requestPetDTO.getAge())
+                .gender(requestPetDTO.getGender())
+                .info(requestPetDTO.getInfo())
+                .petImage(petImageUrl)
+                .weight(requestPetDTO.getWeight())
+                .build();
     }
 }
