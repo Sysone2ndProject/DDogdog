@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class RequestRoomChoiceDTO {
-    RoomGrade roomGrade;
+    RoomGrade grade;
     Integer count;
     Integer price;
 }

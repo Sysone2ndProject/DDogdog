@@ -10,7 +10,7 @@ public interface AddressMapper {
 
 
     AddressDTO getAddressById(Integer id);
-}
+
 
     String getFullAddressById(Integer id);
 }
