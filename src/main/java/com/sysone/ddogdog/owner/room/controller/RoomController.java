@@ -3,6 +3,7 @@ package com.sysone.ddogdog.owner.room.controller;
 import com.sysone.ddogdog.owner.room.model.RequestRoomDTO;
 import com.sysone.ddogdog.owner.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class RoomController {
     @PostMapping
     public ResponseEntity<Void> saveRoom(@ModelAttribute RequestRoomDTO requestRoomDTO) {
         roomService.saveRoom(requestRoomDTO);
-        return ResponseEntity.created(null).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 

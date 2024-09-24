@@ -29,7 +29,7 @@
       AND r.canceled = 0
       AND r.start_date &lt; TO_DATE(#{endDate}, 'YYYY-MM-DD')
       AND r.end_date &gt; TO_DATE(#{startDate}, 'YYYY-MM-DD')
-    WHERE d.reservation_date >= r.start_date
+    WHERE d.reservation_date &gt;= r.start_date
       AND d.reservation_date &lt; r.end_date
       ) nr
         LEFT JOIN choose_rooms cr ON nr.id = cr.reservation_id

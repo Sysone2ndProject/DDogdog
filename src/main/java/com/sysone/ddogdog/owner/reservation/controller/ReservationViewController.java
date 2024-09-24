@@ -21,9 +21,9 @@ public class ReservationViewController {
     private final OwnerReservationService ownerReservationService;
 
     @GetMapping
-    public String getReservations(@RequestParam("hotelId") Integer hotelId,
-        @RequestParam("year") Integer year,
-        @RequestParam("month") Integer month, Model model) {
+    public String getReservations(@RequestParam Integer hotelId,
+        @RequestParam Integer year,
+        @RequestParam Integer month, Model model) {
         List<ResponseReservationMonthDTO> reservations = ownerReservationService.getReservation(hotelId, year, month);
         model.addAttribute("hotelId", hotelId);
         model.addAttribute("reservations", reservations);
@@ -31,13 +31,18 @@ public class ReservationViewController {
     }
 
     @GetMapping("/day")
-    public String getReservationsDay(@RequestParam("hotelId") Integer hotelId,
-        @RequestParam("year") Integer year,
-        @RequestParam("month") Integer month,
-        @RequestParam(value = "day") Integer day, Model model) {
+    public String getReservationsDay(@RequestParam Integer hotelId,
+        @RequestParam Integer year,
+        @RequestParam Integer month,
+        @RequestParam Integer day, Model model) {
 
         List<ResponseReservationDayDTO> reservations = ownerReservationService.getReservationDay(hotelId, year, month, day);
         model.addAttribute("reservations", reservations);
         return "owner/dayReservation";
+    }
+
+    @GetMapping("/form")
+    public String getForm(){
+        return "owner/calendar";
     }
 }
