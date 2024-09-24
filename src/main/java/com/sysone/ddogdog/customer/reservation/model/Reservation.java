@@ -25,7 +25,7 @@ public class Reservation {
     public static Reservation from(RequestReservationDTO dto){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return Reservation.builder()
-                .customerId(dto.getCustomerid())
+                .customerId(dto.getCustomerId())
                 .hotelId(dto.hotelId)
                 .startDate(LocalDate.parse(dto.getStartDate(), formatter))
                 .endDate(LocalDate.parse(dto.getEndDate(), formatter))

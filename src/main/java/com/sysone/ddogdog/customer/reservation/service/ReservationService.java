@@ -26,7 +26,7 @@ public class ReservationService {
      */
     @Transactional
     public void saveReserve(String customerId, RequestReservationDTO dto){
-        dto.setCustomerid(Long.parseLong(customerId));
+        dto.setCustomerId(Long.parseLong(customerId));
         Reservation reservation = Reservation.from(dto);
         reservationMapper.saveReserve(reservation);
         roomChoiceService.saveRoomChoice(reservation.getId(),reservation.getStartDate(),reservation.getEndDate(),dto.getHotelId(),dto.getRooms());
