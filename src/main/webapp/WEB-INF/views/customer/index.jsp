@@ -88,7 +88,7 @@
             <button class="button radius">주소 수정하기</button>
             <div class="nearby-map">
                 <div class="map-box">
-                    <p id="address-display"></p>
+                    <p id="addressDisplay"></p>
                     <div id="map"></div>
                 </div>
                 <c:if test="${not empty localHotels}">

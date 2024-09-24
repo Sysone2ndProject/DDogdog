@@ -9,9 +9,6 @@ body {
   height: 100vh;
   width: 100%;
   font-family: 'miso';
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*align-items: center;*/
 }
 
 input:focus {

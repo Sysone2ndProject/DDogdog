@@ -1,15 +1,13 @@
 const getAddress = () => {
-  console.log(1)
   axios.get('/v1/customers/member/location', {
     params: {
-      addressId: addressId // JSP에서 주소 정보를 가져오는 부분을 대체합니다.
+      addressId // JSP에서 주소 정보를 가져오는 부분을 대체합니다.
     }
   })
   .then(response => {
     const address = response.data;
 
-    console.log(address);// 받은 데이터 (주소 정보)
-    document.getElementById('address-display').textContent = address;
+    document.getElementById('addressDisplay').textContent = address;
 
     loadKakaoMap(address);
   })
