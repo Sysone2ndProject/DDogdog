@@ -73,3 +73,37 @@ ${pet.age}
     });
 });
 
+const findAddress = () => {
+    new daum.Postcode({
+        oncomplete: async function (data) {
+            let fullAddress = ''; // 도로명주소 고정
+
+            if (data.roadAddress !== "") {
+                fullAddress = data.roadAddress;
+            } else {
+                fullAddress = data.autoRoadAddress;
+            }
+
+            console.log(fullAddress);
+            console.log(data.sido);
+            console.log(data.sigungu);
+            console.log(data.bname);
+
+            // 비동기 PUT 요청
+            try {
+                const response = await axios.put('/v1/customers/location', {
+                    id: addressId,
+                    fullAddress: fullAddress,
+                    sido: data.sido,
+                    sigungu: data.sigungu,
+                    dong: data.bname
+                });
+
+                console.log('Response:', response.data); // 서버의 응답을 콘솔에 출력
+            } catch (error) {
+                console.error('Error occurred during PUT request:', error);
+            }
+        }
+
+    }).open();
+}

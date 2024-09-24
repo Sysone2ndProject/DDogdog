@@ -20,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script src="/js/customers/myPage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/css/customers/myPage.css">
@@ -53,7 +54,7 @@
             </div>
         </div>
         <div class="card"> <!-- 두 번째 카드 -->
-            <h3>주소 : </h3> <a>수정하기</a>
+            <h3>주소 : </h3> <button onclick="findAddress()"> 수정하기</button>
                 <p id="address-display"></p>
             <div id="map"></div>
         </div>
@@ -79,5 +80,8 @@
     }
 </script>
 <script src="/js/customers/shiba.js" type="module"></script>
+<script>
+    let addressId = <sec:authentication property="principal.customerDTO.addressId"/>;
+</script>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.sysone.ddogdog.customer.auth.controller;
 
 import com.sysone.ddogdog.common.config.oauth.PrincipalDetails;
 import com.sysone.ddogdog.customer.auth.model.AddressDTO;
+import com.sysone.ddogdog.customer.auth.model.RequestAddressDTO;
 import com.sysone.ddogdog.customer.auth.service.KakaoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,10 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -45,6 +43,14 @@ public class KakaoController {
         log.info("signup test");
         log.info(addressDTO.toString());
         kakaoService.saveAddress(addressDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/location")
+    public ResponseEntity<Void> updateLocation(@RequestBody RequestAddressDTO requestAddressDTO) {
+        log.info("signup test");
+        log.info(requestAddressDTO.toString());
+        kakaoService.updateAddress(requestAddressDTO);
         return ResponseEntity.ok().build();
     }
 
