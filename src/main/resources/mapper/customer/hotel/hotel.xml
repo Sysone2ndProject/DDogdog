@@ -14,27 +14,36 @@
     <result property="mainImage" column="main_image"/>
     <result property="totalScore" column="total_score"/>
     <result property="reviewCount" column="review_count"/>
+    <result property="price" column="price"/>
   </resultMap>
 
   <select id="getBestHotels" resultMap="response">
     select *
-    from (select *
-          from hotels
+    from (select h.*, r.price
+          from hotels h
+                 join (select hotel_id, min(price) as price
+                       from rooms
+                       group by hotel_id) r
+                      on h.id = r.hotel_id
           order by total_score desc, review_count)
     where rownum &lt;= 3
   </select>
 
   <select id="getBestLocalHotels" parameterType="Long" resultMap="response">
     select *
-    from (select *
-          from hotels
-          where address_id in (select id
-                       from addresses
-                       where (sido, sigungu) = (select sido, sigungu
-                                                from addresses
-                                                where id = (select address_id
-                                                            from customers
-                                                            where id = #{id})))
+    from (select h.*, r.price
+          from hotels h
+          join(select hotel_id, min(price) as price
+               from rooms
+               group by hotel_id) r
+              on h.id = r.hotel_id
+          where h.address_id in (select id
+                               from addresses
+                               where (sido, sigungu) = (select sido, sigungu
+                                                        from addresses
+                                                        where id = (select address_id
+                                                                    from customers
+                                                                    where id = #{id})))
           order by total_score desc, review_count)
     where rownum &lt;= 3
   </select>
@@ -53,21 +62,29 @@
   </select>
 
   <select id="getHotelsByIds" resultMap="response">
-    select *
-    from hotels
-    where id in
+    select h.*, r.price
+    from hotels h
+    join(select hotel_id, min(price) as price
+         from rooms
+         group by hotel_id) r
+    on h.id = r.hotel_id
+    where h.id in
     <foreach item="hotelId" collection="hotelIds" open="(" separator="," close=")">
       #{hotelId}
     </foreach>
-    and address_id in (select id
-    from addresses
-    where full_address like '%' || #{keyword} || '%'
-    or dong = #{keyword})
+    and h.address_id in (select id
+                       from addresses
+                       where full_address like '%' || #{keyword} || '%'
+                          or dong = #{keyword})
   </select>
 
   <select id="getHotelById" parameterType="Integer" resultMap="response">
     select *
-    from hotels
-    where id = #{id}
+    from hotels h
+    join(select hotel_id, min(price) as price
+         from rooms
+         group by hotel_id) r
+    on h.id = r.hotel_id
+    where h.id = #{id}
   </select>
 </mapper>

@@ -17,8 +17,10 @@ public class ResponseHotelDTO {
     private String mainImage;
     private double avgScore;
     private Integer reviewCount;
+    private Integer price;
+    private String fullAddress;
 
-    public static ResponseHotelDTO fromHotelDTO(HotelDTO hotel) {
+    public static ResponseHotelDTO fromHotelDTO(HotelDTO hotel, String fullAddress) {
         if(hotel.getReviewCount() == 0) {
             return ResponseHotelDTO.builder()
                 .id(hotel.getId())
@@ -31,6 +33,8 @@ public class ResponseHotelDTO {
                 .mainImage(hotel.getMainImage())
                 .avgScore(0)
                 .reviewCount(hotel.getReviewCount())
+                .price(hotel.getPrice())
+                .fullAddress(fullAddress)
                 .build();
         }
         return ResponseHotelDTO.builder()
@@ -44,6 +48,8 @@ public class ResponseHotelDTO {
             .mainImage(hotel.getMainImage())
             .avgScore((double) Math.round((float) hotel.getTotalScore() / hotel.getReviewCount()*100)/100.0)
             .reviewCount(hotel.getReviewCount())
+            .price(hotel.getPrice())
+            .fullAddress(fullAddress)
             .build();
     }
 }

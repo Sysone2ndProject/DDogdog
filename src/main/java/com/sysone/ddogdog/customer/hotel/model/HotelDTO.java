@@ -17,4 +17,5 @@ public class HotelDTO {
     private String mainImage;
     private Integer totalScore;
     private Integer reviewCount;
+    private Integer price;
 }

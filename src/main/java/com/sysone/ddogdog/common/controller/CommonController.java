@@ -5,6 +5,7 @@ import com.sysone.ddogdog.customer.hotel.model.ResponseHotelDTO;
 import com.sysone.ddogdog.customer.hotel.service.HotelService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CommonController {
 
     private final HotelService hotelService;
+
+    @Value("${kakao.map.api-key}")
+    private String kakaoJsId;
 
     @GetMapping
     public String landingMain() {
@@ -34,6 +38,7 @@ public class CommonController {
 
             List<ResponseHotelDTO> localHotels = hotelService.getBestHotelsById(id);
             model.addAttribute("localHotels", localHotels);
+            model.addAttribute("kakaoId", kakaoJsId);
         }
 
         return "customer/index";
