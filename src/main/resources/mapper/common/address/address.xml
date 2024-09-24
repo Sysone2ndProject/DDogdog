@@ -26,7 +26,6 @@
     from addresses
     where id = #{id}
   </select>
-</mapper>
 
   <select id="getFullAddressById" parameterType="Integer" resultType="String">
     SELECT full_address

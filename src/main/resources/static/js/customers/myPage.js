@@ -50,3 +50,12 @@ const loadKakaoMap = address => {
         });
     });
 }
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('dogInfoButton').addEventListener('click', (event) => {
+        window.location.href = '/v1/customers/pets';
+    });
+
+    document.getElementById('reservationButton').addEventListener('click', (event) => {
+        window.location.href = '/v1/customers/reservation';
+    });
+});

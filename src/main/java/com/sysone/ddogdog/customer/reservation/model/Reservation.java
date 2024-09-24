@@ -22,13 +22,13 @@ public class Reservation {
     private boolean canceled;
     private LocalDate createDate;
 
-    public static Reservation from(RequsetReservationDTO dto){
+    public static Reservation from(RequestReservationDTO dto){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return Reservation.builder()
                 .customerId(dto.getCustomerid())
                 .hotelId(dto.hotelId)
                 .startDate(LocalDate.parse(dto.getStartDate(), formatter))
-                .endDate(LocalDate.parse(dto.getStartDate(), formatter))
+                .endDate(LocalDate.parse(dto.getEndDate(), formatter))
                 .count(dto.getCount())
                 .price(dto.getPrice())
                 .canceled(false)

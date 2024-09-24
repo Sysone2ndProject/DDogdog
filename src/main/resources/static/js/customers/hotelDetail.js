@@ -44,16 +44,13 @@ const submitForm = (event) => {
     alert("방을 선택해주세요");
     return;
   }
-
-  axios.post('업데이트 url', {
-    body: {
+  axios.post('/v1/customers/reservation', {
       hotelId,
       startDate,
       endDate,
       count: totalCnt,
       price: totalPrice,
       rooms
-    }
   })
   .then((response) => {
     console.log(response.data)
