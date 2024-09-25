@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserServ
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -37,6 +38,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
+                .addFilterBefore(new MultiAuthorityBasedSessionInvalidationFilter(),
+                        UsernamePasswordAuthenticationFilter.class)
             .sessionManagement(
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                     .sessionFixation().changeSessionId()
