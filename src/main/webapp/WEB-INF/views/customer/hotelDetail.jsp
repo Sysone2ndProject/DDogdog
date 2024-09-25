@@ -113,8 +113,7 @@
 <script src="${pageContext.request.contextPath}/js/customers/dateHandler.js"></script>
 <script src="${pageContext.request.contextPath}/js/customers/locationHandler.js"></script>
 <script>
-  <%--const address = ${hotelDetail}--%>
-  address = `${hotelDetail.address.fullAddress}`;
+  const address = `${hotelDetail.address.fullAddress}`;
   document.addEventListener("DOMContentLoaded", loadKakaoMap(address));
   const hotelId = parseInt('${hotelDetail.hotel.id}');
   let rooms = [
