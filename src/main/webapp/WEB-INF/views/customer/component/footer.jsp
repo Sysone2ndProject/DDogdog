@@ -14,13 +14,28 @@
 </head>
 <body>
 <div class="footer">
-    <h1>About us</h1>
-    <p>© 2024 Project 어서오시개</p>
-    <img class="icon" src="${pageContext.request.contextPath}/img/github_logo.svg"
-         alt="github-logo"/>
-    <div class="icon-maker"> 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/dave-gandy"
-                                        title="Dave Gandy"> Dave Gandy </a> from <a
-            href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com'</a></div>
+    <div class="footer-content">
+        <div class="footer-info">
+            <div class="pjt">
+                <img class="footer-logo" src="${pageContext.request.contextPath}/img/logo_nobg.png">
+                <p class="subtext">Travel helps companies manage pets easily.</p>
+            </div>
+            <div class="team">
+                <p class="title">Company</p>
+                <p class="member">김수지</p>
+                <p class="member">김태연</p>
+                <p class="member">이준희</p>
+            </div>
+            <div class="team">
+                <p class="title">Search</p>
+            </div>
+        </div>
+        <div>
+            <p class="subtext">Copyright @ 2024 SYSONE. All Rights Reserved.</p>
+        </div>
+
+    </div>
+                <img class="footer-img" src="${pageContext.request.contextPath}/img/footer_img.svg">
 </div>
 </body>
 </html>
