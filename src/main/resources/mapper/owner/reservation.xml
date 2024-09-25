@@ -51,6 +51,7 @@
            JOIN choose_rooms cr ON r.id = cr.reservation_id
            JOIN rooms rm ON rm.id = cr.room_id
     group by rm.grade, r.count, c.name
+    ORDER BY rm.grade
   </select>
 
 </mapper>
