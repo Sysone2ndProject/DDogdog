@@ -122,6 +122,8 @@
         </div>
     </div>
 </sec:authorize>
+
+<jsp:include page="component/footer.jsp"/>
 </body>
 <script>
   <sec:authorize access="isAuthenticated()">

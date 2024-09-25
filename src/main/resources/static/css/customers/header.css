@@ -1,23 +1,62 @@
 @import "../common/font.css";
 
 .header {
-  font-family: miso;
-  background-color: #f4cfc6;
+  position: absolute;
+  width: 100%;
+  height: 7vh;
+  background-color: #f3f3f366;
   display: flex;
-  justify-content: start;
-}
-
-.logo {
-  margin-left: 2%;
-  height: 60px;
   justify-content: center;
 }
 
-.login{
+.header-content {
+  width: 70%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-left: auto;; /* 오른쪽으로 이동 */
-  margin-right: 10%; /* 오른쪽에 여백 추가 */
 }
 
+
+.logo {
+  height: 60px;
+}
+
+.nav-list {
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.nav-item {
+  cursor: pointer;
+  color: #1d3660;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav-item:hover {
+  border-bottom: 2px solid #df6951;
+}
+
+.login-btn{
+  display: flex;
+  align-items: center;
+}
+
+.login {
+  display: flex;
+  width: 20%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-name {
+  cursor: default;
+}
+
+.material-icons-outlined {
+  cursor: pointer;
+  color: #181e4b;
+}
 
