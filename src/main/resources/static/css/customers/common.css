@@ -1,5 +1,17 @@
 @import "../common/font.css";
 
+:root {
+  --main-—darkblue: #181e4b;
+  --main-—pink: #f4cfc6;
+  --main--lightpink: #fff9f9;
+  --main--gray: #f3f3f3;
+  --main--darkgray: #7d7d7d;
+  --main-—pink--hover: #e4c1b9;
+  --main--tp: #f3f3f366;
+  --main--orange: #df6951;
+  --main--orange--hover: #b4523e;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +27,7 @@ input:focus {
   outline: none;
 }
 
-input,button {
+input, button {
   border: none;
 }
 
@@ -34,6 +46,34 @@ label, p {
 
 
 .shadow {
-  box-shadow:0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+.button {
+  width: 7rem;
+  height: 2.75rem;
+  background-color: var(--main--orange);
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--main--orange--hover);
+}
+
+.sub-btn {
+  width: 7rem;
+  height: 2.75rem;
+  background-color: var(--main-—pink);
+  color: var(--main-—darkblue);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.sub-btn:hover {
+  background-color: var(--main-—pink--hover);
+}
+
+input[type=date] {
+  background-color: transparent;
+}
