@@ -56,30 +56,31 @@
 .date-pick {
   width: 100%;
   height: 25%;
-  background-color: #f3f3f3;
-  opacity: 0.6;
+  background-color: var(--main--tp);
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
 
+.date-label {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+}
+.date-input {
+  width: 25%;
+}
 .text-input {
   width: 100%;
   height: 25%;
-  background-color: #f3f3f3;
-  opacity: 0.6;
-  width: 100%;
+  background-color: var(--main--tp);
+  display: flex;
+  justify-content: center;
 }
-
-.button {
-  width: 7rem;
-  height: 2.75rem;
-  background-color: #df6951;
-  color: white;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #b4523e;
+.text {
+  width: 90%;
+  height: 100%;
+  background-color: transparent;
 }
 
 .popular-hotels {
@@ -95,14 +96,14 @@
 .small-title {
   height: 1rem;
   font-size: 1rem;
-  color: #df6951;
+  color: var(--main--orange);
   font-weight: bold;
 }
 
 .title {
   font-size: 2.5rem;
   height: 2.5rem;
-  color: #181e4b;
+  color: var(--main-—darkblue);
   font-weight: bold;
   margin-bottom: 2rem;
 }
@@ -170,10 +171,10 @@
 }
 
 .material-icons-outlined {
-  color: #7d7d7d;
+  color: var(--main--darkgray);
 }
 .text-info {
-  color: #7d7d7d;
+  color: var(--main--darkgray);
 }
 
 .hotel-name {
@@ -188,13 +189,13 @@
   align-items: center;
 }
 .hotel-loc {
-  color: #7d7d7d;
+  color: var(--main--darkgray);
   font-size: 1rem;
 }
 
 .hotel-price {
   width: 100%;
-  color: #df6951;
+  color: var(--main--orange);
 }
 
 .nearby-hotels {
@@ -252,7 +253,7 @@
 }
 
 .nearby-card {
-  background-color: #fff9f9;
+  background-color: var(--main--lightpink);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,7 +300,7 @@
 
 .price {
   width: 60%;
-  color: #df6951;
+  color: var(--main--orange);
 }
 
 .paws {
