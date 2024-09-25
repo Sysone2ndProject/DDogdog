@@ -50,5 +50,3 @@ const loadKakaoMap = address => {
     });
   });
 }
-
-document.addEventListener("DOMContentLoaded", getAddress());
