@@ -110,8 +110,11 @@ const getReservation = (hotelId, year, month, successCallback,
       };
     });
 
+    // 원화 형식 변환
+    const formattedPrice = new Intl.NumberFormat('ko-KR').format(totalPrice);
+
     const income = document.getElementById("income");
-    income.innerText = `총 수입: ${totalPrice} 원;`
+    income.innerText = `총 수입: ${formattedPrice} 원`
 
     successCallback(events); // 캘린더에 이벤트 등록
 

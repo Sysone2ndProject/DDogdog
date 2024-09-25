@@ -25,7 +25,6 @@ public class ReservationController {
     public ResponseEntity<List<ResponseReservationMonthDTO>> getReservations(@RequestParam Integer hotelId,
         @RequestParam Integer year,
         @RequestParam Integer month) {
-        System.out.println(year + "년 " + month + "월");
         List<ResponseReservationMonthDTO> reservations = ownerReservationService.getReservation(hotelId, year, month);
         return ResponseEntity.status(HttpStatus.OK).body(reservations);
     }

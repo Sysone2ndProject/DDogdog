@@ -4,7 +4,6 @@
 
 .container {
   font-family: 'miso';
-  /*min-height: 605px;*/
 }
 
 .hotel{
@@ -19,26 +18,7 @@
   display: flex;
 }
 
-.fc-day-mon a{
-  color: black;
-  text-decoration: none;
-}
-
-.fc-day-tue a{
-  color: black;
-  text-decoration: none;
-}
-
-.fc-day-wed a{
-  color: black;
-  text-decoration: none;
-}
-.fc-day-thu a{
-  color: black;
-  text-decoration: none;
-}
-
-.fc-day-fri a{
+.fc-day-mon a, .fc-day-tue a, .fc-day-wed a, .fc-day-thu a,.fc-day-fri a{
   color: black;
   text-decoration: none;
 }
