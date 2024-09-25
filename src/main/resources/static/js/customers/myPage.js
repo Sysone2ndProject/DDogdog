@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
     .then(response => {
-        console.log(response.data); // 받은 데이터 (펫 정보)
+
         let pets = response.data;
         let rightColumn = document.querySelector('.right-column'); // 카드가 들어갈 영역 선택
 
@@ -67,9 +67,25 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => {
         console.error('Error fetching the pets:', error);
     });
+
+    // 예약 스탯 가져오기
+    axios.get('/v1/customers/reservation/stats', {
+    })
+        .then(response => {
+            console.log(response.data);
+            const { totalReservations, pastReservations, futureReservations,currentReservations } = response.data;
+
+            document.querySelector('.reservations.total').textContent = `${totalReservations}`;
+            document.querySelector('.reservations.current').textContent = `${currentReservations}`;
+            document.querySelector('.reservations.past').textContent = `${pastReservations}`;
+            document.querySelector('.reservations.future').textContent = `${futureReservations}`;
+        })
+        .catch(error => {
+            console.error('Error fetching the address:', error);
+        });
 });
 
-const findAddress = () => {
+const changeAddress = () => {
     new daum.Postcode({
         oncomplete: async function (data) {
             let fullAddress = ''; // 도로명주소 고정
@@ -90,9 +106,26 @@ const findAddress = () => {
                     dong: data.bname
                 });
 
-                console.log('Response:', response.data); // 서버의 응답을 콘솔에 출력
+                Swal.fire({
+                    title: '주소가 변경되었습니다.',
+                    text: `새 주소: ${fullAddress}`,
+                    icon: 'success',
+                    confirmButtonText: '확인'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // 확인 버튼을 누르면 리디렉션
+                        window.location.href = '/v1/customers/members'; // 리디렉션할 페이지로 변경
+                    }
+                });
+
             } catch (error) {
                 console.error('Error occurred during PUT request:', error);
+                Swal.fire({
+                    title: '오류',
+                    text: '주소 수정 중 오류가 발생했습니다.',
+                    icon: 'error',
+                    confirmButtonText: '확인'
+                });
             }
         }
 
@@ -105,23 +138,32 @@ function petAddButton() {
 function reservationButton(){
     window.location.href="/v1/customers/reservation";
 }
-const changeLocation = () => {
+const showLocation = () => {
     // SweetAlert2 모달을 사용하여 지도와 수정 버튼 표시
     Swal.fire({
         title: '주소 수정',
         html: `
-            <div id="addressMap" style="width:100%;height:300px;margin-bottom:10px;"></div>
+            <h2>${address}</h2>
+            <br>
+            <div id="addressMap"></div>
             <button id="findAddressBtn" class="swal2-confirm swal2-styled">주소 수정</button>
             <button id="cancelBtn" class="swal2-cancel swal2-styled">취소</button>
         `,
         showConfirmButton: false, // 기본 확인 버튼 숨기기
         didOpen: () => {
-            // 카카오 지도 로드
-            loadKakaoMap(address);
+            // 여기서 addressMap이 완전히 로드되었는지 확인 후 지도 로드
+            const mapContainer = document.getElementById('addressMap');
+            if (mapContainer) {
+                // 카카오 지도 로드
+                loadKakaoMap(address, 'addressMap'); // addressMap을 ID로 전달
+            } else {
+                console.error("Map container not found in modal!");
+            }
 
             // 수정 버튼 클릭 시 findAddress 함수 호출
             document.getElementById('findAddressBtn').addEventListener('click', () => {
-                findAddress(); // 주소 수정 함수 호출
+                changeAddress(); // 주소 수정 함수 호출
+
             });
 
             // 취소 버튼 클릭 시 모달 닫기
@@ -131,13 +173,19 @@ const changeLocation = () => {
         }
     });
 };
-const loadKakaoMap = address => {
+
+const loadKakaoMap = (address, mapId) => {
     kakao.maps.load(() => {
-        const mapContainer = document.getElementById('map'), // 지도를 표시할 div
-            mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 초기 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };
+        const mapContainer = document.getElementById(mapId); // 동적으로 전달된 mapId로 지도 표시할 div를 가져옴
+        if (!mapContainer) {
+            console.error('Map container not found');
+            return;
+        }
+
+        const mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 초기 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
 
         // 지도를 생성합니다
         const map = new kakao.maps.Map(mapContainer, mapOption);
@@ -163,4 +211,4 @@ const loadKakaoMap = address => {
             }
         });
     });
-}
+};

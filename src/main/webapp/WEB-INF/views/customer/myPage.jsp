@@ -37,7 +37,7 @@
         <div class="navbar-card" onclick="reservationButton()">
             똑똑 이용 내역
         </div>
-        <div class="navbar-card" onclick="changeLocation()">
+        <div class="navbar-card" onclick="showLocation()">
             개인 정보 수정
         </div>
     </div>
@@ -47,7 +47,6 @@
                 <canvas id="canvas"></canvas>
                 <br>
                 <div class="userName">
-
                 </div>
             </div>
             <div class="userDetail">
@@ -70,13 +69,26 @@
                 </div>
             </div>
         </div>
-        <div class="card-map"> <!-- 두 번째 카드 -->
+        <div class="card-map">
+            <div class="reservation-stats">
+                <div class="stats">총 예약 횟수
+                    <div class="reservations total"></div>
+                </div>
+                <div class="stats">이용중
+                    <div class="reservations current"></div>
+                </div>
+                <div class="stats">이용 완료
+                    <div class="reservations past"></div>
+                </div>
+                <div class="stats">잔여 예약
+                    <div class="reservations future"></div>
+                </div>
+            </div>
+            <!-- 두 번째 카드 -->
 <%--            <div class="map-info">--%>
 <%--&lt;%&ndash;                <p id="address-display"></p>&ndash;%&gt;--%>
 <%--            </div>--%>
 <%--            <div id="map"></div>--%>
-
-
 
         </div>
     </div>

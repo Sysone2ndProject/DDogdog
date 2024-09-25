@@ -94,7 +94,7 @@
 }
 
 .card h3, .card p, .card ul {
-    margin: 10px 0;
+    margin: 10px 10px;
 }
 
 ul {
@@ -182,4 +182,24 @@ ul {
 .pet-info-details{
     display: flex;
     flex-direction: row;
+    margin: 10px;
+}
+#addressMap{
+    width:100%;
+    height:300px;
+    margin-top:5px;
+    margin-bottom:10px;
+    border-radius: 10px;
+}
+.reservation-stats{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+}
+.stats{
+    margin-right: 1.5rem;
+}
+.reservation{
+    display: flex;
+    justify-content: center;
 }

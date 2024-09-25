@@ -2,6 +2,7 @@ package com.sysone.ddogdog.customer.reservation.controller;
 
 import com.sysone.ddogdog.common.config.oauth.PrincipalDetails;
 import com.sysone.ddogdog.customer.reservation.model.RequestReservationDTO;
+import com.sysone.ddogdog.customer.reservation.model.ResponseReservationStatsDTO;
 import com.sysone.ddogdog.customer.reservation.service.ReservationService;
 import com.sysone.ddogdog.customer.roomChoice.exception.NoAvailableRoomsException;
 import lombok.RequiredArgsConstructor;
@@ -9,12 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/customers/reservation")
@@ -39,5 +35,11 @@ public class ReservationController {
     public ResponseEntity<Void> cancelReservation(@PathVariable Long id) {
         reservationService.cancelReservation(id);
         return ResponseEntity.noContent().build(); // 204 No Content 응답
+    }
+
+    @GetMapping("/stats")
+    public ResponseEntity<ResponseReservationStatsDTO> findReservationStats(@AuthenticationPrincipal PrincipalDetails user){
+        ResponseReservationStatsDTO statsDTO = reservationService.findReservationStatsByCustomerId(user.getUsername());
+        return ResponseEntity.ok(statsDTO);
     }
 }

@@ -2,6 +2,7 @@ package com.sysone.ddogdog.customer.reservation.mapper;
 
 import com.sysone.ddogdog.customer.reservation.model.Reservation;
 import com.sysone.ddogdog.customer.reservation.model.ResponseReservationDTO;
+import com.sysone.ddogdog.customer.reservation.model.ResponseReservationStatsDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface ReservationMapper {
     List<ResponseReservationDTO> findReservationsByCustomerId(Long customerId);
 
     void patchReservationCanceled(Long reservationId);
+
+    ResponseReservationStatsDTO findReservationStatsByCustomerId(Long customerId);
 }

@@ -4,6 +4,7 @@ import com.sysone.ddogdog.customer.reservation.mapper.ReservationMapper;
 import com.sysone.ddogdog.customer.reservation.model.RequestReservationDTO;
 import com.sysone.ddogdog.customer.reservation.model.Reservation;
 import com.sysone.ddogdog.customer.reservation.model.ResponseReservationDTO;
+import com.sysone.ddogdog.customer.reservation.model.ResponseReservationStatsDTO;
 import com.sysone.ddogdog.customer.roomChoice.service.RoomChoiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,13 @@ public class ReservationService {
     @Transactional
     public void cancelReservation(Long reservationId){
         reservationMapper.patchReservationCanceled(reservationId);
+    }
+
+    /**
+     * 예약 stats 조회
+     * @param  customerId
+     */
+    public ResponseReservationStatsDTO findReservationStatsByCustomerId(String customerId){
+        return reservationMapper.findReservationStatsByCustomerId(Long.parseLong(customerId));
     }
 }
