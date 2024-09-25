@@ -22,25 +22,40 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/css/customers/myPage.css">
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
 <div class="container">
-
+<div class="main">
+    <div class="navbar">
+        <div class="navbar-card now">
+            마이페이지
+        </div>
+        <div class="navbar-card" onclick="reservationButton()">
+            똑똑 이용 내역
+        </div>
+        <div class="navbar-card" onclick="changeLocation()">
+            개인 정보 수정
+        </div>
+    </div>
     <div class="left-column">
         <div class="card"> <!-- 첫 번째 카드 -->
             <div class="userInfo">
-                <canvas id="canvas" width="300" height="300"></canvas>
+                <canvas id="canvas"></canvas>
                 <br>
                 <div class="userName">
-                    <div class="userImage"></div>
-                    <h3> ${CustomerInfo.name}</h3> 고객님 환영합니다!
+
                 </div>
             </div>
             <div class="userDetail">
                 <br>
+                <div class="chip">
+                <div class="userImage"></div>
+                <h3> ${CustomerInfo.name}</h3> 고객님 환영합니다!
+                </div>
                 <div class="chip">
                     가입 이메일 : ${CustomerInfo.email}
                 </div>
@@ -48,28 +63,33 @@
                     연령대 : ${CustomerInfo.ageRange}
                 </div>
                 <div class="chip">
-                    성별 : ${CustomerInfo.gender}
+                    성별 : ${CustomerInfo.gender}자
                 </div>
-                <button id="reservationButton">똑독 이용 내역</button>
+                <div class="chip">
+                    <div id="addressDisplay"></div>
+                </div>
             </div>
         </div>
-        <div class="card"> <!-- 두 번째 카드 -->
-            <h3>주소 : </h3> <button onclick="findAddress()"> 수정하기</button>
-                <p id="address-display"></p>
-            <div id="map"></div>
+        <div class="card-map"> <!-- 두 번째 카드 -->
+<%--            <div class="map-info">--%>
+<%--&lt;%&ndash;                <p id="address-display"></p>&ndash;%&gt;--%>
+<%--            </div>--%>
+<%--            <div id="map"></div>--%>
+
+
+
         </div>
     </div>
 
     <div class="right-column">
-        <div class="card"> <!-- 세 번째 카드 -->
-            펫 정보    <button> 추가 </button>
+        <div class="pet-card"> <!-- 세 번째 카드 -->
+            펫 정보
+            <button onclick="petAddButton()"> 추가 </button>
         </div>
+
     </div>
-
-<%--    <button id="dogInfoButton">내 강아지 정보</button>--%>
-
 </div>
-
+</div>
 <script type="importmap">
     {
         "imports": {
@@ -80,8 +100,6 @@
     }
 </script>
 <script src="/js/customers/shiba.js" type="module"></script>
-<script>
-    let addressId = <sec:authentication property="principal.customerDTO.addressId"/>;
-</script>
+<jsp:include page="component/footer.jsp"/>
 </body>
 </html>
