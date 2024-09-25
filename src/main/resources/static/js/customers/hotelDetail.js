@@ -78,7 +78,6 @@ const submitForm = (event) => {
       rooms
   })
   .then((response) => {
-    console.log(response.data);
     alert("예약이 완료되었습니다.");
     window.location.href="/v1/customers/member";
   })
@@ -88,7 +87,6 @@ const submitForm = (event) => {
 };
 
 const goToForm = () => {
-  console.log(1);
   window.scrollTo({top: document.getElementById("room").offsetTop, behavior: 'smooth' });
 }
 document.getElementById('reservationForm').onsubmit = (event) => submitForm(event);
