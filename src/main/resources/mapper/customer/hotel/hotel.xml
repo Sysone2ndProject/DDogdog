@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.customer.hotel.mapper.HotelMapper">
+  <resultMap id="response" type="com.sysone.ddogdog.customer.hotel.model.HotelDTO">
+    <id property="id" column="id"/>
+    <result property="addressId" column="address_id"/>
+    <result property="ownerId" column="owner_id"/>
+    <result property="businessName" column="business_name"/>
+    <result property="businessNumber" column="business_number"/>
+    <result property="phoneNumber" column="phone_number"/>
+    <result property="intro" column="intro"/>
+    <result property="mainImage" column="main_image"/>
+    <result property="totalScore" column="total_score"/>
+    <result property="reviewCount" column="review_count"/>
+    <result property="price" column="price"/>
+  </resultMap>
+
+  <select id="getBestHotels" resultMap="response">
+    select *
+    from (select h.*, r.price
+          from hotels h
+                 join (select hotel_id, min(price) as price
+                       from rooms
+                       group by hotel_id) r
+                      on h.id = r.hotel_id
+          order by total_score desc, review_count)
+    where rownum &lt;= 3
+  </select>
+
+  <select id="getBestLocalHotels" parameterType="Long" resultMap="response">
+    select *
+    from (select h.*, r.price
+          from hotels h
+          join(select hotel_id, min(price) as price
+               from rooms
+               group by hotel_id) r
+              on h.id = r.hotel_id
+          where h.address_id in (select id
+                               from addresses
+                               where (sido, sigungu) = (select sido, sigungu
+                                                        from addresses
+                                                        where id = (select address_id
+                                                                    from customers
+                                                                    where id = #{id})))
+          order by total_score desc, review_count)
+    where rownum &lt;= 3
+  </select>
+
+  <select id="getHotelIdByKeywordAndDate" parameterType="String" resultType="Integer">
+    select hotel_id
+    from rooms
+    where id not in (select room_id
+                     from choose_rooms
+                     where reservation_id in (select id
+                                              from reservations
+                                              where to_date(#{date}, 'YYYY-MM-DD') between start_date and end_date
+                                                and canceled = 0))
+    group by hotel_id
+    HAVING COUNT(id) &gt; 0
+  </select>
+
+  <select id="getHotelsByIds" resultMap="response">
+    select h.*, r.price
+    from hotels h
+    join(select hotel_id, min(price) as price
+         from rooms
+         group by hotel_id) r
+    on h.id = r.hotel_id
+    where h.id in
+    <foreach item="hotelId" collection="hotelIds" open="(" separator="," close=")">
+      #{hotelId}
+    </foreach>
+    and h.address_id in (select id
+                       from addresses
+                       where full_address like '%' || #{keyword} || '%'
+                          or dong = #{keyword})
+  </select>
+
+  <select id="getHotelById" parameterType="Integer" resultMap="response">
+    select *
+    from hotels h
+    join(select hotel_id, min(price) as price
+         from rooms
+         group by hotel_id) r
+    on h.id = r.hotel_id
+    where h.id = #{id}
+  </select>
+</mapper>

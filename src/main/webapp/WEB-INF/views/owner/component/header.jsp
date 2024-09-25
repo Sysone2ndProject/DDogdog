@@ -24,10 +24,16 @@
         <nav class="navbar">
             <div class="navbar-menu-container">
                 <ul class="navbar-menu">
-                    <li><a href="${pageContext.request.contextPath}/v1/owners/user">호텔 관리하기</a></li>
+                    <li><a href="#" onclick="dropSubMenuLogin()">호텔 관리하기</a>
+                        <ul class="dropdown-sub-menu" id="hotel-sub-menu-login">
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
+                            <li><a href="#">예약 관리</a></li>
+                            <li><a href="#">매출 통계</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <div class="user">
-                    <button type="button">로그아웃</button>
+                    <button type="button" onclick="location.href = '/v1/logout'">로그아웃</button>
                 </div>
             </div>
             <div class="menu-icon">
@@ -35,10 +41,15 @@
                     <a href="#" class="navbar-toggle" onclick="dropMenuLogin()"><i class="fas fa-bars"></i></a>
                 </div>
                 <ul class="dropdown-menu" id="drop-menu-login">
-                    <li><a href="${pageContext.request.contextPath}/v1/owners/user">호텔관리</a></li>
-                    <li><a href="#">로그아웃</a></li>
+                    <li><a onclick="toggleDropSubMenuLogin()">호텔관리</a>
+                        <ul class="dropdown-sub-menu" id="hotel-toggle-sub-menu-login">
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
+                            <li><a href="#">예약 관리</a></li>
+                            <li><a href="#">매출 통계</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="${pageContext.request.contextPath}/v1/logout">로그아웃</a></li>
                 </ul>
-
             </div>
         </nav>
     </security:authorize>
@@ -51,7 +62,13 @@
         <nav class="navbar">
             <div class="navbar-menu-container">
                 <ul class="navbar-menu">
-                    <li><a href="${pageContext.request.contextPath}/v1/owners/user">호텔 관리하기</a></li>
+                    <li><a href="#" onclick="dropSubMenu()">호텔 관리하기</a>
+                        <ul class="dropdown-sub-menu" id="hotel-sub-menu">
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
+                            <li><a href="#">예약 관리</a></li>
+                            <li><a href="#">매출 통계</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <div class="user">
                     <button type="button" onclick="location.href = '/v1/owners/signup'">회원가입</button>
@@ -63,7 +80,13 @@
                     <a href="#" class="navbar-toggle" onclick="dropMenu()"><i class="fas fa-bars"></i></a>
                 </div>
                 <ul class="dropdown-menu" id="drop-menu">
-                    <li><a href="${pageContext.request.contextPath}/v1/owners/user">호텔관리</a></li>
+                    <li><a onclick=toggleDropSubMenu()>호텔관리</a>
+                        <ul class="dropdown-sub-menu" id="hotel-toggle-sub-menu">
+                            <li><a href="${pageContext.request.contextPath}/v1/owners/hotels">호텔 및 객실관리</a></li>
+                            <li><a href="#">예약 관리</a></li>
+                            <li><a href="#">매출 통계</a></li>
+                        </ul>
+                    </li>
                     <li><a href="${pageContext.request.contextPath}/v1/owners/signup">회원가입</a></li>
                     <li><a href="${pageContext.request.contextPath}/v1/owners/login">로그인</a></li>
                 </ul>

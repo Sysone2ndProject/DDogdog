@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sysone.ddogdog.customer.reservation.mapper.ReservationMapper">
+    <insert id="saveReserve"  statementType="CALLABLE" parameterType="com.sysone.ddogdog.customer.reservation.model.Reservation">
+        {CALL save_reservation(
+                #{customerId, jdbcType=NUMERIC},
+                #{hotelId, jdbcType=NUMERIC},
+                #{startDate, jdbcType=TIMESTAMP},
+                #{endDate, jdbcType=TIMESTAMP},
+                #{count, jdbcType=NUMERIC},
+                #{price, jdbcType=NUMERIC},
+                #{canceled, jdbcType=NUMERIC},
+                #{createDate, jdbcType=TIMESTAMP},
+                #{id, mode=OUT, jdbcType=NUMERIC}
+            )}
+    </insert>
+    <select id="findReservationsByCustomerId" parameterType="Long" resultType="com.sysone.ddogdog.customer.reservation.model.ResponseReservationDTO">
+        SELECT h.business_name,h.main_image,h.intro,
+               a.full_address,
+               r.id, r.start_date, r.end_date, r.count, r.price, r.create_date, r.canceled
+        FROM hotels h
+                 INNER JOIN addresses a ON h.address_id = a.id
+                 INNER JOIN (
+            SELECT id, hotel_id, start_date, end_date, count, price, create_date, canceled
+            FROM reservations
+            WHERE customer_id = #{customerId}
+        ) r ON r.hotel_id = h.id
+    </select>
+
+    <update id="patchReservationCanceled" parameterType="Long">
+        UPDATE reservations
+        SET canceled = 1
+        WHERE id = #{id}
+    </update>
+</mapper>

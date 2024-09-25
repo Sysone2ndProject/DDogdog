@@ -13,6 +13,8 @@
     <title>Header</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/css/customers/header.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
 <div class="header">
@@ -22,21 +24,28 @@
 
     <!-- 비로그인 시: 인증되지 않은 사용자라면 -->
     <sec:authorize access="isAnonymous()">
-            <div class="login">
-                <a href="/oauth2/authorization/kakao">
-                    <img src="${pageContext.request.contextPath}/img/kakao_login_medium.png" alt="카카오 로그인" style="cursor: pointer;">
-                </a>
-            </div>
+        <div class="login">
+            <a href="/oauth2/authorization/kakao">
+                <img src="${pageContext.request.contextPath}/img/kakao_login_medium.png" alt="카카오 로그인" style="cursor: pointer;">
+            </a>
+        </div>
     </sec:authorize>
 
     <!-- 로그인 시 -->
     <sec:authorize access="isAuthenticated()">
         <div class="login">
-            환영합니다 <sec:authentication property="principal.name" /> 고객님
-    <%-- 프론트에서 주소ID꺼내는 방식 --%>
-    <%--    <sec:authentication property="principal.customerDTO.addressId" />--%>
-            <button onclick="location.href='/v1/customers/member';">마이페이지</button>
-            <button>로그아웃</button>
+            환영합니다 <sec:authentication property="principal.name"/> 고객님
+                <%-- 프론트에서 주소ID꺼내는 방식 --%>
+                <%--    <sec:authentication property="principal.customerDTO.addressId" />--%>
+            <span class="material-icons-outlined">
+                person
+            </span>
+
+            <span class="material-icons">
+                logout
+            </span>
+            <button onclick="location.href='/v1/customers/member'">마이페이지</button>
+            <button onclick="location.href='/v1/logout'">로그아웃</button>
         </div>
     </sec:authorize>
 

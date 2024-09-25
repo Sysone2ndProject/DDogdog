@@ -2,160 +2,307 @@
 @import "common.css";
 
 
-.hotel-list {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 0 10px;
-}
-
-.hotel {
-  display: flex;
-  width: 30%;
-  margin: 10px 20px;
-}
-
-.hotel:hover {
-  transform: scale(1.05); /* 크기를 1.05배 키움 */
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* 그림자를 더 퍼지게 */
-  cursor: pointer;
-}
-
-.content {
+.search-bg {
+  padding: 13% 0;
   width: 100%;
-  padding-left: 10px;
+  height: 40%;
+  background-image: url('/img/main_bg.svg'); /* 이미지 경로 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-section {
+  width: 70%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  align-items: start;
+  justify-content: center;
 }
 
-.thumnail {
-  height: 200px;
-}
-
-.title {
-  margin: 0 60px;
-}
-
-.period {
-  border: 2px solid #f4cfc6;
-  display: flex;
-  justify-content: space-evenly;
-  height: 40%;
+.search-title-box {
   width: 60%;
+  height: 25%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.search-title {
+  font-size: 3rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.title-icon {
+  height: 50px;
+}
+
+.search-box {
+  width: 60%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 10%;
 }
 
 .date-pick {
-  padding: 10px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 50%;
-  margin: 10px 0;
-}
-
-.search {
   width: 100%;
   height: 25%;
+  background-color: #f3f3f3;
+  opacity: 0.6;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
 }
 
-.search-bar {
-  border: 2px solid #f4cfc6;
-  width: 60%;
-  height: 36px;
-  display: flex;
-  justify-content: space-evenly;
+.text-input {
+  width: 100%;
+  height: 25%;
+  background-color: #f3f3f3;
+  opacity: 0.6;
+  width: 100%;
 }
 
 .button {
-  border: none;
-  width: 100%;
-  background-color: #f4cfc6;
-  font-family: 'miso';
-  font-size: 1rem;
-}
-.button:hover {
-  background-color: #F3AD9D;
+  width: 7rem;
+  height: 2.75rem;
+  background-color: #df6951;
+  color: white;
   cursor: pointer;
 }
 
-.button-block {
+.button:hover {
+  background-color: #b4523e;
+}
+
+.popular-hotels {
+  margin-top: 10rem;
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.small-title {
+  height: 1rem;
+  font-size: 1rem;
+  color: #df6951;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 2.5rem;
+  height: 2.5rem;
+  color: #181e4b;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.hotel-list {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  height: 75%;
+}
+
+.hotel-card {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.img-container {
+  height: 50%;
+  width: 80%;
+  overflow: hidden;
+}
+
+.thumnail {
+  height: 100%;
+  width: 100%;
+}
+
+.content {
+  width: 80%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.hotel-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-box {
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.days {
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reviews {
   width: 60%;
-  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.material-icons-outlined {
+  color: #7d7d7d;
+}
+.text-info {
+  color: #7d7d7d;
+}
+
+.hotel-name {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.loc {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.hotel-loc {
+  color: #7d7d7d;
+  font-size: 1rem;
+}
+
+.hotel-price {
+  width: 100%;
+  color: #df6951;
+}
+
+.nearby-hotels {
+  margin-top: 10rem;
+  width: 100%;
+  height: 90vh;
   display: flex;
   justify-content: center;
 }
 
-.text-input {
-  border: none;
-  width: 85%;
-  padding-left: 5px;
+.nearby-content {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+}
+
+.small {
+  height: 1rem;
   font-size: 1rem;
-  font-family: 'miso';
 }
 
-.text-input::placeholder {
-  font-family: 'miso';
-}
-
-.date-label {
-  width: 20%;
-  text-align: center;
-}
-
-.date-input {
-  border: none;
-  width: 50%;
-  height: 40px;
-}
-
-.left {
-  border-left: 2px solid #6A6A6A;
-}
-
-.footer-box {
-  height: 25%;
-  background-color: #1d3660;
-  color: #f4cfc6;
-  margin: 100px 0 0 0;
-
-}
-
-input[type="date"] {
-  position: relative;
-  height: 40px;
-  background: none;
-  border: 2px solid #f4cfc6;
-  border-radius: 10px;
-  font-family: 'miso';
-  font-size: 1rem;
-  padding-left: 10px;
-}
-
-input[type="date"]::-webkit-clear-button,
-input[type="date"]::-webkit-inner-spin-button {display: none;}
-input[type="date"]::-webkit-calendar-picker-indicator {
-  position: absolute;
-  left: 0;
-  top: 0;
+.nearby-map{
   width: 100%;
+  height: 65%;
+  display: flex;
+  justify-content: space-between;
+}
+.map-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 40%;
+
+
+}
+
+#addressDisplay {
+  font-weight: bold;
+}
+
+#map{
+  width:100%;
+  height:350px;
+  border-radius: 30px;
+}
+
+.nearby-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 55%;
   height: 100%;
-  background: transparent;
-  color: transparent;
+}
+
+.nearby-card {
+  background-color: #fff9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25%;
+}
+
+.nearby-info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: end;
+  width: 95%;
+  height: 70%;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+  font-weight: bold;
+}
+
+.info {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.price-btn {
+  width: 30%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  width: 60%;
+  color: #df6951;
+}
+
+.paws {
+  height: 50px;
   cursor: pointer;
-}
-
-input[type="date"]:valid::before {
-  display: none;
-}
-
-.best {
-  margin-top: 30px;
-}
-
-.image {
-  width: 50%;
 }

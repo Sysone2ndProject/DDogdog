@@ -1,44 +1,54 @@
+// 포맷팅 함수 (연도-월-일 형식으로 포맷)
+const formatDate = (date) => {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 const setStartDate = () => {
+  let sDate = new Date(); // 오늘 날짜
+  let eDate = new Date(); // 1년 후 날짜
 
-  let sDate = new Date();
-  let eDate = new Date();
+  eDate.setFullYear(eDate.getFullYear() + 1);
 
-  sDate.setDate(sDate.getDate());
-  eDate.setDate(eDate.getDate() + 365);
-
-  const sYear = sDate.getFullYear();
-  const sMonth = sDate.getMonth() + 1;
-  const sDay = sDate.getDate();
-  const eYear = eDate.getFullYear();
-  const eMonth = eDate.getMonth() + 1;
-  const eDay = eDate.getDate();
-
-  let minDate = `${sYear}-${sMonth >= 10 ? sMonth : '0' + sMonth}-${sDay >= 10
-      ? sDay : '0' + sDay}`;
-  let maxDate = `${eYear}-${eMonth >= 10 ? eMonth : '0' + eMonth}-${eDay >= 10
-      ? eDay : '0' + eDay}`;
+  const minDate = formatDate(sDate);
+  const maxDate = formatDate(eDate);
 
   document.getElementById("startDate").min = minDate;
   document.getElementById("startDate").max = maxDate;
   document.getElementById("endDate").min = minDate;
   document.getElementById("endDate").max = maxDate;
-
-}
+};
 
 const setEndDate = () => {
-  let date = document.getElementById("startDate").value;
+  let startDateValue = document.getElementById("startDate").value;
 
-  let sYear = parseInt(date.split('-')[0]);
-  let sMonth = date.split('-')[1];
-  let sDay = parseInt(date.split('-')[2]) + 1;
-  let minDate = `${sYear}-${sMonth}-${sDay}`;
-  let eYear = parseInt(date.split('-')[0]) + 1;
-  let eMonth = date.split('-')[1];
-  let eDay = parseInt(date.split('-')[2]) + 1;
-  let maxDate = `${eYear}-${eMonth}-${eDay}`
+  let startDate = new Date(startDateValue);
 
-  document.getElementById("endDate").min = minDate;
-  document.getElementById("endDate").max = maxDate;
+  let minEndDate = new Date(startDate);
+  minEndDate.setDate(minEndDate.getDate() + 1);
+
+  let maxEndDate = new Date(startDate);
+  maxEndDate.setDate(minEndDate.getDate() + 1);
+  maxEndDate.setFullYear(maxEndDate.getFullYear() + 1);
+
+  // 종료 날짜의 최소값과 최대값 설정
+  document.getElementById("endDate").min = formatDate(minEndDate);
+  document.getElementById("endDate").max = formatDate(maxEndDate);
+
+  // 체크 아웃 날짜 선택 초기화
+  document.getElementById("endDate").value = "";
+};
+
+const checkStartDate = () => {
+  let startDateValue = document.getElementById("startDate").value;
+
+  if (!startDateValue) {
+    alert("먼저 체크인 날짜를 선택해 주세요.");
+    return null;
+  }
 }
 
+// 페이지가 로드되면 setStartDate 실행
 window.addEventListener('DOMContentLoaded', setStartDate);
