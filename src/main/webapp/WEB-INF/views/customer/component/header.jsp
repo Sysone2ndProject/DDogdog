@@ -18,37 +18,40 @@
 </head>
 <body>
 <div class="header">
-    <a href="/v1/customers">
-        <img class="logo" src="${pageContext.request.contextPath}/img/logo_nobg.png" alt="logo"/>
-    </a>
+    <div class="header-content">
+        <a href="/v1/customers">
+            <img class="logo" src="${pageContext.request.contextPath}/img/logo_nobg.png" onclick="location.href='/v1/customers'" alt="logo"/>
+        </a>
+
+<%--        TO DO 클릭시 어디로 이동할 지 연결 & 해당 페이지일 경우 스타일 다르게--%>
+        <div class="nav-list">
+            <p class="nav-item" onclick="location.href='/v1/customers'">Home</p>
+            <p class="nav-item">Search</p>
+            <p class="nav-item">About</p>
+        </div>
 
     <!-- 비로그인 시: 인증되지 않은 사용자라면 -->
     <sec:authorize access="isAnonymous()">
-        <div class="login">
-            <a href="/oauth2/authorization/kakao">
-                <img src="${pageContext.request.contextPath}/img/kakao_login_medium.png" alt="카카오 로그인" style="cursor: pointer;">
-            </a>
+        <div class="login-btn">
+            <button class="button radius" onclick="location.href='/oauth2/authorization/kakao'">로그인/회원가입</button>
         </div>
     </sec:authorize>
 
     <!-- 로그인 시 -->
     <sec:authorize access="isAuthenticated()">
         <div class="login">
+            <span class="user-name">
             환영합니다 <sec:authentication property="principal.name"/> 고객님
-                <%-- 프론트에서 주소ID꺼내는 방식 --%>
-                <%--    <sec:authentication property="principal.customerDTO.addressId" />--%>
-            <span class="material-icons-outlined">
+            </span>
+            <span class="material-icons-outlined" onclick="location.href='/v1/customers/member'">
                 person
             </span>
-
-            <span class="material-icons">
+            <span class="material-icons" onclick="location.href='/v1/logout'">
                 logout
             </span>
-            <button onclick="location.href='/v1/customers/member'">마이페이지</button>
-            <button onclick="location.href='/v1/logout'">로그아웃</button>
         </div>
     </sec:authorize>
-
+    </div>
 </div>
 </body>
 </html>
