@@ -1,0 +1,66 @@
+.header-box {
+  height: 15%;
+}
+
+.container {
+  font-family: 'miso';
+  /*min-height: 605px;*/
+}
+
+.hotel{
+  margin: 10px;
+}
+
+.calendar{
+  margin: 10px;
+}
+
+.fc-toolbar-chunk{
+  display: flex;
+}
+
+.fc-day-mon a{
+  color: black;
+  text-decoration: none;
+}
+
+.fc-day-tue a{
+  color: black;
+  text-decoration: none;
+}
+
+.fc-day-wed a{
+  color: black;
+  text-decoration: none;
+}
+.fc-day-thu a{
+  color: black;
+  text-decoration: none;
+}
+
+.fc-day-fri a{
+  color: black;
+  text-decoration: none;
+}
+
+/* 일요일 날짜 빨간색 */
+.fc-day-sun a {
+  color: red;
+  text-decoration: none;
+}
+
+/* 토요일 날짜 파란색 */
+.fc-day-sat a {
+  color: blue;
+  text-decoration: none;
+}
+
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem); /* 화면 전체 높이를 고려 */
+}
+
+.fc-event-title {
+  color: black; /* 원하는 글자색으로 변경 (예: 주황색) */
+}
