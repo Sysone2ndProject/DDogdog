@@ -31,8 +31,33 @@ const calcCountAndPrice = (i) => {
   totalCnt += (afterCnt - beforeCnt);
   rooms[i].count = afterCnt;
   document.getElementById("totalCount").innerText = totalCnt;
-  document.getElementById("totalPrice").innerText = totalPrice;
+  document.getElementById("totalPrice").innerText = totalPrice.toLocaleString('ko-KR');
 }
+
+// 숫자 값을 증가시키는 함수
+const increaseValue = (index) => {
+  const input = document.getElementById(`count${index}`);
+  let value = parseInt(input.value);
+
+  if (!isNaN(value)) {
+    value++;
+    input.value = value;
+    calcCountAndPrice(index);
+  }
+}
+
+// 숫자 값을 감소시키는 함수
+const decreaseValue = (index) => {
+  const input = document.getElementById(`count${index}`);
+  let value = parseInt(input.value);
+
+  if (!isNaN(value) && value > 0) {
+    value--;
+    input.value = value;
+    calcCountAndPrice(index);
+  }
+}
+
 
 const submitForm = (event) => {
   event.preventDefault();
@@ -53,11 +78,21 @@ const submitForm = (event) => {
       rooms
   })
   .then((response) => {
-    console.log(response.data)
+    console.log(response.data);
+    alert("예약이 완료되었습니다.");
+    window.location.href="/v1/customers/member";
   })
   .catch((error) => {
-    console.error(error)
+    console.error(error);
   });
 };
 
+const goToForm = () => {
+  console.log(1);
+  window.scrollTo({top: document.getElementById("room").offsetTop, behavior: 'smooth' });
+}
 document.getElementById('reservationForm').onsubmit = (event) => submitForm(event);
+
+document.addEventListener('DOMContentLoaded', () => {
+
+})

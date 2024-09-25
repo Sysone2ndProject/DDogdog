@@ -1,2 +1,277 @@
 @import "../common/font.css";
 @import "common.css";
+
+
+.hotel-detail {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+}
+
+.hotel {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.img-map {
+  margin-top: 15vh;
+  width: 85%;
+  height: 65%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hotel-img {
+  width: 45%;
+  height: 100%;
+}
+
+.map-box {
+  width: 40%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#map{
+  width: 90%;
+  height: 75%;
+  border-radius: 30px;
+}
+
+.loc, .cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.text-info {
+  color: var(--main--darkgray);
+  font-size: 1rem;
+}
+
+.text-price {
+  width: 85%;
+  height: 25%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3vh;
+}
+
+.name-intro {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hotel-name {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.small {
+  width: 100%;
+  font-size: 0.75rem;
+}
+.subtext {
+  width: 100%;
+  height: 30%;
+  font-size: 1rem;
+}
+
+.price-btn {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.price {
+  width: 100%;
+  height: 30%;
+  font-size: 2rem;
+  color: var(--main--orange);
+}
+
+.room-detail {
+  width: 100%;
+  height: 120vh;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+.room {
+  border: 1px solid var(--main--gray);
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons {
+  width: 100%;
+  height: 7%;
+  display: flex;
+}
+
+.big-btn {
+  width: 50%;
+  height: 100%;
+  font-size: 1rem;
+  color: var(--main-—darkblue);
+  cursor: pointer;
+}
+
+.big-btn:hover {
+  background-color: var(--main-—pink--hover);
+}
+
+.pink {
+  background-color: var(--main-—pink);
+}
+
+.choose-room {
+  width: 80%;
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.choose-room-title {
+  width: 100%;
+  height: 5%;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#reservationForm {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.date-pick {
+  width: 60%;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--main--gray);
+}
+
+label {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+}
+
+.date-pick input {
+  width: 25%;
+}
+
+.room-list {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.room-item {
+  width: 75%;
+  height: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.room-img {
+  height: 100%;
+  width: 40%;
+}
+
+.room-info {
+  width: 55%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.room-grade {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.price-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.room-price {
+  width: 70%;
+  font-size: 1.5rem;
+  color: var(--main--orange);
+}
+
+
+.count-btn {
+  width: 40%;
+  display: flex;
+  gap: 1rem;
+}
+
+.minus, .plus {
+  width: 15%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.minus:hover, .plus:hover {
+  background-color: var(--main--lightpink);
+}
+input[type="number"] {
+  width: 15%;
+  text-align: center;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.total-info{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+}
+
+.red {
+  color: var(--main--orange);
+}
+
+.form-btn {
+  display: flex;
+  justify-content: end;
+}
+
+
