@@ -49,7 +49,6 @@ public class PetController {
 
     @PutMapping("/update")
     public ResponseEntity<Void> updatePet(@ModelAttribute RequestPetDTO requestPetDTO) {
-        System.out.println("업데이트 진입");
         petService.updatePet(requestPetDTO);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

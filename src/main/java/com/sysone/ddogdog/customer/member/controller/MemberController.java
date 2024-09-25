@@ -18,7 +18,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/location")
-    public ResponseEntity<String> getCustomerAddress(@RequestParam Long addressId) {
+    public ResponseEntity<String> getFullAddress(@RequestParam Long addressId) {
         String fullAddress = memberService.findFullAddressById(addressId);
         return ResponseEntity.ok(fullAddress);
     }
