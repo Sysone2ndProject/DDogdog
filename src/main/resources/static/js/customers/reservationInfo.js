@@ -49,18 +49,16 @@ const viewDetails = (reservationId) => {
 const showReservationDetails = (details) => {
     const modalContent = details.map(room => `
         <div class="room-detail">
-            <h3>방 정보</h3>
-            <p>방 이미지: <img src="${room.roomImage}" alt="${room.intro}" style="width:100px;"/></p>
-            <p>방 이미지: ${room.intro}</p>
-            <p>방 등급: ${room.grade}</p>
+            <h3>${room.grade}룸</h3>
+            <p><img src="${room.roomImage}" alt="${room.intro}" style="width:100px;"/></p>
+            <p>설명 : ${room.intro}</p>
             <p>예약 기간: ${room.startDate} - ${room.endDate}</p>
             <p>가격: ${room.nowPrice} 원</p>
         </div>
     `).join(''); // 각 방 정보를 HTML로 변환 후 문자열로 결합
 
     const totalDetailsContent = `
-        <h2>예약 상세 정보</h2>
-        <p>총 ${details.length}개 방 예약됨</p>
+        <h4>총 <span style="color: #3085d6;">${details.length}개</span> 방 예약</h4>
         <div>${modalContent}</div> <!-- 방 정보 표시 -->
     `;
 

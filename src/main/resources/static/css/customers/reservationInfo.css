@@ -3,10 +3,9 @@
     justify-content: center;
     background-color: white;
     border-radius: 10px;
-    max-width: 65%;
+    width: 65%;
     max-height: 300px; /* 세로 길이 조정 */
     margin: 20px auto; /* 티켓 간 간격 조정 */
-    /*margin: 0 auto;*/
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.50); /* 티켓 모양의 drop shadow 효과 */
     overflow: hidden; /* Prevent content from spilling out */
@@ -41,6 +40,7 @@
     width: 2px; /* 두께를 조금 더 두껍게 */
     border-left: 2px dashed #888; /* 진하고 띄엄띄엄한 실선 */
     margin: 0 20px;
+    align-self: stretch; /* 세로 길이를 부모 요소의 높이에 맞춤 */
 }
 .reservation-footer {
     margin-top: auto;
