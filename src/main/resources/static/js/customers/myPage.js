@@ -83,6 +83,44 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error fetching the address:', error);
         });
+
+    axios.get('/v1/customers/reservation/mostHotel', {
+    })
+    .then(response => {
+        let mostHotel = document.querySelector('.most-hotel');
+        let hotel = (response.data);
+        //TODO : 구현완료 후 지울예정
+        console.log(hotel);
+
+        let hotelCard = `
+                       
+                            <div class="pet-content">
+                                <img src="${hotel.mainImage}" class="image-preview" alt="${hotel.businessName}">
+                                <div class="pet-info">
+                                    <div class="pet-info-details">
+                                      ${hotel.businessName}
+                                    </div>
+                                    <div class="pet-info-details">
+                                      방문횟수 ${hotel.visitCount}회
+                                    </div>
+                                    <div class="pet-info-details">
+                                      번호 : ${hotel.phoneNumber}<br>
+                                    </div>
+                                    <div class="pet-info-details">
+                                      주소 : ${hotel.fullAddress}<br>
+                                    </div>
+                                      <div class="pet-info-details">
+                                        ${hotel.intro} <button onclick="goToHotel(${hotel.hotelId})">    바로가기</button>
+                                    </div>
+                                </div>
+                            </div>
+                              `;
+        // 생성한 카드 요소를 페이지에 추가
+        mostHotel.innerHTML += hotelCard;
+    })
+    .catch(error => {
+        console.error(error);
+    });
 });
 
 const changeAddress = () => {
@@ -212,3 +250,6 @@ const loadKakaoMap = (address, mapId) => {
         });
     });
 };
+function goToHotel(id) {
+    window.location.href = '/v1/customers/hotels/'+id;
+}

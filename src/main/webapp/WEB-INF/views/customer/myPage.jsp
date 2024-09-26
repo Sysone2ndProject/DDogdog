@@ -84,12 +84,11 @@
                     <div class="reservations future"></div>
                 </div>
             </div>
-            <!-- 두 번째 카드 -->
-<%--            <div class="map-info">--%>
-<%--&lt;%&ndash;                <p id="address-display"></p>&ndash;%&gt;--%>
-<%--            </div>--%>
-<%--            <div id="map"></div>--%>
-
+        </div>
+        <div class="card-map">
+            <div class="most-hotel">
+                최애 호텔
+            </div>
         </div>
     </div>
 
