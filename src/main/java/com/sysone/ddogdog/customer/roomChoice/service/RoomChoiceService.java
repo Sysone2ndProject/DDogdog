@@ -34,12 +34,14 @@ public class RoomChoiceService {
     public void saveRoomChoice(Integer reservationId, LocalDate start, LocalDate end,
         Integer hotelId, List<RequestRoomChoiceDTO> rooms) {
 
-        //TODO : 전체 RoomType 프론트에서 입력받을 경우 rooms.getCount = 0인지 판별 로직 세우기
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         for (int i = 0; i < rooms.size(); i++) {
             List<Integer> roomIds = null;
             RequestRoomChoiceDTO room = rooms.get(i);
+            if(room.getCount()==0){
+                continue;
+            }
 
             for (LocalDate currentDate = start; !currentDate.isAfter(end);
                 currentDate = addDays(currentDate)) {

@@ -24,6 +24,15 @@
       #{kakaoId, mode=IN, jdbcType=NUMERIC}
           )}
   </select>
+  <update id="updateAddress" parameterType="com.sysone.ddogdog.customer.auth.model.RequestAddressDTO" >
+    UPDATE ADDRESSES
+    SET full_address = #{fullAddress},
+        sido = #{sido},
+        sigungu = #{sigungu},
+        dong = #{dong}
+    WHERE id = #{id}
+  </update>
+
   <select id="existsAddressIdById" parameterType="Long" resultType="Long">
     SELECT address_id FROM customers WHERE id = #{id}
   </select>

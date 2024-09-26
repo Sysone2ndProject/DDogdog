@@ -1,8 +1,10 @@
 package com.sysone.ddogdog.customer.pet.controller;
 
 import com.sysone.ddogdog.common.config.oauth.PrincipalDetails;
+import com.sysone.ddogdog.customer.pet.model.PetDTO;
 import com.sysone.ddogdog.customer.pet.model.PetSpeciesDTO;
 import com.sysone.ddogdog.customer.pet.model.RequestPetDTO;
+import com.sysone.ddogdog.customer.pet.model.ResponsePetDTO;
 import com.sysone.ddogdog.customer.pet.service.PetService;
 import java.util.List;
 import java.util.Map;
@@ -10,13 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class PetController {
 
     private final PetService petService;
+
+    @GetMapping
+    public ResponseEntity<List<ResponsePetDTO>> petsInfo(String customerId) {
+        List<ResponsePetDTO> pets = petService.findAllPetsById(Long.parseLong(customerId));
+        return ResponseEntity.ok(pets);
+    }
 
     @GetMapping("/species")
     public ResponseEntity<List<PetSpeciesDTO>> species(
@@ -45,5 +47,10 @@ public class PetController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<Void> updatePet(@ModelAttribute RequestPetDTO requestPetDTO) {
+        petService.updatePet(requestPetDTO);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
 }

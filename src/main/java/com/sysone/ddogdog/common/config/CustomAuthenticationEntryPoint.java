@@ -8,6 +8,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * Security 전역 예외 처리 -> 로그인 인증 여부 불충분시 처리해주는 객체
+ */
 @Component
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
@@ -19,8 +22,9 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         if (uri.startsWith("/v1/owners")) {
             //미로그인자 접근권한 페이지 접근 시 알럿띄우기
             response.sendRedirect("/v1/owners/login?alert=true");
-        } else {
-            response.sendRedirect("/v1/customers/oauth");
+        }
+        if (uri.startsWith("/v1/customers")) {
+            response.sendRedirect("/v1/customers?alert=true");
         }
     }
 }

@@ -34,4 +34,34 @@
         SET canceled = 1
         WHERE id = #{id}
     </update>
+
+    <select id="findReservationStatsByCustomerId" parameterType="Long" resultType="com.sysone.ddogdog.customer.reservation.model.ResponseReservationStatsDTO">
+        SELECT
+        COUNT(*) AS total_reservations,  -- 총 예약 개수
+        COUNT(CASE WHEN end_date  &lt; SYSDATE THEN 1 END) AS past_reservations,  -- 오늘 날짜 기준 end_date가 지난 개수
+        COUNT(CASE WHEN start_date &gt; SYSDATE THEN 1 END) AS future_reservations, -- 오늘 날짜 기준 start_date가 더 미래인 개수
+        COUNT(CASE WHEN start_date &lt;= SYSDATE AND end_date &gt;= SYSDATE THEN 1 END) AS current_reservations  -- 현재 사용 중인 예약 개수
+        FROM reservations
+        WHERE customer_id = #{customerId}
+    </select>
+
+    <select id="findMostReservationHotelByCustomerId" parameterType="Long" resultType="com.sysone.ddogdog.customer.reservation.model.ResponseMostReservationHotelDTO">
+        SELECT h.id AS hotel_id,
+               h.business_name,
+               h.main_image,
+               h.phone_number,
+               h.intro,
+               a.full_address,
+               r.visit_count
+        FROM (
+                 SELECT hotel_id, COUNT(*) AS visit_count,
+                        ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS rn
+                 FROM reservations
+                 WHERE customer_id = #{customerId}
+                 GROUP BY hotel_id
+             ) r
+                 JOIN hotels h ON r.hotel_id = h.id
+                 JOIN addresses a ON h.address_id = a.id
+        WHERE r.rn = 1
+    </select>
 </mapper>

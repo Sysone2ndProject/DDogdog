@@ -1,16 +1,28 @@
 @import "../common/font.css";
 @import "common.css";
 .container {
-    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
     gap: 20px; /* 카드들 사이의 간격 */
+}
+#canvas{
+    width: 300px;
+    height: 300px;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+.map-info{
+    display: flex;
+    flex-direction: row;
 }
 #map{
     width:100%;
-    height:350px;
+    height:15rem;
     border-radius: 30px;
 }
 
@@ -21,26 +33,68 @@
 }
 
 .right-column {
+    margin: 3vh;
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 상하 정렬 */
+}
+.navbar {
+    margin: 3vh;
+    margin-top: 3vh;
+    padding : 3vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* 상하 정렬 */
 }
 
+.navbar-card {
+    display: flex;
+    background-color: white;
+    margin-top: 3vh;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+.navbar-card.now{
+    background-color: #ffc1c1;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+.navbar-card.now:hover {
+    background: linear-gradient(145deg, #ffc1c1, #fd8b8b); /* 호버 시 배경 변경 */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3), /* 입체감을 더한 그림자 */
+    -2px -2px 8px rgba(255, 255, 255, 0.9); /* 빛 반사 효과 */
+}
+
+.navbar-card:hover {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0); /* 호버 시 배경 변경 */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3), /* 입체감을 더한 그림자 */
+    -2px -2px 8px rgba(255, 255, 255, 0.9); /* 빛 반사 효과 */
+}
+
+
 .card {
+    width: 500px;
+    display: flex;
     background-color: white;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    width: 300px; /* 카드 너비 */
+}
+
+.card-map{
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
-    width: 100%;
     border-radius: 10px;
 }
 
 .card h3, .card p, .card ul {
-    margin: 10px 0;
+    margin: 10px 10px;
 }
 
 ul {
@@ -49,6 +103,13 @@ ul {
 }
 
 .userInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.userName{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,27 +127,79 @@ ul {
     display: flex;
     flex-direction: column; /* 세로 방향으로 정렬 */
     align-items: start;
+    margin: 4px;
 }
 .chip {
     display: inline-flex;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 1px;
     height: 32px;
-    border-radius: 16px;
-    background: linear-gradient(145deg, #e0e0e0, #ffffff); /* 그라데이션 배경 */
-    color: #333;
+    border-radius: 0; /* 둥근 모서리 제거 */
+    background: none; /* 배경 없애기 */
     font-size: 14px;
     font-weight: 500;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), /* 입체감을 위한 그림자 */
-    -2px -2px 5px rgba(255, 255, 255, 0.9); /* 빛 반사 효과 */
     margin: 4px;
-    transition: background 0.3s, box-shadow 0.3s; /* 부드러운 전환 효과 */
 }
 
-.chip:hover {
+.pet-card:hover {
     background: linear-gradient(145deg, #ffffff, #f0f0f0); /* 호버 시 배경 변경 */
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3), /* 입체감을 더한 그림자 */
     -2px -2px 8px rgba(255, 255, 255, 0.9); /* 빛 반사 효과 */
 }
+.image-preview {
+    width: 170px;
+    height: 170px;
+}
 
 
+.pet-card {
+    display: flex; /* 플렉스 박스를 사용하여 정렬 */
+    align-items: center; /* 세로 정렬 */
+    padding: 10px; /* 카드 내 여백 */
+    border: 1px solid #ccc; /* 테두리 */
+    margin: 10px 0; /* 카드 간 간격 */
+    border-radius: 20px; /* 모서리 둥글게 */
+    background-color: white;
+    width: 300px; /* 카드 너비 */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+.pet-content {
+    display: flex; /* 플렉스 박스 사용 */
+    width: 100%; /* 가로 폭을 100%로 설정 */
+}
+
+.image-preview {
+    width: 10rem; /* 이미지 가로 크기 */
+    height: 10rem; /* 비율 유지 */
+    margin-right: 15px; /* 이미지와 텍스트 간 여백 */
+}
+
+.pet-info {
+    display: flex; /* 플렉스 박스 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    justify-content: center; /* 가운데 정렬 */
+}
+.pet-info-details{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+#addressMap{
+    width:100%;
+    height:300px;
+    margin-top:5px;
+    margin-bottom:10px;
+    border-radius: 10px;
+}
+.reservation-stats{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+}
+.stats{
+    margin-right: 1.5rem;
+}
+.reservation{
+    display: flex;
+    justify-content: center;
+}

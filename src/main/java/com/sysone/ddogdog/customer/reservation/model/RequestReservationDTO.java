@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 public class RequestReservationDTO {
-    Long customerid;
+    Long customerId;
     Integer hotelId;
     String startDate;
     String endDate;

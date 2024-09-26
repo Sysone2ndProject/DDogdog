@@ -1,9 +1,13 @@
 package com.sysone.ddogdog.customer.reservation.service;
 
+import com.sysone.ddogdog.common.exception.CustomerErrorCode;
+import com.sysone.ddogdog.common.exception.NoDataFoundException;
 import com.sysone.ddogdog.customer.reservation.mapper.ReservationMapper;
 import com.sysone.ddogdog.customer.reservation.model.RequestReservationDTO;
 import com.sysone.ddogdog.customer.reservation.model.Reservation;
+import com.sysone.ddogdog.customer.reservation.model.ResponseMostReservationHotelDTO;
 import com.sysone.ddogdog.customer.reservation.model.ResponseReservationDTO;
+import com.sysone.ddogdog.customer.reservation.model.ResponseReservationStatsDTO;
 import com.sysone.ddogdog.customer.roomChoice.service.RoomChoiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +30,7 @@ public class ReservationService {
      */
     @Transactional
     public void saveReserve(String customerId, RequestReservationDTO dto){
-        dto.setCustomerid(Long.parseLong(customerId));
+        dto.setCustomerId(Long.parseLong(customerId));
         Reservation reservation = Reservation.from(dto);
         reservationMapper.saveReserve(reservation);
         roomChoiceService.saveRoomChoice(reservation.getId(),reservation.getStartDate(),reservation.getEndDate(),dto.getHotelId(),dto.getRooms());
@@ -47,5 +51,25 @@ public class ReservationService {
     @Transactional
     public void cancelReservation(Long reservationId){
         reservationMapper.patchReservationCanceled(reservationId);
+    }
+
+    /**
+     * 예약 stats 조회
+     * @param  customerId
+     */
+    public ResponseReservationStatsDTO findReservationStatsByCustomerId(String customerId){
+        return reservationMapper.findReservationStatsByCustomerId(Long.parseLong(customerId));
+    }
+
+    /**
+     * 가장 자주 사용한 호텔 정보 조회
+     * @param customerId
+     */
+    public ResponseMostReservationHotelDTO findMostReservationHotelByCustomerId(String customerId){
+        ResponseMostReservationHotelDTO result= reservationMapper.findMostReservationHotelByCustomerId(Long.parseLong(customerId));
+        if(result==null){
+            throw new NoDataFoundException(CustomerErrorCode.NO_DATA_MOST_HOTEL);
+        }
+        return result;
     }
 }
