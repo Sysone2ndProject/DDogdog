@@ -26,11 +26,11 @@ public class ReservationViewController {
         return "owner/reservation";
     }
 
-    @GetMapping("/statics")
+    @GetMapping("/statistics")
     public String getStatics(@AuthenticationPrincipal CustomDetails user, Model model) {
         List<ResponseHotelDTO> hotels = ownerHotelService.getHotelsByUserId(user.getUsername());
         model.addAttribute("hotels", hotels);
         model.addAttribute("year", Calendar.getInstance().get(Calendar.YEAR));
-        return "owner/statics";
+        return "owner/statistics";
     }
 }

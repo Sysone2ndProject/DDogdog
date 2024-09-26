@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OWNER</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/statics.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/statistics.css"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -54,5 +54,5 @@
     <jsp:include page="component/footer.jsp"></jsp:include>
 </div>
 </body>
-<script src="${pageContext.request.contextPath}/js/owners/statics.js"></script>
+<script src="${pageContext.request.contextPath}/js/owners/statistics.js"></script>
 </html>
