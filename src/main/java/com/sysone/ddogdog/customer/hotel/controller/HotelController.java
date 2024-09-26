@@ -5,6 +5,7 @@ import com.sysone.ddogdog.customer.hotel.model.ResponseHotelDetailsDTO;
 import com.sysone.ddogdog.customer.hotel.service.HotelService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HotelController {
 
     private final HotelService hotelService;
+
+    @Value("${kakao.map.api-key}")
+    private String kakaoJsId;
 
     @GetMapping
     public String hotelList(Model model, @RequestParam String keyword,
@@ -34,6 +38,7 @@ public class HotelController {
         @RequestParam(required = false) String endDate) {
         ResponseHotelDetailsDTO hotelDetail = hotelService.getHotelDetails(id, startDate, endDate);
         model.addAttribute("hotelDetail", hotelDetail);
+        model.addAttribute("kakaoId", kakaoJsId);
 
         return "customer/hotelDetail";
     }

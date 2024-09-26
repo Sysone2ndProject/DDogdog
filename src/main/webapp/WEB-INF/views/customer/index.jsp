@@ -34,7 +34,9 @@
                 <label class="date-label" for="endDate">체크아웃</label>
                 <input class="date-input" type="date" id="endDate" onclick="checkStartDate()"/>
             </div>
-            <input type="text" class="text-input radius" id="keyword" placeholder="장소를 입력해 주세요"/>
+            <div class="text-input radius">
+                <input type="text" class="text" id="keyword" placeholder="장소를 입력해 주세요"/>
+            </div>
             <button class="button radius" type="submit">검색</button>
         </form>
     </div>
@@ -125,12 +127,13 @@
 
 <jsp:include page="component/footer.jsp"/>
 </body>
+<script src="${pageContext.request.contextPath}/js/customers/index.js"></script>
+<script src="${pageContext.request.contextPath}/js/customers/dateHandler.js"></script>
+<script src="${pageContext.request.contextPath}/js/customers/locationHandler.js"></script>
 <script>
   <sec:authorize access="isAuthenticated()">
   let addressId = <sec:authentication property="principal.customerDTO.addressId"/>;
   </sec:authorize>
+  document.addEventListener("DOMContentLoaded", getAddress);
 </script>
-<script src="${pageContext.request.contextPath}/js/customers/index.js"></script>
-<script src="${pageContext.request.contextPath}/js/customers/dateHandler.js"></script>
-<script src="${pageContext.request.contextPath}/js/customers/locationHandler.js"></script>
 </html>

@@ -37,5 +37,3 @@ const gotoDetail = (id) => {
     console.error();
   });
 }
-
-
