@@ -10,11 +10,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>마이페이지</title>
-    <script>
-      let addressId = ${CustomerInfo.addressId};
-      let customerId =
-      <sec:authentication property="principal.username"/>;
-    </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -109,6 +104,11 @@
           "OrbitControls": "https://unpkg.com/three@0.141.0/examples/jsm/controls/OrbitControls.js"
         }
     }
+</script>
+<script>
+  let addressId = ${CustomerInfo.addressId};
+  let customerId =
+      <sec:authentication property="principal.username"/>;
 </script>
 <script src="/js/customers/shiba.js" type="module"></script>
 <jsp:include page="component/footer.jsp"/>
