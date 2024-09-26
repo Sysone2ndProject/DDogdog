@@ -2,6 +2,7 @@ package com.sysone.ddogdog.customer.reservation.controller;
 
 import com.sysone.ddogdog.common.config.oauth.PrincipalDetails;
 import com.sysone.ddogdog.customer.reservation.model.RequestReservationDTO;
+import com.sysone.ddogdog.customer.reservation.model.ResponseMostReservationHotelDTO;
 import com.sysone.ddogdog.customer.reservation.model.ResponseReservationStatsDTO;
 import com.sysone.ddogdog.customer.reservation.service.ReservationService;
 import com.sysone.ddogdog.customer.roomChoice.exception.NoAvailableRoomsException;
@@ -41,5 +42,11 @@ public class ReservationController {
     public ResponseEntity<ResponseReservationStatsDTO> findReservationStats(@AuthenticationPrincipal PrincipalDetails user){
         ResponseReservationStatsDTO statsDTO = reservationService.findReservationStatsByCustomerId(user.getUsername());
         return ResponseEntity.ok(statsDTO);
+    }
+
+    @GetMapping("/mostHotel")
+    public ResponseEntity<ResponseMostReservationHotelDTO> findMostReservationHotelByCustomerId(@AuthenticationPrincipal PrincipalDetails user){
+        ResponseMostReservationHotelDTO mostHotelDTO = reservationService.findMostReservationHotelByCustomerId(user.getUsername());
+        return ResponseEntity.ok(mostHotelDTO);
     }
 }

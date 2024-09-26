@@ -45,7 +45,7 @@
         WHERE customer_id = #{customerId}
     </select>
 
-    <select id="findMostHotelCustomerReserve" parameterType="Long" >
+    <select id="findMostReservationHotelByCustomerId" parameterType="Long" resultType="com.sysone.ddogdog.customer.reservation.model.ResponseMostReservationHotelDTO">
         SELECT h.id AS hotel_id,
                h.business_name,
                h.main_image,

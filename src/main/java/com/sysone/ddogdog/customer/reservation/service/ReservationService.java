@@ -1,8 +1,11 @@
 package com.sysone.ddogdog.customer.reservation.service;
 
+import com.sysone.ddogdog.common.exception.CustomerErrorCode;
+import com.sysone.ddogdog.common.exception.NoDataFoundException;
 import com.sysone.ddogdog.customer.reservation.mapper.ReservationMapper;
 import com.sysone.ddogdog.customer.reservation.model.RequestReservationDTO;
 import com.sysone.ddogdog.customer.reservation.model.Reservation;
+import com.sysone.ddogdog.customer.reservation.model.ResponseMostReservationHotelDTO;
 import com.sysone.ddogdog.customer.reservation.model.ResponseReservationDTO;
 import com.sysone.ddogdog.customer.reservation.model.ResponseReservationStatsDTO;
 import com.sysone.ddogdog.customer.roomChoice.service.RoomChoiceService;
@@ -56,5 +59,17 @@ public class ReservationService {
      */
     public ResponseReservationStatsDTO findReservationStatsByCustomerId(String customerId){
         return reservationMapper.findReservationStatsByCustomerId(Long.parseLong(customerId));
+    }
+
+    /**
+     * 가장 자주 사용한 호텔 정보 조회
+     * @param customerId
+     */
+    public ResponseMostReservationHotelDTO findMostReservationHotelByCustomerId(String customerId){
+        ResponseMostReservationHotelDTO result= reservationMapper.findMostReservationHotelByCustomerId(Long.parseLong(customerId));
+        if(result==null){
+            throw new NoDataFoundException(CustomerErrorCode.NO_DATA_MOST_HOTEL);
+        }
+        return result;
     }
 }

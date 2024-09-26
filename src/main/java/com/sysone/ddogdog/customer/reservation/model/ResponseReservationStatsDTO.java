@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 @Builder
 public class ResponseReservationStatsDTO {
-    private Integer totalReservations;
-    private Integer pastReservations;
-    private Integer futureReservations;
-    private Integer currentReservations;
+    private int totalReservations;
+    private int pastReservations;
+    private int futureReservations;
+    private int currentReservations;
 }
