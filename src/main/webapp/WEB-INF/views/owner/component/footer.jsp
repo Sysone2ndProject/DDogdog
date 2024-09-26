@@ -34,7 +34,6 @@
             <p class="subtext">Copyright @ 2024 SYSONE. All Rights Reserved.</p>
         </div>
     </div>
-<%--    <img class="footer-img" src="${pageContext.request.contextPath}/img/footer_img.svg">--%>
 </div>
 </body>
 </html>
