@@ -3,6 +3,11 @@
     display: flex;
     gap: 20px; /* 카드들 사이의 간격 */
 }
+.pet-add{
+    margin-top: 8rem;
+    display: flex;
+    justify-content: center;
+}
 #preview {
     display: flex;
     width: 170px;
