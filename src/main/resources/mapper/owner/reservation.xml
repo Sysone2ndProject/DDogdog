@@ -15,6 +15,14 @@
     <result property="customerName" column="name"/>
   </resultMap>
 
+  <resultMap type="com.sysone.ddogdog.owner.reservation.model.ResponseReservationYearDTO" id="yearReservation">
+    <result property="month" column="month"/>
+    <result property="grade" column="grade"/>
+    <result property="roomCount" column="room_count"/>
+    <result property="price" column="price"/>
+    <result property="totalPrice" column="total_price"/>
+  </resultMap>
+
   <select id="getMonthReservation" parameterType="com.sysone.ddogdog.owner.reservation.model.ReservationDTO" resultMap="monthReservation">
     SELECT nr.reservation_date AS reservation_date, rs.grade AS grade, COUNT(*) AS room_count, SUM(cr.now_price) AS price
     FROM (
@@ -52,6 +60,33 @@
            JOIN rooms rm ON rm.id = cr.room_id
     group by rm.grade, r.count, c.name
     ORDER BY rm.grade
+  </select>
+
+  <select id="getYearReservation" parameterType="com.sysone.ddogdog.owner.reservation.model.ReservationDTO" resultMap="yearReservation">
+    SELECT TO_CHAR(nr.reservation_date, 'YYYY-MM') AS month,
+    rs.grade AS grade,
+    COUNT(*) AS room_count,
+    SUM(cr.now_price) AS price,
+    SUM(SUM(cr.now_price)) OVER (PARTITION BY TO_CHAR(nr.reservation_date, 'YYYY-MM')) AS total_price
+    FROM (
+      WITH date_range AS (
+      SELECT TO_DATE(#{startDate}, 'YYYY-MM-DD') + LEVEL - 1 AS reservation_date
+      FROM DUAL
+      CONNECT BY LEVEL &lt;= (TO_DATE(#{endDate}, 'YYYY-MM-DD') - TO_DATE(#{startDate}, 'YYYY-MM-DD') + 1)
+      )
+      SELECT d.reservation_date, r.id, r.count
+      FROM date_range d
+      JOIN RESERVATIONS r ON r.hotel_id = #{hotelId}
+      AND r.canceled = 0
+      AND r.start_date&lt; TO_DATE(#{endDate}, 'YYYY-MM-DD')
+      AND r.end_date &gt; TO_DATE(#{startDate}, 'YYYY-MM-DD')
+      WHERE d.reservation_date >= r.start_date
+      AND d.reservation_date &lt; r.end_date
+      ) nr
+      LEFT JOIN choose_rooms cr
+    ON nr.id = cr.reservation_id
+      LEFT JOIN (SELECT id, grade FROM ROOMS WHERE hotel_id = #{hotelId}) rs ON cr.room_id = rs.id
+    GROUP BY TO_CHAR(nr.reservation_date, 'YYYY-MM'), rs.grade
   </select>
 
 </mapper>
