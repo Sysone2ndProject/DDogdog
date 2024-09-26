@@ -56,4 +56,5 @@
     </div>
 </div>
 </body>
+<script src="${pageContext.request.contextPath}/js/customers/header.js"></script>
 </html>
