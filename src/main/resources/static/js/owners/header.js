@@ -63,3 +63,9 @@ const toggleDropSubMenu = () => {
     menu.style.display = 'block';
   }
 }
+
+// 지우지 마시오
+const needLogin = () => {
+  alert("로그인 후 이용해주세요");
+  window.location.href = '/v1/owners/login';
+}
