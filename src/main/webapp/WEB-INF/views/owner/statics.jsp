@@ -28,10 +28,13 @@
         <div class="select-year">
             <label for="year">연도 선택 : </label>
             <select id="year">
-                <c:forEach var="i" begin="0" end="10">
-                    <option value="${year -5 + i}" <c:if test="${i == 5}">selected</c:if>>${year - 5 + i}
-                    </option>
-                </c:forEach>
+                <option value="${year + 1}">${year + 1}</option>
+                <option value="${year}" selected>${year}</option>
+                <option value="${year - 1}">${year - 1}</option>
+                <option value="${year - 2}">${year - 2}</option>
+                <option value="${year - 3}">${year - 3}</option>
+                <option value="${year - 4}">${year - 4}</option>
+                <option value="${year - 5}">${year - 5}</option>
             </select>
         </div>
 
