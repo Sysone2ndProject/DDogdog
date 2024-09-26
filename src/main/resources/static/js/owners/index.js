@@ -1,28 +1,16 @@
-let currentSlide = 0;
-const cells = document.querySelectorAll('.cell');
-const totalSlides = cells.length; //총 셀 갯수만큼 이동
+document.addEventListener("DOMContentLoaded", () => {
+  let today = new Date();
 
-function updateCarousel() {
-  const offset = -currentSlide * 100; // 슬라이드 이동 거리 계산
-  cells.forEach(cell => {
-    cell.style.transform = `translateX(${offset}%)`;
-  });
-}
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let day = today.getDate();
 
-function nextSlide() {
-  if (currentSlide < totalSlides - 1) {
-    currentSlide++;
-  } else {
-    currentSlide = 0; // 마지막 슬라이드에서는 처음으로 돌아가기
-  }
-  updateCarousel();
-}
+  let weekDays = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+  let currentDay = weekDays[today.getDay()];
 
-function prevSlide() {
-  if (currentSlide > 0) {
-    currentSlide--;
-  } else {
-    currentSlide = totalSlides - 1; // 첫 슬라이드에서 마지막으로 돌아가기
-  }
-  updateCarousel();
-}
+  if (month < 10) month = '0' + month;
+  if (day < 10) day = '0' + day;
+
+  document.getElementById('nowDate').innerText = year + '년 ' + month + '월 ' + day + '일';
+  document.getElementById('nowDay').innerText = currentDay;
+})

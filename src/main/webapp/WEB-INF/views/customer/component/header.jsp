@@ -19,39 +19,42 @@
 <body>
 <div class="header">
     <div class="header-content">
-        <a href="/v1/customers">
-            <img class="logo" src="${pageContext.request.contextPath}/img/logo_nobg.png" onclick="location.href='/v1/customers'" alt="logo"/>
-        </a>
+        <img class="logo" src="${pageContext.request.contextPath}/img/logo_nobg.png"
+             onclick="location.href='/v1/customers'" alt="logo"/>
 
-<%--        TO DO 클릭시 어디로 이동할 지 연결 & 해당 페이지일 경우 스타일 다르게--%>
+        <%--        TO DO 클릭시 어디로 이동할 지 연결 & 해당 페이지일 경우 스타일 다르게--%>
         <div class="nav-list">
             <p class="nav-item" onclick="location.href='/v1/customers'">Home</p>
             <p class="nav-item">Search</p>
             <p class="nav-item">About</p>
         </div>
 
-    <!-- 비로그인 시: 인증되지 않은 사용자라면 -->
-    <sec:authorize access="isAnonymous()">
-        <div class="login-btn">
-            <button class="button radius" onclick="location.href='/oauth2/authorization/kakao'">로그인/회원가입</button>
-        </div>
-    </sec:authorize>
+        <!-- 비로그인 시: 인증되지 않은 사용자라면 -->
+        <sec:authorize access="isAnonymous()">
+            <div class="login-btn">
+                <button class="button radius" onclick="location.href='/oauth2/authorization/kakao'">
+                    로그인/회원가입
+                </button>
+            </div>
+        </sec:authorize>
 
-    <!-- 로그인 시 -->
-    <sec:authorize access="isAuthenticated()">
-        <div class="login">
+        <!-- 로그인 시 -->
+        <sec:authorize access="isAuthenticated()">
+            <div class="login">
             <span class="user-name">
             환영합니다 <sec:authentication property="principal.name"/> 고객님
             </span>
-            <span class="material-icons-outlined" onclick="location.href='/v1/customers/member'">
+                <span class="material-icons-outlined"
+                      onclick="location.href='/v1/customers/member'">
                 person
             </span>
-            <span class="material-icons" onclick="location.href='/v1/logout'">
+                <span class="material-icons" onclick="location.href='/v1/logout'">
                 logout
             </span>
-        </div>
-    </sec:authorize>
+            </div>
+        </sec:authorize>
     </div>
 </div>
 </body>
+<script src="${pageContext.request.contextPath}/js/customers/header.js"></script>
 </html>
