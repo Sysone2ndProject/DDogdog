@@ -1,7 +1,126 @@
-.header-box {
-  height: 15%;
+@import "common.css";
+
+.container {
+  margin: 0 auto; /* 화면 중앙에 배치 */
+  min-height: 500px;
+  flex-wrap: wrap; /* 줄 바꿈을 허용합니다 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 방향 가운데 정렬 */
+  align-content: center;
+  padding: 50px 0; /* 위아래에 여백 추가 */
+  gap: 3rem;
+  width: 80%;
 }
 
-.container{
-  min-height: 605px;
+.signup-title {
+  text-align: center;
+  font-size: 3rem;
+  /*background-color: var(--main--background-gray);*/
+  border-radius: 0.5rem;
+  width: 50%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  width: 100%;
+  position: relative; /* 부모 요소에 상대적 위치 지정 */
+}
+
+.form-group i {
+  position: absolute; /* 아이콘을 절대 위치로 설정 */
+  left: 10px; /* 아이콘의 위치 조정 */
+  top: 50%; /* 세로 중앙 정렬 */
+  transform: translateY(-50%); /* 정확한 세로 중앙 정렬 */
+  font-size: 1.2em; /* 아이콘 크기 */
+  color: #495057; /* 아이콘 색상 */
+}
+
+.form-group input,
+.form-group select {
+  flex: 1; /* 입력 요소가 가능한 공간을 모두 차지하도록 설정 */
+  padding-left: 35px; /* 아이콘과 겹치지 않도록 왼쪽 패딩 설정 */
+  border: 0.1rem solid var(--main--color); /* 기본 테두리 */
+  border-radius: 5px;
+  transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  outline: none; /* 기본 아웃라인 제거 */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border: 0.2rem solid var(--main--color); /* 포커스 시 굵은 파란 테두리 */
+  box-shadow: 0 0 8px rgb(137, 153, 171); /* 포커스 시 그림자 */
+}
+
+.id-div {
+  gap: 2rem;
+}
+
+label {
+  font-size: 1.2rem;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 2.75rem;
+  background-color: var(--main--btn);
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.submit-btn :hover {
+  background-color: var(--main--btn--hover);
+}
+
+.check-btn {
+  width: 7rem;
+  height: 2.75rem;
+  background-color: var(--main--background-gray);
+  color: var(--main--color);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.check-btn:hover {
+  background-color: #c0c0c5;
+}
+
+
+.form-control {
+  display: flex;
+  padding: 10px;
+  border: 0.1rem solid var(--main--color); /* 기본 테두리 */
+  border-radius: 5px;
+  transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  outline: none; /* 기본 아웃라인 제거 */
+  width: 70%;
+}
+
+.id-input-div {
+  display: flex;
+  gap: 2rem;
+}
+
+.form-control:focus {
+  border: 0.2rem solid var(--main--color); /* 포커스 시 굵은 파란 테두리 */
+  box-shadow: 0 0 8px rgb(137, 153, 171); /* 포커스 시 그림자 */
+}
+
+.form-group select {
+  border: 1.5px solid var(--main--color); /* 테두리 추가 */
+}
+
+.login-btn {
+  display: flex;
+  justify-content: flex-end; /* 버튼을 중앙에 배치 */
+}
+
+.alert {
+  text-align: center;
 }
