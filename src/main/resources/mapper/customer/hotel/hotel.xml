@@ -65,17 +65,18 @@
     select h.*, r.price
     from hotels h
     join(select hotel_id, min(price) as price
-         from rooms
-         group by hotel_id) r
+    from rooms
+    group by hotel_id) r
     on h.id = r.hotel_id
     where h.id in
     <foreach item="hotelId" collection="hotelIds" open="(" separator="," close=")">
       #{hotelId}
     </foreach>
-    and h.address_id in (select id
-                       from addresses
-                       where full_address like '%' || #{keyword} || '%'
-                          or dong = #{keyword})
+    and (h.address_id in (select id
+    from addresses
+    where full_address like '%' || #{keyword} || '%'
+    or dong = #{keyword})
+    or h.business_name like '%' || #{keyword} || '%')
   </select>
 
   <select id="getHotelById" parameterType="Integer" resultMap="response">
