@@ -28,4 +28,8 @@ public class CustomDetails implements UserDetails {
     public String getUsername() {
         return authDTO.getId();
     }
+
+    public String getOwnerName() {
+        return authDTO.getOwnerName();
+    }
 }
