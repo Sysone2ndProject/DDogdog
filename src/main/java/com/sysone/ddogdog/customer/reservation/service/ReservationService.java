@@ -1,5 +1,8 @@
 package com.sysone.ddogdog.customer.reservation.service;
 
+import com.sysone.ddogdog.common.config.mail.model.RequestEmailContentDTO;
+import com.sysone.ddogdog.common.config.mail.service.EmailService;
+import com.sysone.ddogdog.common.config.oauth.PrincipalDetails;
 import com.sysone.ddogdog.common.exception.CustomerErrorCode;
 import com.sysone.ddogdog.common.exception.NoDataFoundException;
 import com.sysone.ddogdog.customer.reservation.mapper.ReservationMapper;
@@ -22,18 +25,29 @@ public class ReservationService {
 
     private final ReservationMapper reservationMapper;
     private final RoomChoiceService roomChoiceService;
+    private final EmailService emailService;
 
     /**
      * 예약 정보 저장 - 예약 저장 후 해당 pk를 받아, 방선택도 저장
-     * @param customerId 서버 인증 객체로부터 받아오는 customer pk
+     * @param user 서버 인증 객체로부터 인증 정보
      * @param dto 프론트로부터 받아오는 요청 객체
      */
     @Transactional
-    public void saveReserve(String customerId, RequestReservationDTO dto){
-        dto.setCustomerId(Long.parseLong(customerId));
+    public void saveReserve(PrincipalDetails user, RequestReservationDTO dto){
+        dto.setCustomerId(Long.parseLong(user.getUsername()));
         Reservation reservation = Reservation.from(dto);
         reservationMapper.saveReserve(reservation);
         roomChoiceService.saveRoomChoice(reservation.getId(),reservation.getStartDate(),reservation.getEndDate(),dto.getHotelId(),dto.getRooms());
+        RequestEmailContentDTO emailDTO =
+            RequestEmailContentDTO.builder()
+            .email(user.getCustomerDTO().getEmail())
+            .userName(user.getName())
+            .startDate(reservation.getStartDate())
+            .endDate(reservation.getEndDate())
+            .count(reservation.getCount())
+            .price(reservation.getPrice())
+            .createDate(reservation.getCreateDate()).build();
+        emailService.sendEmailNotice(emailDTO);
     }
 
     /**
