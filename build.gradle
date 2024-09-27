@@ -6,6 +6,11 @@ plugins {
 
 group = 'com.sysone'
 version = '0.0.1-SNAPSHOT'
+apply plugin: 'war'
+
+war {
+	enabled= false
+}
 
 java {
 	toolchain {
