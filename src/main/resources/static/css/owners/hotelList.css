@@ -2,8 +2,13 @@
 @import "common.css";
 
 .container {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
   font-family: 'miso';
   min-height: 605px;
+  margin-top: 1rem;
+  justify-content: center;
 }
 
 .hidden {
@@ -12,7 +17,7 @@
 
 .hotel-list-title {
   display: flex;
-  width: 90%;
+  width: 50%;
   align-content: center;
   justify-content: space-between;
   margin: 10px 0px;
@@ -24,47 +29,65 @@
 }
 
 .hotel-list-title button {
-  width: 120px;
-  height: 40px;
+  width: 20%;
+  height: 2.3rem;
+  cursor: pointer;
 }
 
 .hotel-card-title {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-end; /* 글자가 아래쪽에 붙도록 설정 */
+  gap: 1rem;
+  align-content: center;
+  margin-bottom: 1rem;
 }
 
-#hotel-name {
+.hotel-card-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 70%;
+}
+
+#hotelName {
   font-size: 1.4rem;
   font-weight: bold;
 }
 
+#businessNumber {
+  font-size: 0.9rem; /* 글자 크기를 작게 설정 */
+  color: var(--main--gray);
+  align-self: flex-end; /* businessNumber가 아래쪽에 배치되도록 설정 */
+}
+
 .hotel-card {
   display: flex;
-  width: 90%;
-  max-height: 270px;
-  border: 1px solid #f4cfc6;
+  width: 70%;
+  height: 25vh;
   border-radius: 10px;
   padding: 10px 10px;
-  box-shadow: 2px 2px 12px #ab7b6d;
   margin: 20px 0px;
   align-items: center;
 }
 
 .hotel-img {
   width: 40%;
-  border: 1px solid #f4cfc6;
-  overflow: hidden; /*이미지크기가 div크기 이내이도록 제한*/
+  object-fit: contain;
 }
 
 .hotel-img img {
-  max-width: 360px;
-  max-height: 250px;
-  object-fit: contain; /* 이미지 비율 유지하며 박스 사이즈 맞춤*/
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .hotel-info {
+  display: flex;
   width: 60%;
-  padding-left: 20px;
+  padding-left: 3rem;
+  gap: 1rem;
+  flex-direction: column;
 }
 
 #hotel-name {
@@ -72,9 +95,29 @@
 }
 
 .hotel-manage {
+  display: flex;
   width: 25%;
+  gap: 0.9rem;
+  flex-direction: column;
 }
 
 .hotel-manage button {
-  width: 120px;
+  height: 2.2rem;
+  width: 80%;
+  cursor: pointer;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center; /* 아이콘과 텍스트를 세로로 중앙 정렬 */
+  gap: 0.5rem; /* 아이콘과 텍스트 사이 간격 */
+}
+
+.icon-text i {
+  font-size: 1.2rem; /* 아이콘 크기 조절 */
+  color: var(--main--background-gray--hover);
+}
+
+button:hover{
+  background-color: var(--main--background-gray--hover);
 }

@@ -16,7 +16,6 @@
 .signup-title {
   text-align: center;
   font-size: 3rem;
-  /*background-color: var(--main--background-gray);*/
   border-radius: 0.5rem;
   width: 50%;
 }
@@ -88,7 +87,7 @@ label {
 }
 
 .check-btn:hover {
-  background-color: #c0c0c5;
+  background-color: var(--main--background-gray--hover);
 }
 
 
