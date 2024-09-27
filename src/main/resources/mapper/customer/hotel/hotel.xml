@@ -88,4 +88,11 @@
     on h.id = r.hotel_id
     where h.id = #{id}
   </select>
+
+  <select id="findHotelByKeyword" parameterType="String" resultType="String">
+    select business_name
+    from hotels
+    where business_name like '%' || #{searchKeyword} || '%'
+    order by business_name
+  </select>
 </mapper>

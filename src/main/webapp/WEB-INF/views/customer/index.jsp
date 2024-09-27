@@ -38,9 +38,11 @@
                 <input class="date-input" type="date" id="endDate" onclick="checkStartDate()"/>
             </div>
             <div class="text-input radius">
-                <input type="text" class="text" id="keyword" placeholder="장소를 입력해 주세요"/>
-            </div>
+<%--                TODO: 호텔 명 검색 기능 보완 --%>
+                <input type="text" class="text" id="keyword" placeholder="장소를 입력해 주세요" autocomplete="off" oninput="searchAutoComplete()"/>
+                <div id="autoSearchArea" class="select-area radius"></div>
             <button class="button radius" type="submit">검색</button>
+            </div>
         </form>
     </div>
 </div>
@@ -133,6 +135,7 @@
 <script src="${pageContext.request.contextPath}/js/customers/index.js"></script>
 <script src="${pageContext.request.contextPath}/js/customers/dateHandler.js"></script>
 <script src="${pageContext.request.contextPath}/js/customers/locationHandler.js"></script>
+<script src="${pageContext.request.contextPath}/js/customers/searchAutocomplete.js"></script>
 <script>
   <sec:authorize access="isAuthenticated()">
   let addressId = <sec:authentication property="principal.customerDTO.addressId"/>;
