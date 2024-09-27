@@ -2,6 +2,7 @@ package com.sysone.ddogdog.owner.reservation.controller;
 
 import com.sysone.ddogdog.owner.reservation.model.ResponseReservationDayDTO;
 import com.sysone.ddogdog.owner.reservation.model.ResponseReservationMonthDTO;
+import com.sysone.ddogdog.owner.reservation.model.ResponseReservationYearDTO;
 import com.sysone.ddogdog.owner.reservation.service.OwnerReservationService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -34,8 +35,14 @@ public class ReservationController {
         @RequestParam Integer year,
         @RequestParam Integer month,
         @RequestParam Integer date) {
-
         List<ResponseReservationDayDTO> reservations = ownerReservationService.getReservationDay(hotelId, year, month, date);
+        return ResponseEntity.status(HttpStatus.OK).body(reservations);
+    }
+
+    @GetMapping("/year")
+    public ResponseEntity<List<ResponseReservationYearDTO>> getReservationYear(@RequestParam Integer hotelId,
+        @RequestParam Integer year){
+        List<ResponseReservationYearDTO> reservations = ownerReservationService.getReservationYear(hotelId, year);
         return ResponseEntity.status(HttpStatus.OK).body(reservations);
     }
 

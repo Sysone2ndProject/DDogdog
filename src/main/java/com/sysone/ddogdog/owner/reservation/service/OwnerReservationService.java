@@ -3,6 +3,7 @@ package com.sysone.ddogdog.owner.reservation.service;
 import com.sysone.ddogdog.owner.reservation.mapper.OwnerReservationMapper;
 import com.sysone.ddogdog.owner.reservation.model.ResponseReservationDayDTO;
 import com.sysone.ddogdog.owner.reservation.model.ResponseReservationMonthDTO;
+import com.sysone.ddogdog.owner.reservation.model.ResponseReservationYearDTO;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -40,6 +41,13 @@ public class OwnerReservationService {
         LocalDate reservationDate = LocalDate.of(year, month, date);
         String reservationDateStr = reservationDate.format(formatter);
         return ownerReservationMapper.getDayReservation(hotelId, reservationDateStr);
+    }
+
+    public List<ResponseReservationYearDTO> getReservationYear(Integer hotelId, Integer year){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String startDate = LocalDate.of(year,1,1).format(formatter);
+        String endDate = LocalDate.of(year+1,1,1).format(formatter);
+        return ownerReservationMapper.getYearReservation(startDate,endDate,hotelId);
     }
 
 }

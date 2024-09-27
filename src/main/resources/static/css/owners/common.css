@@ -1,0 +1,42 @@
+:root {
+  --main--blue: #2057b0;
+  --main--gray: #7d7d7d;
+  --main--color:#313844;
+  --main--btn: #df6951;
+  --main--btn--hover: #b4523e;
+  --main--lightblue:#a8bde4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
+
+input, button {
+  border: none;
+}
+
+.radius {
+  border-radius: 0.5rem;
+}
+
+.shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.button {
+  width: 7rem;
+  height: 2.75rem;
+  background-color: var(--main--btn);
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--main--btn--hover);
+}
