@@ -5,6 +5,7 @@ spring:
       local: local, common, secret
       blue: blue, common, secret
       green: green, common, secret
+
 server:
   env: blue
 
@@ -30,7 +31,6 @@ spring:
 server:
   port: 8080
   serverAddress: ${server.address.blue}
-
 serverName: blue_server
 
 ---
@@ -43,7 +43,6 @@ spring:
 server:
   port: 8081
   serverAddress: ${server.address.green}
-
 serverName: green_server
 
 ---
@@ -54,8 +53,6 @@ spring:
       on-profile: common
   application:
     name: ddogdog
-  profiles:
-    active: secret
   mvc:
     view:
       prefix: /WEB-INF/views/
