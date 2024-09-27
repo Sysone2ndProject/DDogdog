@@ -12,7 +12,6 @@
     <!-- Axios 및 JavaScript 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 추가 -->
-    <script> let petId =${pet.id}</script>
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
@@ -79,8 +78,8 @@
         </form>
     </div>
 </div>
-</script>
 <jsp:include page="component/footer.jsp"/>
 </body>
 <script src="/js/customers/petDetails.js"></script>
+<script> let petId =${pet.id}</script>
 </html>
