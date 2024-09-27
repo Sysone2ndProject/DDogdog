@@ -78,8 +78,8 @@
         </form>
     </div>
 </div>
-<script src="/js/customers/petAdd.js"></script>
-</script>
 <jsp:include page="component/footer.jsp"/>
 </body>
+<script src="/js/customers/petAdd.js"></script>
+</script>
 </html>

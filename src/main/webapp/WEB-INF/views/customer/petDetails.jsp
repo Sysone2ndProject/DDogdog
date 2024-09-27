@@ -79,8 +79,8 @@
         </form>
     </div>
 </div>
-<script src="/js/customers/petDetails.js"></script>
 </script>
 <jsp:include page="component/footer.jsp"/>
 </body>
+<script src="/js/customers/petDetails.js"></script>
 </html>
