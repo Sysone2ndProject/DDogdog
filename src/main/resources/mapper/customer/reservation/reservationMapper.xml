@@ -26,7 +26,7 @@
             SELECT id, hotel_id, start_date, end_date, count, price, create_date, canceled
             FROM reservations
             WHERE customer_id = #{customerId}
-        ) r ON r.hotel_id = h.id
+        ) r ON r.hotel_id = h.id ORDER BY r.create_date DESC
     </select>
 
     <update id="patchReservationCanceled" parameterType="Long">
