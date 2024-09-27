@@ -15,10 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<div class="header-box">
-    <jsp:include page="component/header.jsp"></jsp:include>
-</div>
-<!-- 테스트용 입니다. -->
+<jsp:include page="component/header.jsp"></jsp:include>
+
 <div class="container">
     <p id="title">${room.grade}</p>
     <form id="update-room-form" enctype="multipart/form-data">
@@ -57,9 +55,8 @@
     </form>
 </div>
 
-<div class="footer-box">
-    <jsp:include page="component/footer.jsp"></jsp:include>
-</div>
+<jsp:include page="component/footer.jsp"></jsp:include>
+
 </body>
 <script src="${pageContext.request.contextPath}/js/owners/updateRoom.js"></script>
 </html>

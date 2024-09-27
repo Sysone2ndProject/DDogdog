@@ -1,14 +1,5 @@
 @import "../common/font.css";
-
-:root {
-  --main--blue: #07004D;
-  --main--pink: #f4cfc6;
-  --main--pinkHover: #ab7b6d;
-}
-
-.header-box {
-  height: 15%;
-}
+@import "common.css";
 
 .container {
   font-family: 'miso';
@@ -51,17 +42,17 @@
   display: flex;
   width: 90%;
   max-height: 270px;
-  border: 1px solid var(--main--pink);
+  border: 1px solid #f4cfc6;
   border-radius: 10px;
   padding: 10px 10px;
-  box-shadow: 2px 2px 12px var(--main--pinkHover);
+  box-shadow: 2px 2px 12px #ab7b6d;
   margin: 20px 0px;
   align-items: center;
 }
 
 .room-img {
   width: 40%;
-  border: 1px solid var(--main--pink);
+  border: 1px solid #f4cfc6;
   overflow: hidden; /*이미지크기가 div크기 이내이도록 제한*/
 }
 

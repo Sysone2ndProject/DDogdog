@@ -15,10 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<div class="header-box">
-    <jsp:include page="component/header.jsp"></jsp:include>
-</div>
-<!-- 테스트용 입니다. -->
+<jsp:include page="component/header.jsp"></jsp:include>
+
 <div class="container">
     <p id="title">호텔 정보 수정</p>
     <form id="hotel-update-form" enctype="multipart/form-data">
@@ -65,10 +63,8 @@
     </form>
 </div>
 
+<jsp:include page="component/footer.jsp"></jsp:include>
 
-<div class="footer-box">
-    <jsp:include page="component/footer.jsp"></jsp:include>
-</div>
 </body>
 <script src="${pageContext.request.contextPath}/js/owners/updateHotel.js"></script>
 </html>
