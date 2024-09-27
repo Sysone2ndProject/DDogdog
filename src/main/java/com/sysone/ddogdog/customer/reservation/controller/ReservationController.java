@@ -25,7 +25,7 @@ public class ReservationController {
     public ResponseEntity<String> saveReserve(@AuthenticationPrincipal PrincipalDetails user,
         @RequestBody RequestReservationDTO dto) {
         try {
-            reservationService.saveReserve(user.getUsername(), dto);
+            reservationService.saveReserve(user,dto);
             return new ResponseEntity<>("예약에 성공했습니다", HttpStatus.CREATED);
         } catch (NoAvailableRoomsException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
