@@ -31,11 +31,13 @@
                 <input type="file" id="image" name="image" class="file-input"
                        onchange="handleFileSelect(event)">
             </label>
-            <div id="species">견종</div>
-            <!-- SweetAlert2로 변경 -->
-            <button type="button" class="btn btn-primary" onclick="openBreedSelectionModal()">
-                견종 선택
-            </button>
+
+            <div class="species-input">
+                <div class="dog-species">견종 :</div>  <div id="species" class="species-underline"></div>
+                <button type="button" class="button-custom" onclick="openBreedSelectionModal()">
+                    견종 선택
+                </button>
+            </div>
             <br><br>
         </div>
         <div class="middle">
@@ -44,16 +46,16 @@
               enctype="multipart/form-data">
             <div class="form-group">
             <label for="name">이름:</label>
-            <input type="text" id="name" name="name" class="input-underline"required><br><br>
+            <input type="text" id="name" name="name" class="input-underline" required><br><br>
             </div>
             <div class="form-group">
             <label for="age">나이:</label>
-            <input type="text" id="age" name="age" class="input-underline"required><br><br>
+            <input type="text" id="age" name="age" class="input-underline" required><br><br>
             </div>
 
             <div class="form-group">
             <label for="gender">성별:</label>
-            <select id="gender" name="gender" class="input-underline"required>
+            <select id="gender" name="gender" class="input-underline" required>
                 <option>선택해주세요</option>
                 <option value="남자">남자</option>
                 <option value="여자">여자</option>
@@ -71,7 +73,7 @@
                 <textarea id="info" name="info" required></textarea><br><br>
             </div>
             <div class="end">
-            <button type="submit">등록</button>
+             <button class="button-custom" type="submit">등록</button>
             </div>
         </form>
     </div>

@@ -1,3 +1,5 @@
+let debounceTimer;
+let petSpeciesId; // petSpeciesId 변수를 선언합니다.
 const handleFileSelect = (event) => {
     const file = event.target.files[0];
     const imagePreview = document.getElementById('imagePreview');
@@ -13,98 +15,85 @@ const handleFileSelect = (event) => {
     }
 }
 
-let petSpeciesId;
-
-// 모달이 열릴 때 전체 견종 리스트를 비동기로 불러오기
-$('#breedModal').on('shown.bs.modal', () => {
-    loadBreedList(''); // 전체 견종 리스트 로드
-});
-
-// 검색 버튼 클릭 시 호출되는 함수
-const searchBreed = () => {
-    const query = document.getElementById('searchBreed').value;
-    loadBreedList(query); // 검색어를 이용한 견종 리스트 로드
-}
-
-// 견종 리스트 로드 함수 (검색어가 있을 경우 해당 검색어를 이용)
+// 견종 리스트를 SweetAlert2 모달로 로드
 const loadBreedList = (query) => {
-    axios.get('/v1/customers/pets/species', {
-        params: {query: query}  // 검색어를 서버로 전송
-    })
-        .then((response) => {
-            console.log(response);
-            const breedList = document.getElementById('breedList');
-            const noResults = document.getElementById('noResults');
-            breedList.innerHTML = ''; // 기존 리스트 초기화
-            noResults.classList.add('d-none'); // "검색 결과 없음" 메시지 숨기기
+    clearTimeout(debounceTimer); // 이전 타이머 클리어
 
+    debounceTimer = setTimeout(() => {
+        axios.get('/v1/customers/pets/species', {
+            params: { query: query }
+        })
+        .then((response) => {
+            let breedListHtml = '';
             if (response.data.length === 0) {
-                noResults.classList.remove('d-none'); // 검색 결과 없음 메시지 표시
+                breedListHtml = `<p>검색 결과 없음</p>`;
             } else {
                 response.data.forEach((breed) => {
-                    const li = document.createElement('li');
-                    li.textContent = breed.species;
-                    li.dataset.breedId = breed.id; // 선택 시 ID를 받아오기 위해 저장
-                    li.classList.add('list-group-item');
-                    li.onclick = () => {
-                        // 선택된 견종 ID와 이름을 변수에 저장
-                        petSpeciesId = breed.id;
-                        displaySelectedBreed(breed.species);
-                        $('#breedModal').modal('hide'); // 모달 닫기
-                    };
-                    breedList.appendChild(li);
+                    breedListHtml += `<li class="list-group-item" onclick="selectBreed('${breed.id}', '${breed.species}')">${breed.species}</li>`;
                 });
             }
+
+            // 모달의 breedList 업데이트
+            const breedListElement = document.getElementById('breedList');
+            breedListElement.innerHTML = breedListHtml;
         })
         .catch((error) => {
-            console.error('Error fetching breed list:', error);
+            console.error('견종 리스트 가져오기 오류:', error);
         });
-}
+    }, 300); // 300ms 후에 요청
+};
 
-// 견종 등록 폼으로 전환 함수
+// 견종 선택 시 호출되는 함수
+const selectBreed = (id, species) => {
+    petSpeciesId = id;
+    displaySelectedBreed(species);
+    Swal.close(); // SweetAlert 모달 닫기
+};
+
+// 견종 등록 모달을 SweetAlert2로
 const showBreedRegistrationForm = () => {
-    // 검색 결과 없음 메시지와 검색 폼을 숨기고, 등록 폼을 표시합니다.
-    document.getElementById('noResults').classList.add('d-none');
-    document.getElementById('breedList').classList.add('d-none');
-    document.getElementById('registrationForm').classList.remove('d-none');
-}
+    Swal.fire({
+        title: '견종 등록',
+        html: `<input type="text" id="newBreedName" class="swal2-input" placeholder="새로운 견종 이름">`,
+        showCancelButton: true,
+        confirmButtonText: '등록',
+        preConfirm: () => {
+            const breedName = document.getElementById('newBreedName').value;
+            if (!breedName) {
+                Swal.showValidationMessage('견종 이름을 입력해 주세요.');
+            } else {
+                return breedName;
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            registerBreed(result.value); // 견종 등록
+        }
+    });
+};
 
-const registerBreed = () => {
-    const breedName = document.getElementById('newBreedName').value;
-
-    if (!breedName) {
-        alert('견종 이름을 입력해 주세요.');
-        return;
-    }
-
+// 견종 등록 처리 함수
+const registerBreed = (breedName) => {
     axios.post('/v1/customers/pets/species', {
         query: breedName
     })
-        .then((response) => {
-            // 서버 응답에서 견종 ID를 받아옴
-            alert('견종이 성공적으로 등록되었습니다.');
-            petSpeciesId = response.data;
-            // 방금 등록된 견종을 화면에 표시
-            displaySelectedBreed(breedName);
+    .then((response) => {
+        Swal.fire('등록 완료', '견종이 성공적으로 등록되었습니다.', 'success');
+        petSpeciesId = response.data; // 새로운 견종 ID 저장
+        displaySelectedBreed(breedName); // 견종 화면에 표시
+    })
+    .catch((error) => {
+        console.error('견종 등록 오류:', error);
+        Swal.fire('등록 실패', '견종 등록에 실패했습니다.', 'error');
+    });
+};
 
-            // 모달을 닫고 초기화
-            document.getElementById('registrationForm').classList.add('d-none');  // 등록 폼 숨기기
-            document.getElementById('breedList').classList.remove('d-none');      // 견종 리스트 표시
-            document.getElementById('noResults').classList.add('d-none');         // '검색 결과 없음' 숨기기
-            document.getElementById('searchBreed').value = '';  // 검색 필드 초기화
-            $('#breedModal').modal('hide'); // 모달 닫기
-
-        })
-        .catch((error) => {
-            console.error('Error registering breed:', error);
-            alert('견종 등록에 실패했습니다.');
-        });
-}
-
+// 선택한 견종을 화면에 표시
 const displaySelectedBreed = (newBreedName) => {
     const speciesDiv = document.getElementById('species');
-    speciesDiv.textContent = newBreedName;  // 새로운 견종 이름을 #species div에 표시
-}
+    speciesDiv.textContent = newBreedName;
+};
+
 
 const submitForm = (event) => {
     event.preventDefault();
@@ -143,3 +132,25 @@ const submitForm = (event) => {
             alert('폼 제출에 실패했습니다.');
         });
 }
+// SweetAlert2 모달을 띄우고 견종 리스트 로드
+const openBreedSelectionModal = () => {
+    loadBreedList(''); // 초기 로드
+    Swal.fire({
+        title: '견종 선택',
+        html: `
+      <div style="position: relative;">
+        <input id="searchBreed" class="swal2-input" placeholder="견종 검색" oninput="loadBreedList(this.value)">
+        <button id="searchButton" style="background: none; border: none; cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <ul id="breedList" class="list-group"></ul>
+    `,
+        showCancelButton: true,
+        focusConfirm: false,
+    });
+};
+
+const navigateToPage = () => {
+    window.location.href = '/v1/customers/member';  // 이동할 URL
+};
