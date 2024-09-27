@@ -1,14 +1,5 @@
 @import "../common/font.css";
-
-:root {
-  --main--blue: #07004D;
-  --main--pink: #f4cfc6;
-  --main--pinkHover: #ab7b6d;
-}
-
-.header-box {
-  height: 15%;
-}
+@import "common.css";
 
 .container {
   font-family: 'miso';
@@ -18,12 +9,12 @@
   justify-content: center;
 }
 
-.select{
+.select {
   display: flex;
   width: 100%;
 }
 
-.hotel{
+.hotel {
   width: 80%;
 }
 
@@ -43,7 +34,7 @@
   margin: 0 5px; /* 차트 간의 간격 조절 */
 }
 
-#monthIncome{
+#monthIncome {
   min-height: 400px;
 }
 
@@ -53,6 +44,7 @@
   display: flex; /* Flexbox 사용 */
   justify-content: center; /* 가로 가운데 정렬 */
 }
+
 canvas {
   max-width: 100%;
   max-height: 100%;

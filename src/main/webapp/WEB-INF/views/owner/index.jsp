@@ -54,15 +54,15 @@
             <sec:authorize access="isAuthenticated()">
                 <div class="main-login">
                     <p class="welcome-text">
-                    <span class="user-name"><sec:authentication property="principal.username"/></span> 사장님 환영합니다
+                        <span class="user-name"><sec:authentication property="principal.ownerName"/></span> 사장님 환영합니다
                     </p>
-                    <button class="main-btn radius" type="button" onclick="location.href='/v1/owners/hotels/'">호텔 및 객실 관리</button>
+                    <button class="main-btn radius" type="button" onclick="location.href='/v1/owners/hotels'">호텔 및 객실 관리</button>
                     <button class="main-btn radius" type="button" onclick="location.href='/v1/owners/reservations/form'">예약 관리</button>
                     <button class="main-btn radius" type="button" onclick="location.href='/v1/owners/reservations/statics'">매출 통계</button>
                     <div class="main-logout" onclick="location.href='/v1/logout'">
                         <span>로그아웃</span>
                         <span class="material-icons"
-                              >logout</span>
+                        >logout</span>
                     </div>
                 </div>
             </sec:authorize>

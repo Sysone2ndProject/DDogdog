@@ -13,9 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="header-box">
-    <jsp:include page="component/header.jsp"></jsp:include>
-</div>
+<jsp:include page="component/header.jsp"></jsp:include>
 <!-- 로그인 후 권한 확인 테스트용 입니다. -->
 <div class="container">
     <div>
@@ -23,6 +21,7 @@
         <button type="button" class="btn btn-primary" onclick="location.href = '/v1/owners'">메인페이지로가기</button>
     </div>
 </div>
+<jsp:include page="component/footer.jsp"></jsp:include>
 </body>
 
 </html>

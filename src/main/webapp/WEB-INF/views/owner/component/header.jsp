@@ -22,27 +22,25 @@
         <!-- 비로그인 시: 인증되지 않은 사용자라면 -->
         <sec:authorize access="isAnonymous()">
             <div class="nav-list">
-                <p class="nav-item" onclick="location.href='/v1/owners'">Home</p>
+                <p class="nav-item" onclick="location.href='/v1/owners/hotels'">Management</p>
                 <p class="nav-item" onclick="needLogin()">Reservation</p>
                 <p class="nav-item" onclick="needLogin()">Analyze</p>
             </div>
             <div class="login-btn">
-                <button class="button radius" onclick="location.href='/v1/owners/login'">로그인/회원가입
-                </button>
+                <button class="button radius" onclick="location.href='/v1/owners/login'">로그인</button>
+                <button class="button radius" onclick="location.href='/v1/owners/signup'">회원가입</button>
             </div>
         </sec:authorize>
 
         <!-- 로그인 시 -->
         <sec:authorize access="isAuthenticated()">
             <div class="nav-list">
-                <p class="nav-item" onclick="location.href='/v1/owners'">Home</p>
+                <p class="nav-item" onclick="location.href='/v1/owners/hotels'">Management</p>
                 <p class="nav-item" onclick="location.href='/v1/owners/reservations/form'">Reservation</p>
-                <p class="nav-item" onclick="location.href='/v1/owners/reservations/statics'">Analyze</p>
+                <p class="nav-item" onclick="location.href='/v1/owners/reservations/statistics'">Analyze</p>
             </div>
-            <div class="login">
-            <span class="user-name">
-            환영합니다 <sec:authentication property="principal.username"/> 고객님
-            </span>
+            <div class="login-btn">
+                <button class="button radius" onclick="location.href='/v1/logout'">로그아웃</button>
             </div>
         </sec:authorize>
     </div>

@@ -1,37 +1,90 @@
-.header-box {
-  height: 15%;
-}
+@import "common.css";
 
 .container {
   font-family: 'miso';
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.hotel{
+.hotel {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  gap: 1.2rem;
+}
+
+/* 캘린더 스타일 */
+.calendar-div {
+  width: 80%; /* 캘린더 넓이 */
   margin: 10px;
 }
 
-.calendar{
+.button:focus {
+  outline: none;
+}
+
+.calendar {
   margin: 10px;
 }
 
-.fc-toolbar-chunk{
+#calendar {
+  width: 100%;
+  height: auto;
+}
+
+/* 툴바 버튼 스타일 공유 */
+.fc .fc-toolbar-chunk .fc-button,
+.fc .fc-toolbar-chunk .fc-button:focus,
+.fc .fc-toolbar-chunk .fc-button:hover,
+.fc .fc-toolbar-chunk .fc-button:active {
+  background-color: transparent;
+  box-shadow: none;
+  border-color: transparent;
+  outline: 0;
+  color: var(--main--color);
+}
+
+/* 기본 버튼 스타일 */
+.fc .fc-button-primary,
+.fc .fc-button-primary:focus,
+.fc .fc-button-primary:hover,
+.fc .fc-button-primary:active {
+  background-color: transparent;
+  border-color: transparent;
+  outline: 0;
+  color: var(--main--color);
+  font-weight: bold;
+}
+
+.fc .fc-button-primary:hover span,
+.fc .fc-button-primary:focus span {
+  font-size: 1.1rem; /* 호버 또는 포커스 시 크기 조정 */
+}
+
+.fc .fc-button-primary:active span {
+  font-size: 1.2rem; /* 클릭 시 크기 조정 */
+}
+
+/* 툴바 버튼 정렬 */
+.fc-toolbar-chunk {
   display: flex;
 }
 
-.fc-day-mon a, .fc-day-tue a, .fc-day-wed a, .fc-day-thu a,.fc-day-fri a{
+/* 요일별 날짜 스타일 */
+.fc-day-mon a, .fc-day-tue a, .fc-day-wed a, .fc-day-thu a, .fc-day-fri a {
   color: black;
   text-decoration: none;
 }
 
-/* 일요일 날짜 빨간색 */
 .fc-day-sun a {
-  color: red;
+  color: red; /* 일요일 빨간색 */
   text-decoration: none;
 }
 
-/* 토요일 날짜 파란색 */
 .fc-day-sat a {
-  color: blue;
+  color: blue; /* 토요일 파란색 */
   text-decoration: none;
 }
 
@@ -42,5 +95,32 @@
 }
 
 .fc-event-title {
-  color: black; /* 원하는 글자색으로 변경 (예: 주황색) */
+  color: black; /* 원하는 글자색으로 변경 */
+}
+
+.sales span{
+  color: red;
+}
+
+/* 반응형 처리 */
+@media (max-width: 650px) {
+  .container {
+    flex-direction: column; /* 화면이 650px 이하일 때 세로 정렬 */
+    align-items: center;
+  }
+
+  .hotel {
+    flex-direction: row; /* 호텔 버튼을 가로로 정렬 */
+    justify-content: center;
+    flex-wrap: wrap; /* 버튼이 화면 너비에 맞게 감싸도록 */
+  }
+
+  .calendar-div {
+    width: 100%; /* 캘린더 넓이를 100%로 설정 */
+    margin-top: 1rem;
+  }
+
+  #calendar {
+    width: 100%; /* 캘린더 넓이 100% */
+  }
 }

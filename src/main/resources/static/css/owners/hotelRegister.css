@@ -1,4 +1,6 @@
-#thumbnail-preview {
+@import "common.css";
+
+#thumbnailPreview {
   max-width: 400px;
   display: none;
 }

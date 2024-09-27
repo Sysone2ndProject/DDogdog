@@ -9,37 +9,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OWNER:회원가입</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/signUp.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a08faffd77.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<div class="header-box">
-    <jsp:include page="component/header.jsp"></jsp:include>
-</div>
-<!-- 테스트용 입니다. -->
+<jsp:include page="component/header.jsp"></jsp:include>
+
 <div class="container">
-    <h1>회원가입</h1>
+    <div class="signup-title">
+        <p>회원가입</p>
+    </div>
+
     <form id="signUpForm" action="${pageContext.request.contextPath}/v1/owners/signup" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <div class="form-group">
-            <label for="id">아이디:</label>
-            <input type="text" class="form-control" id="id" name="id">
-            <button type="button" onclick="checkId()">중복확인</button>
+
+        <div class="form-group id-div">
+            <i class="fa-solid fa-user"></i> <!-- 아이디 아이콘 -->
+            <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required>
+            <button class="check-btn radius" type="button" onclick="checkId()">중복확인</button>
         </div>
+
         <div class="form-group">
-            <label for="password">password:</label>
-            <input type="password" class="form-control" id="password" name="password">
+            <i class="fa-solid fa-lock"></i> <!-- 비밀번호 아이콘 -->
+            <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
         </div>
+
         <div class="form-group">
-            <label for="ownerName">이름:</label>
-            <input type="text" class="form-control" id="ownerName" name="ownerName">
+            <i class="fa-solid fa-id-card"></i>
+            <input type="text" class="form-control" id="ownerName" name="ownerName" placeholder="이름">
         </div>
+
         <div class="form-group">
-            <label for="bank">은행 (Bank):</label>
-            <select id="bank" name="bank" required>
-                <option disabled hidden selected>
-                    --- 은행을 선택해 주세요 ---
-                </option>
+            <i class="fa-solid fa-building-columns"></i> <!-- 은행 아이콘 -->
+            <select class="form-control" id="bank" name="bank" required>
+                <option disabled hidden selected>--- 은행을 선택해 주세요 ---</option>
                 <option value="신한은행">신한은행</option>
                 <option value="국민은행">국민은행</option>
                 <option value="농협은행">농협은행</option>
@@ -50,17 +53,23 @@
                 <option value="케이뱅크">케이뱅크</option>
             </select>
         </div>
+
         <div class="form-group">
-            <label for="accountNumber">계좌번호</label>
+            <i class="fa-solid fa-credit-card"></i> <!-- 계좌번호 아이콘 -->
             <input type="text" class="form-control" id="accountNumber" name="accountNumber" oninput="numberCheck()"
-                   placeholder="숫자만 입력해 주세요">
+                   placeholder="계좌번호">
         </div>
-        <button type="button" class="btn btn-success" onclick="signUp()">가입하기</button>
+
+        <div class="form-group btn">
+            <button type="button" class="submit-btn" onclick="signUp()">가입하기</button>
+        </div>
     </form>
+
+
 </div>
-<div class="footer-box">
-    <jsp:include page="component/footer.jsp"></jsp:include>
-</div>
+
+<jsp:include page="component/footer.jsp"></jsp:include>
+
 </body>
 <script src="${pageContext.request.contextPath}/js/owners/signUp.js"></script>
 </html>

@@ -14,25 +14,25 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<div class="header-box">
-    <jsp:include page="component/header.jsp"></jsp:include>
-</div>
+
+<jsp:include page="component/header.jsp"></jsp:include>
+
 <!-- 테스트용 입니다. -->
 <div class="container">
     <h1>호텔등록</h1>
     <form id="hotelRegisterForm" enctype="multipart/form-data">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="form-group">
-            <label for="business-name">상호명:</label>
-            <input type="text" class="form-control" id="business-name">
+            <label for="businessName">상호명:</label>
+            <input type="text" class="form-control" id="businessName">
         </div>
         <div class="form-group">
-            <label for="business-number">사업자번호:</label>
-            <input type="text" class="form-control" id="business-number">
+            <label for="businessNumber">사업자번호:</label>
+            <input type="text" class="form-control" id="businessNumber">
         </div>
         <div class="form-group">
-            <label for="phone-number">사업장연락처:</label>
-            <input type="text" class="form-control" id="phone-number">
+            <label for="phoneNumber">사업장연락처:</label>
+            <input type="text" class="form-control" id="phoneNumber">
         </div>
         <div class="form-group">
             <label for="address">사업장주소:주소 찾기를 통해 입력해 주세요</label>
@@ -40,17 +40,17 @@
             <button type="button" onclick="findAddress()">주소 찾기</button>
         </div>
         <div class="form-group">
-            <label for="main-image">호텔 대표 섬네일</label>
-            <input type="file" class="form-control-file" id="main-image" accept="image/*" required onchange="previewThumnail(event)">
-            <div id="image-preview-div">
-                <img id="thumbnail-preview">
+            <label for="mainImage">호텔 대표 섬네일</label>
+            <input type="file" class="form-control-file" id="mainImage" accept="image/*" required onchange="previewThumnail(event)">
+            <div id="imagePreviewDiv">
+                <img id="thumbnailPreview">
             </div>
         </div>
         <div class="form-group">
             <label for="intro">호텔 소개글:</label>
             <textarea class="form-control" id="intro"></textarea>
         </div>
-        <button type="submit" class="btn btn-success">등록하기</button>
+        <button type="submit" class="button radius">등록하기</button>
         <div class="address-hidden">
             <input type="hidden" id="sido">
             <input type="hidden" id="sigungu">
@@ -60,9 +60,8 @@
 </div>
 
 
-<div class="footer-box">
-    <jsp:include page="component/footer.jsp"></jsp:include>
-</div>
+<jsp:include page="component/footer.jsp"></jsp:include>
+
 </body>
 <script src="${pageContext.request.contextPath}/js/owners/hotelRegister.js"></script>
 </html>

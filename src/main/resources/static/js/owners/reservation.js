@@ -114,7 +114,7 @@ const getReservation = (hotelId, year, month, successCallback,
     const formattedPrice = new Intl.NumberFormat('ko-KR').format(totalPrice);
 
     const income = document.getElementById("income");
-    income.innerText = `총 수입: ${formattedPrice} 원`
+    income.innerHTML = `총 수입: <span>${formattedPrice}</span>원`;
 
     successCallback(events); // 캘린더에 이벤트 등록
 

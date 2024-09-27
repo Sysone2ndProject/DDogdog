@@ -1,8 +1,5 @@
 @import "../common/font.css";
-
-.header-box {
-  height: 15%;
-}
+@import "common.css";
 
 .container {
   font-family: 'miso';

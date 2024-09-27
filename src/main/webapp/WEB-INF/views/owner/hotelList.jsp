@@ -13,9 +13,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="header-box">
-    <jsp:include page="component/header.jsp"></jsp:include>
-</div>
+<jsp:include page="component/header.jsp"></jsp:include>
+
 <!-- 테스트용 입니다. -->
 <div class="container">
     <div class="hotel-list-title">
@@ -45,9 +44,8 @@
     </c:forEach>
 </div>
 
-<div class="footer-box">
-    <jsp:include page="component/footer.jsp"></jsp:include>
-</div>
+<jsp:include page="component/footer.jsp"></jsp:include>
+
 </body>
 <script src="${pageContext.request.contextPath}/js/owners/hotelList.js"></script>
 </html>

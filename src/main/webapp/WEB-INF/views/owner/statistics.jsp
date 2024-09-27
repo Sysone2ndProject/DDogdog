@@ -13,9 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<div class="header-box">
-    <jsp:include page="component/header.jsp"></jsp:include>
-</div>
+<jsp:include page="component/header.jsp"></jsp:include>
 
 <div class="container">
     <div class="select">
@@ -50,9 +48,7 @@
     </div>
 </div>
 
-<div class="footer-box">
-    <jsp:include page="component/footer.jsp"></jsp:include>
-</div>
+<jsp:include page="component/footer.jsp"></jsp:include>
 </body>
 <script src="${pageContext.request.contextPath}/js/owners/statistics.js"></script>
 </html>
