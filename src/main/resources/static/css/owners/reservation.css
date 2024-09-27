@@ -98,6 +98,10 @@
   color: black; /* 원하는 글자색으로 변경 */
 }
 
+.sales span{
+  color: red;
+}
+
 /* 반응형 처리 */
 @media (max-width: 650px) {
   .container {
