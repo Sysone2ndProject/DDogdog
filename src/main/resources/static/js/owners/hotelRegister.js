@@ -4,13 +4,13 @@ document.getElementById('hotelRegisterForm').onsubmit =
 
       const formData = new FormData();
       formData.append('businessName',
-          document.getElementById("business-name").value);
+          document.getElementById("businessName").value);
       formData.append('businessNumber',
-          document.getElementById("business-number").value);
+          document.getElementById("businessNumber").value);
       formData.append('phoneNumber',
-          document.getElementById("phone-number").value);
+          document.getElementById("phoneNumber").value);
       formData.append('mainImage',
-          document.getElementById("main-image").files[0]);
+          document.getElementById("mainImage").files[0]);
       formData.append('intro',
           document.getElementById("intro").value);
       formData.append('fullAddress',
@@ -60,7 +60,7 @@ const previewThumnail = (event) => {
   if (file) {
     const reader = new FileReader();
     reader.onload = function (e) {
-      const preview = document.getElementById('thumbnail-preview');
+      const preview = document.getElementById('thumbnailPreview');
       preview.src = e.target.result; // 이미지 미리보기 src 설정
       preview.style.display = 'block'; //이미지 미리보기 div 화면 보이기
     };

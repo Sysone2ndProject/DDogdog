@@ -2,15 +2,16 @@ document.getElementById('roomRegisterForm').onsubmit =
     function (event) {
       event.preventDefault();
 
-      const hotelId = document.getElementById('hotel-id-hidden').value;
+      const hotelId = document.getElementById('hotelIdHidden').value;
       const formData = new FormData();
-      formData.append('hotelId',document.getElementById('hotel-id-hidden').value);
-      formData.append('grade', document.getElementById('room-grade').value);
-      formData.append('roomCount', document.getElementById('room-count').value);
-      formData.append('price', document.getElementById('room-price').value);
-      formData.append('maxDogs', document.getElementById('max-dogs').value);
+      formData.append('hotelId',
+          document.getElementById('hotelIdHidden').value);
+      formData.append('grade', document.getElementById('roomGrade').value);
+      formData.append('roomCount', document.getElementById('roomCount').value);
+      formData.append('price', document.getElementById('roomPrice').value);
+      formData.append('maxDogs', document.getElementById('maxDogs').value);
       formData.append('roomImage',
-          document.getElementById('room-photo').files[0])
+          document.getElementById('roomPhoto').files[0])
       formData.append('intro', document.getElementById('intro').value);
 
       axios.post('/v1/owners/rooms', formData, {
@@ -32,7 +33,7 @@ const previewRoomImg = (event) => {
   if (file) {
     const reader = new FileReader();
     reader.onload = function (e) {
-      const preview = document.getElementById('room-img-review');
+      const preview = document.getElementById('roomImgReview');
       preview.src = e.target.result;
       preview.style.display = 'block';
     };

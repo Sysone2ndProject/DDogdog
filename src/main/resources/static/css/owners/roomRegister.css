@@ -1,18 +1,16 @@
+@import "common.css";
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-.header-box {
-  height: 15%;
-}
-
-.container{
+.container {
   min-height: 605px;
 }
 
-#room-img-review{
+#roomImgReview {
   max-width: 400px;
   display: none;
 }

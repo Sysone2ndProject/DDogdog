@@ -12,24 +12,23 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/roomRegister.css"/>
 </head>
 <body>
-<div class="header-box">
-    <jsp:include page="component/header.jsp"></jsp:include>
-</div>
-<!-- 테스트용 입니다. -->
+
+<jsp:include page="component/header.jsp"></jsp:include>
+
 <div class="container">
-    <input type="hidden" id="hotel-id-hidden" value="${hotelId}">
+    <input type="hidden" id="hotelIdHidden" value="${hotelId}">
     <h1>객실등록 </h1>
     <form id="roomRegisterForm" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="room-photo">객실 사진</label>
-            <input type="file" id="room-photo" class="form-control" accept="image/*" required onchange="previewRoomImg(event)">
-            <div class = "room-img-preview">
-                <img id="room-img-review">
+            <label for="roomPhoto">객실 사진</label>
+            <input type="file" id="roomPhoto" class="form-control" accept="image/*" required onchange="previewRoomImg(event)">
+            <div class="room-img-preview">
+                <img id="roomImgReview">
             </div>
         </div>
         <div class="form-group">
-            <label for="room-grade">객실 등급</label>
-            <select id="room-grade" class="form-control">
+            <label for="roomGrade">객실 등급</label>
+            <select id="roomGrade" class="form-control">
                 <c:forEach var="grade" items="${grades}">
                     <option value="${grade.name()}">${grade.detail}</option>
                 </c:forEach>
@@ -37,32 +36,30 @@
         </div>
 
         <div class="form-group">
-            <label for="room-count">객실 갯수</label>
-            <input type="number" id="room-count" class="form-control" required>
+            <label for="roomCount">객실 갯수</label>
+            <input type="number" id="roomCount" class="form-control" required>
         </div>
 
         <div class="form-group">
-            <label for="room-price">객실 가격</label>
-            <input type="number" id="room-price" class="form-control" required>
+            <label for="roomPrice">객실 가격</label>
+            <input type="number" id="roomPrice" class="form-control" required>
         </div>
 
         <div class="form-group">
-            <label for="max-dogs">최대 견수</label>
-            <input type="number" id="max-dogs" class="form-control" required>
+            <label for="maxDogs">최대 견수</label>
+            <input type="number" id="maxDogs" class="form-control" required>
         </div>
 
         <div class="form-group">
             <label for="intro">룸 소개글:</label>
             <textarea class="form-control" id="intro"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">등록</button>
+        <button type="submit" class="button radius">등록</button>
     </form>
 </div>
 
+<jsp:include page="component/footer.jsp"></jsp:include>
 
-<div class="footer-box">
-    <jsp:include page="component/footer.jsp"></jsp:include>
-</div>
 </body>
 <script src="${pageContext.request.contextPath}/js/owners/roomRegister.js"></script>
 </html>
