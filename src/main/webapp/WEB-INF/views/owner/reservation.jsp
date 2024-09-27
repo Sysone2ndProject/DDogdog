@@ -28,18 +28,19 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/reservation.css"/>
 </head>
 <body>
-<div class="header-box">
-    <jsp:include page="component/header.jsp"></jsp:include>
-</div>
+<jsp:include page="component/header.jsp"></jsp:include>
+
 <!-- 테스트용 입니다. -->
 <div class="container">
     <div class="hotel">
         <c:forEach var="hotel" items="${hotels}">
-            <button><input type="hidden" value="${hotel.hotelId}">${hotel.businessName}</button>
+            <button class="button radius"><input type="hidden" value="${hotel.hotelId}">${hotel.businessName}</button>
         </c:forEach>
     </div>
-    <div id="calendar"></div>
-    <div class="sales" id="income"></div>
+    <div class="calendar-div">
+        <div id="calendar"></div>
+        <div class="sales" id="income"></div>
+    </div>
 </div>
 
 <!-- 모달 HTML -->
@@ -62,9 +63,8 @@
     </div>
 </div>
 
-<div class="footer-box">
-    <jsp:include page="component/footer.jsp"></jsp:include>
-</div>
+<jsp:include page="component/footer.jsp"></jsp:include>
+
 </body>
 <script src="${pageContext.request.contextPath}/js/owners/reservation.js"></script>
 
