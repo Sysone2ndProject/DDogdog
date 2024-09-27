@@ -120,7 +120,7 @@ const submitForm = (event) => {
         }
     })
         .then((response) => {
-            alert('펫이 성공적으로 등록되었습니다.');
+            Swal.fire('수정 완료', '수정되었습니다.', 'success');
             window.location.href = '/v1/customers/member';
 
 
