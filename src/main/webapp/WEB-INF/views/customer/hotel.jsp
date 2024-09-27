@@ -11,6 +11,7 @@
     <title>검색</title>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/css/customers/hotel.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
@@ -38,7 +39,7 @@
     <p class="title">검색 결과</p>
     <div class="hotel-list">
         <c:forEach var="hotel" items="${hotels}">
-            <div class="hotel radius shadow">
+            <div class="hotel radius shadow" onclick="gotoDetail(${hotel.id})">
                 <img class="thumnail" src="${pageContext.request.contextPath}/img/logo.png">
                 <div class="content">
                     <h3>${hotel.businessName}</h3>

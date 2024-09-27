@@ -121,4 +121,8 @@ public class HotelService {
 
         return new ResponseHotelDetailsDTO(address, hotel, rooms);
     }
+
+    public List<String> getDataList(String searchKeyword) {
+        return hotelMapper.findHotelByKeyword(searchKeyword);
+    }
 }

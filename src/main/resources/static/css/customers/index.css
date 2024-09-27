@@ -75,12 +75,35 @@
   height: 25%;
   background-color: var(--main--tp);
   display: flex;
-  justify-content: center;
+  justify-content: end;
+  align-items: center;
 }
 .text {
-  width: 90%;
+  width: 80%;
   height: 100%;
   background-color: transparent;
+}
+
+.select-area {
+  width: 42%;
+  position: absolute;
+  top: 51%;
+  left: 15%;
+  right: 0;
+  z-index: 100;
+  background-color: var(--main--tp);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.autoSearchingLabel {
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autoSearchingLabel:hover {
+  background-color: var(--main--gray--hover);
 }
 
 .popular-hotels {
