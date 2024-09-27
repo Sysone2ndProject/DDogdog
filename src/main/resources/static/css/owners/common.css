@@ -1,10 +1,13 @@
 :root {
   --main--blue: #2057b0;
   --main--gray: #7d7d7d;
-  --main--color:#313844;
+  --main--background-gray: #e9ecf0;
+  --main--color: #313844;
   --main--btn: #df6951;
   --main--btn--hover: #b4523e;
-  --main--lightblue:#a8bde4;
+  --main--lightblue: #a8bde4;
+  --main--gray-btn: #f3f3f3;
+  --main--gray-btn--hover: #d9d9d9;
 }
 
 * {
