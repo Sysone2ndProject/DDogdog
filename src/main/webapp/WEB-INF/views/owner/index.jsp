@@ -58,7 +58,7 @@
                     </p>
                     <button class="main-btn radius" type="button" onclick="location.href='/v1/owners/hotels'">호텔 및 객실 관리</button>
                     <button class="main-btn radius" type="button" onclick="location.href='/v1/owners/reservations/form'">예약 관리</button>
-                    <button class="main-btn radius" type="button" onclick="location.href='/v1/owners/reservations/statics'">매출 통계</button>
+                    <button class="main-btn radius" type="button" onclick="location.href='/v1/owners/reservations/statistics'">매출 통계</button>
                     <div class="main-logout" onclick="location.href='/v1/logout'">
                         <span>로그아웃</span>
                         <span class="material-icons"
