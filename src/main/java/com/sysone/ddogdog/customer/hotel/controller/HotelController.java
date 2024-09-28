@@ -25,7 +25,7 @@ public class HotelController {
         return ResponseEntity.ok(dataList);
     }
 
-    @GetMapping
+    @GetMapping("/v1/customers/hotels/more")
     public ResponseEntity<Page<ResponseHotelDTO>> hotelList(Model model, @RequestParam String keyword,
                                                             @RequestParam String startDate, @RequestParam String endDate,
                                                             @RequestParam(defaultValue = "1") int page,
