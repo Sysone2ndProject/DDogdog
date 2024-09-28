@@ -3,19 +3,37 @@
 
 .container {
   font-family: 'miso';
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 65%;
   align-content: center;
   justify-content: center;
+  align-items: center;
 }
 
 .select {
   display: flex;
-  width: 100%;
+  width: 80%;
+  margin-top: 1rem;
+  width: 80%;
+  justify-content: space-between;
+}
+
+.gray-btn{
+  width: 6rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.gray-btn:hover,
+.gray-btn:focus{
+  background-color: var(--main--gray-btn--hover);
 }
 
 .hotel {
   width: 80%;
+  gap:1rem;
 }
 
 .grade-statics {
