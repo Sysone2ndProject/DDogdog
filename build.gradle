@@ -59,6 +59,8 @@ dependencies {
 	implementation 'org.springframework.security:spring-security-taglibs'
 	// mail
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	// 페이징 처리
+	implementation 'org.springframework.data:spring-data-commons'
 }
 
 tasks.named('test') {

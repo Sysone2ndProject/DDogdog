@@ -8,14 +8,19 @@ import com.sysone.ddogdog.customer.hotel.model.ResponseHotelDTO;
 import com.sysone.ddogdog.customer.hotel.model.ResponseHotelDetailsDTO;
 import com.sysone.ddogdog.customer.room.mapper.RoomMapper;
 import com.sysone.ddogdog.customer.room.model.ResponseRoomDTO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -27,60 +32,66 @@ public class HotelService {
 
     public List<ResponseHotelDTO> getBestHotels() {
         return hotelMapper.getBestHotels().stream()
-            .map(h -> ResponseHotelDTO.fromHotelDTO(h,
-                addressMapper.getFullAddressById(h.getAddressId())))
-            .collect(Collectors.toList());
+                .map(h -> ResponseHotelDTO.fromHotelDTO(h,
+                        addressMapper.getFullAddressById(h.getAddressId())))
+                .collect(Collectors.toList());
     }
 
     public List<ResponseHotelDTO> getBestHotelsById(Long customerId) {
         return hotelMapper.getBestLocalHotels(customerId).stream()
-            .map(h -> ResponseHotelDTO.fromHotelDTO(h,
-                addressMapper.getFullAddressById(h.getAddressId())))
-            .collect(Collectors.toList());
+                .map(h -> ResponseHotelDTO.fromHotelDTO(h,
+                        addressMapper.getFullAddressById(h.getAddressId())))
+                .collect(Collectors.toList());
     }
 
-    public List<ResponseHotelDTO> getHotelsByKeywordAndDates(String keyword, String startDate,
-        String endDate) {
+    public Page<ResponseHotelDTO> getHotelsByKeywordAndDatesWithPagination(String keyword, String startDate,
+                                                                           String endDate, int page, int size) {
 
         List<Integer> hotelIds = null;
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
         LocalDate start = LocalDate.parse(startDate, formatter);
         LocalDate end = LocalDate.parse(endDate, formatter);
 
         for (LocalDate currentDate = start; !currentDate.isAfter(end);
-            currentDate = addDays(currentDate)) {
+             currentDate = addDays(currentDate)) {
             String date = currentDate.format(formatter);
-
             List<Integer> hotelIdsForDate = hotelMapper.getHotelIdByKeywordAndDate(date);
 
             if (hotelIds == null) {
-                // 처음 조회한 호텔 ID 리스트
                 hotelIds = new ArrayList<>(hotelIdsForDate);
             } else {
-                // 교집합을 구함
                 hotelIds.retainAll(hotelIdsForDate);
             }
 
-            // 교집합이 비어지면 더 이상 조회할 필요 없음
             if (hotelIds.isEmpty()) {
                 break;
             }
         }
 
         if (hotelIds != null && !hotelIds.isEmpty()) {
-            return getHotelByIds(keyword, hotelIds);
+            List<ResponseHotelDTO> allHotels = getHotelByIds(keyword, hotelIds); // 모든 호텔 정보 조회
+
+            // 페이징 처리
+            int totalCount = allHotels.size(); // 전체 호텔 개수
+            int startRow = Math.min((page - 1) * size, totalCount); // 시작 인덱스
+            int endRow = Math.min(startRow + size, totalCount); // 끝 인덱스
+
+            // 페이징된 호텔 리스트
+            List<ResponseHotelDTO> pagedHotels = allHotels.subList(startRow, endRow);
+
+            // Page 객체 생성
+            Pageable pageable = PageRequest.of(page - 1, size); // 0 기반 인덱스
+            return new PageImpl<>(pagedHotels, pageable, totalCount); // Page 반환
         }
 
-        return Collections.emptyList();
+        return new PageImpl<>(Collections.emptyList(), PageRequest.of(page - 1, size), 0); // 데이터가 없을 경우
     }
 
     private List<ResponseHotelDTO> getHotelByIds(String keyword, List<Integer> hotelIds) {
         return hotelMapper.getHotelsByIds(keyword, hotelIds).stream()
-            .map(h -> ResponseHotelDTO.fromHotelDTO(h,
-                addressMapper.getFullAddressById(h.getAddressId())))
-            .collect(Collectors.toList());
+                .map(h -> ResponseHotelDTO.fromHotelDTO(h,
+                        addressMapper.getFullAddressById(h.getAddressId())))
+                .collect(Collectors.toList());
     }
 
     private LocalDate addDays(LocalDate date) {
@@ -91,19 +102,19 @@ public class HotelService {
         HotelDTO hotelDTO = hotelMapper.getHotelById(id);
         AddressDTO address = addressMapper.getAddressById(hotelDTO.getAddressId());
         ResponseHotelDTO hotel = ResponseHotelDTO.fromHotelDTO(hotelDTO,
-            addressMapper.getFullAddressById(hotelDTO.getAddressId()));
+                addressMapper.getFullAddressById(hotelDTO.getAddressId()));
 
         List<ResponseRoomDTO> rooms = null;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         LocalDate start = (startDate == null) ? LocalDate.now()
-            : LocalDate.parse(startDate, formatter);
+                : LocalDate.parse(startDate, formatter);
         LocalDate end = (startDate == null && endDate == null) ? start.plusDays(1)
-            : LocalDate.parse(endDate, formatter);
+                : LocalDate.parse(endDate, formatter);
 
         for (LocalDate currentDate = start; !currentDate.isAfter(end);
-            currentDate = addDays(currentDate)) {
+             currentDate = addDays(currentDate)) {
             String date = currentDate.format(formatter);
 
             List<ResponseRoomDTO> roomsForDate = roomMapper.getRoomsByHotelId(id, date);
