@@ -83,6 +83,7 @@ const submitForm = (event) => {
   })
   .catch((error) => {
     console.error(error);
+    alert("로그인 후 이용해주세요");
   });
 };
 
@@ -98,5 +99,3 @@ formatPhoneNumber = () => {
   document.getElementById("phone").textContent = phoneNumber.replace(
       /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
 }
-
-document.addEventListener("DOMContentLoaded", formatPhoneNumber);

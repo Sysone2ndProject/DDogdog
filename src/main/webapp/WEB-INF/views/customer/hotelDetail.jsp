@@ -118,7 +118,10 @@
 <script src="${pageContext.request.contextPath}/js/customers/locationHandler.js"></script>
 <script>
   const address = `${hotelDetail.address.fullAddress}`;
-  document.addEventListener("DOMContentLoaded", loadKakaoMap(address));
+  document.addEventListener("DOMContentLoaded", () => {
+    loadKakaoMap(address);
+    formatPhoneNumber();
+  });
   const hotelId = parseInt('${hotelDetail.hotel.id}');
   let rooms = [
     <c:forEach var="room" items="${hotelDetail.rooms}" varStatus="status">
