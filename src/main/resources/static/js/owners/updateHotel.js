@@ -1,15 +1,15 @@
-document.getElementById('hotel-update-form').onsubmit =
+document.getElementById('hotelUpdateForm').onsubmit =
     function (event) {
       event.preventDefault(); //제출 중 새로고침 방지
 
-      const file = document.getElementById("image-upload").files[0];
+      const file = document.getElementById("imageUpload").files[0];
 
       const formData = new FormData();
-      formData.append('id', document.getElementById("hotel-id").value);
+      formData.append('id', document.getElementById("hotelId").value);
       formData.append('businessName',
-          document.getElementById("business-name").value);
+          document.getElementById("businessName").value);
       formData.append('phoneNumber',
-          document.getElementById("phone-number").value);
+          document.getElementById("phoneNumber").value);
       formData.append('intro',
           document.getElementById("intro").value);
       formData.append('fullAddress',
@@ -42,7 +42,7 @@ document.getElementById('hotel-update-form').onsubmit =
     }
 
 const openFileUpload = () => {
-  document.getElementById('image-upload').click(); // 파일 업로드 창을 오픈
+  document.getElementById('imageUpload').click(); // 파일 업로드 창을 오픈
 }
 
 const previewImage = (event) => {
@@ -52,7 +52,7 @@ const previewImage = (event) => {
 
     reader.onload = function (e) {
       // 파일이 로드되면 해당 이미지를 기존 이미지칸에서 보여주기
-      document.getElementById('hotel-img').src = e.target.result;
+      document.getElementById('hotelImg').src = e.target.result;
     }
 
     reader.readAsDataURL(file); // 선택된 파일을 읽어서 data URL로 변환
@@ -76,4 +76,13 @@ const findAddress = () => {
       document.getElementById("dong").value = data.bname;
     }
   }).open();
+}
+
+function phoneNumberCheck(){
+  const phoneNumber = document.getElementById('phoneNumber');
+  const numericPattern = /^[0-9]*$/;
+  if (!numericPattern.test(phoneNumber.value)) {
+    alert(" 전화번호는 숫자로 9~11자 이내 입력해주세요");
+    phoneNumber.value = phoneNumber.value.replace(/[^0-9]/g, '');
+  }
 }
