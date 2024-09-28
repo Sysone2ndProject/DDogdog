@@ -42,7 +42,7 @@
   margin-bottom: 1rem;
 }
 
-.hotel-card-list{
+.hotel-card-list {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -90,10 +90,6 @@
   flex-direction: column;
 }
 
-#hotel-name {
-  font-size: 1.4rem;
-}
-
 .hotel-manage {
   display: flex;
   width: 25%;
@@ -118,6 +114,6 @@
   color: var(--main--background-gray--hover);
 }
 
-button:hover{
+button:hover {
   background-color: var(--main--background-gray--hover);
 }
