@@ -6,6 +6,11 @@ plugins {
 
 group = 'com.sysone'
 version = '0.0.1-SNAPSHOT'
+apply plugin: 'war'
+
+war {
+	enabled= false
+}
 
 java {
 	toolchain {
@@ -50,8 +55,12 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.8.9'
 	// s3를 위한 cloud
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
-	//시큐리티 태그 사용 설정
+	// 시큐리티 태그 사용 설정
 	implementation 'org.springframework.security:spring-security-taglibs'
+	// mail
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	// 페이징 처리
+	implementation 'org.springframework.data:spring-data-commons'
 }
 
 tasks.named('test') {

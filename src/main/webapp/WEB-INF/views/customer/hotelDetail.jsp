@@ -30,7 +30,7 @@
                 </div>
                 <div class="cont">
                     <span class="material-icons-outlined">call</span>
-                    <span class="text-info">${hotelDetail.hotel.phoneNumber}</span>
+                    <span class="text-info" id="phone">${hotelDetail.hotel.phoneNumber}</span>
                 </div>
             </div>
         </div>
@@ -80,10 +80,14 @@
                                                                                type="number"
                                                                                groupingUsed="true"/>₩</span>
                                     <div class="count-btn">
-                                        <button class="minus" type="button" onclick="decreaseValue(${status.index})">-</button>
+                                        <button class="minus" type="button"
+                                                onclick="decreaseValue(${status.index})">-
+                                        </button>
                                         <input id="count${status.index}" type="number" min="0"
                                                value="0">
-                                        <button class="plus" type="button" onclick="increaseValue(${status.index})">+</button>
+                                        <button class="plus" type="button"
+                                                onclick="increaseValue(${status.index})">+
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +118,10 @@
 <script src="${pageContext.request.contextPath}/js/customers/locationHandler.js"></script>
 <script>
   const address = `${hotelDetail.address.fullAddress}`;
-  document.addEventListener("DOMContentLoaded", loadKakaoMap(address));
+  document.addEventListener("DOMContentLoaded", () => {
+    loadKakaoMap(address);
+    formatPhoneNumber();
+  });
   const hotelId = parseInt('${hotelDetail.hotel.id}');
   let rooms = [
     <c:forEach var="room" items="${hotelDetail.rooms}" varStatus="status">

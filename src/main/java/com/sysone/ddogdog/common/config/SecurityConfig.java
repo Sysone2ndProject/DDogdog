@@ -51,7 +51,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth ->
                 auth.requestMatchers("/v1/owners/signup", "/v1/owners", "/resource/**",
-                        "/v1/owners/login", "/", "/login**", "/css/**", "/js/**", "/v1/customers/signup","/v1/customers").permitAll()
+                        "/v1/owners/login", "/", "/login**", "/css/**", "/js/**", "/v1/customers/signup","/v1/customers","/hc","/env").permitAll()
                     .requestMatchers("/v1/owners/hotels","/v1/owners/rooms","/v1/owners/reservations/*").hasRole("OWNER")
                     .requestMatchers("/v1/customers/member").hasRole("CUSTOMER")
                     .anyRequest().permitAll())
