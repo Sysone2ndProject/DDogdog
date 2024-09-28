@@ -49,8 +49,13 @@ public class PetService {
     }
 
     @Transactional
-    public void updatePet(RequestPetDTO requestPetDTO) {
-        String petImageUrl = s3ImageService.upload(requestPetDTO.getPetImage());
+    public void updatePet(RequestPetDTO requestPetDTO,String existingImageUrl) {
+        String petImageUrl;
+        if (requestPetDTO.getPetImage() != null) {
+            petImageUrl= s3ImageService.upload(requestPetDTO.getPetImage());
+        } else {
+            petImageUrl = existingImageUrl;
+        }
         PetDTO petDTO = PetDTO.fromRequestPetDTO(petImageUrl,
             requestPetDTO);
         System.out.println(petDTO.toString());

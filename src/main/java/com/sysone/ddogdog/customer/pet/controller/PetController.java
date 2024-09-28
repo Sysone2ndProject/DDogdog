@@ -48,8 +48,8 @@ public class PetController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Void> updatePet(@ModelAttribute RequestPetDTO requestPetDTO) {
-        petService.updatePet(requestPetDTO);
+    public ResponseEntity<Void> updatePet(@ModelAttribute RequestPetDTO requestPetDTO,@RequestParam(required = false) String existingImageUrl) {
+        petService.updatePet(requestPetDTO,existingImageUrl);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
