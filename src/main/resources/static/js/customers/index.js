@@ -1,10 +1,10 @@
 document.getElementById('searchForm').onsubmit =
-    function (event) {
+    (event) => {
       event.preventDefault();
 
       const keyword = document.getElementById('keyword').value || '';
-      const startDate = document.getElementById('startDate').value|| '';
-      const endDate = document.getElementById('endDate').value|| '';
+      const startDate = document.getElementById('startDate').value || '';
+      const endDate = document.getElementById('endDate').value || '';
 
       if (keyword === "" || startDate === "" || endDate === "") {
         alert("모든 정보를 입력해주세요");
@@ -18,13 +18,13 @@ document.getElementById('searchForm').onsubmit =
           endDate: endDate
         }
       })
-      .then(function (response) {
+      .then((response) => {
         console.log(response.data);
         window.location.href = '/v1/customers/hotels?keyword='
             + encodeURIComponent(keyword) + '&startDate=' + encodeURIComponent(
                 startDate) + '&endDate=' + encodeURIComponent(endDate);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error('Error:', error);
       });
     };
@@ -37,7 +37,8 @@ const gotoDetail = (id) => {
     console.error();
   });
 }
-window.onload = function() {
+
+window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const alertParam = urlParams.get('alert');
   if (alertParam === 'true') {

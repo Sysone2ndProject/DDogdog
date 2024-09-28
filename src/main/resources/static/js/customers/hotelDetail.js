@@ -31,7 +31,8 @@ const calcCountAndPrice = (i) => {
   totalCnt += (afterCnt - beforeCnt);
   rooms[i].count = afterCnt;
   document.getElementById("totalCount").innerText = totalCnt;
-  document.getElementById("totalPrice").innerText = totalPrice.toLocaleString('ko-KR');
+  document.getElementById("totalPrice").innerText = totalPrice.toLocaleString(
+      'ko-KR');
 }
 
 // 숫자 값을 증가시키는 함수
@@ -58,7 +59,6 @@ const decreaseValue = (index) => {
   }
 }
 
-
 const submitForm = (event) => {
   event.preventDefault();
 
@@ -70,16 +70,16 @@ const submitForm = (event) => {
     return;
   }
   axios.post('/v1/customers/reservation', {
-      hotelId,
-      startDate,
-      endDate,
-      count: totalCnt,
-      price: totalPrice,
-      rooms
+    hotelId,
+    startDate,
+    endDate,
+    count: totalCnt,
+    price: totalPrice,
+    rooms
   })
   .then((response) => {
     alert("예약이 완료되었습니다.");
-    window.location.href="/v1/customers/member";
+    window.location.href = "/v1/customers/member";
   })
   .catch((error) => {
     console.error(error);
@@ -87,10 +87,16 @@ const submitForm = (event) => {
 };
 
 const goToForm = () => {
-  window.scrollTo({top: document.getElementById("room").offsetTop, behavior: 'smooth' });
+  window.scrollTo(
+      {top: document.getElementById("room").offsetTop, behavior: 'smooth'});
 }
-document.getElementById('reservationForm').onsubmit = (event) => submitForm(event);
+document.getElementById('reservationForm').onsubmit = (event) => submitForm(
+    event);
 
-document.addEventListener('DOMContentLoaded', () => {
+formatPhoneNumber = () => {
+  let phoneNumber = document.getElementById("phone").innerText;
+  document.getElementById("phone").textContent = phoneNumber.replace(
+      /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+}
 
-})
+document.addEventListener("DOMContentLoaded", formatPhoneNumber);
