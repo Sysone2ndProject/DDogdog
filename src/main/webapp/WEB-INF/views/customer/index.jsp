@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!doctype html>
 <html lang="ko">
@@ -17,7 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoId}&libraries=services"></script>
     <!-- SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -38,10 +40,10 @@
                 <input class="date-input" type="date" id="endDate" onclick="checkStartDate()"/>
             </div>
             <div class="text-input radius">
-<%--                TODO: 호텔 명 검색 기능 보완 --%>
-                <input type="text" class="text" id="keyword" placeholder="장소를 입력해 주세요" autocomplete="off" oninput="searchAutoComplete()"/>
+                <input type="text" class="text" id="keyword" placeholder="장소를 입력해 주세요"
+                       autocomplete="off" oninput="searchAutoComplete()"/>
                 <div id="autoSearchArea" class="select-area radius"></div>
-            <button class="button radius" type="submit">검색</button>
+                <button class="button radius" type="submit">검색</button>
             </div>
         </form>
     </div>
@@ -74,7 +76,9 @@
                         <span class="material-icons-outlined">location_on</span>
                         <span class="hotel-loc">${hotel.fullAddress}</span>
                     </div>
-                    <p class="hotel-price">${hotel.price}₩ ~ </p>
+                    <p class="hotel-price"><fmt:formatNumber value="${hotel.price}"
+                                                             type="number"
+                                                             groupingUsed="true"/> ₩ ~ </p>
 
                     <button class="button radius" type="button" onclick="gotoDetail(${hotel.id})">
                         자세히 보기
@@ -111,11 +115,15 @@
                                         </div>
                                         <div class="cont">
                                             <span class="material-icons-outlined">call</span>
-                                            <span class="text-info">${hotel.phoneNumber}</span>
+                                            <span id="phone"
+                                                  class="text-info">${hotel.phoneNumber}</span>
                                         </div>
                                     </div>
                                     <div class="price-btn">
-                                        <p class="price">${hotel.price}₩</p>
+                                        <p class="price"><fmt:formatNumber value="${hotel.price}"
+                                                                           type="number"
+                                                                           groupingUsed="true"/>
+                                            ₩</p>
                                         <img class="paws"
                                              src="${pageContext.request.contextPath}/img/paw.svg"
                                              onclick="gotoDetail(${hotel.id})"/>

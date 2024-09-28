@@ -3,8 +3,8 @@ document.getElementById('searchForm').onsubmit =
       event.preventDefault();
 
       const keyword = document.getElementById('keyword').value || '';
-      const startDate = document.getElementById('startDate').value|| '';
-      const endDate = document.getElementById('endDate').value|| '';
+      const startDate = document.getElementById('startDate').value || '';
+      const endDate = document.getElementById('endDate').value || '';
 
       if (keyword === "" || startDate === "" || endDate === "") {
         alert("모든 정보를 입력해주세요");
@@ -37,7 +37,16 @@ const gotoDetail = (id) => {
     console.error();
   });
 }
-window.onload = function() {
+
+formatPhoneNumber = () => {
+  let phoneNumber = document.getElementById("phone").innerText;
+  document.getElementById("phone").textContent = phoneNumber.replace(
+      /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+}
+
+document.addEventListener("DOMContentLoaded", formatPhoneNumber);
+
+window.onload = function () {
   const urlParams = new URLSearchParams(window.location.search);
   const alertParam = urlParams.get('alert');
   if (alertParam === 'true') {
