@@ -3,47 +3,58 @@
 
 .container {
   font-family: 'miso';
+  display: flex;
+  flex-direction: column;
   min-height: 605px;
-  align-content: center;
-  justify-content: center;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center;     /* 수직 가운데 정렬 */
 }
+
+.title p{
+  font-size: 1.6rem;
+  margin: 1rem;
+}
+
 
 form {
-  width: 80%;
-  border: 1px solid #F4CFC6FF;
-  border-radius: 10px;
-  padding: 20px 20px;
+  width: 50%;
+  padding: 1.5rem 1.5rem;
+  display: flex; /* flex 디스플레이 설정 */
+  flex-direction: column; /* 세로 방향으로 정렬 */
+  margin-bottom: 1rem;
 }
 
-#image-upload {
+#imageUpload {
   display: none;
-
 }
 
 .hidden {
   display: none;
 }
 
-#title {
-  font-size: 2rem;
-}
-
 .room-info-div {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding-right: 1rem;
 }
 
 .room-img-div {
-  width: 40%; /* div가 부모 요소의 너비를 100% 차지하도록 설정 */
-  max-width: 450px; /* 선택적으로 최대 너비를 설정할 수 있음 */
+  width: 50%; /* div가 부모 요소의 너비를 100% 차지하도록 설정 */
   aspect-ratio: 1/1; /* 정사각형 비율 유지 */
   display: flex; /* Flexbox 설정으로 중앙 정렬 */
   justify-content: center; /* 가로 중앙 정렬 */
   align-items: center; /* 세로 중앙 정렬 */
   overflow: hidden; /* 넘치는 부분 숨기기 */
-  border: 1px solid #f4cfc6;
-  margin-right: 30px;
+  margin-right: 7rem;
   position: relative;
+  object-fit: contain;
+}
+
+label{
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
 
 .room-img-div img {
@@ -52,23 +63,47 @@ form {
   object-fit: contain; /* 이미지의 비율을 유지하며, 영역 내에서 축소 */
 }
 
-#img-change-icon {
+#imgChangeIcon {
   position: absolute;
-  top: 10px; /* 아이콘을 이미지 상단에 위치 */
-  right: 10px; /* 아이콘을 이미지 우측에 위치 */
+  top: 1rem; /* 아이콘을 이미지 상단에 위치 */
+  right: 1rem; /* 아이콘을 이미지 우측에 위치 */
   cursor: pointer; /* 클릭할 수 있는 모양으로 변경 */
   font-size: 1.6rem; /* 아이콘 크기 조절 */
-  color: #07004D;
+  color: var(--main--color);
 }
 
 .info-div {
   align-content: center;
+  gap:1rem;
+}
+.form-control, .form-control-file, .form-control textarea {
+  width: 90%;
+  padding: 0.5rem;
+  border: 0.1rem solid var(--main--gray-btn); /* 기본 테두리 */
+  border-radius: 0.2rem;
+  box-sizing: border-box;
 }
 
 .form-group {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap:0.5rem;
+  margin-bottom: 1rem;
 }
 
-#address {
-  margin-bottom: 15px;
+.submit-btn-div{
+  display: flex;
+  padding-left: 1rem;
+}
+
+textarea{
+  height: 8rem;
+}
+
+.button{
+  align-self: end;
+}
+
+.room-intro-div{
+  padding-left: 2rem;
 }
