@@ -1,8 +1,8 @@
-function searchAutoComplete() {
+const searchAutoComplete = () => {
   const keyword = document.getElementById('keyword').value.trim();
   const autoSearchArea = document.getElementById('autoSearchArea');
 
-  if (keyword === "") {
+  if (keyword === "" || keyword === paramKeyword) {
     // 입력 필드가 비어 있으면 자동완성 목록을 숨김
     autoSearchArea.style.display = 'none';
     return;
@@ -10,9 +10,9 @@ function searchAutoComplete() {
 
   // 서버에 요청을 보내 검색어에 맞는 결과를 가져옴
   axios.get('/v1/customers/getDataList', {
-    params: { searchKeyword: keyword }
+    params: {searchKeyword: keyword}
   })
-  .then(function(response) {
+  .then(function (response) {
     const data = response.data;
 
     // 결과가 있으면 자동완성 목록을 표시
@@ -27,7 +27,7 @@ function searchAutoComplete() {
         label.setAttribute('data-value', item);
 
         // 클릭 시 입력 필드에 선택한 값을 넣음
-        label.addEventListener('click', function() {
+        label.addEventListener('click', function () {
           document.getElementById('keyword').value = item;
           autoSearchArea.style.display = 'none';  // 선택 후 자동완성 목록 숨김
         });
@@ -41,7 +41,7 @@ function searchAutoComplete() {
       autoSearchArea.style.display = 'none';
     }
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.error('Error fetching data:', error);
   });
 }

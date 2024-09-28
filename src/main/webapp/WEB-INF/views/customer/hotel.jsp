@@ -22,7 +22,7 @@
     <form class="search-form" id="searchForm">
         <div class="text-box radius shadow">
             <input class="text-input" type="text" id="keyword" value="${param.keyword}"
-                   placeholder="지역 / 호텔명" autocomplete="off" oninput="searchAutoComplete()">
+                   placeholder="지역 / 호텔명" autocomplete="off" onchange="searchAutoComplete()">
             <div id="autoSearchArea" class="select-area radius"></div>
             <span class="material-icons-outlined" onclick="deleteKeyword()">cancel</span>
         </div>
@@ -31,7 +31,7 @@
             <input id="startDate" type="date" value="${param.startDate}"
                    onchange="setEndDate(); getStartDate();"/>
             <label for="endDate">체크아웃</label>
-            <input id="endDate" type="date" value="${param.endDate}" onchange="getEndDate()">
+            <input id="endDate" type="date" value="${param.endDate}" oninput="getEndDate()">
         </div>
         <button class="submit-btn radius shadow" type="submit">검색</button>
     </form>
@@ -72,4 +72,8 @@
 </body>
 <script src="/js/customers/hotel.js"></script>
 <script src="/js/customers/dateHandler.js"></script>
+<script src="${pageContext.request.contextPath}/js/customers/searchAutocomplete.js"></script>
+<script>
+  const paramKeyword = "${param.keyword}";
+</script>
 </html>

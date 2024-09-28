@@ -31,6 +31,31 @@
   width: 80%;
 }
 
+.select-area {
+  width: 18%;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  right: 0;
+  z-index: 100;
+  background-color: white;
+  max-height: 200px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.autoSearchingLabel {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.autoSearchingLabel:hover {
+  background-color: var(--main--gray--hover);
+}
+
 .date-pick {
   width: 55%;
   height: 5vh;
