@@ -1,5 +1,5 @@
 document.getElementById('searchForm').onsubmit =
-    function (event) {
+    (event) => {
       event.preventDefault();
 
       const keyword = document.getElementById('keyword').value || '';
@@ -18,13 +18,13 @@ document.getElementById('searchForm').onsubmit =
           endDate: endDate
         }
       })
-      .then(function (response) {
+      .then((response) => {
         console.log(response.data);
         window.location.href = '/v1/customers/hotels?keyword='
             + encodeURIComponent(keyword) + '&startDate=' + encodeURIComponent(
                 startDate) + '&endDate=' + encodeURIComponent(endDate);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error('Error:', error);
       });
     };
@@ -38,15 +38,7 @@ const gotoDetail = (id) => {
   });
 }
 
-formatPhoneNumber = () => {
-  let phoneNumber = document.getElementById("phone").innerText;
-  document.getElementById("phone").textContent = phoneNumber.replace(
-      /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-}
-
-document.addEventListener("DOMContentLoaded", formatPhoneNumber);
-
-window.onload = function () {
+window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const alertParam = urlParams.get('alert');
   if (alertParam === 'true') {

@@ -116,7 +116,6 @@
 <script src="${pageContext.request.contextPath}/js/customers/hotelDetail.js"></script>
 <script src="${pageContext.request.contextPath}/js/customers/dateHandler.js"></script>
 <script src="${pageContext.request.contextPath}/js/customers/locationHandler.js"></script>
-<script src="${pageContext.request.contextPath}/js/customers/searchAutocomplete.js"></script>
 <script>
   const address = `${hotelDetail.address.fullAddress}`;
   document.addEventListener("DOMContentLoaded", loadKakaoMap(address));

@@ -145,9 +145,17 @@
 <script src="${pageContext.request.contextPath}/js/customers/locationHandler.js"></script>
 <script src="${pageContext.request.contextPath}/js/customers/searchAutocomplete.js"></script>
 <script>
+  const paramKeyword = "";
   <sec:authorize access="isAuthenticated()">
   let addressId = <sec:authentication property="principal.customerDTO.addressId"/>;
-  </sec:authorize>
+  formatPhoneNumber = () => {
+    let phoneNumber = document.getElementById("phone").innerText;
+    document.getElementById("phone").textContent = phoneNumber.replace(
+        /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+  }
+
+  document.addEventListener("DOMContentLoaded", formatPhoneNumber);
   document.addEventListener("DOMContentLoaded", getAddress);
+  </sec:authorize>
 </script>
 </html>
