@@ -15,13 +15,12 @@
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
 
-<!-- 테스트용 입니다. -->
 <div class="container">
     <div class="hotel-list-title">
         <p class="title"><security:authentication property="principal.ownerName"/>님의 Hotel</p>
         <button type="button" class="radius" onclick="location.href = '/v1/owners/hotels/form'"> 호텔 등록하기</button>
     </div>
-    <%--    <h2>${hotel.mainImage}</h2>--%>
+
     <div class="hotel-card-list">
         <c:forEach var="hotel" items="${hotels}">
             <div class="hotel-card shadow">

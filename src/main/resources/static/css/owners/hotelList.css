@@ -36,7 +36,7 @@
 
 .hotel-card-title {
   display: flex;
-  align-items: flex-end; /* 글자가 아래쪽에 붙도록 설정 */
+  align-items: flex-end;
   gap: 1rem;
   align-content: center;
   margin-bottom: 1rem;
@@ -56,9 +56,9 @@
 }
 
 #businessNumber {
-  font-size: 0.9rem; /* 글자 크기를 작게 설정 */
+  font-size: 0.9rem;
   color: var(--main--gray);
-  align-self: flex-end; /* businessNumber가 아래쪽에 배치되도록 설정 */
+  align-self: flex-end;
 }
 
 .hotel-card {
@@ -105,12 +105,12 @@
 
 .icon-text {
   display: flex;
-  align-items: center; /* 아이콘과 텍스트를 세로로 중앙 정렬 */
-  gap: 0.5rem; /* 아이콘과 텍스트 사이 간격 */
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .icon-text i {
-  font-size: 1.2rem; /* 아이콘 크기 조절 */
+  font-size: 1.2rem;
   color: var(--main--background-gray--hover);
 }
 

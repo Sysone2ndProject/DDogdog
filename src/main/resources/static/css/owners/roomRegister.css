@@ -50,13 +50,13 @@ form{
 }
 
 .form-group label {
-  display: block; /* Label을 block 요소로 만들어 textarea와 수평 정렬되지 않게 함 */
+  display: block;
 }
 
 .form-control, .form-control-file, .form-control textarea {
   width: 80%;
   padding: 10px;
-  border: 0.1rem solid var(--main--gray-btn); /* 기본 테두리 */
+  border: 0.1rem solid var(--main--gray-btn);
   border-radius: 0.2rem;
   box-sizing: border-box;
 }

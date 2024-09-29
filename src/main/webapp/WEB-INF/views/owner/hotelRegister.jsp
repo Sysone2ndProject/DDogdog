@@ -16,7 +16,6 @@
 
 <jsp:include page="component/header.jsp"></jsp:include>
 
-<!-- 테스트용 입니다. -->
 <div class="container">
     <div class="title">
         <p>호텔등록</p>

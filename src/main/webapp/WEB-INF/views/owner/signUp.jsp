@@ -24,13 +24,13 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
         <div class="form-group id-div">
-            <i class="fa-solid fa-user"></i> <!-- 아이디 아이콘 -->
+            <i class="fa-solid fa-user"></i>
             <input type="text" class="form-control" id="id" name="id" placeholder="아이디" required>
             <button class="check-btn radius" type="button" onclick="checkId()">중복확인</button>
         </div>
 
         <div class="form-group">
-            <i class="fa-solid fa-lock"></i> <!-- 비밀번호 아이콘 -->
+            <i class="fa-solid fa-lock"></i>
             <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
         </div>
 
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            <i class="fa-solid fa-building-columns"></i> <!-- 은행 아이콘 -->
+            <i class="fa-solid fa-building-columns"></i>
             <select class="form-control" id="bank" name="bank" required>
                 <option disabled hidden selected>--- 은행을 선택해 주세요 ---</option>
                 <option value="신한은행">신한은행</option>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            <i class="fa-solid fa-credit-card"></i> <!-- 계좌번호 아이콘 -->
+            <i class="fa-solid fa-credit-card"></i>
             <input type="text" class="form-control" id="accountNumber" name="accountNumber" oninput="numberCheck()"
                    placeholder="계좌번호">
         </div>

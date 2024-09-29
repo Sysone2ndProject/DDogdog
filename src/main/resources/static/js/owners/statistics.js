@@ -46,20 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
         label: '매출',
         data: [0, 0, 0, 0],
         backgroundColor: [
-          // 'rgb(255,99,132)', // DELUXE 색상
-          // 'rgb(54,162,235)', // SUPERIOR 색상
-          // 'rgb(255,206,86)', // SUITE 색상
-          // 'rgb(75,192,192)'  // ROYAL_SUITE 색상
           'rgb(255, 213, 79)', // DELUXE 색상
           'rgb(79, 195, 247)', // SUPERIOR 색상
           'rgb(149, 117, 205)', // SUITE 색상
           'rgb(277, 182, 172)'  // ROYAL_SUITE 색상
         ],
         borderColor: [
-          // 'rgba(255, 99, 132, 1)',
-          // 'rgba(54, 162, 235, 1)',
-          // 'rgba(255, 206, 86, 1)',
-          // 'rgba(75, 192, 192, 1)'
           'rgba(255, 213, 79, 1)',
           'rgba(79, 195, 247, 1)',
           'rgba(149, 117, 205, 1)',

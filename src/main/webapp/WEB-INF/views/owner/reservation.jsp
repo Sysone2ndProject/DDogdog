@@ -30,7 +30,6 @@
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
 
-<!-- 테스트용 입니다. -->
 <div class="container">
     <div class="hotel">
         <c:forEach var="hotel" items="${hotels}">
