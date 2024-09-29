@@ -70,14 +70,14 @@ label, p {
 .sub-btn {
   width: 7rem;
   height: 2.75rem;
-  background-color: var(--main-—pink);
-  color: var(--main-—darkblue);
+  background-color: var(--main--pink);
+  color: var(--main--darkblue);
   cursor: pointer;
   font-weight: bold;
 }
 
 .sub-btn:hover {
-  background-color: var(--main-—pink--hover);
+  background-color: var(--main--pink--hover);
 }
 
 input[type=date] {
