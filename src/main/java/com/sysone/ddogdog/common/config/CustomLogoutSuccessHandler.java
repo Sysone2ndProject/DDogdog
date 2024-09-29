@@ -29,7 +29,7 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
             System.out.println("카카오 로그아웃 진입");
             String logoutUrl = KAKAO_LOGOUT_URL
                 + "?client_id=" + kakaoClientId  // 카카오 앱의 클라이언트 ID
-                + "&logout_redirect_uri=" + "http://localhost:8080/v1/customers"; // 로그아웃 후 리다이렉트할 URL
+                + "&logout_redirect_uri=" + "https://ddogdog.store/v1/customers"; // 로그아웃 후 리다이렉트할 URL
 
             response.sendRedirect(logoutUrl);  // 카카오 로그아웃 요청으로 리다이렉트
         } else {
