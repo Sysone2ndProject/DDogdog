@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/updateRoom.css"/>
     <script src="https://kit.fontawesome.com/a08faffd77.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
