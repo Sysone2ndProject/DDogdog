@@ -23,11 +23,17 @@ document.getElementById('roomRegisterForm').onsubmit =
         }
       })
       .then(function (response) {
-        alert('객실 등록 되었습니다.');
+        Swal.fire({
+          title: '객실 등록 되었습니다.',
+          icon: 'success',
+        })
         window.location.href = `/v1/owners/rooms?hotelId=${hotelId}`;
       })
       .catch(function (error) {
-        alert('오류가 발생했습니다.');
+        Swal.fire({
+          title: '오류가 발생했습니다.',
+          icon: 'error',
+        })
       });
     }
 
@@ -54,7 +60,10 @@ const maxNum = (event) =>{
   const value = event.target.value;
 
   if (value > maxRooms) {
-    alert('최대 방수는 30개입니다.');
+    Swal.fire({
+      title: '최대 방수는 30개입니다.',
+      icon: 'warning',
+    })
     event.target.value = maxRooms;  // 입력값을 최대값인 30으로 고정
   }
 }
