@@ -2,8 +2,9 @@ package com.sysone.ddogdog.customer.roomChoice.model;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class RoomChoice {
     private Integer id;
