@@ -150,8 +150,20 @@
   let addressId = <sec:authentication property="principal.customerDTO.addressId"/>;
   formatPhoneNumber = () => {
     let phoneNumber = document.getElementById("phone").innerText;
-    document.getElementById("phone").textContent = phoneNumber.replace(
-        /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+
+    if (phoneNumber.length === 9) {
+      document.getElementById("phone").textContent = phoneNumber.replace(
+          /(\d{2})(\d{3})(\d{4})/, '$1-$2-$3');
+    } else if (phoneNumber.startsWith('02') && phoneNumber.length === 10) {
+      document.getElementById("phone").textContent = phoneNumber.replace(
+          /(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+    } else if (phoneNumber.length === 10) {
+      document.getElementById("phone").textContent = phoneNumber.replace(
+          /(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+    } else {
+      document.getElementById("phone").textContent = phoneNumber.replace(
+          /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+    }
   }
 
   document.addEventListener("DOMContentLoaded", formatPhoneNumber);
