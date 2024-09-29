@@ -24,7 +24,6 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-bottom: 10vh;
 }
 
 .ticket {
@@ -35,6 +34,15 @@
     align-items: center;
     gap: 1rem;
     overflow: hidden;
+    position: relative;
+}
+
+.stamp {
+    position: absolute;
+    height: 55%;
+    left: 85%;
+    top:10%;
+    transform: rotate(-15deg);
 }
 
 .hotel-img {
@@ -95,9 +103,13 @@
 }
 
 .view-details {
-    background-color: var(--main-—pink);
-    color: var(--main-—darkblue);
+    background-color: var(--main--pink);
+    color: var(--main--darkblue);
     cursor: pointer;
+}
+
+.view-details:hover {
+    background-color: var(--main--pink--hover);
 }
 
 .completed {
@@ -108,4 +120,37 @@
     background-color: var(--main--orange);
     color: white;
     cursor: pointer;
+}
+
+.cancel:hover {
+    background-color: var(--main--orange--hover);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 10vh;
+}
+
+.pagination-btn {
+    margin: 0 5px;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination-btn:hover {
+    background-color: var(--main--darkblue);
+    color: white;
+}
+
+.active {
+    background-color: var(--main--pink);
+    color: var(--main--darkblue);
+}
+
+.inactive {
+    background-color: var(--main--gray);
+    color: var(--main--darkblue);
 }
