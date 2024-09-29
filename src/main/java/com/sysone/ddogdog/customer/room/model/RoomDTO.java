@@ -1,9 +1,9 @@
 package com.sysone.ddogdog.customer.room.model;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class RoomDTO {
     private Integer id;

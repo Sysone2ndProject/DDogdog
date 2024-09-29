@@ -26,11 +26,9 @@ public class EmailService {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
             mimeMessageHelper.setTo(dto.getEmail()); // 메일 수신자
-            mimeMessageHelper.setSubject("Today's Overview on NESS"); // 메일 제목
+            mimeMessageHelper.setSubject("DDogdog 예약 확인 메일입니다"); // 메일 제목
             mimeMessageHelper.setText(buildEmailBody(dto), true); // 메일 본문 내용, HTML 여부
             javaMailSender.send(mimeMessage);
-
-            log.info("Succeeded to send Email");
         } catch (Exception e) {
             log.info("Failed to send Email");
             throw new RuntimeException(e);
@@ -48,7 +46,7 @@ public class EmailService {
         StringBuilder body = new StringBuilder();
         body.append("<h1>").append(dto.getUserName()).append("님 예약 확인 메일입니다").append("</h1>");
         body.append("<p>").append("예약 일자 : " + dto.getCreateDate()).append("</p>");
-        body.append("<h1>").append("예약 기간 : " + dto.getStartDate() + " - " + dto.getEndDate()).append("</h1>");
+        body.append("<p>").append("예약 기간 : " + dto.getStartDate() + " - " + dto.getEndDate()).append("</p>");
         body.append("<p>").append("방 개수 : " + dto.getCount()).append("</p>");
         body.append("<p>").append("총 금액 : " + dto.getPrice()).append("</p>");
         return body.toString();

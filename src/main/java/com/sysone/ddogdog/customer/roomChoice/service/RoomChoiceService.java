@@ -1,6 +1,7 @@
 package com.sysone.ddogdog.customer.roomChoice.service;
 
-import com.sysone.ddogdog.customer.roomChoice.exception.NoAvailableRoomsException;
+import com.sysone.ddogdog.common.exception.CustomerErrorCode;
+import com.sysone.ddogdog.common.exception.NoAvailableRoomsException;
 import com.sysone.ddogdog.customer.roomChoice.mapper.RoomChoiceMapper;
 import com.sysone.ddogdog.customer.roomChoice.model.RequestRoomChoiceDTO;
 import com.sysone.ddogdog.customer.roomChoice.model.ResponseRoomChoiceDTO;
@@ -57,7 +58,7 @@ public class RoomChoiceService {
 
                 // 교집합이 없음 -> 방이없음 -> 예외
                 if (roomIds.isEmpty()) {
-                    throw new NoAvailableRoomsException("선택한 날짜와 조건에 맞는 방이 없습니다.");
+                    throw new NoAvailableRoomsException(CustomerErrorCode.NO_MORE_ROOMS);
                 }
 
                 Collections.sort(roomIds);

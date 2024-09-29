@@ -42,7 +42,6 @@ public class S3ImageService {
      * @return String image url
      */
     public String upload(MultipartFile image) {
-        log.info("upload진입");
         if (image.isEmpty() || Objects.isNull(image.getOriginalFilename())) {
             throw new S3Exception(ErrorCode.EMPTY_FILE_EXCEPTION);
         }
@@ -57,7 +56,6 @@ public class S3ImageService {
      * @throws S3Exception 이미지 업로드 실패
      */
     private String uploadImage(MultipartFile image) {
-        log.info("사전 검사");
         this.validateImageFileExtention(image.getOriginalFilename());
         try {
             return this.uploadImageToS3(image);
@@ -73,7 +71,6 @@ public class S3ImageService {
      * @throws S3Exception 일치하는 확장자가 없습니다
      */
     private void validateImageFileExtention(String filename) {
-        log.info("확장자 검사");
         int lastDotIndex = filename.lastIndexOf(".");
         if (lastDotIndex == -1) {
             throw new S3Exception(ErrorCode.NO_FILE_EXTENTION);
@@ -95,10 +92,8 @@ public class S3ImageService {
      * @throws S3Exception S3에 업로드하던 도중 오류가 발생했습니다
      */
     private String uploadImageToS3(MultipartFile image) throws IOException {
-        log.info("upload이미지진입");
         String originalFilename = image.getOriginalFilename();
         String extention = originalFilename.substring(originalFilename.lastIndexOf("."));
-        log.info("파일 확장자: {}", extention);
         String s3FileName = UUID.randomUUID().toString().substring(0, 10) + originalFilename;
 
         InputStream is = image.getInputStream();
@@ -115,9 +110,7 @@ public class S3ImageService {
                     new PutObjectRequest(bucketName, s3FileName, byteArrayInputStream, metadata);
             log.info(putObjectRequest.toString());
             amazonS3.putObject(putObjectRequest);
-            log.info("파일 업로드 성공: {}", s3FileName);
         } catch (Exception e) {
-            log.error("S3 업로드 실패", e);
             throw new S3Exception(ErrorCode.PUT_OBJECT_EXCEPTION);
         } finally {
             byteArrayInputStream.close();

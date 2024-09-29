@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/v1")
 public class CommonController {
 
     private final HotelService hotelService;
@@ -25,7 +24,7 @@ public class CommonController {
         return "common/index";
     }
 
-    @GetMapping("/customers")
+    @GetMapping("/v1/customers")
     public String listHotels(@AuthenticationPrincipal PrincipalDetails user,
         Model model) {
         List<ResponseHotelDTO> hotels = hotelService.getBestHotels();
@@ -40,7 +39,7 @@ public class CommonController {
         return "customer/index";
     }
 
-    @GetMapping("/owners")
+    @GetMapping("/v1/owners")
     public String ownerMain() {
         return "owner/index";
     }
