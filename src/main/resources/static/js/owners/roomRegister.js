@@ -3,15 +3,18 @@ document.getElementById('roomRegisterForm').onsubmit =
       event.preventDefault();
 
       const hotelId = document.getElementById('hotelIdHidden').value;
+      const priceValue = document.getElementById("roomPrice").value;
+      const priceNum = parseInt(priceValue.replace(/,/g,''),10)
+
       const formData = new FormData();
       formData.append('hotelId',
-          document.getElementById('hotelIdHidden').value);
+          hotelId);
       formData.append('grade', document.getElementById('roomGrade').value);
       formData.append('roomCount', document.getElementById('roomCount').value);
-      formData.append('price', document.getElementById('roomPrice').value);
+      formData.append('price', priceNum);
       formData.append('maxDogs', document.getElementById('maxDogs').value);
       formData.append('roomImage',
-          document.getElementById('roomPhoto').files[0])
+          document.getElementById('roomImage').files[0])
       formData.append('intro', document.getElementById('intro').value);
 
       axios.post('/v1/owners/rooms', formData, {
@@ -38,5 +41,20 @@ const previewRoomImg = (event) => {
       preview.style.display = 'block';
     };
     reader.readAsDataURL(file);
+  }
+}
+
+const moneyFormatter = (event) =>{
+  const value = event.target.value.replace(/[^0-9]/g, '');  // 숫자 이외의 문자 제거
+  event.target.value = Number(value).toLocaleString();  // 3자리마다 쉼표 추가
+}
+
+const maxNum = (event) =>{
+  const maxRooms = 30;
+  const value = event.target.value;
+
+  if (value > maxRooms) {
+    alert('최대 방수는 30개입니다.');
+    event.target.value = maxRooms;  // 입력값을 최대값인 30으로 고정
   }
 }

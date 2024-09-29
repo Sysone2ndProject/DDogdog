@@ -9,36 +9,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OWNER:객실 정보 수정</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/updateRoom.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a08faffd77.js" crossorigin="anonymous"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
 
 <div class="container">
-    <p id="title">${room.grade}</p>
-    <form id="update-room-form" enctype="multipart/form-data">
+    <div class="title">
+        <p id="title">${room.grade}</p>
+    </div>
+
+    <form class="radius shadow" id="updateRoomForm" enctype="multipart/form-data" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="room-info-div">
             <div class="room-img-div">
                 <i class="fa-solid fa-xmark" id="img-change-icon" onclick="openFileUpload()"></i>
-                <img id="room-img" src="${room.roomImage}" alt="room-Img">
-                <input type="file" id="image-upload" accept="image/*" onchange="previewImage(event)">
+                <img id="roomImg" src="${room.roomImage}" alt="roomImg">
+                <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)">
             </div>
             <div class="info-div">
                 <div class="form-group">
-                    <label for="room-count">객실 수:</label>
-                    <input type="number" id="room-count" value="${room.roomCount}">
+                    <label for="roomCount">객실 수</label>
+                    <input type="number" class="form-control" id="roomCount" max="30" value="${room.roomCount}" oninput="maxNum(event)" required>
                 </div>
                 <div class="form-group">
-                    <label for="max-dogs">최대 견수:</label>
-                    <input type="number" id="max-dogs" value="${room.maxDogs}">
+                    <label for="maxDogs">최대 견수</label>
+                    <input type="number" class="form-control" id="maxDogs" value="${room.maxDogs}" required>
                 </div>
                 <div class="form-group">
-                    <label for="price">가격:</label>
-                    <input type="number" id="price" value="${room.price}">
+                    <label for="price">가격</label>
+                    <input type="text" id="price" class="form-control" value="${room.price}" oninput="moneyFormatter(event)" required>
                 </div>
             </div>
         </div>
@@ -48,9 +49,9 @@
                 <textarea class="form-control" id="intro">${room.intro}</textarea>
             </div>
         </div>
-        <button type="submit" class="btn btn-success">수정하기</button>
+        <button type="submit" class="button radius">수정하기</button>
         <div class="hidden">
-            <input type="hidden" id="hotel-id" value="${hotelId}">
+            <input type="hidden" id="hotelId" value="${hotelId}">
         </div>
     </form>
 </div>

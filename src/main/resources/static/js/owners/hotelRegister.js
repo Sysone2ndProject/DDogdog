@@ -2,13 +2,21 @@ document.getElementById('hotelRegisterForm').onsubmit =
     function (event) {
       event.preventDefault(); //제출 중 새로고침 방지
 
+      const phoneNumber = document.getElementById("phoneNumber").value;
+
+      // 전화번호 유효성 검사 (숫자 9자리에서 11자리)
+      if (!/^\d{9,11}$/.test(phoneNumber)) {
+        alert('전화번호는 숫자 9자리에서 11자리여야 합니다.');
+        event.preventDefault(); // 폼 제출을 막음
+      }
+
       const formData = new FormData();
       formData.append('businessName',
           document.getElementById("businessName").value);
       formData.append('businessNumber',
           document.getElementById("businessNumber").value);
       formData.append('phoneNumber',
-          document.getElementById("phoneNumber").value);
+          phoneNumber);
       formData.append('mainImage',
           document.getElementById("mainImage").files[0]);
       formData.append('intro',
@@ -36,6 +44,7 @@ document.getElementById('hotelRegisterForm').onsubmit =
       });
 
     }
+
 const findAddress = () => {
   new daum.Postcode({
     oncomplete: function (data) {
@@ -67,4 +76,22 @@ const previewThumnail = (event) => {
     reader.readAsDataURL(file); // 파일을 Data URL로 변환
   }
 
+}
+
+function businessNumberCheck() {
+  const businessNumber = document.getElementById('businessNumber');
+  const numericPattern = /^[0-9]*$/;
+  if (!numericPattern.test(businessNumber.value)) {
+    alert(" 사업자 번호는 숫자만 입력해주세요");
+    businessNumber.value = businessNumber.value.replace(/[^0-9]/g, '');
+  }
+}
+
+function phoneNumberCheck(){
+  const phoneNumber = document.getElementById('phoneNumber');
+  const numericPattern = /^[0-9]*$/;
+  if (!numericPattern.test(phoneNumber.value)) {
+    alert(" 전화번호는 숫자로 9~11자 이내 입력해주세요");
+    phoneNumber.value = phoneNumber.value.replace(/[^0-9]/g, '');
+  }
 }

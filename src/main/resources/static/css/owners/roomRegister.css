@@ -1,16 +1,74 @@
+@import "../common/font.css";
 @import "common.css";
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+.container {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  font-family: 'miso';
+  min-height: 600px;
+  margin-top: 1rem;
+  justify-content: center;
 }
 
-.container {
-  min-height: 605px;
+.title p{
+  font-size: 1.6rem;
+  margin: 1rem;
+}
+
+#roomRegisterForm{
+  justify-content: center;
+  width: 90%;
 }
 
 #roomImgReview {
-  max-width: 400px;
+  max-width: 25rem;
   display: none;
+  margin-top: 0.5rem;
+}
+
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  padding-top: 3rem;
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+  font-size: 1rem;
+  gap:1rem
+}
+
+.form-group label {
+  display: block;
+}
+
+.form-control, .form-control-file, .form-control textarea {
+  width: 80%;
+  padding: 10px;
+  border: 0.1rem solid var(--main--gray-btn);
+  border-radius: 0.2rem;
+  box-sizing: border-box;
+}
+
+
+.button{
+  align-self: end;
+}
+label{
+  margin-bottom: 0.5rem;
+}
+
+textarea{
+  height: 8rem;
 }

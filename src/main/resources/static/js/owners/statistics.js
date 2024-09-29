@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
       datasets: [{
         label: '월별 총 매출',
         data: [],
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgb(255, 107, 107)',
+        borderColor: 'rgb(255, 107, 107)',
         borderWidth: 1
       }]
     },
@@ -46,16 +46,16 @@ document.addEventListener("DOMContentLoaded", function () {
         label: '매출',
         data: [0, 0, 0, 0],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)', // DELUXE 색상
-          'rgba(54, 162, 235, 0.2)', // SUPERIOR 색상
-          'rgba(255, 206, 86, 0.2)', // SUITE 색상
-          'rgba(75, 192, 192, 0.2)'  // ROYAL_SUITE 색상
+          'rgb(255, 213, 79)', // DELUXE 색상
+          'rgb(79, 195, 247)', // SUPERIOR 색상
+          'rgb(149, 117, 205)', // SUITE 색상
+          'rgb(277, 182, 172)'  // ROYAL_SUITE 색상
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)'
+          'rgba(255, 213, 79, 1)',
+          'rgba(79, 195, 247, 1)',
+          'rgba(149, 117, 205, 1)',
+          'rgba(277, 182, 172, 1)'
         ],
         borderWidth: 1
       }]
@@ -85,16 +85,17 @@ document.addEventListener("DOMContentLoaded", function () {
         label: '객실 수',
         data: [0, 0, 0, 0],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)', // DELUXE 색상
-          'rgba(54, 162, 235, 0.2)', // SUPERIOR 색상
-          'rgba(255, 206, 86, 0.2)', // SUITE 색상
-          'rgba(75, 192, 192, 0.2)'  // ROYAL_SUITE 색상
+          'rgb(255, 213, 79)', // DELUXE 색상
+          'rgb(79, 195, 247)', // SUPERIOR 색상
+          'rgb(149, 117, 205)', // SUITE 색상
+          'rgb(277, 182, 172)'  // ROYAL_SUITE 색상
+
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)'
+          'rgba(255, 213, 79, 1)',
+          'rgba(79, 195, 247, 1)',
+          'rgba(149, 117, 205, 1)',
+          'rgba(277, 182, 172, 1)'
         ],
         borderWidth: 1
       }]
@@ -147,12 +148,14 @@ const reservationData = (hotelId, year) => {
 
 // 차트 업데이트 함수
 const updateCharts = (data) => {
-  const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
+    '11', '12'];
 
   const monthData = data.reduce((acc, curr) => {
     const month = curr.month.split('-')[1];
     acc[month] = curr.totalPrice;
-    return acc;}, {});
+    return acc;
+  }, {});
 
   const totalPrices = months.map(month => monthData[month] || 0);
   yearIncomeChart.data.labels = months.map(month => `${month}월`);
@@ -162,7 +165,8 @@ const updateCharts = (data) => {
   const grades = ['DELUXE', 'SUPERIOR', 'SUITE', 'ROYAL_SUITE'];
   const gradeData = grades.reduce((acc, grade) => {
     acc[grade] = {price: 0, roomCount: 0};
-    return acc;}, {});
+    return acc;
+  }, {});
 
   data.forEach(curr => {
     if (gradeData[curr.grade]) {
@@ -171,8 +175,10 @@ const updateCharts = (data) => {
     }
   });
 
-  gradeIncomeChart.data.datasets[0].data = grades.map( grade => gradeData[grade].price);
-  gradeRoomCountChart.data.datasets[0].data = grades.map( grade => gradeData[grade].roomCount);
+  gradeIncomeChart.data.datasets[0].data = grades.map(
+      grade => gradeData[grade].price);
+  gradeRoomCountChart.data.datasets[0].data = grades.map(
+      grade => gradeData[grade].roomCount);
 
   gradeIncomeChart.update();
   gradeRoomCountChart.update();

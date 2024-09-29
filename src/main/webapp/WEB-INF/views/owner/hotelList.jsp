@@ -9,39 +9,60 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OWNER:Hotel 관리</title>
+    <script src="https://kit.fontawesome.com/a08faffd77.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/hotelList.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
 
-<!-- 테스트용 입니다. -->
 <div class="container">
     <div class="hotel-list-title">
-        <p class="title"><security:authentication property="principal.username"/>님의 Hotel</p>
-        <button type="button" onclick="location.href = '/v1/owners/hotels/form'"> 호텔 등록하기</button>
+        <p class="title"><security:authentication property="principal.ownerName"/>님의 Hotel</p>
+        <button type="button" class="radius" onclick="location.href = '/v1/owners/hotels/form'"> 호텔 등록하기</button>
     </div>
-    <h2>${hotel.mainImage}</h2>
-    <c:forEach var="hotel" items="${hotels}">
-        <div class="hotel-card">
-            <p class="hidden" id="hidden">${hotel.hotelId}</p>
-            <div class="hotel-img">
-                <img src="${hotel.mainImage}" alt="Hotel-Img">
+
+    <div class="hotel-card-list">
+        <c:forEach var="hotel" items="${hotels}">
+            <div class="hotel-card shadow">
+                <p class="hidden" id="hidden">${hotel.hotelId}</p>
+                <div class="hotel-img">
+                    <img src="${hotel.mainImage}" alt="Hotel-Img">
+                </div>
+                <div class="hotel-info">
+                    <div class="hotel-card-title">
+                        <p id="hotelName">${hotel.businessName}</p>
+                        <p id="businessNumber">(${hotel.businessNumber})</p>
+                    </div>
+
+                    <div class="icon-text">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>${hotel.phoneNumber}</p>
+                    </div>
+
+                    <div class="icon-text">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>${hotel.fullAddress}</p>
+                    </div>
+
+                    <div class="icon-text">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <p>${hotel.avgScore}(리뷰수: ${hotel.reviewCount})</p>
+                    </div>
+
+                    <div class="icon-text">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p>${hotel.intro}</p>
+                    </div>
+                </div>
+                <div class="hotel-manage">
+                    <button type="button" class="radius" onclick="location.href = '/v1/owners/hotels/${hotel.hotelId}'"> 호텔 정보 수정</button>
+                    <button type="button" class="radius" onclick="location.href = '/v1/owners/rooms?hotelId=${hotel.hotelId}'"> 객실관리
+                    </button>
+                </div>
             </div>
-            <div class="hotel-info">
-                <p id="hotel-name">${hotel.businessName}</p>
-                <p>사업자 번호: ${hotel.businessNumber}</p>
-                <p>연락처: ${hotel.phoneNumber}</p>
-                <p>주소: ${hotel.fullAddress}</p>
-                <p>평점: ${hotel.avgScore}(리뷰수: ${hotel.reviewCount})</p>
-                <p>소개글: ${hotel.intro}</p>
-            </div>
-            <div class="hotel-manage">
-                <button type="button" onclick="location.href = '/v1/owners/hotels/${hotel.hotelId}'"> 호텔 정보 수정</button>
-                <button type="button" onclick="location.href = '/v1/owners/rooms?hotelId=${hotel.hotelId}'"> 객실관리</button>
-            </div>
-        </div>
-    </c:forEach>
+        </c:forEach>
+    </div>
+
 </div>
 
 <jsp:include page="component/footer.jsp"></jsp:include>

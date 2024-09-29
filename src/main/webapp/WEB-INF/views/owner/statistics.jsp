@@ -19,7 +19,7 @@
     <div class="select">
         <div class="hotel">
             <c:forEach var="hotel" items="${hotels}">
-                <button><input type="hidden" value="${hotel.hotelId}">${hotel.businessName}</button>
+                <button class="gray-btn radius"><input type="hidden" value="${hotel.hotelId}">${hotel.businessName}</button>
             </c:forEach>
         </div>
 

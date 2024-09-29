@@ -17,45 +17,50 @@
 
 <div class="container">
     <input type="hidden" id="hotelIdHidden" value="${hotelId}">
-    <h1>객실등록 </h1>
-    <form id="roomRegisterForm" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="roomPhoto">객실 사진</label>
-            <input type="file" id="roomPhoto" class="form-control" accept="image/*" required onchange="previewRoomImg(event)">
-            <div class="room-img-preview">
-                <img id="roomImgReview">
+    <div class="title">
+        <p>객실등록</p>
+    </div>
+    <div class="form radius shadow">
+        <form id="roomRegisterForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="roomGrade">객실 등급</label>
+                <select id="roomGrade" class="form-control">
+                    <c:forEach var="grade" items="${grades}">
+                        <option value="${grade.name()}">${grade.detail}</option>
+                    </c:forEach>
+                </select>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="roomGrade">객실 등급</label>
-            <select id="roomGrade" class="form-control">
-                <c:forEach var="grade" items="${grades}">
-                    <option value="${grade.name()}">${grade.detail}</option>
-                </c:forEach>
-            </select>
-        </div>
 
-        <div class="form-group">
-            <label for="roomCount">객실 갯수</label>
-            <input type="number" id="roomCount" class="form-control" required>
-        </div>
+            <div class="form-group">
+                <label for="roomCount">객실 갯수</label>
+                <input type="number" id="roomCount" class="form-control"  oninput="maxNum(event)" min="0" max="30" required>
+            </div>
 
-        <div class="form-group">
-            <label for="roomPrice">객실 가격</label>
-            <input type="number" id="roomPrice" class="form-control" required>
-        </div>
+            <div class="form-group">
+                <label for="roomPrice">객실 가격</label>
+                <input type="text" id="roomPrice" class="form-control" oninput="moneyFormatter(event)"  required>
+            </div>
 
-        <div class="form-group">
-            <label for="maxDogs">최대 견수</label>
-            <input type="number" id="maxDogs" class="form-control" required>
-        </div>
+            <div class="form-group">
+                <label for="maxDogs">최대 견수</label>
+                <input type="number" id="maxDogs" class="form-control" min="1" required>
+            </div>
 
-        <div class="form-group">
-            <label for="intro">룸 소개글:</label>
-            <textarea class="form-control" id="intro"></textarea>
-        </div>
-        <button type="submit" class="button radius">등록</button>
-    </form>
+            <div class="form-group">
+                <label for="roomImage">객실 사진</label>
+                <input type="file" id="roomImage" class="form-control" accept="image/*" required onchange="previewRoomImg(event)">
+                <div class="room-img-preview">
+                    <img id="roomImgReview">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="intro">룸 소개글:</label>
+                <textarea class="form-control" id="intro"></textarea>
+            </div>
+            <button type="submit" class="button radius">등록</button>
+        </form>
+    </div>
 </div>
 
 <jsp:include page="component/footer.jsp"></jsp:include>
