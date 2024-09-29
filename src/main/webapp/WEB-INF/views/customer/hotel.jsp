@@ -15,6 +15,11 @@
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/css/customers/hotel.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>

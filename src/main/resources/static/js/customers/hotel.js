@@ -16,7 +16,11 @@ document.getElementById('searchForm').onsubmit =
       const endDate = document.getElementById('endDate').value || '';
 
       if (keyword === "" || startDate === "" || endDate === "") {
-        alert("모든 정보를 입력해주세요");
+        Swal.fire({
+          title: '모든 정보를 입력해주세요.',
+          icon: 'error',
+          confirmButtonText: '확인'
+        })
         return;
       }
 

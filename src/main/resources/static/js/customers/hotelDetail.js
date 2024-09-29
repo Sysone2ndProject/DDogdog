@@ -17,7 +17,11 @@ const getEndDate = () => {
 const calcCountAndPrice = (i) => {
 
   if (startDate === "" || endDate === "") {
-    alert("날짜를 선택해주세요");
+    Swal.fire({
+      title: '날짜를 선택하세요.',
+      icon: 'error',
+      confirmButtonText: '확인'
+    })
     document.getElementById(`count${i}`).value = 0;
     return;
   }
@@ -62,11 +66,12 @@ const decreaseValue = (index) => {
 const submitForm = (event) => {
   event.preventDefault();
 
-  if (startDate === "" || endDate === "") {
-    alert("날짜를 선택해주세요");
-    return;
-  } else if (totalCnt === 0) {
-    alert("방을 선택해주세요");
+  if (totalCnt === 0) {
+    Swal.fire({
+      title: '방을 선택하세요.',
+      icon: 'error',
+      confirmButtonText: '확인'
+    })
     return;
   }
   axios.post('/v1/customers/reservation', {
@@ -78,12 +83,21 @@ const submitForm = (event) => {
     rooms
   })
   .then((response) => {
-    alert("예약이 완료되었습니다.");
-    window.location.href = "/v1/customers/member";
+    Swal.fire({
+      title: '예약이 완료되었습니다.',
+      icon: 'success',
+      confirmButtonText: '확인'
+    }).then(() => {
+      window.location.href = "/v1/customers/member"
+    });
   })
   .catch((error) => {
     console.error(error);
-    alert("로그인 후 이용해주세요");
+    Swal.fire({
+      title: '로그인 후 이용해주세요.',
+      icon: 'error',
+      confirmButtonText: '확인'
+    })
   });
 };
 
