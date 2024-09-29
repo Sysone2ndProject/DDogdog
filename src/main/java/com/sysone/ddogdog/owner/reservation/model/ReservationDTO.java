@@ -2,11 +2,12 @@ package com.sysone.ddogdog.owner.reservation.model;
 
 import com.sysone.ddogdog.owner.room.model.RoomGrade;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class ReservationDTO {
+
     private Long id;
     private Long customerId;
     private String customerName;
