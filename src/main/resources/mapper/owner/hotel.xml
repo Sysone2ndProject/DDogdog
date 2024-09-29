@@ -11,6 +11,7 @@
     <result property="mainImage" column="main_image"/>
     <result property="avgScore" column="avg_score"/>
     <result property="reviewCount" column="review_count"/>
+    <result property="addressId" column="address_id"/>
     <result property="fullAddress" column="full_address"/>
   </resultMap>
 
@@ -51,6 +52,7 @@
              ELSE ROUND(h.total_score / h.review_count, 2)
              END AS avg_score,
            h.review_count,
+           h.address_id,
            a.full_address
     FROM HOTELS h
            JOIN ADDRESSES a

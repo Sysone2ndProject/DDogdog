@@ -13,5 +13,7 @@ public interface AddressMapper {
 
 
     String getFullAddressById(Integer id);
+
+    void updateAddress(AddressDTO addressDTO);
 }
 

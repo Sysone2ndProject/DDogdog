@@ -12,6 +12,7 @@ document.getElementById('hotelUpdateForm').onsubmit =
           document.getElementById("phoneNumber").value);
       formData.append('intro',
           document.getElementById("intro").value);
+      formData.append('addressId', document.getElementById("addressId").value);
       formData.append('fullAddress',
           document.getElementById("address").value);
       formData.append('sido',
@@ -78,7 +79,7 @@ const findAddress = () => {
   }).open();
 }
 
-function phoneNumberCheck(){
+function phoneNumberCheck() {
   const phoneNumber = document.getElementById('phoneNumber');
   const numericPattern = /^[0-9]*$/;
   if (!numericPattern.test(phoneNumber.value)) {

@@ -59,6 +59,7 @@
 
         <div class="address-hidden">
             <input type="hidden" id="hotelId" value="${hotel.hotelId}">
+            <input type="hidden" id="addressId" value="${hotel.addressId}">
             <input type="hidden" id="sido">
             <input type="hidden" id="sigungu">
             <input type="hidden" id="dong">

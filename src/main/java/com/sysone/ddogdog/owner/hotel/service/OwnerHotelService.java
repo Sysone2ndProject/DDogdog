@@ -45,17 +45,16 @@ public class OwnerHotelService {
     @Transactional
     public void updateHotel(RequestHotelDTO requestHotelDTO) {
 
-        AddressDTO addressDTO = AddressDTO.fromOwnerHotelDTO(requestHotelDTO);
-        addressMapper.saveAddress(addressDTO);
-        Integer addressId = addressDTO.getId();
+        AddressDTO addressDTO = AddressDTO.updateAddressDTO(requestHotelDTO);
+        addressMapper.updateAddress(addressDTO);
 
         if (requestHotelDTO.getMainImage() != null) {
             //이미지 파일 존재할 경우에만 S3 업로드
             String mainImgUrl = s3ImageService.upload(requestHotelDTO.getMainImage());
-            HotelDTO hotelDTO = HotelDTO.fromRequestHotelDTO(requestHotelDTO, addressId, mainImgUrl);
+            HotelDTO hotelDTO = HotelDTO.updateWithImg(requestHotelDTO, mainImgUrl);
             ownerHotelMapper.updateHotel(hotelDTO);
         } else {
-            HotelDTO hotelDTO = HotelDTO.updateWithOutImg(requestHotelDTO, addressId);
+            HotelDTO hotelDTO = HotelDTO.updateWithOutImg(requestHotelDTO);
             ownerHotelMapper.updateHotelWithOutImg(hotelDTO);
         }
     }

@@ -3,8 +3,8 @@
 
 <mapper namespace="com.sysone.ddogdog.common.address.repository.AddressMapper">
   <resultMap id="response" type="com.sysone.ddogdog.common.address.model.AddressDTO">
-    <id property="id" column="id" />
-    <result property="fullAddress" column="full_address" />
+    <id property="id" column="id"/>
+    <result property="fullAddress" column="full_address"/>
     <result property="sido" column="sido"/>
     <result property="sigungu" column="sigungu"/>
     <result property="dong" column="dong"/>
@@ -32,5 +32,14 @@
     FROM ADDRESSES
     WHERE id = #{id}
   </select>
+
+  <update id="updateAddress" parameterType="com.sysone.ddogdog.common.address.model.AddressDTO">
+    UPDATE ADDRESSES
+    SET full_address = #{fullAddress},
+        sido         = #{sido},
+        sigungu      = #{sigungu},
+        dong         = #{dong}
+    WHERE id = #{id}
+  </update>
 </mapper>
 
