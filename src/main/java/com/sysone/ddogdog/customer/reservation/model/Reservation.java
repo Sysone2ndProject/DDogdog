@@ -5,11 +5,12 @@ import java.time.format.DateTimeFormatter;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 /**
  * DB와 직접적으로 통신하는 Entity 객체이다.
  */
-@Data
+@Getter
 @Builder
 public class Reservation {
     private Integer id;
