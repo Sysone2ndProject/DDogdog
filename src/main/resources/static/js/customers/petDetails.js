@@ -111,8 +111,7 @@ const submitForm = (event) => {
     const form = document.getElementById('petForm');
     const formData = new FormData(form);
 
-    // 추가 데이터
-    if (petSpeciesId == null || petSpeciesId === ""){
+    if(!petSpeciesId){
         formData.append('speciesId', defaultPetSpeciesId);
     }else{
         formData.append('speciesId', petSpeciesId);
