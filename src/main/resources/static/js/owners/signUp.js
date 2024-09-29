@@ -1,21 +1,34 @@
 function checkId() {
   const id = document.getElementById("id").value;
   if (!id) {
-    alert("아이디를 입력해 주세요.");
+    Swal.fire({
+      title: '아이디를 입력해 주세요',
+      icon: 'warning',
+    })
     return;
   }
 
   axios.get(`/v1/owners/${id}`)
   .then(response => {
     if (response.data) {
-      alert("이미 존재하는 아이디입니다.");
+      Swal.fire({
+        title: '이미 존재하는 아이디입니다.',
+        icon: 'error',
+      })
     } else {
-      alert("사용 가능한 아이디입니다.");
+      Swal.fire({
+        title: '사용 가능한 아이디입니다.',
+        icon: 'success',
+      })
     }
   })
   .catch(error => {
     console.error("Error:", error);
-    alert("아이디 중복 확인 중 오류가 발생했습니다.");
+    Swal.fire({
+      title: '다시 한번 시도해 보세요',
+      text: '아이디 중복 확인 중 오류가 발생했습니다.',
+      icon: 'error',
+    })
   });
 }
 
@@ -23,7 +36,10 @@ function numberCheck() {
   const accountNumberInput = document.getElementById('accountNumber');
   const numericPattern = /^[0-9]*$/;
   if (!numericPattern.test(accountNumberInput.value)) {
-    alert("숫자만 입력해주세요");
+    Swal.fire({
+      title: '숫자만 입력 가능합니다.',
+      icon: 'warning',
+    })
     accountNumberInput.value = accountNumberInput.value.replace(/[^0-9]/g, '');
   }
 }
@@ -39,10 +55,16 @@ function signUp() {
     }
   })
   .then(response => {
-    alert("회원가입을 축하드립니다.");
+    Swal.fire({
+      title: '회원 가입을 축하드립니다!',
+      icon: 'success',
+    })
     window.location.href = '/v1/owners'; //owners 메인페이지 연결
   })
   .catch(error => {
-    alert('아이디값을 확인해 주세요');
+    Swal.fire({
+      title: '아이디 값을 다시 한번 확인해 주세요.',
+      icon: 'error',
+    })
   });
 }
