@@ -6,7 +6,11 @@ document.getElementById('hotelRegisterForm').onsubmit =
 
       // 전화번호 유효성 검사 (숫자 9자리에서 11자리)
       if (!/^\d{9,11}$/.test(phoneNumber)) {
-        alert('전화번호는 숫자 9자리에서 11자리여야 합니다.');
+        Swal.fire({
+          title: '숫자만 입력해 주세요',
+          text: '전화번호는 숫자 9자리에서 11자리이하로 입력해주세요',
+          icon: 'warning',
+        })
         event.preventDefault(); // 폼 제출을 막음
       }
 
@@ -36,11 +40,17 @@ document.getElementById('hotelRegisterForm').onsubmit =
         }
       })
       .then(function (response) {
-        alert('저장되었습니다.');
+        Swal.fire({
+          title: '저장되었습니다.',
+          icon: 'success',
+        })
         window.location.href = `/v1/owners/hotels`;
       })
       .catch(function (error) {
-        alert('오류가 발생했습니다.');
+        Swal.fire({
+          title: '오류가 발생했습니다..',
+          icon: 'error',
+        })
       });
 
     }
@@ -82,16 +92,23 @@ function businessNumberCheck() {
   const businessNumber = document.getElementById('businessNumber');
   const numericPattern = /^[0-9]*$/;
   if (!numericPattern.test(businessNumber.value)) {
-    alert(" 사업자 번호는 숫자만 입력해주세요");
+    Swal.fire({
+      title: '사업자 번호는 숫자만 입력해주세요',
+      icon: 'warning',
+    })
     businessNumber.value = businessNumber.value.replace(/[^0-9]/g, '');
   }
 }
 
-function phoneNumberCheck(){
+function phoneNumberCheck() {
   const phoneNumber = document.getElementById('phoneNumber');
   const numericPattern = /^[0-9]*$/;
   if (!numericPattern.test(phoneNumber.value)) {
-    alert(" 전화번호는 숫자로 9~11자 이내 입력해주세요");
+    Swal.fire({
+      title: '숫자만 입력해 주세요',
+      text: '전화번호는 숫자 9자리에서 11자리이하로 입력해주세요',
+      icon: 'warning',
+    })
     phoneNumber.value = phoneNumber.value.replace(/[^0-9]/g, '');
   }
 }
