@@ -22,11 +22,10 @@
         <img class="logo" src="${pageContext.request.contextPath}/img/logo_nobg.png"
              onclick="location.href='/v1/customers'" alt="logo"/>
 
-        <%--        TO DO 클릭시 어디로 이동할 지 연결 & 해당 페이지일 경우 스타일 다르게--%>
         <div class="nav-list">
             <p class="nav-item" onclick="location.href='/v1/customers'">Home</p>
-            <p class="nav-item">Search</p>
-            <p class="nav-item">About</p>
+            <p class="nav-item" onclick="location.href='/v1/customers/member'">MyPage</p>
+            <p class="nav-item" onclick="location.href=''">About</p>
         </div>
 
         <!-- 비로그인 시: 인증되지 않은 사용자라면 -->
@@ -43,10 +42,6 @@
             <div class="login">
             <span class="user-name">
             환영합니다 <sec:authentication property="principal.name"/> 고객님
-            </span>
-                <span class="material-icons-outlined"
-                      onclick="location.href='/v1/customers/member'">
-                person
             </span>
                 <span class="material-icons" onclick="location.href='/v1/logout'">
                 logout
