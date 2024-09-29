@@ -38,8 +38,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
-                .addFilterBefore(new MultiAuthorityBasedSessionInvalidationFilter(),
-                        UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(new MultiAuthorityBasedSessionInvalidationFilter(),
+                UsernamePasswordAuthenticationFilter.class)
             .sessionManagement(
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                     .sessionFixation().changeSessionId()
@@ -51,8 +51,10 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth ->
                 auth.requestMatchers("/v1/owners/signup", "/v1/owners", "/resource/**",
-                        "/v1/owners/login", "/", "/login**", "/css/**", "/js/**", "/v1/customers/signup","/v1/customers","/hc","/env").permitAll()
-                    .requestMatchers("/v1/owners/hotels","/v1/owners/rooms","/v1/owners/reservations/*").hasRole("OWNER")
+                        "/v1/owners/login", "/", "/login**", "/css/**", "/js/**", "/v1/customers/signup", "/v1/customers", "/hc", "/env")
+                    .permitAll()
+                    .requestMatchers("/v1/owners/hotels", "/v1/owners/hotels/**", "/v1/owners/rooms", "/v1/owners/rooms/**",
+                        "/v1/owners/reservations/**").hasRole("OWNER")
                     .requestMatchers("/v1/customers/member").hasRole("CUSTOMER")
                     .anyRequest().permitAll())
             .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(
