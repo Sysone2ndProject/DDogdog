@@ -46,16 +46,16 @@ document.addEventListener("DOMContentLoaded", function () {
         label: '매출',
         data: [0, 0, 0, 0],
         backgroundColor: [
-          'rgb(255, 213, 79)', // DELUXE 색상
-          'rgb(79, 195, 247)', // SUPERIOR 색상
-          'rgb(149, 117, 205)', // SUITE 색상
-          'rgb(277, 182, 172)'  // ROYAL_SUITE 색상
+          'rgb(93, 103, 120)', // DELUXE 색상
+          'rgb(56, 84, 136)', // SUPERIOR 색상
+          'rgb(44, 92, 181)', // SUITE 색상
+          'rgb(70, 122, 219)'  // ROYAL_SUITE 색상
         ],
         borderColor: [
-          'rgba(255, 213, 79, 1)',
-          'rgba(79, 195, 247, 1)',
-          'rgba(149, 117, 205, 1)',
-          'rgba(277, 182, 172, 1)'
+          'rgba(93, 103, 120, 1)',
+          'rgba(56, 84, 136, 1)',
+          'rgba(4, 92, 181, 1)',
+          'rgba(70, 122, 219, 1)'
         ],
         borderWidth: 1
       }]
@@ -85,17 +85,16 @@ document.addEventListener("DOMContentLoaded", function () {
         label: '객실 수',
         data: [0, 0, 0, 0],
         backgroundColor: [
-          'rgb(255, 213, 79)', // DELUXE 색상
-          'rgb(79, 195, 247)', // SUPERIOR 색상
-          'rgb(149, 117, 205)', // SUITE 색상
-          'rgb(277, 182, 172)'  // ROYAL_SUITE 색상
-
+          'rgb(93, 103, 120)', // DELUXE 색상
+          'rgb(56, 84, 136)', // SUPERIOR 색상
+          'rgb(44, 92, 181)', // SUITE 색상
+          'rgb(70, 122, 219)'  // ROYAL_SUITE 색상
         ],
         borderColor: [
-          'rgba(255, 213, 79, 1)',
-          'rgba(79, 195, 247, 1)',
-          'rgba(149, 117, 205, 1)',
-          'rgba(277, 182, 172, 1)'
+          'rgba(93, 103, 120, 1)',
+          'rgba(56, 84, 136, 1)',
+          'rgba(4, 92, 181, 1)',
+          'rgba(70, 122, 219, 1)'
         ],
         borderWidth: 1
       }]

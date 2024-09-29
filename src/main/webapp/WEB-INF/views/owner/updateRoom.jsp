@@ -24,7 +24,7 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="room-info-div">
             <div class="room-img-div">
-                <i class="fa-solid fa-xmark" id="img-change-icon" onclick="openFileUpload()"></i>
+                <i class="fa-solid fa-xmark" id="imgChangeIcon" onclick="openFileUpload()"></i>
                 <img id="roomImg" src="${room.roomImage}" alt="roomImg">
                 <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)">
             </div>
