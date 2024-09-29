@@ -1,12 +1,12 @@
 @import "../common/font.css";
 
 :root {
-  --main-—darkblue: #181e4b;
-  --main-—pink: #f4cfc6;
+  --main--darkblue: #181e4b;
+  --main--pink: #f4cfc6;
   --main--lightpink: #fff9f9;
   --main--gray: #f3f3f3;
   --main--darkgray: #7d7d7d;
-  --main-—pink--hover: #e4c1b9;
+  --main--pink--hover: #e4c1b9;
   --main--tp: #f3f3f366;
   --main--orange: #df6951;
   --main--orange--hover: #b4523e;
