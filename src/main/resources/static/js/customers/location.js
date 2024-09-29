@@ -43,9 +43,9 @@ document.getElementById('addressForm').addEventListener('submit', function(event
   event.preventDefault(); // 폼 제출을 막습니다.
   const customData = {
     fullAddress: address,
-    sido: sido,
-    sigungu: sigungu,
-    bname: bname,
+    sido,
+    sigungu,
+    bname,
     kakaoId: id
   };
   console.log(customData);

@@ -13,9 +13,9 @@ document.getElementById('searchForm').onsubmit =
 
       axios.get('/v1/customers/hotels', {
         params: {
-          keyword: keyword,
-          startDate: startDate,
-          endDate: endDate
+          keyword,
+          startDate,
+          endDate
         }
       })
       .then((response) => {

@@ -22,9 +22,9 @@ document.getElementById('searchForm').onsubmit =
 
       axios.get('/v1/customers/hotels', {
         params: {
-          keyword: keyword,
-          startDate: startDate,
-          endDate: endDate
+          keyword,
+          startDate,
+          endDate
         }
       })
       .then((response) => {
@@ -58,11 +58,11 @@ async function loadMoreHotels() {
   try {
     const response = await axios.get('/v1/customers/hotels/more', {
       params: {
-        keyword: keyword,
-        startDate: startDate,
-        endDate: endDate,
-        page: page,
-        size: size
+        keyword,
+        startDate,
+        endDate,
+        page,
+        size
       }
     });
 
