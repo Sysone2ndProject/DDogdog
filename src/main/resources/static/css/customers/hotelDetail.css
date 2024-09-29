@@ -133,16 +133,16 @@
   width: 50%;
   height: 100%;
   font-size: 1rem;
-  color: var(--main-—darkblue);
+  color: var(--main--darkblue);
   cursor: pointer;
 }
 
 .big-btn:hover {
-  background-color: var(--main-—pink--hover);
+  background-color: var(--main--pink--hover);
 }
 
 .pink {
-  background-color: var(--main-—pink);
+  background-color: var(--main--pink);
 }
 
 .choose-room {

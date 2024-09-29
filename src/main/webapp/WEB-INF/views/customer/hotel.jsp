@@ -37,10 +37,10 @@
     </form>
     <div class="search-result">
         <p class="hotel-title">" <span class="keyword">${param.keyword}</span> " 에 대한 검색 결과</p>
-        <div class="hotel-list">
-            <c:forEach var="hotel" items="${hotels}">
+        <div class="hotel-list" id="hotelList">
+            <c:forEach var="hotel" items="${hotels.content}">
                 <div class="hotel radius shadow" onclick="gotoDetail(${hotel.id})">
-                    <img class="hotel-img" src="${pageContext.request.contextPath}/img/logo.png">
+                    <img class="hotel-img" src="${hotel.mainImage}">
                     <div class="hotel-content">
                         <p class="hotel-name">${hotel.businessName}</p>
                         <div class="loc">

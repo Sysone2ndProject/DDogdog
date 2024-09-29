@@ -5,7 +5,7 @@
 }
 
 .color-pink {
-  background-color: var(--main-—pink);
+  background-color: var(--main--pink);
 }
 
 .header {
@@ -37,7 +37,7 @@
 
 .nav-item {
   cursor: pointer;
-  color: var(--main-—darkblue);
+  color: var(--main--darkblue);
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -64,6 +64,6 @@
 
 .material-icons-outlined {
   cursor: pointer;
-  color: var(--main-—darkblue);
+  color: var(--main--darkblue);
 }
 

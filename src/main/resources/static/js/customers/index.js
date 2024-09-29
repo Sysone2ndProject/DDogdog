@@ -13,13 +13,12 @@ document.getElementById('searchForm').onsubmit =
 
       axios.get('/v1/customers/hotels', {
         params: {
-          keyword: keyword,
-          startDate: startDate,
-          endDate: endDate
+          keyword,
+          startDate,
+          endDate
         }
       })
       .then((response) => {
-        console.log(response.data);
         window.location.href = '/v1/customers/hotels?keyword='
             + encodeURIComponent(keyword) + '&startDate=' + encodeURIComponent(
                 startDate) + '&endDate=' + encodeURIComponent(endDate);
