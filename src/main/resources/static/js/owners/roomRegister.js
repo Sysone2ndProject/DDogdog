@@ -26,8 +26,11 @@ document.getElementById('roomRegisterForm').onsubmit =
         Swal.fire({
           title: '객실 등록 되었습니다.',
           icon: 'success',
-        })
-        window.location.href = `/v1/owners/rooms?hotelId=${hotelId}`;
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = `/v1/owners/rooms?hotelId=${hotelId}`;
+          }
+        });
       })
       .catch(function (error) {
         Swal.fire({

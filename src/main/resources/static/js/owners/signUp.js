@@ -58,8 +58,12 @@ function signUp() {
     Swal.fire({
       title: '회원 가입을 축하드립니다!',
       icon: 'success',
-    })
-    window.location.href = '/v1/owners'; //owners 메인페이지 연결
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // 확인 버튼을 누르면 리디렉션
+        window.location.href = '/v1/owners'; // 리디렉션할 페이지로 변경
+      }
+    });
   })
   .catch(error => {
     Swal.fire({

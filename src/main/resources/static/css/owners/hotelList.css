@@ -79,6 +79,7 @@
 .hotel-img img {
   width: 100%;
   height: auto;
+  max-height: 25vh;
   object-fit: contain;
 }
 

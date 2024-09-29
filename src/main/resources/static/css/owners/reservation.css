@@ -23,6 +23,7 @@
 
 .button:focus {
   outline: none;
+  background-color: var(--main--btn--hover);
 }
 
 .calendar {

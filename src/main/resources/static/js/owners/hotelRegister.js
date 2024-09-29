@@ -43,8 +43,11 @@ document.getElementById('hotelRegisterForm').onsubmit =
         Swal.fire({
           title: '저장되었습니다.',
           icon: 'success',
-        })
-        window.location.href = `/v1/owners/hotels`;
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = `/v1/owners/hotels`;
+          }
+        });
       })
       .catch(function (error) {
         Swal.fire({

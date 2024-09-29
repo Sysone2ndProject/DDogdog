@@ -35,8 +35,11 @@ document.getElementById('updateRoomForm').onsubmit =
         Swal.fire({
           title: '객실정보가 수정되었습니다.',
           icon: 'success',
-        })
-        window.location.href = `/v1/owners/rooms?hotelId=${hotelId}`;
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = `/v1/owners/rooms?hotelId=${hotelId}`;
+          }
+        });
       })
       .catch(function (error) {
         Swal.fire({
@@ -48,7 +51,7 @@ document.getElementById('updateRoomForm').onsubmit =
     }
 
 const openFileUpload = () => {
-  document.getElementById('image-upload').click();
+  document.getElementById('imageUpload').click();
 }
 
 const previewImage = (event) => {
