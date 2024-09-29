@@ -2,9 +2,9 @@ package com.sysone.ddogdog.owner.auth.model;
 
 import com.sysone.ddogdog.common.config.Role;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class AuthDTO {
 

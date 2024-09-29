@@ -15,6 +15,7 @@ public class ResponseHotelDTO {
     private String mainImage;
     private Float avgScore;
     private Integer reviewCount;
+    private Integer addressId;
     private String fullAddress;
 
     public static ResponseHotelDTO fromHotelDTO(HotelDTO hotelDTO, String fullAddress) {
@@ -25,6 +26,7 @@ public class ResponseHotelDTO {
             .phoneNumber(hotelDTO.getPhoneNumber())
             .intro(hotelDTO.getIntro())
             .mainImage(hotelDTO.getMainImage())
+            .addressId(hotelDTO.getAddressId())
             .fullAddress(fullAddress)
             .build();
     }

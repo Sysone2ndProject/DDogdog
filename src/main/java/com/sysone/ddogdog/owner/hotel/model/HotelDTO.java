@@ -1,9 +1,9 @@
 package com.sysone.ddogdog.owner.hotel.model;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class HotelDTO {
 
@@ -33,10 +33,25 @@ public class HotelDTO {
             .build();
     }
 
-    public static HotelDTO updateWithOutImg(RequestHotelDTO requestHotelDTO, Integer addressId) {
+    public static HotelDTO updateWithImg(RequestHotelDTO requestHotelDTO, String mainImgUrl) {
         return HotelDTO.builder()
             .id(requestHotelDTO.getId())
-            .addressId(addressId)
+            .addressId(requestHotelDTO.getAddressId())
+            .ownerId(requestHotelDTO.getOwnerId())
+            .businessName(requestHotelDTO.getBusinessName())
+            .businessNumber(requestHotelDTO.getBusinessNumber())
+            .phoneNumber(requestHotelDTO.getPhoneNumber())
+            .intro(requestHotelDTO.getIntro())
+            .mainImage(mainImgUrl)
+            .totalScore(0)
+            .reviewCount(0)
+            .build();
+    }
+
+    public static HotelDTO updateWithOutImg(RequestHotelDTO requestHotelDTO) {
+        return HotelDTO.builder()
+            .id(requestHotelDTO.getId())
+            .addressId(requestHotelDTO.getAddressId())
             .ownerId(requestHotelDTO.getOwnerId())
             .businessName(requestHotelDTO.getBusinessName())
             .businessNumber(requestHotelDTO.getBusinessNumber())

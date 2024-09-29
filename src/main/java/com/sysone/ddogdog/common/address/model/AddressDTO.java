@@ -3,10 +3,10 @@ package com.sysone.ddogdog.common.address.model;
 import com.sysone.ddogdog.owner.hotel.model.RequestHotelDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +20,16 @@ public class AddressDTO {
 
     public static AddressDTO fromOwnerHotelDTO(RequestHotelDTO requestHotelDTO) {
         return AddressDTO.builder()
+            .fullAddress(requestHotelDTO.getFullAddress())
+            .sido(requestHotelDTO.getSido())
+            .sigungu(requestHotelDTO.getSigungu())
+            .dong(requestHotelDTO.getDong())
+            .build();
+    }
+
+    public static AddressDTO updateAddressDTO(RequestHotelDTO requestHotelDTO) {
+        return AddressDTO.builder()
+            .id(requestHotelDTO.getAddressId())
             .fullAddress(requestHotelDTO.getFullAddress())
             .sido(requestHotelDTO.getSido())
             .sigungu(requestHotelDTO.getSigungu())

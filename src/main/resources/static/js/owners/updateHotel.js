@@ -12,6 +12,7 @@ document.getElementById('hotelUpdateForm').onsubmit =
           document.getElementById("phoneNumber").value);
       formData.append('intro',
           document.getElementById("intro").value);
+      formData.append('addressId', document.getElementById("addressId").value);
       formData.append('fullAddress',
           document.getElementById("address").value);
       formData.append('sido',
@@ -32,11 +33,20 @@ document.getElementById('hotelUpdateForm').onsubmit =
         }
       })
       .then(function (response) {
-        alert('저장되었습니다.');
-        window.location.href = `/v1/owners/hotels`;
+        Swal.fire({
+          title: '호텔정보가 수정되었습니다.',
+          icon: 'success',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = `/v1/owners/hotels`;
+          }
+        });
       })
       .catch(function (error) {
-        alert('오류가 발생했습니다.');
+        Swal.fire({
+          title: '오류가 발생했습니다.',
+          icon: 'error',
+        })
       });
 
     }
@@ -78,11 +88,15 @@ const findAddress = () => {
   }).open();
 }
 
-function phoneNumberCheck(){
+function phoneNumberCheck() {
   const phoneNumber = document.getElementById('phoneNumber');
   const numericPattern = /^[0-9]*$/;
   if (!numericPattern.test(phoneNumber.value)) {
-    alert(" 전화번호는 숫자로 9~11자 이내 입력해주세요");
+    Swal.fire({
+      title: '숫자만 입력해 주세요',
+      text: '전화번호는 숫자 9자리에서 11자리이하로 입력해주세요',
+      icon: 'warning',
+    })
     phoneNumber.value = phoneNumber.value.replace(/[^0-9]/g, '');
   }
 }
