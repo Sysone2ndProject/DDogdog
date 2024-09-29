@@ -7,7 +7,7 @@ const handleFileSelect = (event) => {
     if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
-            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview" style="width: 170px; height: 170px;">`;
+            imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="image-preview">`;
         };
         reader.readAsDataURL(file);
     } else {
@@ -20,13 +20,24 @@ const loadBreedList = (query) => {
     clearTimeout(debounceTimer); // 이전 타이머 클리어
 
     debounceTimer = setTimeout(() => {
+        if (!query) {
+            const breedListElement = document.getElementById('breedList');
+            breedListElement.innerHTML = `<p class="text-center">검색어를 입력해주세요</p>`;
+            return;
+        }
+
         axios.get('/v1/customers/pets/species', {
             params: { query: query }
         })
         .then((response) => {
             let breedListHtml = '';
             if (response.data.length === 0) {
-                breedListHtml = `<p>검색 결과 없음</p>`;
+                breedListHtml = `
+                    <p class="text-center">검색 결과 없음</p>
+                    <p class="text-center">
+                        <a href="#" onclick="showBreedRegistrationForm()" class="link-style"">견종 등록하기</a>
+                    </p>`;
+
             } else {
                 response.data.forEach((breed) => {
                     breedListHtml += `<li class="list-group-item" onclick="selectBreed('${breed.id}', '${breed.species}')">${breed.species}</li>`;
@@ -100,19 +111,23 @@ const submitForm = (event) => {
     const form = document.getElementById('petForm');
     const formData = new FormData(form);
 
-    // 추가 데이터 추가
-    formData.append('speciesId', petSpeciesId);
-    console.log(petId);
-    formData.append('id',petId)
+    if(!petSpeciesId){
+        formData.append('speciesId', defaultPetSpeciesId);
+    }else{
+        formData.append('speciesId', petSpeciesId);
+    }
+
+    formData.append('id',petId);
 
     // 파일 데이터 추가 (이미지가 선택된 경우)
     const fileInput = document.getElementById('image');
     if (fileInput.files.length > 0) {
-        console.log("testFile");
-        console.log(fileInput.files[0]);
         formData.append('petImage', fileInput.files[0]);
+    }else{
+        formData.append('existingImageUrl', existingImageUrl);
     }
-    console.log(formData.get('petImage'));
+
+
     // Axios를 이용해 폼 데이터 전송
     axios.put('/v1/customers/pets/update', formData, {
         headers: {
@@ -120,10 +135,16 @@ const submitForm = (event) => {
         }
     })
         .then((response) => {
-            Swal.fire('수정 완료', '수정되었습니다.', 'success');
-            window.location.href = '/v1/customers/member';
-
-
+            Swal.fire({
+                title: '수정 완료',
+                text: '수정되었습니다.',
+                icon: 'success',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // 확인 버튼을 클릭했을 때 URL 변경
+                    window.location.href = '/v1/customers/member';
+                }
+            });
             // 필요에 따라 추가 작업 수행
         })
         .catch((error) => {

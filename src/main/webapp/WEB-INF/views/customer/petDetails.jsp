@@ -54,10 +54,10 @@
 
             <div class="form-group">
                 <label for="gender">성별:</label>
-                <select id="gender" name="gender" selected="${pet.gender}" class="input-underline"required>
+                <select id="gender" name="gender" value="${pet.gender}" class="input-underline"required>
                     <option>선택해주세요</option>
-                    <option value="남자">남자</option>
-                    <option value="여자">여자</option>
+                    <option value="남자" ${pet.gender == '남자' ? 'selected' : ''}>남자</option>
+                    <option value="여자" ${pet.gender == '여자' ? 'selected' : ''}>여자</option>
                 </select><br><br>
             </div>
 
@@ -82,4 +82,6 @@
 </body>
 <script src="/js/customers/petDetails.js"></script>
 <script> let petId =${pet.id}</script>
+<script>let defaultPetSpeciesId =${pet.speciesId}</script>
+<script> let existingImageUrl = '${pet.petImage}'</script>
 </html>

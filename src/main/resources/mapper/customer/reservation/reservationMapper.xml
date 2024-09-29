@@ -16,7 +16,7 @@
                 #{id, mode=OUT, jdbcType=NUMERIC}
             )}
     </insert>
-    <select id="findReservationsByCustomerId" parameterType="Long" resultType="com.sysone.ddogdog.customer.reservation.model.ResponseReservationDTO">
+    <select id="findReservationsByCustomerId" resultType="com.sysone.ddogdog.customer.reservation.model.ResponseReservationDTO">
         SELECT h.business_name,h.main_image,h.intro,
                a.full_address,
                r.id, r.start_date, r.end_date, r.count, r.price, r.create_date, r.canceled
@@ -27,6 +27,13 @@
             FROM reservations
             WHERE customer_id = #{customerId}
         ) r ON r.hotel_id = h.id ORDER BY r.create_date DESC
+        OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+    </select>
+
+    <select id="countReservationsByCustomerId" resultType="int">
+        SELECT COUNT(*)
+        FROM reservations
+        WHERE customer_id = #{customerId}
     </select>
 
     <update id="patchReservationCanceled" parameterType="Long">

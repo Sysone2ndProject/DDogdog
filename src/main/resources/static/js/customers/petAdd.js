@@ -7,7 +7,7 @@ const handleFileSelect = (event) => {
   if (file) {
     const reader = new FileReader();
     reader.onload = (e) => {
-      imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview" style="width: 170px; height: 170px;">`;
+      imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="image-preview">`;
     };
     reader.readAsDataURL(file);
   } else {
@@ -20,26 +20,37 @@ const loadBreedList = (query) => {
   clearTimeout(debounceTimer); // 이전 타이머 클리어
 
   debounceTimer = setTimeout(() => {
+    if (!query) {
+      const breedListElement = document.getElementById('breedList');
+      breedListElement.innerHTML = `<p class="text-center">검색어를 입력해주세요</p>`;
+      return;
+    }
+
     axios.get('/v1/customers/pets/species', {
       params: { query: query }
     })
-    .then((response) => {
-      let breedListHtml = '';
-      if (response.data.length === 0) {
-        breedListHtml = `<p>검색 결과 없음</p>`;
-      } else {
-        response.data.forEach((breed) => {
-          breedListHtml += `<li class="list-group-item" onclick="selectBreed('${breed.id}', '${breed.species}')">${breed.species}</li>`;
-        });
-      }
+        .then((response) => {
+          let breedListHtml = '';
+          if (response.data.length === 0) {
+            breedListHtml = `
+                    <p class="text-center">검색 결과 없음</p>
+                    <p class="text-center">
+                        <a href="#" onclick="showBreedRegistrationForm()" class="link-style"">견종 등록하기</a>
+                    </p>`;
 
-      // 모달의 breedList 업데이트
-      const breedListElement = document.getElementById('breedList');
-      breedListElement.innerHTML = breedListHtml;
-    })
-    .catch((error) => {
-      console.error('견종 리스트 가져오기 오류:', error);
-    });
+          } else {
+            response.data.forEach((breed) => {
+              breedListHtml += `<li class="list-group-item" onclick="selectBreed('${breed.id}', '${breed.species}')">${breed.species}</li>`;
+            });
+          }
+
+          // 모달의 breedList 업데이트
+          const breedListElement = document.getElementById('breedList');
+          breedListElement.innerHTML = breedListHtml;
+        })
+        .catch((error) => {
+          console.error('견종 리스트 가져오기 오류:', error);
+        });
   }, 300); // 300ms 후에 요청
 };
 

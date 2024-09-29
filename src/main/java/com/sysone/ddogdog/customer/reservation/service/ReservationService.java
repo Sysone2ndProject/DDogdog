@@ -13,6 +13,9 @@ import com.sysone.ddogdog.customer.reservation.model.ResponseReservationDTO;
 import com.sysone.ddogdog.customer.reservation.model.ResponseReservationStatsDTO;
 import com.sysone.ddogdog.customer.roomChoice.service.RoomChoiceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,8 +57,17 @@ public class ReservationService {
      * 예약 정보 조회
      * @param customerId
      */
-    public List<ResponseReservationDTO> findReservationsByCustomerId(String customerId){
-        return reservationMapper.findReservationsByCustomerId(Long.parseLong(customerId));
+    public Page<ResponseReservationDTO> findReservationsByCustomerId(String customerId, int page, int size){
+        int offset = (page - 1) * size;  // offset 계산
+
+        // 페이지네이션된 예약 정보 가져오기 (필요한 데이터만 DB에서 조회)
+        List<ResponseReservationDTO> reservations = reservationMapper.findReservationsByCustomerId(Long.parseLong(customerId), offset, size);
+
+        // 총 예약 수 조회 (전체 개수를 가져오는 별도 쿼리)
+        int totalReservations = reservationMapper.countReservationsByCustomerId(Long.parseLong(customerId));
+
+        // Page 객체로 반환 (데이터 목록, 페이지 정보, 총 레코드 수)
+        return new PageImpl<>(reservations, PageRequest.of(page - 1, size), totalReservations);
     }
 
     /**
