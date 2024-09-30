@@ -79,6 +79,7 @@
                             <div class="room-info">
                                 <p class="room-grade">${room.grade}</p>
                                 <p class="subtext">${room.intro}</p>
+                                <p class="count">남은 방 개수: ${room.count}</p>
                                 <p class="small">1박</p>
                                 <div class="price-box">
                                     <span class="room-price"><fmt:formatNumber value="${room.price}"
@@ -124,8 +125,8 @@
 <script>
   const address = `${hotelDetail.address.fullAddress}`;
   document.addEventListener("DOMContentLoaded", () => {
-    loadKakaoMap(address);
     formatPhoneNumber();
+    loadKakaoMap(address);
   });
   const hotelId = parseInt('${hotelDetail.hotel.id}');
   let rooms = [

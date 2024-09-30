@@ -108,7 +108,7 @@ const goToForm = () => {
 document.getElementById('reservationForm').onsubmit = (event) => submitForm(
     event);
 
-formatPhoneNumber = () => {
+const formatPhoneNumber = () => {
   let phoneNumber = document.getElementById("phone").innerText;
 
   if (phoneNumber.length === 9) {
