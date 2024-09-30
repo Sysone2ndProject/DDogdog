@@ -13,7 +13,7 @@
   </resultMap>
 
   <select id="getRoomsByHotelId" resultMap="response">
-    select r1.grade, r1.price, r1.max_dogs, r1.room_image, r1.intro, r2.count
+    select r1.grade, r1.price, r1.max_dogs, r1.room_image, r1.intro, nvl(r2.count, 0)
     from (select grade, price, max_dogs, room_image, intro
           from rooms
           where hotel_id = #{id}
@@ -33,6 +33,7 @@
           group by (grade, price, max_dogs, room_image, intro)) r2
          on r1.grade = r2.grade
            and r1.price = r2.price
+    order by price
   </select>
 
 </mapper>
