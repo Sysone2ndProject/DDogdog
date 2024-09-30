@@ -20,7 +20,6 @@ public class RoomChoiceController {
     @GetMapping("/{id}")
     public ResponseEntity<List<ResponseRoomChoiceDTO>> findAllRoomChoices(
         @PathVariable Integer id) {
-        System.out.println("입력확인" + id);
         List<ResponseRoomChoiceDTO> roomsInfos = roomChoiceService.findAllRooms(id);
         return ResponseEntity.ok(roomsInfos);
     }
