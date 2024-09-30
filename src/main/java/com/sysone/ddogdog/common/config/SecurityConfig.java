@@ -34,6 +34,8 @@ public class SecurityConfig {
     private final Oauth2LoginSuccessHandler oAuth2LoginSuccessHandler;
     private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
+    private final CustomExpiredSessionStrategy sessionStrategy;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -45,7 +47,7 @@ public class SecurityConfig {
                     .sessionFixation().changeSessionId()
                     .maximumSessions(1)
                     .maxSessionsPreventsLogin(false)
-                    .expiredUrl("/v1/owners")
+                    .expiredSessionStrategy(sessionStrategy)
             );
 
         http
