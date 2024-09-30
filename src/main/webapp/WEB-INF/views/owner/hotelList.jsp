@@ -68,5 +68,5 @@
 <jsp:include page="component/footer.jsp"></jsp:include>
 
 </body>
-<script src="${pageContext.request.contextPath}/js/owners/hotelList.js"></script>
+
 </html>

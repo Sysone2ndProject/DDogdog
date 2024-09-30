@@ -44,7 +44,7 @@ public class SecurityConfig {
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                     .sessionFixation().changeSessionId()
                     .maximumSessions(1)
-                    .maxSessionsPreventsLogin(true)
+                    .maxSessionsPreventsLogin(false)
                     .expiredUrl("/v1/owners")
             );
 
