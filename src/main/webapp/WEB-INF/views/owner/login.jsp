@@ -21,7 +21,7 @@
 
     <c:if test="${param.error eq 'true'}">
         <div class="alert alert-danger" role="alert">
-            로그인에 실패했습니다. 아이디와 비밀번호를 확인해 주세요.
+            로그인에 실패했습니다.
         </div>
     </c:if>
 
