@@ -63,8 +63,8 @@
         </div>
         <div class="background four swiper-slide">
             <h1>지금 바로 시작하세요</h1>
-                    <button class="learn-more" onclick="location.href='/v1/customers';">예약 바로가기</button>
-                    <button class="learn-more"onclick="location.href='/v1/owners';">호텔 등록 바로가기</button>
+                    <button class="learn-more-four" onclick="location.href='/v1/customers';">예약 바로가기</button>
+                    <button class="learn-more-four"onclick="location.href='/v1/owners';">호텔 등록 바로가기</button>
         </div>
     </div>
     <div class="swiper-pagination"></div>
