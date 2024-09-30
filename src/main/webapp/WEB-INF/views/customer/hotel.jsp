@@ -27,7 +27,7 @@
     <form class="search-form" id="searchForm">
         <div class="text-box radius shadow">
             <input class="text-input" type="text" id="keyword" value="${param.keyword}"
-                   placeholder="지역 / 호텔명" autocomplete="off" onchange="searchAutoComplete()">
+                   placeholder="지역 / 호텔명" autocomplete="off" oninput="searchAutoComplete()">
             <div id="autoSearchArea" class="select-area radius"></div>
             <span class="material-icons-outlined" onclick="deleteKeyword()">cancel</span>
         </div>
