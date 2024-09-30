@@ -10,8 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OWNER</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" type="text/css"
-          href="${pageContext.request.contextPath}/css/owners/header.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owners/header.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <div class="header">
@@ -22,7 +23,7 @@
         <!-- 비로그인 시: 인증되지 않은 사용자라면 -->
         <sec:authorize access="isAnonymous()">
             <div class="nav-list">
-                <p class="nav-item" onclick="location.href='/v1/owners/hotels'">Management</p>
+                <p class="nav-item" onclick="needLogin()">Management</p>
                 <p class="nav-item" onclick="needLogin()">Reservation</p>
                 <p class="nav-item" onclick="needLogin()">Analyze</p>
             </div>

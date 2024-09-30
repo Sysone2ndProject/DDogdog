@@ -34,26 +34,30 @@ public class SecurityConfig {
     private final Oauth2LoginSuccessHandler oAuth2LoginSuccessHandler;
     private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
+    private final CustomExpiredSessionStrategy sessionStrategy;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
-                .addFilterBefore(new MultiAuthorityBasedSessionInvalidationFilter(),
-                        UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(new MultiAuthorityBasedSessionInvalidationFilter(),
+                UsernamePasswordAuthenticationFilter.class)
             .sessionManagement(
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                     .sessionFixation().changeSessionId()
                     .maximumSessions(1)
-                    .maxSessionsPreventsLogin(true)
-                    .expiredUrl("/v1/owners")
+                    .maxSessionsPreventsLogin(false)
+                    .expiredSessionStrategy(sessionStrategy)
             );
 
         http
             .authorizeHttpRequests(auth ->
                 auth.requestMatchers("/v1/owners/signup", "/v1/owners", "/resource/**",
-                        "/v1/owners/login", "/", "/login**", "/css/**", "/js/**", "/v1/customers/signup","/v1/customers","/hc","/env").permitAll()
-                    .requestMatchers("/v1/owners/hotels","/v1/owners/rooms","/v1/owners/reservations/*").hasRole("OWNER")
-                    .requestMatchers("/v1/customers/member").hasRole("CUSTOMER")
+                        "/v1/owners/login", "/", "/login**", "/css/**", "/js/**", "/v1/customers/signup", "/v1/customers", "/hc", "/env")
+                    .permitAll()
+                    .requestMatchers("/v1/owners/hotels", "/v1/owners/hotels/**", "/v1/owners/rooms", "/v1/owners/rooms/**",
+                        "/v1/owners/reservations/**").hasRole("OWNER")
+                    .requestMatchers("/v1/customers/member","/v1/customers/member/**","/v1/customers/pets","/v1/customers/pets/**","/v1/customers/reservation","/v1/customers/reservation/**").hasRole("CUSTOMER")
                     .anyRequest().permitAll())
             .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(
                 customAuthenticationEntryPoint));

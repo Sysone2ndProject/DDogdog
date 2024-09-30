@@ -84,20 +84,21 @@ const submitForm = (event) => {
   })
   .then((response) => {
     Swal.fire({
-      title: '예약이 완료되었습니다.',
+      title: '예약 완료!',
+      text: '예약이 완료되었습니다.',
       icon: 'success',
       confirmButtonText: '확인'
     }).then(() => {
-      window.location.href = "/v1/customers/member"
+      window.location.href = "/v1/customers/reservation";
     });
   })
   .catch((error) => {
-    console.error(error);
     Swal.fire({
-      title: '로그인 후 이용해주세요.',
+      title: '로그인 필요',
+      text: '로그인 후 이용해주세요.',
       icon: 'error',
       confirmButtonText: '확인'
-    })
+    });
   });
 };
 

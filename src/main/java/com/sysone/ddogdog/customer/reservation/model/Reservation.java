@@ -1,15 +1,15 @@
 package com.sysone.ddogdog.customer.reservation.model;
 
+import lombok.Builder;
+import lombok.Getter;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-import lombok.Builder;
-import lombok.Data;
 
 /**
  * DB와 직접적으로 통신하는 Entity 객체이다.
  */
-@Data
+@Getter
 @Builder
 public class Reservation {
     private Integer id;
@@ -22,7 +22,7 @@ public class Reservation {
     private boolean canceled;
     private LocalDate createDate;
 
-    public static Reservation from(RequestReservationDTO dto){
+    public static Reservation from(RequestReservationDTO dto) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return Reservation.builder()
                 .customerId(dto.getCustomerId())
