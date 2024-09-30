@@ -32,20 +32,21 @@ public class HotelService {
 
     public List<ResponseHotelDTO> getBestHotels() {
         return hotelMapper.getBestHotels().stream()
-                .map(h -> ResponseHotelDTO.fromHotelDTO(h,
-                        addressMapper.getFullAddressById(h.getAddressId())))
-                .collect(Collectors.toList());
+            .map(h -> ResponseHotelDTO.fromHotelDTO(h,
+                addressMapper.getFullAddressById(h.getAddressId())))
+            .collect(Collectors.toList());
     }
 
     public List<ResponseHotelDTO> getBestHotelsById(Long customerId) {
         return hotelMapper.getBestLocalHotels(customerId).stream()
-                .map(h -> ResponseHotelDTO.fromHotelDTO(h,
-                        addressMapper.getFullAddressById(h.getAddressId())))
-                .collect(Collectors.toList());
+            .map(h -> ResponseHotelDTO.fromHotelDTO(h,
+                addressMapper.getFullAddressById(h.getAddressId())))
+            .collect(Collectors.toList());
     }
 
-    public Page<ResponseHotelDTO> getHotelsByKeywordAndDatesWithPagination(String keyword, String startDate,
-                                                                           String endDate, int page, int size) {
+    public Page<ResponseHotelDTO> getHotelsByKeywordAndDatesWithPagination(String keyword,
+        String startDate,
+        String endDate, int page, int size) {
 
         List<Integer> hotelIds = null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -53,7 +54,7 @@ public class HotelService {
         LocalDate end = LocalDate.parse(endDate, formatter);
 
         for (LocalDate currentDate = start; !currentDate.isAfter(end);
-             currentDate = addDays(currentDate)) {
+            currentDate = addDays(currentDate)) {
             String date = currentDate.format(formatter);
             List<Integer> hotelIdsForDate = hotelMapper.getHotelIdByKeywordAndDate(date);
 
@@ -84,14 +85,15 @@ public class HotelService {
             return new PageImpl<>(pagedHotels, pageable, totalCount); // Page 반환
         }
 
-        return new PageImpl<>(Collections.emptyList(), PageRequest.of(page - 1, size), 0); // 데이터가 없을 경우
+        return new PageImpl<>(Collections.emptyList(), PageRequest.of(page - 1, size),
+            0); // 데이터가 없을 경우
     }
 
     private List<ResponseHotelDTO> getHotelByIds(String keyword, List<Integer> hotelIds) {
         return hotelMapper.getHotelsByIds(keyword, hotelIds).stream()
-                .map(h -> ResponseHotelDTO.fromHotelDTO(h,
-                        addressMapper.getFullAddressById(h.getAddressId())))
-                .collect(Collectors.toList());
+            .map(h -> ResponseHotelDTO.fromHotelDTO(h,
+                addressMapper.getFullAddressById(h.getAddressId())))
+            .collect(Collectors.toList());
     }
 
     private LocalDate addDays(LocalDate date) {
@@ -102,19 +104,19 @@ public class HotelService {
         HotelDTO hotelDTO = hotelMapper.getHotelById(id);
         AddressDTO address = addressMapper.getAddressById(hotelDTO.getAddressId());
         ResponseHotelDTO hotel = ResponseHotelDTO.fromHotelDTO(hotelDTO,
-                addressMapper.getFullAddressById(hotelDTO.getAddressId()));
+            addressMapper.getFullAddressById(hotelDTO.getAddressId()));
 
         List<ResponseRoomDTO> rooms = null;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         LocalDate start = (startDate == null) ? LocalDate.now()
-                : LocalDate.parse(startDate, formatter);
+            : LocalDate.parse(startDate, formatter);
         LocalDate end = (startDate == null && endDate == null) ? start.plusDays(1)
-                : LocalDate.parse(endDate, formatter);
+            : LocalDate.parse(endDate, formatter);
 
         for (LocalDate currentDate = start; !currentDate.isAfter(end);
-             currentDate = addDays(currentDate)) {
+            currentDate = addDays(currentDate)) {
             String date = currentDate.format(formatter);
 
             List<ResponseRoomDTO> roomsForDate = roomMapper.getRoomsByHotelId(id, date);

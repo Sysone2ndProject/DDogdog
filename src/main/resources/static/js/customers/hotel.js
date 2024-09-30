@@ -16,7 +16,11 @@ document.getElementById('searchForm').onsubmit =
       const endDate = document.getElementById('endDate').value || '';
 
       if (keyword === "" || startDate === "" || endDate === "") {
-        alert("모든 정보를 입력해주세요");
+        Swal.fire({
+          title: '모든 정보를 입력해주세요.',
+          icon: 'error',
+          confirmButtonText: '확인'
+        })
         return;
       }
 
@@ -28,7 +32,6 @@ document.getElementById('searchForm').onsubmit =
         }
       })
       .then((response) => {
-        console.log(response.data);
         window.location.href = '/v1/customers/hotels?keyword='
             + encodeURIComponent(keyword) + '&startDate=' + encodeURIComponent(
                 startDate) + '&endDate=' + encodeURIComponent(endDate);
@@ -38,7 +41,7 @@ document.getElementById('searchForm').onsubmit =
       });
     };
 
-window.addEventListener('scroll', async function() {
+window.addEventListener('scroll', async function () {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
     if (!isLoading && hasMoreData) {
       isLoading = true; // 로딩 상태로 변경
@@ -85,7 +88,8 @@ const appendHotelsToList = (hotels) => {
   hotels.forEach(hotel => {
     const hotelElement = document.createElement('div');
     hotelElement.classList.add('hotel', 'radius', 'shadow');
-    hotelElement.onclick = () => gotoDetail(hotel.id);
+
+    const formattedPrice = new Intl.NumberFormat('ko-KR').format(hotel.price);
 
     hotelElement.innerHTML = `
                     <img class="hotel-img" src="${hotel.mainImage}">
@@ -97,7 +101,7 @@ const appendHotelsToList = (hotels) => {
                         </div>
                         <div class="cont">
                             <span class="material-icons-outlined">call</span>
-                            <span id="phone" class="text-info">${hotel.phoneNumber}</span>
+                            <span class="phone">${hotel.phoneNumber}</span>
                         </div>
                         <p class="hotel-intro">${hotel.intro}</p>
                     </div>
@@ -106,29 +110,55 @@ const appendHotelsToList = (hotels) => {
                             <span class="material-icons-outlined">calendar_today</span>
                             <span class="text-info">1 Day</span>
                         </div>
-                        <p class="hotel-price"><fmt:formatNumber value="${hotel.price}"
-                                                                 type="number"
-                                                                 groupingUsed="true"/> ₩</p>
-                        <button class="button radius">자세히 보기</button>
+                        <p class="hotel-price">${formattedPrice} ₩</p>
+                        <button class="button radius" onclick="gotoDetail(${hotel.id})">자세히 보기</button>
                     </div>
         `;
     hotelList.appendChild(hotelElement);
   });
+  formatPhoneNumber();
 }
 
 const gotoDetail = (id) => {
-  axios.get(`/v1/customers/hotels/${id}`)
+  const startDate = document.getElementById('startDate').value;
+  const endDate = document.getElementById('endDate').value;
+
+  axios.get(`/v1/customers/hotels/${id}`, {
+    params: {
+      startDate,
+      endDate
+    }
+  })
   .then(response => {
-    window.location.href = `/v1/customers/hotels/${id}`;
+    window.location.href = `/v1/customers/hotels/${id}` + '?startDate='
+        + encodeURIComponent(
+            startDate) + '&endDate=' + encodeURIComponent(endDate);
   }).catch(error => {
     console.error();
   });
 }
 
-formatPhoneNumber = () => {
-  let phoneNumber = document.getElementById("phone").innerText;
-  document.getElementById("phone").textContent = phoneNumber.replace(
-      /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+const formatPhoneNumber = () => {
+  const phoneNumbers = document.querySelectorAll('.phone');
+
+  phoneNumbers.forEach((phone) => {
+    let phoneNumber = phone.innerText;
+
+    if (phoneNumber.length === 9) {
+      phone.textContent = phoneNumber.replace(
+          /(\d{2})(\d{3})(\d{4})/, '$1-$2-$3');
+    } else if (phoneNumber.startsWith('02') && phoneNumber.length === 10) {
+      phone.textContent = phoneNumber.replace(
+          /(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+    } else if (phoneNumber.length === 10) {
+      phone.textContent = phoneNumber.replace(
+          /(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+    } else {
+      phone.textContent = phoneNumber.replace(
+          /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+    }
+  })
+
 }
 
 document.addEventListener("DOMContentLoaded", formatPhoneNumber);

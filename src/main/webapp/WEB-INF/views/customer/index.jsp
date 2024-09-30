@@ -115,8 +115,7 @@
                                         </div>
                                         <div class="cont">
                                             <span class="material-icons-outlined">call</span>
-                                            <span id="phone"
-                                                  class="text-info">${hotel.phoneNumber}</span>
+                                            <span class="phone">${hotel.phoneNumber}</span>
                                         </div>
                                     </div>
                                     <div class="price-btn">
@@ -148,14 +147,33 @@
   const paramKeyword = "";
   <sec:authorize access="isAuthenticated()">
   let addressId = <sec:authentication property="principal.customerDTO.addressId"/>;
-  formatPhoneNumber = () => {
-    let phoneNumber = document.getElementById("phone").innerText;
-    document.getElementById("phone").textContent = phoneNumber.replace(
-        /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+  const formatPhoneNumber = () => {
+    const phoneNumbers = document.querySelectorAll('.phone');
+
+    phoneNumbers.forEach((phone) => {
+      let phoneNumber = phone.innerText;
+      console.log(phoneNumber);
+
+      if (phoneNumber.length === 9) {
+        phone.textContent = phoneNumber.replace(
+            /(\d{2})(\d{3})(\d{4})/, '$1-$2-$3');
+      } else if (phoneNumber.startsWith('02') && phoneNumber.length === 10) {
+        phone.textContent = phoneNumber.replace(
+            /(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+      } else if (phoneNumber.length === 10) {
+        phone.textContent = phoneNumber.replace(
+            /(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+      } else {
+        phone.textContent = phoneNumber.replace(
+            /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+      }
+    })
   }
 
-  document.addEventListener("DOMContentLoaded", formatPhoneNumber);
-  document.addEventListener("DOMContentLoaded", getAddress);
+  document.addEventListener("DOMContentLoaded", () => {
+    formatPhoneNumber();
+    getAddress();
+  });
   </sec:authorize>
 </script>
 </html>

@@ -17,6 +17,7 @@
   justify-content: space-between;
 }
 .text-box {
+  position:relative;
   width: 30%;
   height: 5vh;
   margin-top: 15vh;
@@ -32,11 +33,10 @@
 }
 
 .select-area {
-  width: 18%;
+  width: 100%;
   position: absolute;
-  top: 20%;
-  left: 20%;
-  right: 0;
+  top: 100%;
+  left: 0;
   z-index: 100;
   background-color: white;
   max-height: 200px;

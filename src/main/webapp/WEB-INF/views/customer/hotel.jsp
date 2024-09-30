@@ -15,6 +15,11 @@
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/css/customers/hotel.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <jsp:include page="component/header.jsp"></jsp:include>
@@ -22,7 +27,7 @@
     <form class="search-form" id="searchForm">
         <div class="text-box radius shadow">
             <input class="text-input" type="text" id="keyword" value="${param.keyword}"
-                   placeholder="지역 / 호텔명" autocomplete="off" onchange="searchAutoComplete()">
+                   placeholder="지역 / 호텔명" autocomplete="off" oninput="searchAutoComplete()">
             <div id="autoSearchArea" class="select-area radius"></div>
             <span class="material-icons-outlined" onclick="deleteKeyword()">cancel</span>
         </div>
@@ -39,7 +44,7 @@
         <p class="hotel-title">" <span class="keyword">${param.keyword}</span> " 에 대한 검색 결과</p>
         <div class="hotel-list" id="hotelList">
             <c:forEach var="hotel" items="${hotels.content}">
-                <div class="hotel radius shadow" onclick="gotoDetail(${hotel.id})">
+                <div class="hotel radius shadow">
                     <img class="hotel-img" src="${hotel.mainImage}">
                     <div class="hotel-content">
                         <p class="hotel-name">${hotel.businessName}</p>
@@ -49,7 +54,7 @@
                         </div>
                         <div class="cont">
                             <span class="material-icons-outlined">call</span>
-                            <span id="phone" class="text-info">${hotel.phoneNumber}</span>
+                            <span class="phone">${hotel.phoneNumber}</span>
                         </div>
                         <p class="hotel-intro">${hotel.intro}</p>
                     </div>
@@ -61,7 +66,7 @@
                         <p class="hotel-price"><fmt:formatNumber value="${hotel.price}"
                                                                  type="number"
                                                                  groupingUsed="true"/> ₩</p>
-                        <button class="button radius">자세히 보기</button>
+                        <button class="button radius" onclick="gotoDetail(${hotel.id})">자세히 보기</button>
                     </div>
                 </div>
             </c:forEach>

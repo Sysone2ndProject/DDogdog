@@ -17,7 +17,11 @@ const getEndDate = () => {
 const calcCountAndPrice = (i) => {
 
   if (startDate === "" || endDate === "") {
-    alert("날짜를 선택해주세요");
+    Swal.fire({
+      title: '날짜를 선택하세요.',
+      icon: 'error',
+      confirmButtonText: '확인'
+    })
     document.getElementById(`count${i}`).value = 0;
     return;
   }
@@ -62,11 +66,12 @@ const decreaseValue = (index) => {
 const submitForm = (event) => {
   event.preventDefault();
 
-  if (startDate === "" || endDate === "") {
-    alert("날짜를 선택해주세요");
-    return;
-  } else if (totalCnt === 0) {
-    alert("방을 선택해주세요");
+  if (totalCnt === 0) {
+    Swal.fire({
+      title: '방을 선택하세요.',
+      icon: 'error',
+      confirmButtonText: '확인'
+    })
     return;
   }
   axios.post('/v1/customers/reservation', {
@@ -104,8 +109,20 @@ const goToForm = () => {
 document.getElementById('reservationForm').onsubmit = (event) => submitForm(
     event);
 
-formatPhoneNumber = () => {
+const formatPhoneNumber = () => {
   let phoneNumber = document.getElementById("phone").innerText;
-  document.getElementById("phone").textContent = phoneNumber.replace(
-      /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+
+  if (phoneNumber.length === 9) {
+    document.getElementById("phone").textContent = phoneNumber.replace(
+        /(\d{2})(\d{3})(\d{4})/, '$1-$2-$3');
+  } else if (phoneNumber.startsWith('02') && phoneNumber.length === 10) {
+    document.getElementById("phone").textContent = phoneNumber.replace(
+        /(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+  } else if (phoneNumber.length === 10) {
+    document.getElementById("phone").textContent = phoneNumber.replace(
+        /(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+  } else {
+    document.getElementById("phone").textContent = phoneNumber.replace(
+        /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+  }
 }
