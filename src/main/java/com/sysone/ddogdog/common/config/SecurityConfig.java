@@ -55,7 +55,7 @@ public class SecurityConfig {
                     .permitAll()
                     .requestMatchers("/v1/owners/hotels", "/v1/owners/hotels/**", "/v1/owners/rooms", "/v1/owners/rooms/**",
                         "/v1/owners/reservations/**").hasRole("OWNER")
-                    .requestMatchers("/v1/customers/member").hasRole("CUSTOMER")
+                    .requestMatchers("/v1/customers/member","/v1/customers/member/**","/v1/customers/pets","/v1/customers/pets/**","/v1/customers/reservation","/v1/customers/reservation/**").hasRole("CUSTOMER")
                     .anyRequest().permitAll())
             .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(
                 customAuthenticationEntryPoint));

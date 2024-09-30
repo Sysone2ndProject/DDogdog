@@ -1,6 +1,7 @@
 package com.sysone.ddogdog.common.config.oauth;
 
 import com.sysone.ddogdog.customer.auth.model.CustomerDTO;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +13,7 @@ import java.util.Collection;
 import java.util.Map;
 
 @Getter
-@ToString
+
 public class PrincipalDetails implements UserDetails, OAuth2User {
     // 일반 User -> Customer(추가정보)
     private CustomerDTO customerDTO;
@@ -122,5 +123,19 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     @Override
     public String getName() {
         return oAuth2UserInfo.getName();
+    }
+
+    // equals 및 hashCode 재정의 (customerDTO.getId() 기반)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;  // 자기 자신과의 비교는 항상 true
+        if (o == null || getClass() != o.getClass()) return false;  // 다른 클래스의 객체와 비교는 false
+        PrincipalDetails that = (PrincipalDetails) o;
+        return Objects.equals(customerDTO.getId(), that.customerDTO.getId());  // 유니크한 필드 기반 비교
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerDTO.getId());  // 유니크한 필드 기반 hashCode 생성
     }
 }
