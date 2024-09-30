@@ -1,8 +1,10 @@
 package com.sysone.ddogdog.customer.room.model;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
+@Getter
+@Builder
 public class ResponseRoomDTO {
     private RoomGrade grade;
     private Integer price;
