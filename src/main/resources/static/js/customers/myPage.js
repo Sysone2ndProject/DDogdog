@@ -152,7 +152,7 @@ const changeAddress = () => {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // 확인 버튼을 누르면 리디렉션
-                        window.location.href = '/v1/customers/members'; // 리디렉션할 페이지로 변경
+                        window.location.href = '/v1/customers/member'; // 리디렉션할 페이지로 변경
                     }
                 });
 
