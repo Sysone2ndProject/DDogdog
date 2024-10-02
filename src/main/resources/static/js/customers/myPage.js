@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                       주소 : ${hotel.fullAddress}<br>
                                     </div>
                                       <div class="pet-info-details">
-                                        ${hotel.intro} <button onclick="goToHotel(${hotel.hotelId})">    바로가기</button>
+                                        ${hotel.intro} <button class="btn radius" onclick="goToHotel(${hotel.hotelId})">    바로가기</button>
                                     </div>
                                 </div>
                             </div>

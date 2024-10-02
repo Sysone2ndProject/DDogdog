@@ -1,5 +1,6 @@
 @import "../common/font.css";
 @import "common.css";
+
 .container {
     display: flex;
     justify-content: center;
@@ -27,6 +28,7 @@
 }
 
 .left-column {
+    max-width: 540px;
     display: flex;
     flex-direction: column; /* 세로로 두 개 배치 */
     gap: 20px;
@@ -202,4 +204,12 @@ ul {
 .reservation{
     display: flex;
     justify-content: center;
+}
+
+.btn {
+    background-color: var(--main--pink );
+}
+.btn:hover {
+    background-color: var(--main--pink--hover);
+    cursor: pointer;
 }

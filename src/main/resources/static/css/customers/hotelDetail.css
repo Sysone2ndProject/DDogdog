@@ -20,6 +20,7 @@
 
 .img-map {
   margin-top: 15vh;
+  max-height: 338px;
   width: 85%;
   height: 65%;
   display: flex;

@@ -90,7 +90,7 @@
     <div class="right-column">
         <div class="pet-card"> <!-- 세 번째 카드 -->
             펫 정보
-            <button onclick="petAddButton()"> 추가 </button>
+            <button class="btn radius" onclick="petAddButton()"> 추가 </button>
         </div>
 
     </div>
