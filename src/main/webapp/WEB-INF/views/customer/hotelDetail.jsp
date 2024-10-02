@@ -68,9 +68,9 @@
             <form id="reservationForm">
                 <div class="date-pick radius shadow">
                     <label for="startDate">체크인</label>
-                    <input id="startDate" type="date" onchange="setEndDate(); getStartDate();"/>
+                    <input id="startDate" type="date" value="${param.startDate}" onchange="setEndDate(); getStartDate();"/>
                     <label for="endDate">체크아웃</label>
-                    <input id="endDate" type="date" onchange="getEndDate()">
+                    <input id="endDate" type="date" value="${param.endDate}" onchange="getEndDate()">
                 </div>
                 <div class="room-list">
                     <c:forEach var="room" varStatus="status" items="${hotelDetail.rooms}">
