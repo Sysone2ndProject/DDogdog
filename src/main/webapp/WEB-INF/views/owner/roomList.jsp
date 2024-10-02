@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -33,7 +35,8 @@
                 <div class="room-info">
                     <p id="roomGrade">${room.grade}</p>
                     <p>룸 개수: ${room.roomCount}</p>
-                    <p>가격: ${room.price}</p>
+                    <p>가격: <fmt:formatNumber value="${room.price}" type="number"
+                                             groupingUsed="true"/></p>
                     <p>최대 견: ${room.maxDogs}</p>
                     <p>소개글: ${room.intro}</p>
                 </div>

@@ -36,7 +36,7 @@
 
                     <div class="icon-text">
                         <i class="fa-solid fa-phone"></i>
-                        <p>${hotel.phoneNumber}</p>
+                        <p class="phone">${hotel.phoneNumber}</p>
                     </div>
 
                     <div class="icon-text">
@@ -68,5 +68,31 @@
 <jsp:include page="component/footer.jsp"></jsp:include>
 
 </body>
+<script>
+  const formatPhoneNumber = () => {
+    const phoneNumbers = document.querySelectorAll('.phone');
+
+    phoneNumbers.forEach((phone) => {
+      let phoneNumber = phone.innerText;
+
+      if (phoneNumber.length === 9) {
+        phone.textContent = phoneNumber.replace(
+            /(\d{2})(\d{3})(\d{4})/, '$1-$2-$3');
+      } else if (phoneNumber.startsWith('02') && phoneNumber.length === 10) {
+        phone.textContent = phoneNumber.replace(
+            /(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+      } else if (phoneNumber.length === 10) {
+        phone.textContent = phoneNumber.replace(
+            /(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+      } else {
+        phone.textContent = phoneNumber.replace(
+            /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+      }
+    })
+
+  }
+
+  document.addEventListener("DOMContentLoaded", formatPhoneNumber)
+</script>
 
 </html>
