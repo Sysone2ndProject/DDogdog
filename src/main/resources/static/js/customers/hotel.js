@@ -122,7 +122,6 @@ const appendHotelsToList = (hotels) => {
 const gotoDetail = (id) => {
   const startDate = document.getElementById('startDate').value;
   const endDate = document.getElementById('endDate').value;
-
   axios.get(`/v1/customers/hotels/${id}`, {
     params: {
       startDate,

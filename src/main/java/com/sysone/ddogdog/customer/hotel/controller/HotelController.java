@@ -1,6 +1,7 @@
 package com.sysone.ddogdog.customer.hotel.controller;
 
 import com.sysone.ddogdog.customer.hotel.model.ResponseHotelDTO;
+import com.sysone.ddogdog.customer.hotel.model.ResponseHotelDetailsDTO;
 import com.sysone.ddogdog.customer.hotel.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,5 +36,12 @@ public class HotelController {
         Page<ResponseHotelDTO> hotels = hotelService.getHotelsByKeywordAndDatesWithPagination(keyword, startDate,
                 endDate, page, size);
         return ResponseEntity.ok(hotels);
+    }
+
+    @GetMapping("/v1/customers/hotels/more/{id}")
+    public ResponseEntity<ResponseHotelDetailsDTO> hotelDetails(@PathVariable Integer id, @RequestParam(required = false) String startDate,
+                               @RequestParam(required = false) String endDate) {
+        ResponseHotelDetailsDTO hotelDetail = hotelService.getHotelDetails(id, startDate, endDate);
+        return ResponseEntity.ok(hotelDetail);
     }
 }
