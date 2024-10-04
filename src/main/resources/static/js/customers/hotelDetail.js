@@ -3,11 +3,6 @@ let endDate = "";
 let totalCnt = parseInt(document.getElementById("totalCount").innerText);
 let totalPrice = parseInt(document.getElementById("totalPrice").innerText);
 
-window.onload = () => {
-  getStartDate();
-  getEndDate();
-};
-
 const getDayDiffDay = (startDate, endDate) =>
     (endDate - startDate) / (1000 * 3600 * 24);
 
@@ -20,7 +15,8 @@ const getEndDate = () => {
 }
 
 const calcCountAndPrice = (i) => {
-
+  getStartDate();
+  getEndDate();
   if (startDate === "" || endDate === "") {
     Swal.fire({
       title: '날짜를 선택하세요.',
@@ -133,8 +129,8 @@ const formatPhoneNumber = () => {
 }
 
 const getRestRoom = (id) => {
-  const startDate = document.getElementById('startDate').value;
-  const endDate = document.getElementById('endDate').value;
+  getStartDate();
+  getEndDate();
   axios.get(`/v1/customers/hotels/more/${id}`, {
     params: {
       startDate,
