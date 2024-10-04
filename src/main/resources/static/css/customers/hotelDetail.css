@@ -185,6 +185,7 @@ label {
 
 .date-pick input {
   width: 25%;
+  color: var(--main--orange);
 }
 
 .room-list {

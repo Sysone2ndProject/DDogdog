@@ -15,7 +15,8 @@ const getEndDate = () => {
 }
 
 const calcCountAndPrice = (i) => {
-
+  getStartDate();
+  getEndDate();
   if (startDate === "" || endDate === "") {
     Swal.fire({
       title: '날짜를 선택하세요.',
@@ -125,4 +126,51 @@ const formatPhoneNumber = () => {
     document.getElementById("phone").textContent = phoneNumber.replace(
         /(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
   }
+}
+
+const getRestRoom = (id) => {
+  getStartDate();
+  getEndDate();
+  axios.get(`/v1/customers/hotels/more/${id}`, {
+    params: {
+      startDate,
+      endDate
+    }
+  })
+      .then(response => {
+        // response.data에서 방 리스트 가져오기
+        const rooms = response.data.rooms;
+
+        // room-list를 초기화
+        const roomListDiv = document.querySelector('.room-list');
+        roomListDiv.innerHTML = '';  // 기존 내용 지우기
+
+        // 방 정보를 HTML로 생성하고 삽입
+        rooms.forEach((room, index) => {
+          const roomItem = `
+        <div class="room-item radius shadow">
+          <img class="room-img" src="${room.roomImage}">
+          <div class="room-info">
+            <p class="room-grade">${room.grade}</p>
+            <p class="subtext">${room.intro}</p>
+            <p class="count">남은 방 개수: ${room.count}</p>
+            <p class="small">1박</p>
+            <div class="price-box">
+              <span class="room-price">${room.price.toLocaleString('ko-KR')}₩</span>
+              <div class="count-btn">
+                <button class="minus" type="button" onclick="decreaseValue(${index})">-</button>
+                <input id="count${index}" type="number" min="0" value="0">
+                <button class="plus" type="button" onclick="increaseValue(${index})">+</button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+
+          // 생성된 HTML을 room-list에 추가
+          roomListDiv.insertAdjacentHTML('beforeend', roomItem);
+        });
+
+      }).catch(error => {
+    console.error();
+  });
 }

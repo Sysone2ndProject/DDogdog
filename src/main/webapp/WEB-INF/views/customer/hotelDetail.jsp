@@ -71,6 +71,7 @@
                     <input id="startDate" type="date" value="${param.startDate}" onchange="setEndDate(); getStartDate();"/>
                     <label for="endDate">체크아웃</label>
                     <input id="endDate" type="date" value="${param.endDate}" onchange="getEndDate()">
+                    <button class="button radius" type="button" onclick="getRestRoom(hotelId)">검색</button>
                 </div>
                 <div class="room-list">
                     <c:forEach var="room" varStatus="status" items="${hotelDetail.rooms}">
